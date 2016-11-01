@@ -24,7 +24,7 @@ function [p,dp]=funBukin9(xx)
 %constants
 a=1000;
 b=5;
-c=90;
+c=9;
 
 %evaluation and derivatives
 pa=xx(:,:,1)-b*xx(:,:,2)-xx(:,:,2).^2;

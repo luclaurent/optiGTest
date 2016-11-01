@@ -30,9 +30,9 @@ d=3;
 
 %evaluation and derivatives
 pa=xx(:,:,2)+b*xx(:,:,1)-c;
-pb=d*xx(:,:,2)-xx(:,:,1)+e;
-pc=d*xx(:,:,1)-xx(:,:,2)+e;
-pd=xx(:,:,1)+xx(:,:,2)+e;
+pb=d*xx(:,:,2)-xx(:,:,1)+c;
+pc=d*xx(:,:,1)-xx(:,:,2)+c;
+pd=xx(:,:,1)+xx(:,:,2)+c;
 p=a*abs(pa.*pb.*pc)+abs(pd);
 if nargout==2
     dp(:,:,1)=a*(b*pb.*pc-pa.*pc+d*pa.*pb)*sign(pa.*pb.*pc)+sign(pd);

@@ -29,7 +29,7 @@ d=62;
 
 %evaluation and derivatives
 pa=xx(:,:,2)-xx(:,:,1).^2+b;
-pb=xx(:,:,2)-xx(:,:,1)+d;
+pb=xx(:,:,2)-xx(:,:,1)-d;
 p=a*abs(pa)+c*abs(pb);
 if nargout==2
     dp(:,:,1)=-2*a*xx(:,:,1).*sign(pa)-c*sign(pb);

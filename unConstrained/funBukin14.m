@@ -27,7 +27,7 @@ b=1e-3;
 c=11;
 
 %evaluation and derivatives
-pa=xx(:,:,2)-b*xx(:,:,1);
+pa=xx(:,:,2)-b*xx(:,:,1).^3;
 pb=xx(:,:,2)+xx(:,:,1)+c;
 p=a*abs(pa)+abs(pb);
 if nargout==2

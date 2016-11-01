@@ -28,7 +28,7 @@ c=10;
 
 %evaluation and derivatives
 pa=xx(:,:,1)+c;
-p=a*xx(:,:,2)+b*abs(pa);
+p=a*xx(:,:,2).^2+b*abs(pa);
 if nargout==2
     dp(:,:,1)=b*sign(pa);
     dp(:,:,2)=2*a*xx(:,:,2);   

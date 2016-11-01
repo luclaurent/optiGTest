@@ -35,6 +35,6 @@ spb=sqrt(abs(pb));
 p=a*spa+a*spb;
 if nargout==2
     dp(:,:,1)=a*sign(pa).*xx(:,:,2)./(2*spa)+a*sign(pb)./(2*spb);
-    dp(:,:,2)=a*sign(pa).*xx(:,:,)./(2*spa)+a*sign(pb).*exp(xx(:,:,2)./(2*spb);   
+    dp(:,:,2)=a*sign(pa).*xx(:,:,1)./(2*spa)+a*sign(pb).*exp(xx(:,:,2))./(2*spb);   
 end
 end

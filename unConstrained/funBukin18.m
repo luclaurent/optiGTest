@@ -28,7 +28,7 @@ c=80;
 d=21;
 e=100;
 f=17;
-g=9;
+g=90;
 
 
 %evaluation and derivatives
@@ -38,8 +38,8 @@ pc=e*xx(:,:,1)+xx(:,:,2)-e;
 pd=f*xx(:,:,1)+xx(:,:,2)+g;
 p=a*abs(pa.*pb.*pc)+abs(pd);
 if nargout==2
-    dp(:,:,1)=a*(b*pb.*pc-d*pa.*pc+e*pa.*pb)*sign(pa.*pb.*pc)+sign(pd);
-    dp(:,:,2)=a*(pb.*pc+pa.*pc+pa.*pb)*sign(pa.*pb.*pc)+sign(pd);   
+    dp(:,:,1)=a*(b*pb.*pc-d*pa.*pc+e*pa.*pb).*sign(pa.*pb.*pc)+sign(pd);
+    dp(:,:,2)=a*(pb.*pc+pa.*pc+pa.*pb).*sign(pa.*pb.*pc)+sign(pd);   
 end
 end
 
