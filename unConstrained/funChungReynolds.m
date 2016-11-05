@@ -1,11 +1,10 @@
-%% Six-Hump camel back function
-%L. LAURENT -- 13/12/2010 -- luc.laurent@lecnam.net
+%% Chung Reynolds's function
+%L. LAURENT -- 04/11/2016 -- luc.laurent@lecnam.net
 %
-%6 local minima and  2 global:
-%f(x1,x2)=-1.0316 for (x1,x2)={(-0.0898,0.7126),(0.0898,0.7126)}
+%numerous local minima
+%1 global minimum : x=(0,0,...,0) >> f(x)=0
 %
-%Design space: -3<x1<3 -2<x2<2
-%(recommanded: -2<x1<2 -1<x2<1)
+%design space -1<xi<4
 
 %     GRENAT - GRadient ENhanced Approximation Toolbox
 %     A toolbox for generating and exploiting gradient-enhanced surrogate models
@@ -24,31 +23,13 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+function [p,dp]=funChungReynolds(xx)
 
-function [p,dp]=funSixHump(xx)
 
-%constants
-a=4;
-b=2.1;
-c=3;
-
-%variables
-xxx=xx(:,:,1);
-yyy=xx(:,:,2);
-
-%evaluations and derivatives
-pa=(a-b*xxx.^2+xxx.^4/c);
-pb=(-1+yyy.^2);
-p=pa.*xxx.^2+...
-    xxx.*yyy...
-    +a*pb.*yyy.^2;   
-    
+%evaluation and derivatives
+pSum=sum(xx.^2,3);
+p=pSum.^2;
 if nargout==2
-    dp(:,:,1)=2*xxx.*pa...
-        +xxx.^2.*(-2*b*xxx+a*xxx.^3/c)...
-        +yyy;
-    dp(:,:,2)=xxx...
-        +2*a*yyy.*pb...
-        +2*a*yyy.^3;
+    dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
 end
 end

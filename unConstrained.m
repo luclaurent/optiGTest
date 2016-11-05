@@ -29,9 +29,15 @@ classdef unConstrained < handle
             end
         end
         %setters
-        % function set.funName(obj,txt)
-        
-        %end
+        function set.funName(obj,txt)
+            %if the function is available we store it
+            if availableFun(txt)
+                obj.funName=txt;
+            else
+                fprintf('Test function %s unavailable \n',txt);
+                dispAvailableFun();
+            end
+        end
         function prepX(obj,XX)
             sX=[size(XX,1) size(XX,2) size(XX,3)];
             nbvar=sX(3);
@@ -63,6 +69,7 @@ classdef unConstrained < handle
                 [ZZ,GZ]=feval(['fun' obj.funName],XX);
             end
         end
+        
         function demo(obj)
             if isinf(obj.dim);obj.dim=2;end
             if obj.dim==1
@@ -83,24 +90,60 @@ classdef unConstrained < handle
             end
         end
         function show2D(obj,XX,YY,ZZ,GZ)
+            nbR=2;
+            nbC=3;
             figure
-            subplot(1,3,1)
+            subplot(nbR,nbC,1)
             surf(XX,YY,ZZ);
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(obj.funName)
-            subplot(1,3,2)
+            subplot(nbR,nbC,2)
             surf(XX,YY,GZ(:,:,1));
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
-            subplot(1,3,3)
+            subplot(nbR,nbC,3)
             surf(XX,YY,GZ(:,:,2));
+            axis('tight','square')
+            xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
+            %
+            subplot(nbR,nbC,4)
+            contour(XX,YY,ZZ);
+            axis('tight','square')
+            xlabel('x'), ylabel('y'), title(obj.funName)
+            subplot(nbR,nbC,5)
+            contour(XX,YY,GZ(:,:,1));
+            axis('tight','square')
+            xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
+            subplot(nbR,nbC,6)
+            contour(XX,YY,GZ(:,:,2));
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
         end
     end
     
+    end
 end
 
+%function for checking if the function is available
+function funOk=availableFun(txt)
+%extract name of functions
+strFun=loadDim();
+listFun=fieldnames(strFun);
+%check if function is available
+funOk=any(ismember(listFun,txt));
+end
+
+%display available testfunctions
+function funOk=dispAvailableFun()
+%extract name of functions
+strFun=loadDim();
+listFun=fieldnames(strFun);
+%check if function is available
+fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
+fprintf('Available techniques for surrogate models\n');
+dispTableTwoColumns(obj.typeAvail,obj.typeTxt);
+fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
+end
 
 %load dimension
 function dim=loadDim(funName)
@@ -125,9 +168,19 @@ listDim=struct(...
     'Bukin17',2,...
     'Bukin18',2,...
     'Bukin19',2,...
-    'Bukin20',2);
-
-dim=listDim.(funName);
+    'Bukin20',2,...
+    'ThreeHump',2,...
+    'SixHump',2,...
+    'ChenV',2,...
+    'ChenBird',2,...
+    'Chichinadze',2,...
+    'ChungReynolds',Inf,...
+    'Cola',17);
+if nargin==1
+    dim=listDim.(funName);
+else
+    dim=listDim;
+end
 end
 
 %load global minima
@@ -153,7 +206,18 @@ listGlobXmin=struct(...
     'Bukin17',[-5,-5;20,-30],...
     'Bukin18',[-5,-5;2.28916,-128.91566],...
     'Bukin19',[9,71;-8,54],...
-    'Bukin20',[-2,-1]);
+    'Bukin20',[-2,-1],...
+    'ThreeHump',[0,0],...
+    'SixHump',[-0.0898, 0.7126;0.0898,-0.7126],...
+    'ChenV',[7/18,13/18],...
+    'ChenBird',[1/2,1/2;-1/2,-1/2],...
+    'Chichinadze',[6.189866586965680,0.5],...
+    'ChungReynolds',0,...
+    'Cola',[0.651906,1.30194,0.099242,-0.883791,...
+    -0.8796,0.204651,-3.28414,0.851188,-3.46245,...
+    2.53245,-0.895246,0.204651,-3.28414,0.851188,...
+    -3.46245,2.53245,-0.895246,1.40992,-3.07367,...
+    1.96257,-2.97872,-0.807849,-1.68978]);
 listGlobZmin=struct(...
     'Brown',0,...
     'Bukin1',[0;0],...
@@ -175,7 +239,14 @@ listGlobZmin=struct(...
     'Bukin17',[0;0],...
     'Bukin18',[0;0],...
     'Bukin19',[0;0],...
-    'Bukin20',0);
+    'Bukin20',0,...
+    'ThreeHump',0,...
+    'SixHump',[-1.0316;-1.0316],...
+    'ChenV',-2000,...
+    'ChenBird',[-2000;2000],...
+    'Chichinadze',-42.94438701899098,...
+    'ChungReynolds',0,...
+    'Cola',11.7464);
 
 lGX=listGlobXmin.(funName);
 GlobZ=listGlobZmin.(funName);
@@ -209,7 +280,14 @@ listSpace=struct(...
     'Bukin17',[-40 -40;40 40],...
     'Bukin18',[-10 -150;10 10],...
     'Bukin19',[-30 -30;30 150],...
-    'Bukin20',[-5 -5;5 5]);
+    'Bukin20',[-5 -5;5 5],...
+    'ThreeHump',[-5 -5;5 5],...%[-2.5 -3;2.5 3]
+    'SixHump',[-3 -2;3 2],...%[-2 -1;2 1]
+    'ChenV',[-500;500],...
+    'ChenBird',[-500;500],...
+    'Chichinadze',[-30;30],...
+    'ChungReynolds',[-100;100],...
+    'Cola',[0,-4*ones(1,16);4*ones(1,17)]);
 
 spaceL=listSpace.(funName);
 if size(spaceL,2)==1
@@ -218,6 +296,20 @@ if size(spaceL,2)==1
 else
     xMin=spaceL(1,:);
     xMax=spaceL(2,:);
+end
+end
+
+%function display table with two columns of text
+function dispTableTwoColumns(tableA,tableB)
+%size of every components in tableA
+sizeA=cellfun(@numel,tableA);
+maxA=max(sizeA);
+%space after each component
+spaceA=maxA-sizeA+3;
+spaceTxt=' ';
+%display table
+for itT=1:numel(tableA)
+    Gfprintf('%s%s%s\n',tableA{itT},spaceTxt(ones(1,spaceA(itT))),tableB{itT});
 end
 end
 

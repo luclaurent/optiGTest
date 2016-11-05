@@ -1,11 +1,10 @@
-%% Six-Hump camel back function
-%L. LAURENT -- 13/12/2010 -- luc.laurent@lecnam.net
+%% Chichinadze's function
+%L. LAURENT -- 04/11/2016 -- luc.laurent@lecnam.net
 %
-%6 local minima and  2 global:
-%f(x1,x2)=-1.0316 for (x1,x2)={(-0.0898,0.7126),(0.0898,0.7126)}
+%1 global minimum
+%f(x1,x2)=-42.94438701899098  for (x1,x2)=(6.189866586965680,0.5)
 %
-%Design space: -3<x1<3 -2<x2<2
-%(recommanded: -2<x1<2 -1<x2<1)
+%Design space: -500<x1,x2<500
 
 %     GRENAT - GRadient ENhanced Approximation Toolbox
 %     A toolbox for generating and exploiting gradient-enhanced surrogate models
@@ -25,30 +24,32 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-function [p,dp]=funSixHump(xx)
+function [p,dp]=funChichinadze(xx)
 
 %constants
-a=4;
-b=2.1;
-c=3;
+a=12;
+b=11;
+c=10;
+d=pi/2;
+e=8;
+f=5*d;
+g=0.2*sqrt(5);
+h=1/2;
 
 %variables
 xxx=xx(:,:,1);
 yyy=xx(:,:,2);
 
 %evaluations and derivatives
-pa=(a-b*xxx.^2+xxx.^4/c);
-pb=(-1+yyy.^2);
-p=pa.*xxx.^2+...
-    xxx.*yyy...
-    +a*pb.*yyy.^2;   
-    
+pa=xxx.^2-a*xxx+b;
+pb=c*cos(d*xxx)+e*sin(f*xxx);
+pc=exp(-h*(yyy-h).^2);
+%
+p=pa+pb+g*pc;
+
 if nargout==2
-    dp(:,:,1)=2*xxx.*pa...
-        +xxx.^2.*(-2*b*xxx+a*xxx.^3/c)...
-        +yyy;
-    dp(:,:,2)=xxx...
-        +2*a*yyy.*pb...
-        +2*a*yyy.^3;
+    dp(:,:,1)=2*xxx-a...
+        -c*d*sin(d*xxx)+e*f*cos(f*xxx);
+    dp(:,:,2)=-2*h*g*yyy.*pc;
 end
 end
