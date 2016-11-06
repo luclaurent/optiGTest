@@ -1,9 +1,9 @@
-%% Colville function
-%L. LAURENT -- 16/09/2011 -- luc.laurent@lecnam.net
+%% Corana's function
+%L. LAURENT -- 05/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2,x3,x4)=0 for (x1,x2,x3,x4)=(1,1,1,1)
+%global minimum : f(x1,x2,x3,x4)=0 for (x1,x2,x3,x4)=(0,0,0,1)
 %
-%Design space: -10<xi<10
+%Design space: -500<xi<500
 
 %     GRENAT - GRadient ENhanced Approximation Toolbox
 %     A toolbox for generating and exploiting gradient-enhanced surrogate models
@@ -22,29 +22,35 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funColville(xx)
+function [p,dp]=funCorana(xx)
 
 %constants
-a=100;
-b=1;
-c=90;
-d=10.1;
-e=19.8;
+a=0.05;
+b=0.2;
+c=0.15;
+d=[1,1e3,10,1e2];dt(1,1,1:4)=d;
+e=0.49999;
 
 %evaluation and derivatives
-pa=xx(:,:,1)-xx(:,:,2).^2;
-pb=b-xx(:,:,1);
-pc=xx(:,:,4)-xx(:,:,3).^2;
-pd=b-xx(:,:,3);
-pe=xx(:,:,2)-b;
-pf=xx(:,:,4)-b;
+zz=b*floor(abs(xx)/b+e).*sign(xx);
+vv=abs(xx-zz);
+maskV=(vv<a);
 %
-p=a*pa.^2+pb+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe*pf;
+nS=[size(xx,1) size(xx,2) size(xx,3)];
+%
+pz=zz-a*sign(zz);
+dr=repmat(dt,[nS(1) nS(2) 1]);
+%
+pd=dr.*xx;
+%
+pS=zeros(nS);
+pS(maskV)=pz(maskV);
+pS(~maskV)=pd(~maskV);
+%
+p=sum(pS,3);
 %
 if nargout==2
-    dp(:,:,1)=2*a*pa-2*pb;
-    dp(:,:,2)=-4*a*xx(:,:,2).*pa+2*d*pe+e*pf;
-    dp(:,:,3)=-2*xx(:,:,3).*pc-2*pd;
-    dp(:,:,4)=2*c*pc+2*d*pf+e*pe;
+fprintf('Non differentiable fnction');
+dp=zeros(nS);
 end
 end

@@ -27,9 +27,12 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function [p,dp]=funCola(xx)
+fprintf('NEED to FIXED')
+%cf. https://github.com/andyfaff/ampgo/blob/master/%20ampgo%20--username%20andrea.gavana%40gmail.com/go_benchmark.py
 
 %constant
-dd=[1.27 0    0    0    0    0    0    0    0
+dd=[0    0    0    0    0    0    0    0    0
+    1.27 0    0    0    0    0    0    0    0
     1.69 1.43 0    0    0    0    0    0    0
     2.04 2.35 2.45 0    0    0    0    0    0
     3.09 3.18 3.26 2.85 0    0    0    0    0
@@ -39,22 +42,27 @@ dd=[1.27 0    0    0    0    0    0    0    0
     3.21 3.18 3.18 3.17 1.70 1.36 2.95 1.32 0
     2.38 2.31 2.42 1.94 2.85 2.81 2.56 2.91 2.97];
 %handle function
-funR=@(x,y,z)sqrt((x-y).^2+(y-z).^2);
+funR=@(xi,xj,yi,yj)sqrt((xi-xj).^2+(yi-yj).^2);
 
 %evaluation and derivatives
 nS=[size(xx,1) size(xx,2) size(xx,3)];
-
-xC=zeros(nS);
-yC=zeros(nS);
 %
-xC(:,:,2:end)=xx(:,:,1:2:end);
-xC(:,:,2:end)=xx(:,:,1:2:end);
+zz=zeros(nS(1),nS(2));
+xC=cat(3,zz,xx(:,:,1:2:end));
+yC=cat(3,zz,zz,xx(:,:,2:2:end));
+%
+p=zeros(nS(1:2));
+for itI=1:size(xC,3)
+    for itJ=1:itI-1
+        dd(itI,itJ)
+        p=p+(funR(xC(:,:,itI),xC(:,:,itJ),yC(:,:,itI),yC(:,:,itJ))-dd(itI,itJ)).^2;
+        p
+    end
+end
 
-
-
-pSum=sum(xx.^2,3);
-p=pSum.^2;
 if nargout==2
-    dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
+    fprintf('Derivatives not implemented')
+    dp=zeros(nS);
+ %   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
 end
 end

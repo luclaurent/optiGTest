@@ -1,9 +1,10 @@
-%% Colville function
-%L. LAURENT -- 16/09/2011 -- luc.laurent@lecnam.net
+%% Deb4's function
+%L. LAURENT -- 06/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2,x3,x4)=0 for (x1,x2,x3,x4)=(1,1,1,1)
+%numerous local minima
+%5^np global minimum : 
 %
-%Design space: -10<xi<10
+%design space -1<xi<1
 
 %     GRENAT - GRadient ENhanced Approximation Toolbox
 %     A toolbox for generating and exploiting gradient-enhanced surrogate models
@@ -22,29 +23,25 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funColville(xx)
+function [p,dp]=funDeb4(xx)
 
-%constants
-a=100;
-b=1;
-c=90;
-d=10.1;
-e=19.8;
+%constans
+a=6;
+b=5*pi;
+c=3/4;
+d=0.05;
+e=2*log(2);
+f=0.08;
+g=0.854;
 
 %evaluation and derivatives
-pa=xx(:,:,1)-xx(:,:,2).^2;
-pb=b-xx(:,:,1);
-pc=xx(:,:,4)-xx(:,:,3).^2;
-pd=b-xx(:,:,3);
-pe=xx(:,:,2)-b;
-pf=xx(:,:,4)-b;
-%
-p=a*pa.^2+pb+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe*pf;
-%
+nS=size(xx,3);
+sx=sin(b*(xx.^c-d));
+ex=exp(-e*((xx-f)./g).^2);
+p=-1/nS*sum(ex.*sx.^a,3);
+
 if nargout==2
-    dp(:,:,1)=2*a*pa-2*pb;
-    dp(:,:,2)=-4*a*xx(:,:,2).*pa+2*d*pe+e*pf;
-    dp(:,:,3)=-2*xx(:,:,3).*pc-2*pd;
-    dp(:,:,4)=2*c*pc+2*d*pf+e*pe;
+    cx=cos(b*(xx.^c-d));
+    dp=-1/nS*ex.*(b*a*c*xx.^(c-1).*cx.*sx.^(a-1)+sx.^a.*(-2*e/g*(xx-f)./g));
 end
 end

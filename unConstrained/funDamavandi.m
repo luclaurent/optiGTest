@@ -1,9 +1,9 @@
-%% Colville function
-%L. LAURENT -- 16/09/2011 -- luc.laurent@lecnam.net
+%% Damavandi's function
+%L. LAURENT -- 05/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2,x3,x4)=0 for (x1,x2,x3,x4)=(1,1,1,1)
+%1 global minimum : f(2,2)=0 
 %
-%Design space: -10<xi<10
+%Design space: 0<xi<14
 
 %     GRENAT - GRadient ENhanced Approximation Toolbox
 %     A toolbox for generating and exploiting gradient-enhanced surrogate models
@@ -22,29 +22,42 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funColville(xx)
+function [p,dp]=funDamavandi(xx)
 
 %constants
-a=100;
-b=1;
-c=90;
-d=10.1;
-e=19.8;
+a=1;
+b=pi;
+c=2;
+d=7;
+
+%variables
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 
 %evaluation and derivatives
-pa=xx(:,:,1)-xx(:,:,2).^2;
-pb=b-xx(:,:,1);
-pc=xx(:,:,4)-xx(:,:,3).^2;
-pd=b-xx(:,:,3);
-pe=xx(:,:,2)-b;
-pf=xx(:,:,4)-b;
+pax=xxx-c;
+pay=yyy-c;
+sx=sin(b*pax);
+sy=sin(b*pay);
+kxy=sx.*sy./(b^2*pax.*pay);
 %
-p=a*pa.^2+pb+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe*pf;
+pbx=xxx-d;
+pby=yyy-d;
+hxy=c+pbx.^2+b*pby.^2;
+%
+p=(a-abs(kxy).^5).*hxy;
 %
 if nargout==2
-    dp(:,:,1)=2*a*pa-2*pb;
-    dp(:,:,2)=-4*a*xx(:,:,2).*pa+2*d*pe+e*pf;
-    dp(:,:,3)=-2*xx(:,:,3).*pc-2*pd;
-    dp(:,:,4)=2*c*pc+2*d*pf+e*pe;
+    cx=cos(b*pax);
+    cy=cos(b*pay);
+    %
+    dkx=b*cx.*sy./(b^2*pax.*pay)+b^2*pax.*kxy./(b^2*pax.*pay);
+    dky=b*cy.*sx./(b^2*pax.*pay)+b^2*pbx.*kxy./(b^2*pax.*pay);
+    %
+    dhx=2*pbx;
+    dhy=2*pby;
+    %
+    dp(:,:,1)=dhx.*(a-abs(kxy).^5)-5*dkx.*sign(kxy).*kxy.^4.*hxy;
+    dp(:,:,2)=dhy.*(a-abs(kxy).^5)-5*dky.*sign(kxy).*kxy.^4.*hxy;
 end
 end

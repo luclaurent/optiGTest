@@ -1,7 +1,11 @@
-%% Colville function
-%L. LAURENT -- 16/09/2011 -- luc.laurent@lecnam.net
+%% Cross-in-Tray function
+%L. LAURENT -- 05/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2,x3,x4)=0 for (x1,x2,x3,x4)=(1,1,1,1)
+%4 global minimas : f(x1,x2,x3,x4)=-2.06261218 for 
+% {(1.349406685353340,1.349406608602084),
+%   (-1.349406685353340,1.349406608602084),
+%   (1.349406685353340,-1.349406608602084),
+%   (-1.349406685353340,-1.349406608602084)}
 %
 %Design space: -10<xi<10
 
@@ -22,29 +26,41 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funColville(xx)
+function [p,dp]=funCrossInTray(xx)
 
 %constants
-a=100;
-b=1;
-c=90;
-d=10.1;
-e=19.8;
+a=1e-4;
+b=100;
+c=pi;
+d=1;
+e=0.1;
+
+%variables
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 
 %evaluation and derivatives
-pa=xx(:,:,1)-xx(:,:,2).^2;
-pb=b-xx(:,:,1);
-pc=xx(:,:,4)-xx(:,:,3).^2;
-pd=b-xx(:,:,3);
-pe=xx(:,:,2)-b;
-pf=xx(:,:,4)-b;
-%
-p=a*pa.^2+pb+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe*pf;
+sx=sin(xxx);
+sy=sin(yyy);
+gxy=sqrt(xxx.^2+yyy.^2);
+hxy=exp(abs(b-gxy./c));
+kxy=abs(sx.*sy.*hxy);
+p=-a*(kxy+d).^e;
 %
 if nargout==2
-    dp(:,:,1)=2*a*pa-2*pb;
-    dp(:,:,2)=-4*a*xx(:,:,2).*pa+2*d*pe+e*pf;
-    dp(:,:,3)=-2*xx(:,:,3).*pc-2*pd;
-    dp(:,:,4)=2*c*pc+2*d*pf+e*pe;
+    cx=cos(xxx);
+    cy=cos(yyy);
+    %
+    dgx=xxx./gxy;
+    dgy=yyy./gxy;
+    %
+    dhx=hxy.*sign(b-gxy./c).*(-1/c.*dgx);
+    dhy=hxy.*sign(b-gxy./c).*(-1/c.*dgy);
+    %
+    dkx=(cx.*sy.*hxy+sx.*sy.*dhx).*sign(sx.*sy.*hxy);
+    dky=(cy.*sx.*hxy+sx.*sy.*dhy).*sign(sx.*sy.*hxy);
+    %
+    dp(:,:,1)=-a*e*dkx.*(kxy+d).^(e-1);
+    dp(:,:,2)=-a*e*dky.*(kxy+d).^(e-1);
 end
 end
