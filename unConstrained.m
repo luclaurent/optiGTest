@@ -16,7 +16,7 @@ classdef unConstrained < handle
         function obj=unConstrained(funName,XX,dim)
             addpath('unConstrained/');
             if nargin==0
-                obj.checkAllfun;
+                obj.checkAllfun();
             else
             obj.funName=funName;
             obj.dim=loadDim(funName);
@@ -108,9 +108,17 @@ classdef unConstrained < handle
             end
         end
         %check all functions
-        %function isOk=checkAllFun()
-            
-        %end
+        function isOk=checkAllfun(obj)
+            isOk=true;
+            %extract name of functions
+            strFun=loadDim();
+            listFun=fieldnames(strFun);
+            %check every function
+            for itF=1:numel(listFun)
+                listFun{itF}
+                isOk=isOk&&obj.checkFun(listFun{itF});
+            end
+        end
         %show 2D function 
         function show2D(obj,XX,YY,ZZ,GZ)
             nbR=2;
