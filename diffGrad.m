@@ -143,12 +143,14 @@ classdef diffGrad < handle
             coefRaw = cell2mat(coefRaw);
             %product coef*response
             prodZCoef=rZeval.*repmat(coefRaw,[obj.nS,1]);
+            %stepsizes
+            sDiff=obj.stepsDiff;
             %build the array of gradients
             GZ=zeros(obj.nS,obj.dim);
             for itS=1:obj.nS
                 nbT=nbCoef*obj.dim;
                 itX=nbT*(itS-1)+(1:nbT);
-                GZ(itS,:)=sum(prodZCoef(itX,:),1)./divG;
+                GZ(itS,:)=sum(prodZCoef(itX,:),1)./(divG*sDiff(itS,:));
             end
         end
         %demo mode 

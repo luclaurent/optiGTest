@@ -10,6 +10,7 @@ classdef unConstrained < handle
         globMinZ
         globMinX
         Xeval
+        nSCheck=5;
     end
     
     methods
@@ -43,7 +44,7 @@ classdef unConstrained < handle
                 dispAvailableFun();
             end
         end
-        function prepX(obj,XX)
+        function Xeval=prepX(obj,XX)
             sX=[size(XX,1) size(XX,2) size(XX,3)];
             nbvar=sX(3);
             if isinf(obj.dim)
@@ -66,12 +67,21 @@ classdef unConstrained < handle
                     fprintf('Wrong size of sample points\n');
                 end
             end
+            Xeval=obj.Xeval;
         end
-        function [ZZ,GZ]=eval(obj,XX)
+        function [ZZ,GZ,GZreshape]=eval(obj,XX)
             if nargin==1
-                [ZZ,GZ]=feval(['fun' obj.funName],obj.Xeval);
+                Xrun=obj.Xeval;
             else
-                [ZZ,GZ]=feval(['fun' obj.funName],XX);
+                Xrun=obj.prepX(XX);
+            end
+            if nargout>1
+                [ZZ,GZ]=feval(['fun' obj.funName],Xrun);
+            else
+                [ZZ]=feval(['fun' obj.funName],Xrun);
+            end
+            if nargout>2
+                GZreshape=reshape(GZ,[],size(GZ,3));
             end
         end
         %dem mode
@@ -96,15 +106,50 @@ classdef unConstrained < handle
         end
         %check function by checking minimum
         function isOk=checkFun(obj,funName)
+            %check minimum
             isOk=true;
             [X,Z]=loadGlobMin(funName,obj.dim);
-            obj.prepX(X);
-            ZZ=obj.eval();
-            if abs(ZZ(:)-Z(:))>1e-6;
+            ZZ=obj.eval(X);
+            if abs(ZZ(:)-Z(:))>1e-4;
                 fprintf('Issue with the %s function (wrong minimum obtained)\n',funName);
-                fprintf('Obtained:');fprintf('%d ',ZZ);
-                fprintf('Expected:');fprintf('%d ',Z);
+                fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
+                fprintf('\n');
+                fprintf('Expected: ');fprintf('%d ',Z(:)');
+                fprintf('\n');
                 isOk=false;
+            end
+            %check derivatives
+            dimCheck=loadDim(funName);
+            if isinf(dimCheck);dimCheck=5;end
+            [XminSpace,XmaxSpace]=loadSpace(funName,dimCheck);
+            %build sampling points
+            if exist('lhsdesign','file')
+                Xsample=lhsdesign(obj.nSCheck,dimCheck);
+            else
+                Xsample=rand(obj.nSCheck,dimCheck);
+            end
+            %rescale the samples
+            Xsample=Xsample.*repmat(XmaxSpace,obj.nSCheck,1)+repmat(XminSpace,obj.nSCheck,1);
+            %evaluate function at the sample 
+            obj.prepX(Xsample);
+            [~,~,GZactual]=obj.eval();
+            %compute approximate gradients using finite differences
+            FDtype='CD8';
+            FDstep=1e-6;
+            obj.funName=funName;
+            FDfun=@(X)obj.eval(X);
+            FDclass=diffGrad(FDtype,Xsample,FDstep,FDfun);
+            GZapprox=FDclass.GZeval;
+            %compare results
+            if any(abs(GZactual-GZapprox)>1e-6)
+                fprintf('Issue with the gradients of the %s function\n',funName);
+                fprintf('Exact\tFinite Difference (%s, %d)\n',FDtype,FDstep);
+                for it=1:obj.nSCheck
+                    fprintf('%+d ',GZactual(it,:));
+                    fprintf('\t');
+                    fprintf('%+d ',GZapprox(it,:));
+                    fprintf('\n');
+                end
             end
         end
         %check all functions
@@ -171,8 +216,8 @@ strFun=loadDim();
 listFun=fieldnames(strFun);
 %check if function is available
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
-fprintf('Available techniques for surrogate models\n');
-dispTableTwoColumns(obj.typeAvail,obj.typeTxt);
+fprintf('Available test functions\n');
+cellfun(@(X)fprintf('%s\n',X),listFun);
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 end
 
@@ -318,7 +363,7 @@ listGlobZmin=struct(...
     'Deb2',NaN,...
     'Deb3',NaN,...
     'Deb4',NaN,...
-    'DeckkersAarts',-24777.109,...
+    'DeckkersAarts',[-24777.109;-24777.109],...
     'prout',0);
 
 lGX=listGlobXmin.(funName);
