@@ -25,7 +25,7 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-function [p,dp]=funSixHump(xx)
+function [p,dp]=funCamelbackSixHump(xx)
 
 %constants
 a=4;

@@ -178,6 +178,7 @@ end
 
 %available finite differences approachs
 function R=loadFD(typeIn)
+%from http://web.media.mit.edu/~crtaylor/calculator.html
 %available technics and parameters
 listFD.FD1.grad.steps=[0 1];
 listFD.FD1.grad.coef=[-1 1];

@@ -24,7 +24,7 @@
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-function [p,dp]=funThreeHump(xx)
+function [p,dp]=funCamelbackThreeHump(xx)
 
 %constants
 a=2;
