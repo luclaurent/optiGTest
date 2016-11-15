@@ -75,12 +75,14 @@ classdef diffGrad < handle
             if sSteps(1) == 1
                 nbR(1)=obj.nS;
             elseif sSteps(1) ~=1 || sSteps(1) ~= obj.nS
-                fprintf('Wrong size of the steps for computing finite differences\n');
+                keyboard
+                fprintf(['Wrong size of the steps for computing finite differences (' mfilename ')\n']);
             end
             if sSteps(2) == 1
                 nbR(2)=obj.dim;
             elseif sSteps(2) ~=1 || sSteps(2) ~= obj.nS
-                fprintf('Wrong size of the steps for computing finite differences\n');
+                keyboard
+                fprintf(['Wrong size of the steps for computing finite differences (' mfilename ')\n']);
             end
             stepsOut=repmat(steps,nbR);
         end
@@ -90,7 +92,7 @@ classdef diffGrad < handle
             obj.confFD=loadFD(obj.type);
             %build combination of steps for eveyr dimension
             nbStep=numel(obj.confFD.grad.steps);
-            stepsXtmp=[obj.confFD.grad.steps(ones(1,obj.dim),:).';zeros(nbStep,obj.dim)];
+            stepsXtmp=[obj.confFD.grad.steps(ones(1,obj.dim),:).';zeros(nbStep*(obj.dim-1),obj.dim)];
             stepsXraw = arrayfun(@(i) circshift(stepsXtmp(:, i), nbStep*(i-1)), 1:obj.dim, 'UniformOutput', false);
             stepsXraw = cell2mat(stepsXraw);
             %build array of points for evaluating the function
@@ -99,7 +101,11 @@ classdef diffGrad < handle
             for itS=1:obj.nS
                 nbT=nbStep*obj.dim;
                 itX=nbT*(itS-1)+(1:nbT);
+                try
                 XX(itX,:)=repmat(obj.Xref(itS,:),[nbT 1])+bsxfun(@times,stepsXraw,sDiff(itS,:));
+                catch
+                    keyboard
+                end
             end
             %remove duplicate and store positions
             [XX,~,obj.dupX]=unique(XX,'rows');
@@ -124,7 +130,7 @@ classdef diffGrad < handle
                     ZZ=feval(obj.fun,obj.XevalG);
                 end
             else
-                fprintf('Undefined function for evaluation\n');
+                fprintf(['Undefined function for evaluation (' mfilename ')\n']);
             end
         end
         %compute gradients from responses at the Xeval points
@@ -132,17 +138,25 @@ classdef diffGrad < handle
             %build the right Zeval vector
             ZZevalG=obj.ZevalG;
             ddupX=obj.dupX;
+            try
             rZeval=repmat(ZZevalG(ddupX),[1,obj.dim]);
+            catch
+                keyboard
+            end
             %load coef and divisor
             coefG=obj.confFD.grad.coef;
             nbCoef=numel(coefG);
             divG=obj.confFD.grad.div;
             %build array of coefficients
-            coefTmp=[coefG(ones(1,obj.dim),:).';zeros(nbCoef,obj.dim)];
+            coefTmp=[coefG(ones(1,obj.dim),:).';zeros(nbCoef*(obj.dim-1),obj.dim)];
             coefRaw = arrayfun(@(i) circshift(coefTmp(:, i), nbCoef*(i-1)), 1:obj.dim, 'UniformOutput', false);
             coefRaw = cell2mat(coefRaw);
             %product coef*response
+            try
             prodZCoef=rZeval.*repmat(coefRaw,[obj.nS,1]);
+            catch
+                keyboard
+            end
             %stepsizes
             sDiff=obj.stepsDiff;
             %build the array of gradients
