@@ -188,6 +188,8 @@ classdef unConstrained < handle
         function show2D(obj,XX,YY,ZZ,GZ)
             nbR=2;
             nbC=3;
+            nbLevel=10;
+            
             figure
             subplot(nbR,nbC,1)
             surf(XX,YY,ZZ);
@@ -203,15 +205,15 @@ classdef unConstrained < handle
             xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
             %
             subplot(nbR,nbC,4)
-            contour(XX,YY,ZZ);
+            contourf(XX,YY,ZZ,nbLevel);
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(obj.funName)
             subplot(nbR,nbC,5)
-            contour(XX,YY,GZ(:,:,1));
+            contourf(XX,YY,GZ(:,:,1),nbLevel);
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
             subplot(nbR,nbC,6)
-            contour(XX,YY,GZ(:,:,2));
+            contourf(XX,YY,GZ(:,:,2),nbLevel);
             axis('tight','square')
             xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
         end

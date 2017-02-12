@@ -33,7 +33,7 @@ classdef diffGrad < handle
             obj.Xref=XrefIn;
             obj.stepsDiff=stepsIn;
             %
-            if nargin>3;
+            if nargin>3
                 obj.fun=funIn;
                 if demo
                     obj.runDemo;
