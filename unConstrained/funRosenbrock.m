@@ -22,7 +22,7 @@ if nargout==2
     dgi=-4*a*pa.*xx(:,:,1:end-1)...
         +2*pb;
     %
-    dp=zeros(size(xx)); dpp=zeros(size(xx));
+    dp=zeros(size(xx)); 
     dp(:,:,1)=dgi(:,:,1);
     dp(:,:,2:end-1)=dgi(:,:,2:end)+2*a*pa(:,:,1:end-1);
     dp(:,:,end)=2*a*pa(:,:,end);

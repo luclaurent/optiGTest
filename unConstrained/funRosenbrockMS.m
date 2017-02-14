@@ -25,9 +25,11 @@ if nargout==2
         +2*pb;
     dB=-c*d*cos(d*(1-xx));
     %
-    dp=zeros(size(xx)); 
+    dp=zeros(size(xx));
     dp(:,:,1)=dgi(:,:,1)+dB(:,:,1);
-    dp(:,:,2:end-1)=dgi(:,:,2:end)+2*a*pa(:,:,1:end-1)+dB(:,:,2:end-1);
+    dp(:,:,2:end-1)=dgi(:,:,2:end)...
+        +2*a*pa(:,:,1:end-1)...
+        +dB(:,:,2:end-1);
     dp(:,:,end)=2*a*pa(:,:,end)+dB(:,:,end);
 end
 end
