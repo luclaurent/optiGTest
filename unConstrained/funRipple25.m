@@ -1,8 +1,7 @@
 %% Ripple 25 function
 %L. LAURENT -- 14/02/2017 -- luc.laurent@lecnam.net
 %
-%252004 local minima
-%1 minimum global: x=0 >> f(-2.1,-2.1)=0
+%1 minimum global: x=0 >> f(-0.1,-0.1)=-2
 %
 %Design space 0<xi<1
 
