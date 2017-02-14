@@ -23,7 +23,7 @@
 %     You should have received a copy of the GNU General Public License
 %     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp,infos]=funBard(xx,dim)
+function [p,dp,infos]=funBrad(xx,dim)
 fprintf('NE TO BE DEBUGGED');
 %constants
 nbt=15;
