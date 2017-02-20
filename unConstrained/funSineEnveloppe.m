@@ -8,20 +8,52 @@
 
 function [p,dp] = funSineEnveloppe(xx)
 
+%constants
+a=1/2;
+b=1e-3;
+c=1;
+
 %evaluation and derivatives
 sX=size(xx);
 %
-lI=1:sX(3);
-lI=reshape(lI,1,1,[]);
+funH=@(x,y)sin(sqrt(x.^2+y.^2)).^2-a;
+funG=@(x,y)(b*(x.^2+y.^2)+c).^2;
 %
-pa=xx-1./lI;
-rEps=rand(sX);
-pb=rEps.*abs(pa);
+xkp=xx(:,:,2:end);
+xk=xx(:,:,1:end-1);
+pa=funH(xkp,xk)./funG(xkp,xk)+a;
 %
-p=sum(pb,3);
+p=sum(pa,3);
 
 if nargout==2
     %
-    dp=rEps.*sign(pa);
+    funHx=@(x,y)2*x./sqrt(x.^2+y.^2) ...
+        .*cos(sqrt(x.^2+y.^2)) ...
+        .*sin(sqrt(x.^2+y.^2));
+    funHy=@(x,y)2*y./sqrt(x.^2+y.^2) ...
+        .*cos(sqrt(x.^2+y.^2)) ...
+        .*sin(sqrt(x.^2+y.^2));
+    funGx=@(x,y)4*b*x.*(b*(x.^2+y.^2)+c);
+    funGy=@(x,y)4*b*y.*(b*(x.^2+y.^2)+c);
+    %
+    dp=zeros(sX);
+    %
+    for itX=1:sX(3)
+        if itX==1
+            x=xx(:,:,2);
+            y=xx(:,:,1);
+            dp(:,:,itX)=(funHy(x,y).*funG(x,y)-funH(x,y).*funGy(x,y))./funG(x,y).^2;
+        elseif itX==sX(3)
+            x=xx(:,:,sX(3));
+            y=xx(:,:,sX(3)-1);
+            dp(:,:,itX)=(funHx(x,y).*funG(x,y)-funH(x,y).*funGx(x,y))./funG(x,y).^2;
+        else
+            xk=xx(:,:,itX);
+            xkp=xx(:,:,itX+1);
+            xkm=xx(:,:,itX-1);
+            dp(:,:,itX)=(funHx(xk,xkm).*funG(xk,xkm)-funH(xk,xkm).*funGx(xk,xkm))./funG(xk,xkm).^2 ...
+                +(funHy(xkp,xk).*funG(xkp,xk)-funH(xkp,xk).*funGy(xkp,xk))./funG(xkp,xk).^2;
+        end
+    end
 end
 end
