@@ -6,7 +6,7 @@
 %Design space -500<xi<500
 
 
-function [p,dp] = funRotatedEllipse01(xx)
+function [p,dp] = funRotatedEllipse1(xx)
 
 
 %evaluation and derivatives

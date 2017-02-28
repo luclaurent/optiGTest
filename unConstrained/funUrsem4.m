@@ -1,3 +1,4 @@
+
 %% Ursem 4 function
 % L. LAURENT -- 24/02/2017 -- luc.laurent@lecnam.net
 
@@ -5,7 +6,7 @@
 %
 %Design space -2<xi<2
 
-function [p,dp] = funUrsem04(xx)
+function [p,dp] = funUrsem4(xx)
 
 %constants
 a=3;

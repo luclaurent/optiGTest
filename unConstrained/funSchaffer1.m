@@ -6,7 +6,7 @@
 %Design space -100<xi<100
 
 
-function [p,dp] = funSchaffer01(xx)
+function [p,dp] = funSchaffer1(xx)
 
 %constants
 a=0.5;

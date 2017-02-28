@@ -6,7 +6,7 @@
 %Design space -500<xi<500 (focus on 0<xi<2)
 
 
-function [p,dp] = funTrigonometric02(xx)
+function [p,dp] = funTrigonometric2(xx)
 
 %constants
 a=1;

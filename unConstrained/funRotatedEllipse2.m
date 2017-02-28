@@ -6,7 +6,7 @@
 %Design space -500<xi<500
 
 
-function [p,dp] = funRotatedEllipse02(xx)
+function [p,dp] = funRotatedEllipse2(xx)
 
 %constants
 a=7;

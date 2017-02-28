@@ -6,7 +6,7 @@
 %Design space: -500<xi<500
 
 
-function [p,dp]=funPrice03(xx)
+function [p,dp]=funPrice3(xx)
 
 %constants
 a=100;

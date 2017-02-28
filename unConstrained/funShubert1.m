@@ -6,7 +6,7 @@
 %Design space -10<xi<10
 
 
-function [p,dp] = funShubert01(xx)
+function [p,dp] = funShubert1(xx)
 
 %constants
 a=5;

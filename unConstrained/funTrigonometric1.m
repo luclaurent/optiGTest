@@ -6,7 +6,7 @@
 %Design space 0<xi<pi
 
 
-function [p,dp] = funTrigonometric01(xx)
+function [p,dp] = funTrigonometric1(xx)
 
 %constants
 nbvar=size(xx,3);

@@ -5,7 +5,7 @@
 %
 %Design space -2<x1<2 -1.5<x<1.5
 
-function [p,dp] = funUrsem03(xx)
+function [p,dp] = funUrsem3(xx)
 
 %constants
 a=2.2*pi;

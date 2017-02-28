@@ -1,12 +1,12 @@
-%% Schaffer 4 function
-% L. LAURENT -- 19/02/2017 -- luc.laurent@lecnam.net
+%% Schaffer 2 function
+% L. LAURENT -- 15/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(0,1.253115)=0.292579
+%1 minimum global: f(0,0)=0
 %
 %Design space -100<xi<100
 
 
-function [p,dp] = funSchaffer04(xx)
+function [p,dp] = funSchaffer2(xx)
 
 %constants
 a=0.5;
@@ -19,17 +19,17 @@ y=xx(:,:,2);
 xay=x.^2+y.^2;
 xmy=x.^2-y.^2;
 sxy=sin(xmy);
-csxy=cos(sxy);
-pa=csxy.^2-a;
+pa=sxy.^2-a;
 pb=b+c*xay.^2;
 %
 p=a+pa./pb;
 
 if nargout==2
     %
-    dpT=-2*xx.*cos(xmy).*2.*sin(sxy).*csxy;
-    dpax=dpT(:,:,1);
-    dpay=-dpT(:,:,2);
+    dp=zeros(size(xx));
+    cxy=cos(xmy);
+    dpax=4*x.*sxy.*cxy;
+    dpay=-4*y.*sxy.*cxy;
     dpbx=4*c*x.*xay;
     dpby=4*c*y.*xay;
     dp(:,:,1)=(dpax.*pb-pa.*dpbx)./pb.^2;
