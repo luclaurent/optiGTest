@@ -21,7 +21,7 @@ y=xx(:,:,2);
 lI=reshape(1:m,1,1,m);
 %
 pa=cos((lI-1).*x+lI);
-pb=cos((lI-1).*y+lI);
+pb=cos((lI+1).*y+lI);
 pc=x+a;
 pd=y+b;
 %
