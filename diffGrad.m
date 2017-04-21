@@ -102,7 +102,7 @@ classdef diffGrad < handle
                 nbT=nbStep*obj.dim;
                 itX=nbT*(itS-1)+(1:nbT);
                 try
-                XX(itX,:)=repmat(obj.Xref(itS,:),[nbT 1])+bsxfun(@times,stepsXraw,sDiff(itS,:));
+                    XX(itX,:)=repmat(obj.Xref(itS,:),[nbT 1])+bsxfun(@times,stepsXraw,sDiff(itS,:));
                 catch
                     keyboard
                 end
@@ -114,7 +114,7 @@ classdef diffGrad < handle
         %load external Z (external evaluation of the function)
         function loadZextG(obj,ZZ)
             if ~isempty(ZZ)
-                if numel(ZZ)==obj.nX;
+                if numel(ZZ)==obj.nX
                     obj.ZevalG=ZZ(:);
                 else
                     fprintf('Wrong size of external responses (expected: %i, provided: %i\n',obj.nX,numel(ZZ));
@@ -122,7 +122,7 @@ classdef diffGrad < handle
             end
         end
         %compute responses of the function at the Xeval points
-        function ZZ=GcomputeZ(obj,XX)
+        function ZZ=GcomputeZ(obj,XX)            
             if ~isempty(obj.fun)
                 if nargin>1
                     ZZ=feval(obj.fun,XX);
@@ -138,11 +138,7 @@ classdef diffGrad < handle
             %build the right Zeval vector
             ZZevalG=obj.ZevalG;
             ddupX=obj.dupX;
-            try
             rZeval=repmat(ZZevalG(ddupX),[1,obj.dim]);
-            catch
-                keyboard
-            end
             %load coef and divisor
             coefG=obj.confFD.grad.coef;
             nbCoef=numel(coefG);
@@ -152,11 +148,7 @@ classdef diffGrad < handle
             coefRaw = arrayfun(@(i) circshift(coefTmp(:, i), nbCoef*(i-1)), 1:obj.dim, 'UniformOutput', false);
             coefRaw = cell2mat(coefRaw);
             %product coef*response
-            try
             prodZCoef=rZeval.*repmat(coefRaw,[obj.nS,1]);
-            catch
-                keyboard
-            end
             %stepsizes
             sDiff=obj.stepsDiff;
             %build the array of gradients
@@ -167,7 +159,7 @@ classdef diffGrad < handle
                 GZ(itS,:)=sum(prodZCoef(itX,:),1)./(divG*sDiff(itS,:));
             end
         end
-        %demo mode 
+        %demo mode
         function runDemo(obj)
             %load list of available finite differences
             listT=fieldnames(loadFD);
@@ -181,8 +173,8 @@ classdef diffGrad < handle
                 fprintf('%s: ',listT{itT});
                 if size(GZdemo{1},1)>1;fprintf('\n');end
                 for iTG=1:size(GZdemo{itT},1)
-                   fprintf('%d ',GZdemo{itT}(iTG,:));
-                   fprintf('\n');
+                    fprintf('%d ',GZdemo{itT}(iTG,:));
+                    fprintf('\n');
                 end
             end
         end
@@ -295,7 +287,7 @@ listFD.BD5.hess.div=NaN;
 listFD.CD6.grad.steps=[-3 -2 -1 1 2 3];
 listFD.CD6.grad.coef=[-1 9 -45 45 -9 1];
 listFD.CD6.grad.div=60;
-listFD.CD6.hess.steps=[-3 -2 -1 0 1 2 3]; 
+listFD.CD6.hess.steps=[-3 -2 -1 0 1 2 3];
 listFD.CD6.hess.coef=[2 -27 270 -490 270 -27 2];%fix
 listFD.CD6.hess.div=180;
 %

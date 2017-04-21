@@ -5,6 +5,7 @@ classdef unConstrained < handle
         xMin=[];
         xMax=[];
         dim=0;
+        dimAvailable=0;
         locMinZ
         locMinX
         globMinZ
@@ -42,15 +43,31 @@ classdef unConstrained < handle
             %if the function is available we store it
             if availableFun(txt)
                 obj.funName=txt;
+                obj.loadDimAvailable;
             else
                 fprintf('Test function %s unavailable \n',txt);
                 dispAvailableFun();
             end
         end
+        function set.dim(obj,val)
+           if isinf(val)
+               dimA=obj.getDimAvailable;
+               [~,II]=min(abs(dimA-2));               
+               obj.dim=dimA(II);
+           else
+               obj.dim=val;
+           end
+        end
+        function loadDimAvailable(obj)
+            obj.dimAvailable=loadDim(obj.funName);
+        end
+        function dimA=getDimAvailable(obj)
+            dimA=obj.dimAvailable;
+        end
         function Xeval=prepX(obj,XX)
             sX=[size(XX,1) size(XX,2) size(XX,3)];
             nbvar=sX(3);
-            if isinf(obj.dim)
+            if isinf(obj.dimAvailable)
                 if nbvar==1
                     obj.Xeval=reshape(XX,[],1,sX(2));
                 else
@@ -58,10 +75,10 @@ classdef unConstrained < handle
                     obj.dim=nbvar;
                 end
             else
-                if any(ismember(obj.dim,nbvar))
+                if any(ismember(obj.dimAvailable,nbvar))
                     obj.Xeval=XX;
                 elseif nbvar==1
-                    if any(ismember(obj.dim,sX(2)))
+                    if any(ismember(obj.dimAvailable,sX(2)))
                         obj.Xeval=reshape(XX,[],1,sX(2));
                     else
                         fprintf(['Wrong size of sample points (' mfilename ')\n']);
@@ -90,9 +107,9 @@ classdef unConstrained < handle
         end
         %dem mode
         function demo(obj)
-            if isinf(obj.dim);obj.dim=2;end
+            if isinf(obj.dimAvailable);obj.dim=2;end
             if obj.dim==1
-            elseif any(ismember(obj.dim,2))||isinf(obj.dim)
+            elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
                 obj.dim=2;
                 stepM=51;
                 [Xmin,Xmax]=loadSpace(obj.funName,2);
@@ -119,7 +136,7 @@ classdef unConstrained < handle
                 X=X(:,1:obj.dim);
             end
             ZZ=obj.eval(X);
-            if abs(ZZ(:)-Z(:))>1e-4
+            if all(abs(ZZ(:)-Z(:))>1e-4)
                 fprintf('Issue with the %s function (wrong minimum obtained)\n',funName);
                 fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
                 fprintf('\n');
@@ -140,7 +157,7 @@ classdef unConstrained < handle
                 Xsample=rand(obj.nSCheck,dimCheck);
             end
             %rescale the samples
-            Xsample=Xsample.*repmat(XmaxSpace,obj.nSCheck,1)+repmat(XminSpace,obj.nSCheck,1);
+            Xsample=Xsample.*repmat(XmaxSpace-XminSpace,obj.nSCheck,1)+repmat(XminSpace,obj.nSCheck,1);
             %evaluate function at the sample
             obj.prepX(Xsample);
             [~,~,GZactual]=obj.eval();
@@ -187,7 +204,9 @@ classdef unConstrained < handle
             %check every function
             for itF=1:numel(listFun)
                 fprintf(' >>> Function %s\n',listFun{itF});
-                isOk=isOk&&obj.checkFun(listFun{itF});
+                %keyboard
+                tmpStatus=obj.checkFun(listFun{itF});
+                isOk=isOk&&tmpStatus;
             end
         end
         %show 2D function
