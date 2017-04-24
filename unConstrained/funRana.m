@@ -1,7 +1,7 @@
 %% Rana function
 %L. LAURENT -- 21/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x)=0-928.5478 for xi=-500
+%global minimum : f(x)=-928.5478 for xi=-500
 %
 %Design space: -500<xi<500
 

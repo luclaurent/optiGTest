@@ -5,7 +5,7 @@
 %
 %Design space -10<xi<10
 
-function [p,dp] = funYaoLiu04(xx)
+function [p,dp] = funYaoLiu4(xx)
 
 %evaluation and derivatives
 if nargout==1

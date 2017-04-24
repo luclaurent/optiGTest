@@ -5,7 +5,7 @@
 %
 %Design space -5.12<xi<5.12
 
-function [p,dp] = funYaoLiu09(xx)
+function [p,dp] = funYaoLiu9(xx)
 
 %constants
 a=10;
