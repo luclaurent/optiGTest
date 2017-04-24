@@ -21,7 +21,7 @@ if nargout==2
     dp(:,:,1)=dRhoX-2*a./rho.^3.*dRhoX.*(m.^2)...
         +2*a./rho.^2.*(b*dRhoX.*cos(b*rho).*pa+sin(b*rho)+b*dRhoX.*sin(b*rho).*pb).*m;
     dp(:,:,2)=dRhoY-2*a./rho.^3.*dRhoY.*(m.^2)...
-        +2*a./rho.^2.*(b*dRhoY.*cos(b*rho).*pa-cos(b*rho)+b*dRhoX.*sin(b*rho).*pb).*m;   
+        +2*a./rho.^2.*(b*dRhoY.*cos(b*rho).*pa-cos(b*rho)+b*dRhoY.*sin(b*rho).*pb).*m;   
 end
 end
 

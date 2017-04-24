@@ -38,9 +38,9 @@ yC=cat(3,zz,zz,xx(:,:,2:2:end));
 p=zeros(nS(1:2));
 for itI=1:size(xC,3)
     for itJ=1:itI-1
-        dd(itI,itJ)
+       % dd(itI,itJ)
         p=p+(funR(xC(:,:,itI),xC(:,:,itJ),yC(:,:,itI),yC(:,:,itJ))-dd(itI,itJ)).^2;
-        p
+       % p
     end
 end
 

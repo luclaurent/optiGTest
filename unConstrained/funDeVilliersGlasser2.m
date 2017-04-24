@@ -6,6 +6,9 @@
 %Design space: -500<xi<500
 
 
+%derivatives check using Mathematica (a small difference remains with
+%finite difference)
+
 function [p,dp]=funDeVilliersGlasser2(xx)
 
 %constants
@@ -20,7 +23,7 @@ k=0.507;
 %
 ii=1:a;
 t=reshape(b*(ii-c),[1,1,a]);
-y=d*f.^t.*tanh(g*t+sin(h*t));
+y=d*f.^t.*tanh(g*t+sin(h*t)).*cos(exp(k)*t);
 
 %variables
 xxx=xx(:,:,1);

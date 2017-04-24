@@ -20,8 +20,8 @@ pc=d*xx(:,:,1)-xx(:,:,2)+c;
 pd=xx(:,:,1)+xx(:,:,2)+c;
 p=a*abs(pa.*pb.*pc)+abs(pd);
 if nargout==2
-    dp(:,:,1)=a*(b*pb.*pc-pa.*pc+d*pa.*pb)*sign(pa.*pb.*pc)+sign(pd);
-    dp(:,:,2)=a*(pb.*pc+d*pa.*pc-pa.*pb)*sign(pa.*pb.*pc)+sign(pd);   
+    dp(:,:,1)=a*(b*pb.*pc-pa.*pc+d*pa.*pb).*sign(pa.*pb.*pc)+sign(pd);
+    dp(:,:,2)=a*(pb.*pc+d*pa.*pc-pa.*pb).*sign(pa.*pb.*pc)+sign(pd);   
 end
 end
 
