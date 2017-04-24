@@ -67,7 +67,7 @@ classdef unConstrained < handle
         function Xeval=prepX(obj,XX)
             sX=[size(XX,1) size(XX,2) size(XX,3)];
             nbvar=sX(3);
-            if isinf(obj.dimAvailable)
+            if any(isinf(obj.dimAvailable))
                 if nbvar==1
                     obj.Xeval=reshape(XX,[],1,sX(2));
                 else
@@ -75,10 +75,10 @@ classdef unConstrained < handle
                     obj.dim=nbvar;
                 end
             else
-                if any(ismember(obj.dimAvailable,nbvar))
+                if nbvar==obj.dim
                     obj.Xeval=XX;
                 elseif nbvar==1
-                    if any(ismember(obj.dimAvailable,sX(2)))
+                    if sX(2)==obj.dim
                         obj.Xeval=reshape(XX,[],1,sX(2));
                     else
                         fprintf(['Wrong size of sample points (' mfilename ')\n']);
@@ -104,7 +104,6 @@ classdef unConstrained < handle
                 [ZZ]=feval(['fun' obj.funName],Xrun);
             end
             if nargout>2
-                keyboard
                 GZreshape=reshape(GZ,[],size(GZ,3));
             end
         end
@@ -172,7 +171,6 @@ classdef unConstrained < handle
             FDclass=diffGrad(obj.FDtype,Xsample,obj.FDstep,FDfun);
             GZapprox=FDclass.GZeval;
             %compare results
-            keyboard
             diffG=abs((GZactual-GZapprox)./GZactual);
             if any(diffG(:)>1e-7)
                 fprintf('Issue with the gradients of the %s function\n',funName);
