@@ -4,7 +4,7 @@
 
 
 
-function [p,dp]=funBukin8(xx)
+function [p,dp]=funBukin08(xx)
 
 %constants
 a=1000;

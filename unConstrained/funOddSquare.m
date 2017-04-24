@@ -51,4 +51,6 @@ if nargout==2
         +b.*dD.*sin(b*maxD).*pa.*pc ...
         -e*(dh.*(maxD+f)-h.*dD)./(maxD+f).^2.*pa.*pb;
     %
+    keyboard
+    dp
 end

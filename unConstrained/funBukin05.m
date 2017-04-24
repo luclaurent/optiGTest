@@ -4,7 +4,7 @@
 
 
 
-function [p,dp]=funBukin5(xx)
+function [p,dp]=funBukin05(xx)
 
 %constants
 a=100;

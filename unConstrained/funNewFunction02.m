@@ -7,7 +7,7 @@
 %
 
 
-function [p,dp]=funNewFunction2(xx)
+function [p,dp]=funNewFunction02(xx)
 %constants
 a=100;
 

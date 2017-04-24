@@ -89,19 +89,22 @@ classdef unConstrained < handle
                 end
             end
             Xeval=obj.Xeval;
+            if size(Xeval,3)<2;keyboard;end
         end
-        function [ZZ,GZ,GZreshape]=eval(obj,XX,opt)
+        function [ZZ,GZ,GZreshape]=eval(obj,XX)
+            
             if nargin==1
                 Xrun=obj.Xeval;
             else
                 Xrun=obj.prepX(XX);
-            end
+            end            
             if nargout>1
                 [ZZ,GZ]=feval(['fun' obj.funName],Xrun);
             else
                 [ZZ]=feval(['fun' obj.funName],Xrun);
             end
             if nargout>2
+                keyboard
                 GZreshape=reshape(GZ,[],size(GZ,3));
             end
         end
@@ -169,6 +172,7 @@ classdef unConstrained < handle
             FDclass=diffGrad(obj.FDtype,Xsample,obj.FDstep,FDfun);
             GZapprox=FDclass.GZeval;
             %compare results
+            keyboard
             diffG=abs((GZactual-GZapprox)./GZactual);
             if any(diffG(:)>1e-7)
                 fprintf('Issue with the gradients of the %s function\n',funName);
