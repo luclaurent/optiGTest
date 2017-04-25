@@ -28,12 +28,13 @@ pb=sin(xxx);
 pc=b*zzz;
 pd=c*vvv;
 pe=cos(vvv+www-xxx);
-pf=abs(d*www.^2-yyy-e);
+pf=d*www.^2-yyy-e;
 %
-p=pa.*pb-pc-pd.*pe+pf;
+pt=pa.*pb-pc-pd.*pe+pf;
+p=abs(pt);
 %
 if nargout==2
-    sf=sign(d*www.^2-yyy-e);
+    sf=sign(pt);
     %
     dp(:,:,1)=sf.*(cos(xxx).*pa+pb-pd.*sin(vvv+www-xxx));
     dp(:,:,2)=sf.*(a*pb-1);
