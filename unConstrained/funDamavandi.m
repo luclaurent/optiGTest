@@ -27,7 +27,7 @@ kxy=sx.*sy./(b^2*pax.*pay);
 %
 pbx=xxx-d;
 pby=yyy-d;
-hxy=c+pbx.^2+b*pby.^2;
+hxy=c+pbx.^2+c*pby.^2;
 %
 p=(a-abs(kxy).^5).*hxy;
 %
@@ -39,7 +39,7 @@ if nargout==2
     dky=b*cy.*sx./(b^2*pax.*pay)+b^2*pbx.*kxy./(b^2*pax.*pay);
     %
     dhx=2*pbx;
-    dhy=2*pby;
+    dhy=2*c*pby;
     %
     dp(:,:,1)=dhx.*(a-abs(kxy).^5)-5*dkx.*sign(kxy).*kxy.^4.*hxy;
     dp(:,:,2)=dhy.*(a-abs(kxy).^5)-5*dky.*sign(kxy).*kxy.^4.*hxy;
