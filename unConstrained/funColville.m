@@ -23,12 +23,12 @@ pd=b-xx(:,:,3);
 pe=xx(:,:,2)-b;
 pf=xx(:,:,4)-b;
 %
-p=a*pa.^2+pb+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe.*pf;
+p=a*pa.^2+pb.^2+c*pc.^2+pd.^2+d*pe.^2+d*pf.^2+e*pe.*pf;
 %
 if nargout==2
     dp(:,:,1)=2*a*pa-2*pb;
     dp(:,:,2)=-4*a*xx(:,:,2).*pa+2*d*pe+e*pf;
-    dp(:,:,3)=-2*xx(:,:,3).*pc-2*pd;
+    dp(:,:,3)=-4*c*xx(:,:,3).*pc-2*pd;
     dp(:,:,4)=2*c*pc+2*d*pf+e*pe;
 end
 end
