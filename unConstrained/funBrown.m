@@ -12,8 +12,8 @@ function [p,dp]=funBrown(xx)
 
 %handle functions
 funG=@(x,y)exp((y.^2+1).*log(x.^2))+exp((x.^2+1).*log(y.^2));
-funDxG=@(x,y)(y.^2+1)./x.*exp((y.^2+1).*log(x.^2))+2*log(y.^2).*exp((x.^2+1).*log(y.^2));
-funDyG=@(x,y)2*y.*log(x.^2).*exp((y.^2+1).*log(x.^2))+(x.^2+1)./y.*exp((x.^2+1).*log(y.^2));
+funDxG=@(x,y)2*(y.^2+1)./x.*exp((y.^2+1).*log(x.^2))+2*x.*log(y.^2).*exp((x.^2+1).*log(y.^2));
+funDyG=@(x,y)2*y.*log(x.^2).*exp((y.^2+1).*log(x.^2))+2*(x.^2+1)./y.*exp((x.^2+1).*log(y.^2));
 
 %evaluation and derivatives
 tSum=funG(xx(:,:,1:end-1),xx(:,:,2:end));

@@ -45,7 +45,7 @@ if nargout==2
         dpd=dpd-a.^itk.*c.*b^itk.*sin(c*b.^itk.*(xx+d));
     end
     dp=sum(-a.^lik.*b.^lik.*c.*sin(c*b.^lik.*(xx+d)),4); 
-    keyboard
+    %keyboard
 end
 end
 
