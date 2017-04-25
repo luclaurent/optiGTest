@@ -18,6 +18,5 @@ p=a*abs(pa)+abs(pb);
 if nargout==2
     dp(:,:,1)=2*a*xx(:,:,1).*sign(pa)+sign(pb);
     dp(:,:,2)=2*a*xx(:,:,2).*sign(pa)+sign(pb); 
-    xx
 end
 end
