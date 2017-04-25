@@ -22,6 +22,6 @@ p=pa-pb.^2+1/a*pb.^4;
 %
 if nargout==2
     dp(:,:,1)=2*a*xxx-4*xxx.*pb+8/a*xxx.*pb.^3;
-    dp(:,:,2)=a*yyy-4*yyy.*pb+8/a*yyy.*pb.^3;
+    dp(:,:,2)=2*yyy-4*yyy.*pb+8/a*yyy.*pb.^3;
 end
 end

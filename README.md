@@ -7,3 +7,4 @@ A Literature Survey of Benchmark Functions For Global Optimization Problems (htt
 Test functions for optimization needs (http://www.zsd.ict.pwr.wroc.pl/files/docs/functions.pdf)
 A Numerical Evaluation of Several Stochastic Algorithms on Selected Continuous Global Optimization Test Problems (http://folk.uib.no/ssu029/Pdf_file/Ali05.pdf)
 
+Test functions for optimization needs, Marcin Molga, Czes?aw Smutnicki, 2005
