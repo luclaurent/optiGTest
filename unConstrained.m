@@ -211,11 +211,16 @@ classdef unConstrained < handle
             end
         end
         %check all functions
-        function isOk=checkAllfun(obj)
+        function isOk=checkAllfun(obj,flag)
             isOk=true;
             %extract name of functions
             strFun=loadDim();
             listFun=fieldnames(strFun);
+            if flag==1 %check all by continuing at the current position
+                currPos=find(ismember(listFun,obj.funName));
+                currPos=currPos(1);
+                listFun=listFun(currPos:end);
+            end
             %check every function
             for itF=1:numel(listFun)
                 fprintf(' >>> Function %s\n',listFun{itF});

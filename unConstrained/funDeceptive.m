@@ -38,8 +38,8 @@ IXd=find(xx>=ld&xx<=ud);
 %
 g=zeros(sX);
 g(IXa)=a-xx(IXa)./alphaR(IXa);
-g(IXb)=-b*xx(IXb)./alphaR(IXb)-c;
-g(IXc)=b*(xx(IXc)-alphaR(IXc))./(alphaR(IXc)-d);
+g(IXb)=b*xx(IXb)./alphaR(IXb)-c;
+g(IXc)=b*(xx(IXc)-alphaR(IXc))./(alphaR(IXc)-d)+d;
 g(IXd)=(xx(IXd)-d)./(d-alphaR(IXd))+a;
 %
 pa=sum(g,3);
