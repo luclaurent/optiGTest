@@ -13,6 +13,7 @@ classdef unConstrained < handle
         Xeval
         nSCheck=5;
         forceDisplayGrad=false;
+        paranoidCheck=false;    %strict check of function
         FDtype='CD8';
         FDstep=1e-7;
     end
@@ -174,7 +175,8 @@ classdef unConstrained < handle
             GZapprox=FDclass.GZeval;
             %compare results
             diffG=abs((GZactual-GZapprox)./GZactual);
-            if any(diffG(:)>lim)
+            if any(diffG(:)>lim)&&obj.paranoidCheck||sum(diffG(:)>lim)>floor(numel(diffG(:))/3)&&~obj.paranoidCheck
+                
                 fprintf('Issue with the gradients of the %s function\n',funName);
                 isOk=false;
             end
