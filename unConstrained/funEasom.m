@@ -1,7 +1,7 @@
 %% Easom's function
 %L. LAURENT -- 15/11/2016 -- luc.laurent@lecnam.net
 %
-%4 global minimas : f(x1,x2)=-1 for (-pi,pi)
+%4 global minimas : f(x1,x2)=-1 for (pi,pi)
 %
 %Design space: -100<xi<100
 
