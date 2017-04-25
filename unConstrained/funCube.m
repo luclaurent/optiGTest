@@ -18,7 +18,7 @@ xxx=xx(:,:,1);
 yyy=xx(:,:,2);
 
 %evaluation and derivatives
-pa=yyy-xxx.^2;
+pa=yyy-xxx.^3;
 pb=b-xxx;
 p=a*pa.^2+pb.^2;
 %
