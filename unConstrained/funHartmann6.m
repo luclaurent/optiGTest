@@ -44,7 +44,7 @@ if nargout==2
         pe=bsxfun(@times,reshape(ma(:,it),1,1,dim),pa);
         %
         for itD=1:dim
-            dp(:,:,itD)=dp(:,:,1)+2*c(it)*pe(:,:,itD).*sum(pb,3).*pc;
+            dp(:,:,itD)=dp(:,:,itD)+2*c(it)*pe(:,:,itD).*pc;
         end
     end
 end

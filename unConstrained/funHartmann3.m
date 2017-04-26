@@ -3,7 +3,7 @@
 %
 %global minimum : f(x1,x2)=-3.86278214782076 for (x1,x2)=[0.114614,0.555649,0.852547]
 %
-%Design space: -10<xi<10
+%Design space: 0<xi<10
 
 
 function [p,dp]=funHartmann3(xx)
@@ -37,7 +37,7 @@ if nargout==2
         pe=bsxfun(@times,reshape(ma(:,it),1,1,dim),pa);
         %
         for itD=1:dim
-            dp(:,:,itD)=dp(:,:,itD)+c(it)*pe(:,:,itD).*sum(pb,3).*pc;
+            dp(:,:,itD)=dp(:,:,itD)+2*c(it)*pe(:,:,itD).*pc;
         end
     end
 end
