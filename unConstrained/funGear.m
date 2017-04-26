@@ -24,7 +24,7 @@ fy=floor(y);
 fz=floor(z);
 fw=floor(w);
 %
-p=(a/b-(fx.*fy)./(fz.*fz)).^2;
+p=(a/b-(fx.*fy)./(fw.*fz)).^2;
 
 %
 if nargout==2

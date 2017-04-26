@@ -5,39 +5,41 @@
 %
 %Design space: 0<xi<60
 
+%similar to Weibull function
+
 function [p,dp]=funGulfResearch(xx)
 
 %constants
 a=99;
 b=25;
-c=50;
-d=0.001;
-e=1/1.5;
-%
-u=reshape(b+(-c*log(d.*(1:a))).^e,1,1,a);
-t=reshape(d*(1:a),1,1,a);
-
-%variables
-xxx=xx(:,:,1);
-yyy=xx(:,:,2);
-zzz=xx(:,:,3);
+c=-50;
+d=1/1.5;
+f=0.01;
 
 %evaluation and derivatives
-pa=bsxfun(@minus,u,yyy);
-pb=bsxfun(@power,pa,zzz);
-pc=bsxfun(@times,pb,1./xxx);
-pd=bsxfun(@plus,pc,t);
+x=xx(:,:,1);
+y=xx(:,:,2);
+z=xx(:,:,3);
 %
-p=sum(exp(-pd),3);
+listI=reshape(1:a,1,1,a);
+%
+zi=f*listI;
+yi=b+(c*log(1./zi)).^d;
+%
+pa=yi-z;
+pb=pa.^y./x;
+pc=exp(-pb);
+pd=pc-zi;
+%
+p=sum(pd.^2,3);
+
 %
 if nargout==2
-    pe=bsxfun(@times,pb,1./xxx.^2);
-    pf=bsxfun(@power,pa,zzz-1);
-    pg=bsxfun(@times,pf,zzz./xxx);
-    ph=bsxfun(@times,log(pa),1./xxx);
     %
-    dp(:,:,1)=sum(pe.*pd,3);
-    dp(:,:,2)=sum(pg.*pd,3);
-    dp(:,:,3)=sum(-ph.*pb.*pd,3);
+    dp=zeros(size(xx));
+    %
+    dp(:,:,1)=2*sum(pb./x.*pc.*pd,3);
+    dp(:,:,2)=2*sum(-log(pa)./x.*pb.*pc.*pd,3);
+    dp(:,:,3)=2*sum(pa.^(y-1)./x.*y.*pc.*pd,3);
 end
 end

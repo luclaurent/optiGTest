@@ -5,7 +5,7 @@
 %
 %Design space: 0<xi<100
 %
-
+% similar to GulfResearch's function
 
 
 function [p,dp]=funWeibull(xx)
@@ -21,7 +21,7 @@ x=xx(:,:,1);
 y=xx(:,:,2);
 z=xx(:,:,3);
 %
-listI=reshape(1:c,1,1,c);
+listI=reshape(1:a,1,1,a);
 %
 zi=f*listI;
 yi=b+(c*log(1./zi)).^d;

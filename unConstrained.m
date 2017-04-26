@@ -39,6 +39,19 @@ classdef unConstrained < handle
                 obj.eval()
             end
         end
+        %getters
+        function Xmax=get.xMax(obj)
+            [~,Xmax]=loadSpace(obj.funName,obj.dim);         
+        end
+        function Xmin=get.xMin(obj)
+            [Xmin,~]=loadSpace(obj.funName,obj.dim);         
+        end
+        function Z=get.globMinZ(obj)
+            [~,Z]=loadGlobMin(obj.funName,obj.dim);           
+        end
+        function X=get.globMinX(obj)
+            [X,~]=loadGlobMin(obj.funName,obj.dim);
+        end
         %setters
         function set.funName(obj,txt)
             %if the function is available we store it
@@ -142,11 +155,12 @@ classdef unConstrained < handle
             obj.dim=dimCheck;
             %
             isOk=true;
-            [X,Z]=loadGlobMin(funName,obj.dim);
+            X=obj.globMinX;
             if size(X,2)>obj.dim
                 X=X(:,1:obj.dim);
             end
             ZZ=obj.eval(X);
+            Z=obj.globMinZ;
             if all(abs(ZZ(:)-Z(:))>limO)
                 fprintf('Issue with the %s function (wrong minimum obtained)\n',funName);
                 fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
