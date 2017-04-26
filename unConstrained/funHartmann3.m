@@ -1,7 +1,7 @@
 %% Hartmann 3 function
 %L. LAURENT -- 16/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2)=-3.86278214782076 for (x1,x2)=(0.1, 0.55592003, 0.85218259)
+%global minimum : f(x1,x2)=-3.86278214782076 for (x1,x2)=[0.114614,0.555649,0.852547]
 %
 %Design space: -10<xi<10
 
