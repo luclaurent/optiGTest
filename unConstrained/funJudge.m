@@ -33,7 +33,7 @@ A=reshape(A,1,1,m);
 x=xx(:,:,1);
 y=xx(:,:,2);
 %
-pa=x+A.*y+B.*y.^2-C;
+pa=x+B.*y+A.*y.^2-C;
 %
 p=sum(pa.^2,3);
 
@@ -43,6 +43,6 @@ if nargout==2
     dp=zeros(size(xx));
     %
     dp(:,:,1)=sum(2*pa,3);
-    dp(:,:,2)=sum(2*(A+2*B.*y).*pa,3);
+    dp(:,:,2)=sum(2*(B+2*A.*y).*pa,3);
 end
 end

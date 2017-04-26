@@ -1,7 +1,7 @@
 %% Jennrich-Sampson's function
 %L. LAURENT -- 17/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2)=124.3612 for (x1,x2)=(0.257825,0.257825)
+%global minimum : f(x1,x2)=124.3622 for (x1,x2)=(0.257825,0.257825)
 %
 %Design space: -1<xi<1
 
