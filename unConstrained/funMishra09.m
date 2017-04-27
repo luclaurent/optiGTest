@@ -20,19 +20,18 @@ zzz=xx(:,:,3);
 
 %evaluation and derivatives
 a=d(1)*xxx.^3+d(2)*xxx.*yyy+d(3)*zzz+d(4)*xxx.^2.*zzz+d(5);
-b=xxx+yyy.^3+xxx.*zzz.^2+e;
+b=xxx+yyy.^3+xxx.*yyy.^2+xxx.*zzz.^2+e;
 c=f(1)*xxx.^2+f(2)*yyy.*zzz+f(3)*yyy.^2+f(4)*yyy.^3+f(5);
 k=xxx+yyy-zzz;
 %
 pa=a.*b.^2.*c+a.*b.*c.^2+b.^2+k.^2;
 p=pa.^2;
-
 if nargout==2
     daX=3*d(1)*xxx.^2+d(2)*yyy+2*d(4)*xxx.*zzz;
     daY=d(2)*xxx;
     daZ=d(3)+d(4)*xxx.^2;
-    dbX=1+zzz.^2;
-    dbY=3*yyy.^2;
+    dbX=1+zzz.^2+yyy.^2;
+    dbY=3*yyy.^2+2*yyy.*xxx;
     dbZ=2*xxx.*zzz;
     dcX=2*f(1)*xxx;
     dcY=f(2)*zzz+2*f(3)*yyy+3*f(4)*yyy.^2;

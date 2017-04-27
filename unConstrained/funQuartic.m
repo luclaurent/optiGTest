@@ -1,7 +1,7 @@
 %% Quartic function
 %L. LAURENT -- 19/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x)=0 for xi=(0,...,0)
+%global minimum : f(x)=NaN for xi=(0,...,0)
 %
 %Design space: -1.28<xi<1.28
 

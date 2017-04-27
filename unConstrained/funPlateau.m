@@ -13,7 +13,7 @@ a=30;
 %evaluation and derivatives
 pa=floor(abs(xx));
 %
-p=sum(a+pa,3);
+p=a+sum(pa,3);
 %
 if nargout==2
     %

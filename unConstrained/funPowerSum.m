@@ -13,11 +13,11 @@ b=reshape(b,1,1,1,4);
 
 %evaluation and derivatives
 liK=reshape(1:4,1,1,1,4);
-pa=xx.^liK-b;
+pa=xx.^liK;
 %
-p=sum(sum(pa,3).^2,4);
+p=sum((sum(pa,3)-b).^2,4);
 %
 if nargout==2
     %
-    dp=sum(2*liK.*xx.^(liK-1).*sum(pa,3),4);
+    dp=sum(2*liK.*xx.^(liK-1).*(sum(pa,3)-b),4);
 end
