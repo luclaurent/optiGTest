@@ -2,6 +2,8 @@
 %L. LAURENT -- 17/11/2016 -- luc.laurent@lecnam.net
 %
 %global minimum : f(x)=NaN for x=()
+%?1.08093846 (9.681,0.666) 
+% 0.96499991 (8.074,8.777,3.467,1.863,6.707)
 %
 %Design space:0<xi<10
 

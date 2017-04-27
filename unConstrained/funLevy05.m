@@ -33,6 +33,6 @@ if nargout==2
     dp=zeros(size(xx));
     %
     dp(:,:,1)=sum(-lI.*(lI-1).*sin((lI-1).*x+lI),3).*sum(lI.*pb,3)+2*pc;
-    dp(:,:,2)=sum(-lI.*(lI-1).*sin((lI-1).*y+lI),3).*sum(lI.*pa,3)+2*pd;
+    dp(:,:,2)=sum(-lI.*(lI+1).*sin((lI+1).*y+lI),3).*sum(lI.*pa,3)+2*pd;
 end
 end
