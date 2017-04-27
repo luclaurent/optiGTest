@@ -1,7 +1,7 @@
 %% Mishra 6 function
 %L. LAURENT -- 17/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x)=-2.28395 for x=(2.88631, 1.82326)
+%global minimum : f(x)=-2.67507597 for x=(2.94777, 1.82174)
 %
 %Design space: -10<xi<10
 

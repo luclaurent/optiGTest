@@ -20,6 +20,6 @@ if nargout==2
     pc=arrayfun(funP,1:dim,'UniformOutput',false);
     pc=cell2mat(reshape(pc,1,1,dim));
     %
-    dp=2*bsxfun(@times,pc,pb);
+    dp=2*pc.*pb;%2*bsxfun(@times,pc,pb);
 end
 end
