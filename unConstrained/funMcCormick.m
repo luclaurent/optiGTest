@@ -1,7 +1,7 @@
 %% McCormick's function
 %L. LAURENT -- 17/11/2016 -- luc.laurent@lecnam.net
 %
-%global minimum : f(x1,x2)=0 for (x1,x2)=(0,0)
+%global minimum : f(x1,x2)=-1.9133 for (x1,x2)=(?0.547,?1.547)
 %
 %Design space: -1.5<x1<4 & -3<x2<3
 
@@ -9,7 +9,7 @@
 function [p,dp]=funMcCormick(xx)
 %constants
 a=3/2;
-b=5.2;
+b=5/2;
 c=1;
 
 %variables
