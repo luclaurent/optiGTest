@@ -39,14 +39,16 @@ ma = [9.681 0.667 4.783 9.095 3.517 9.325 6.544 0.211 5.122 2.020;
 9.496 4.830 3.150 8.270 5.079 1.231 5.731 9.494 1.883 9.732;
 4.138 2.562 2.532 9.661 5.611 5.500 6.886 2.341 9.699 6.500]';
 
+
 mc = [0.806,0.517,0.100,0.908,0.965,0.669,0.524,0.902,0.531,...
     0.876,0.462,0.491,0.463,0.714,0.352,0.869,0.813,0.811,...
     0.828,0.964,0.789,0.360,0.369,0.992,0.332,0.817,0.632,...
     0.883,0.608,0.326];
 
 d=pi;
-m=numel(mc);
+m=5;
 
+%other version with m=numel(mc);
 
 
 %evaluation and derivatives
@@ -55,10 +57,11 @@ dim=sX(3);
 p=zeros(sX(1),sX(2));
 for it=1:m
     vx=bsxfun(@minus,xx,reshape(ma(1:dim,it),1,1,dim)); 
-    ex=exp(-1/d*vx.^2);
-    cx=cos(d*vx);
+    svx=sum(vx.^2,3);
+    ex=exp(-1/d*svx);
+    cx=cos(d*svx);
     cc=cx*mc(it);
-    p=p-sum(ex.*cc,3);
+    p=p-ex.*cc;
 end
 
 if nargout==2
@@ -66,15 +69,16 @@ if nargout==2
     %
     for it=1:m
         vx=bsxfun(@minus,xx,reshape(ma(1:dim,it),1,1,dim)); 
-        ex=exp(-1/d*vx.^2);
-        cx=cos(d*vx);
+        svx=sum(vx.^2,3);
+        ex=exp(-1/d*svx);
+        cx=cos(d*svx);
         cc=cx*mc(it);
-        sx=sin(d*vx);
+        sx=sin(d*svx);
         cs=sx*mc(it);       
         pvx=vx.*ex;
         %
         for itD=1:dim
-            dp(:,:,itD)=dp(:,:,itD)+sum(2/d*cc+2*d*cs,3).*pvx(:,:,itD);
+            dp(:,:,itD)=dp(:,:,itD)+(2/d*cc+2*d*cs).*pvx(:,:,itD);
         end
     end
 end
