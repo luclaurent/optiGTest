@@ -3,7 +3,7 @@
 %modif on the 16/09/2011 -- change to n variables
 %
 %numerous local minima
-%1 global minimum : x=(1,1,...,1) >> f(x)=0
+%1 global minimum : x=(420.968746,420.968746,...,420.968746) >> f(x)=0
 %
 %Design space: -500<xi<500
 
