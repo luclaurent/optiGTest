@@ -28,3 +28,6 @@ Fun.checkFun
 %% Global minimum 
 Fun.globMinX
 Fun.globMinZ
+
+%% list available functions
+Fun.dispAvailableFun

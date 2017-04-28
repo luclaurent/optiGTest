@@ -75,6 +75,9 @@ classdef unConstrained < handle
                obj.dim=val;
            end
         end
+        function dispAvailableFun(obj)
+            dispAvailableFun();
+        end
         function loadDimAvailable(obj)
             obj.dimAvailable=loadDim(obj.funName);
         end
