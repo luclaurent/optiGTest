@@ -1,7 +1,7 @@
 %% Shekel 7 function
 % L. LAURENT -- 19/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(4,4,4,4)=-10.3999
+%1 minimum global: f(4,4,4,4)=-10.40282
 %
 %Design space 0<xi<10
 
@@ -29,7 +29,7 @@ for itI=1:m
     aR=reshape(aI,1,1,[]);
     pTmp=xx-aR(ones(1,sX(1)),ones(1:sX(2)),:);
     hI=c(itI)+sum(pTmp.^2,3);
-    p=p+1./hI;
+    p=p-1./hI;
 end
 
 
@@ -42,7 +42,7 @@ if nargout==2
         pTmp=xx-aR(ones(1,sX(1)),ones(1:sX(2)),:);
         hI=c(itI)+sum(pTmp.^2,3);
         dhI=2*pTmp;
-        dp=dp-dhI./hI.^2;
+        dp=dp+dhI./hI.^2;
     end
 end
 end

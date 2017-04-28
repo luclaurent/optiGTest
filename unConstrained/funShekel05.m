@@ -1,7 +1,7 @@
 %% Shekel 5 function
 % L. LAURENT -- 19/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(4,4,4,4)=-10.1527
+%1 minimum global: f(4,4,4,4)=-10.15270
 %
 %Design space 0<xi<10
 
@@ -17,7 +17,7 @@ a=[
     3 7 3 7
     ];
 c=0.1*[1 2 2 4 6]';
-m=4;
+m=5;
 
 %evaluation and derivatives
 sX=[size(xx,1) size(xx,2) size(xx,3)];
@@ -27,7 +27,7 @@ for itI=1:m
     aR=reshape(aI,1,1,[]);
     pTmp=xx-aR(ones(1,sX(1)),ones(1:sX(2)),:);
     hI=c(itI)+sum(pTmp.^2,3);
-    p=p+1./hI;
+    p=p-1./hI;
 end
 
 
@@ -40,7 +40,7 @@ if nargout==2
         pTmp=xx-aR(ones(1,sX(1)),ones(1:sX(2)),:);
         hI=c(itI)+sum(pTmp.^2,3);
         dhI=2*pTmp;
-        dp=dp-dhI./hI.^2;
+        dp=dp+dhI./hI.^2;
     end
 end
 end

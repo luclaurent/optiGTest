@@ -24,7 +24,7 @@ p=zeros(sX(1),sX(2));
 %
 for itX=1:sX(3)
     h=fun(lI,xx(:,:,itX));
-    p=p+sum(h,3);
+    p=p-sum(h,3);
 end
 
 if nargout==2
@@ -34,7 +34,7 @@ if nargout==2
     %
     for itX=1:sX(3)
         dh=funD(lI,xx(:,:,itX));
-        dp(:,:,itX)=sum(dh,3);
+        dp(:,:,itX)=-sum(dh,3);
     end
 end
 end
