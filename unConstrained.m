@@ -246,6 +246,19 @@ classdef unConstrained < handle
                 isOk=isOk&&tmpStatus;
             end
         end
+        %check all functions
+        function isOk=funMD(obj)
+            isOk=true;
+            %extract name of functions
+            strFun=loadDim();
+            listFun=fieldnames(strFun);
+            listDim=cell(1,numel(listFun));
+            for itF=1:numel(listFun)
+                listDim{itF}=strFun.(listFun{itF});
+            end
+            %generate Markdown table
+            buildTableMD(listFun,listDim,4);
+        end
         %show 2D function
         function show2D(obj,XX,YY,ZZ,GZ)
             nbR=2;
@@ -511,8 +524,7 @@ listDim=struct(...
     'Zacharov',Inf,...%'ZeroSum',Inf,...
     'Zettl',2,...
     'Zimmerman',2,...
-    'Zirilli',2,...
-    'prout',5);
+    'Zirilli',2);
 if nargin==1
     dim=listDim.(funName);
 else
@@ -958,8 +970,7 @@ listGlobZmin=struct(...
     'ZeroSum',0,...
     'Zettl',-0.0037912,...
     'Zimmerman',0,...
-    'Zirilli',-0.3523,...
-    'prout',0);
+    'Zirilli',-0.3523);
 
 lGX=listGlobXmin.(funName);
 lGZ=listGlobZmin.(funName);
@@ -1185,8 +1196,7 @@ listSpace=struct(...
     'ZeroSum',10*[-1;1],...
     'Zettl',[-1;5],...
     'Zimmerman',[0;100],...
-    'Zirilli',10*[-1;1],...
-    'prout',[0;14]);
+    'Zirilli',10*[-1;1]);
 
 
 spaceL=listSpace.(funName);
@@ -1212,5 +1222,41 @@ for itT=1:numel(tableA)
     Gfprintf('%s%s%s\n',tableA{itT},spaceTxt(ones(1,spaceA(itT))),tableB{itT});
 end
 end
+
+%build Markdown table of the functions (with dimension)
+function buildTableMD(funName,dimL,nbCol)
+nbFun=numel(funName);
+nbFunPerCol=floor(nbFun/(nbCol));
+%
+funTable=cell(nbFunPerCol,nbCol);
+dimTable=cell(nbFunPerCol,nbCol);
+for itF=1:nbFun
+    funTable{itF}=funName{itF};
+    dimTable{itF}=dimL{itF};
+end
+funTable=funTable';
+dimTable=dimTable';
+
+itF=1;
+for itR=1:nbFunPerCol
+    if itR==1
+        fprintf(repmat('|-',1,nbCol));
+        fprintf('|\n');
+        fprintf(repmat('|-----',1,nbCol));
+        fprintf('|\n');
+    end
+    for itC=1:nbCol
+        if ~isempty(funTable{itF})
+            fprintf('| %s',funTable{itF});
+        end
+        if itC==nbCol
+            fprintf('|\n');
+        end        
+        itF=itF+1;
+    end
+end
+keyboard
+end
+
 
 
