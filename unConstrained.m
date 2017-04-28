@@ -147,6 +147,7 @@ classdef unConstrained < handle
         end
         %check function by checking minimum
         function isOk=checkFun(obj,funName)
+            if nargin==1; funName=obj.funName;end
             lim=1e-5;
             limO=1e-4;
             %check minimum
@@ -246,7 +247,7 @@ classdef unConstrained < handle
                 isOk=isOk&&tmpStatus;
             end
         end
-        %check all functions
+        %build table of all function in Markdown
         function isOk=funMD(obj,nbCol)
             if nargin==1;nbCol=3;end
             isOk=true;
