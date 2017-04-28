@@ -1,7 +1,7 @@
 %% Stochastic function
 % L. LAURENT -- 20/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(1/n,...,1/n)=0
+%1 minimum global: f(1,1/2,1/3,...,1/n)=0
 %
 %Design space -5<xi<5
 

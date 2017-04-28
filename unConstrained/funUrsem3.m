@@ -14,17 +14,17 @@ c=2;
 d=3;
 
 %evaluation and derivatives
-pa=-sin(a*xx-b);
+pa=-sin(a*xx+b);
 pb=(c-abs(xx))./c;
 pc=(d-abs(xx))./c;
 %
 pt=pa.*pb.*pc;
 %
 p=sum(pt,3);
-
+%
 if nargout==2
     %
-    dpa=-a*cos(a*xx-b);
+    dpa=-a*cos(a*xx+b);
     dpb=-sign(xx)./c;
     dpc=-sign(xx)./c;
     %

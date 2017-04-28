@@ -1,7 +1,7 @@
 %% StretchedV function
 % L. LAURENT -- 20/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(-9.38723188,9.34026753)=0
+%1 minimum global: f(0,0,...,0)=0
 %
 %Design space -10<xi<10
 
