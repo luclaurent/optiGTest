@@ -12,59 +12,76 @@ optiTest is able to
 
 List of functions
 ------
-|-|-|-|-|
-|-----|-----|-----|-----|
-| AMGM| Dolan| Mishra11| Schwefel26|
-| Brown| DropWave| NeedleEye| Schwefel36|
-| Bukin01| Easom| NewFunction1| Shekel05|
-| Bukin02| ElAttarVidyasogarDutta| NewFunction2| Shekel07|
-| Bukin03| EggCrate| NewFunction3| Shekel10|
-| Bukin04| EggHolder| OddSquare| Shubert1|
-| Bukin05| Exponential| Parsopoulos| Shubert3|
-| Bukin06| EX1| Pathological| Shubert4|
-| Bukin07| Exp2| Paviani| SineEnveloppe|
-| Bukin08| Exp3| Penalty1| Sodp|
-| Bukin09| Exp4| Penalty2| Sphere|
-| Bukin10| Exp5| PenHolder| Step|
-| Bukin11| Exp6| Periodic| Step1|
-| Bukin12| FreudensteinRoth| Pinter| Step2|
-| Bukin13| Gear| Plateau| Step3|
-| Bukin14| Giunta| Powell| StepInt|
-| Bukin15| GoldsteinPrice| PowerSum| Stochastic|
-| Bukin16| Griewank| Price1| StretchedV|
-| Bukin17| GulfResearch| Price2| StyblinskiTang|
-| Bukin18| Hansen| Price3| Treccani|
-| Bukin19| Hartmann3| Price4| Trefethen|
-| Bukin20| Hartmann6| Qing| Trid|
-| CamelbackThreeHump| HelicalValley| Quadratic| Trigonometric1|
-| CamelbackSixHump| Himmelblau| Quartic| Trigonometric2|
-| CarromTable| Holzman| Quintic| Tripod|
-| ChenV| Hosaki| Rastrigin| TubeHolder|
-| ChenBird| Infiniti| Ripple01| Ursem1|
-| Chichinadze| JennrichSampson| Ripple25| Ursem3|
-| ChungReynolds| Judge| Rosenbrock| Ursem4|
-| Cigar| Katsuura| RosenbrockM| UrsemWaves|
-| Cola| Keane| RosenbrockMS| VenterSobiezcczanskiSobieski|
-| Colville| Kowalik| RotatedEllipse1| Vincent|
-| Corana| Langermann52| RotatedEllipse2| Watson|
-| CosineMixture| Langermann5| Rump| Wavy|
-| CrossInTray| Leon| Salomon| WayburnSeader1|
-| CrossLegTable| Levy03| Sargan| WayburnSeader2|
-| CrownedCross| Levy05| Schaffer1| Weibull|
-| Csendes| Levy13| Schaffer2| Weierstrass|
-| Cube| Matyas| Schaffer3| Whitley|
-| Damavandi| McCormick| Schaffer4| Wolfe|
-| Deb1| MieleCantrell| Schaffer6| XinSheYang1|
-| Deb2| Mishra01| SchmidtVetters| XinSheYang2|
-| Deb3| Mishra02| Schwefel01| XinSheYang3|
-| Deb4| Mishra03| Schwefel02| XinSheYang4|
-| Decanomial| Mishra04| Schwefel04| Xor|
-| Deceptive| Mishra05| Schwefel06| YaoLiu4|
-| DeckkersAarts| Mishra06| Schwefel20| YaoLiu9|
-| DeflectedCorrugatedSpring| Mishra07| Schwefel21| Zacharov|
-| DeVilliersGlasser1| Mishra08| Schwefel22| Zettl|
-| DeVilliersGlasser2| Mishra09| Schwefel23| Zimmerman|
-| DixonPrice| Mishra10| Schwefel25| Zirilli|
+|-|-|-|
+|-----|-----|-----|
+| AMGM| Griewank| Salomon|
+| Brown| GulfResearch| Sargan|
+| Bukin01| Hansen| Schaffer1|
+| Bukin02| Hartmann3| Schaffer2|
+| Bukin03| Hartmann6| Schaffer3|
+| Bukin04| HelicalValley| Schaffer4|
+| Bukin05| Himmelblau| Schaffer6|
+| Bukin06| Holzman| SchmidtVetters|
+| Bukin07| Hosaki| Schwefel01|
+| Bukin08| Infiniti| Schwefel02|
+| Bukin09| JennrichSampson| Schwefel04|
+| Bukin10| Judge| Schwefel06|
+| Bukin11| Katsuura| Schwefel20|
+| Bukin12| Keane| Schwefel21|
+| Bukin13| Kowalik| Schwefel22|
+| Bukin14| Langermann52| Schwefel23|
+| Bukin15| Langermann5| Schwefel25|
+| Bukin16| Leon| Schwefel26|
+| Bukin17| Levy03| Schwefel36|
+| Bukin18| Levy05| Shekel05|
+| Bukin19| Levy13| Shekel07|
+| Bukin20| Matyas| Shekel10|
+| CamelbackThreeHump| McCormick| Shubert1|
+| CamelbackSixHump| MieleCantrell| Shubert3|
+| CarromTable| Mishra01| Shubert4|
+| ChenV| Mishra02| SineEnveloppe|
+| ChenBird| Mishra03| Sodp|
+| Chichinadze| Mishra04| Sphere|
+| ChungReynolds| Mishra05| Step|
+| Cigar| Mishra06| Step1|
+| Cola| Mishra07| Step2|
+| Colville| Mishra08| Step3|
+| Corana| Mishra09| StepInt|
+| CosineMixture| Mishra10| Stochastic|
+| CrossInTray| Mishra11| StretchedV|
+| CrossLegTable| NeedleEye| StyblinskiTang|
+| CrownedCross| NewFunction1| Treccani|
+| Csendes| NewFunction2| Trefethen|
+| Cube| NewFunction3| Trid|
+| Damavandi| OddSquare| Trigonometric1|
+| Deb1| Parsopoulos| Trigonometric2|
+| Deb2| Pathological| Tripod|
+| Deb3| Paviani| TubeHolder|
+| Deb4| Penalty1| Ursem1|
+| Decanomial| Penalty2| Ursem3|
+| Deceptive| PenHolder| Ursem4|
+| DeckkersAarts| Periodic| UrsemWaves|
+| DeflectedCorrugatedSpring| Pinter| VenterSobiezcczanskiSobieski|
+| DeVilliersGlasser1| Plateau| Vincent|
+| DeVilliersGlasser2| Powell| Watson|
+| DixonPrice| PowerSum| Wavy|
+| Dolan| Price1| WayburnSeader1|
+| DropWave| Price2| WayburnSeader2|
+| Easom| Price3| Weibull|
+| ElAttarVidyasogarDutta| Price4| Weierstrass|
+| EggCrate| Qing| Whitley|
+| EggHolder| Quadratic| Wolfe|
+| Exponential| Quartic| XinSheYang1|
+| EX1| Quintic| XinSheYang2|
+| Exp2| Rastrigin| XinSheYang3|
+| Exp3| Ripple01| XinSheYang4|
+| Exp4| Ripple25| Xor|
+| Exp5| Rosenbrock| YaoLiu4|
+| Exp6| RosenbrockM| YaoLiu9|
+| FreudensteinRoth| RosenbrockMS| Zacharov|
+| Gear| RotatedEllipse1| Zettl|
+| Giunta| RotatedEllipse2| Zimmerman|
+| GoldsteinPrice| Rump| Zirilli|
 
 Download
 ------

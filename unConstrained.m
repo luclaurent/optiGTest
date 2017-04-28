@@ -247,7 +247,8 @@ classdef unConstrained < handle
             end
         end
         %check all functions
-        function isOk=funMD(obj)
+        function isOk=funMD(obj,nbCol)
+            if nargin==1;nbCol=3;end
             isOk=true;
             %extract name of functions
             strFun=loadDim();
@@ -257,7 +258,7 @@ classdef unConstrained < handle
                 listDim{itF}=strFun.(listFun{itF});
             end
             %generate Markdown table
-            buildTableMD(listFun,listDim,4);
+            buildTableMD(listFun,listDim,nbCol);
         end
         %show 2D function
         function show2D(obj,XX,YY,ZZ,GZ)
