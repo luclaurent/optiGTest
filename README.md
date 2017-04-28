@@ -10,6 +10,10 @@ optiTest is able to
 * Dealing with any dimension chosen by the user
 * Provide global minimum (value and associated set of parameters)
 
+First start
+------
+* unConstrained problems: `Example_unConstrained.m`
+
 List of functions
 ------
 |-|-|-|
@@ -92,9 +96,6 @@ If you use `git`, you can clone the repository using the following command
 
     git clone git@bitbucket.org:luclaurent/optitest.git optiTest
 
-
-First start
-------
 
 
 
