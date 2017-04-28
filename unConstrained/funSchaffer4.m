@@ -1,7 +1,7 @@
 %% Schaffer 4 function
 % L. LAURENT -- 19/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(0,1.253115)=0.292579
+%1 minimum global: f(0,1.253115)=0.2924385
 %
 %Design space -100<xi<100
 

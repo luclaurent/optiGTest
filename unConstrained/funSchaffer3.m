@@ -1,7 +1,7 @@
 %% Schaffer 3 function
 % L. LAURENT -- 15/02/2017 -- luc.laurent@lecnam.net
 
-%1 minimum global: f(0,1.253115)=0.00156685
+%1 minimum global: f(0,1.253115)=0.00123005
 %
 %Design space -100<xi<100
 
