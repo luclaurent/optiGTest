@@ -1,29 +1,54 @@
+%% diffGrad class for computing gradients using finite differences
+% L. LAURENT --  12/12/2017 -- luc.laurent@lecnam.net
+
+% optiGTest - set of testing functions    A toolbox to easy manipulate functions.
+% Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 classdef diffGrad < handle
-    %UNTITLED Summary of this class goes here
-    %   Detailed explanation goes here
     
     properties
-        type='FD1';
-        Xref;
-        XevalG;
-        ZevalG;
-        GZeval;
-        XevalH;
-        ZevalH;
-        HZeval;
-        fun;
-        stepsDiff;
-        dim;
-        nS;
-        nX;
+        type='FD1';     % type of finite difference
+        Xref;           % sample points on which the gradients will be calculated
+        XevalG;         % points used for computing FD
+        ZevalG;         % responses used for computing FD
+        GZeval;         % values of gradients
+        XevalH;         % points used for computing hessians with FD
+        ZevalH;         % responses used for computing hessians with FD
+        HZeval;         % values of hessians
+        fun;            % considered function
+        stepsDiff;      % steps of FD
+        dim;            % dimension (number of design variables)
+        nS;             % number of sample points
+        nX;             % number of points used for compute FD (duplicate points are removed)
     end
     properties (Access=private)
-        confFD;
-        dupX; %duplicate coordinates of Xeval (for reducing the number of evaluations of the function
+        confFD;         % configuration of the chosen scheme used for FD
+        dupX;           % duplicate coordinates of Xeval (for reducing the number of evaluations of the function
     end
     
     methods
+        %% constructor of finite differences class
+        % INPUTS: 
+        % - typeIn: type of FD
+        % - XrefIn: point on which the gradients will be calculated
+        % - stepsIn: step(s) used for FD
+        % - funIn: handle function (@(x) ...)
         function obj=diffGrad(typeIn,XrefIn,stepsIn,funIn)
+            %activate or not demo mode
             demo=false;
             if isempty(typeIn)
                 demo=true;
@@ -42,14 +67,14 @@ classdef diffGrad < handle
             %
             %
         end
-        %setters
+        %% setters
         function set.Xref(obj,XX)
             obj.Xref=obj.loadX(XX);
         end
         function set.stepsDiff(obj,steps)
             obj.stepsDiff=obj.loadStepsDiff(steps);
         end
-        %getters
+        %% getters
         function XX=get.XevalG(obj)
             XX=obj.geneXG();
         end
@@ -59,13 +84,13 @@ classdef diffGrad < handle
         function GZ=get.GZeval(obj)
             GZ=obj.computeGZ;
         end
-        %functions
+        %% load sample points
         function Xout=loadX(obj,XX)
             Xout=XX;
             obj.dim=size(XX,2);
             obj.nS=size(XX,1);
         end
-        %functions
+        %% load the steps for FD
         function stepsOut=loadStepsDiff(obj,steps)
             % deal with specific form of stepsize obj.stepsDiff
             % on row: specific stepsize per dimension
@@ -86,7 +111,7 @@ classdef diffGrad < handle
             end
             stepsOut=repmat(steps,nbR);
         end
-        %build coordinates for evaluating the function for gradient
+        %% build coordinates for evaluating the function for gradient
         function XX=geneXG(obj)
             %load configuration
             obj.confFD=loadFD(obj.type);
@@ -111,7 +136,7 @@ classdef diffGrad < handle
             [XX,~,obj.dupX]=unique(XX,'rows');
             obj.nX=size(XX,1);
         end
-        %load external Z (external evaluation of the function)
+        %% load external Z (external evaluation of the function)
         function loadZextG(obj,ZZ)
             if ~isempty(ZZ)
                 if numel(ZZ)==obj.nX
@@ -121,7 +146,7 @@ classdef diffGrad < handle
                 end
             end
         end
-        %compute responses of the function at the Xeval points
+        %% compute responses of the function at the Xeval points
         function ZZ=GcomputeZ(obj,XX)            
             if ~isempty(obj.fun)
                 if nargin>1
@@ -133,7 +158,7 @@ classdef diffGrad < handle
                 fprintf(['Undefined function for evaluation (' mfilename ')\n']);
             end
         end
-        %compute gradients from responses at the Xeval points
+        %% compute gradients from responses at the Xeval points
         function GZ=computeGZ(obj)
             %build the right Zeval vector
             ZZevalG=obj.ZevalG;
@@ -159,7 +184,7 @@ classdef diffGrad < handle
                 GZ(itS,:)=sum(prodZCoef(itX,:),1)./(divG*sDiff(itS,:));
             end
         end
-        %demo mode
+        %% run demo mode
         function runDemo(obj)
             %load list of available finite differences
             listT=fieldnames(loadFD);
@@ -182,7 +207,7 @@ classdef diffGrad < handle
     
 end
 
-%available finite differences approachs
+%% available finite differences approachs
 function R=loadFD(typeIn)
 %from http://web.media.mit.edu/~crtaylor/calculator.html
 %available technics and parameters
