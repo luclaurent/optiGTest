@@ -11,7 +11,7 @@
 
 
 function [p,dp]=funCola(xx)
-fprintf('NEED to FIXED')
+fprintf('NEED to FIXED\n')
 %cf. https://github.com/andyfaff/ampgo/blob/master/%20ampgo%20--username%20andrea.gavana%40gmail.com/go_benchmark.py
 
 %constant
@@ -45,7 +45,7 @@ for itI=1:size(xC,3)
 end
 
 if nargout==2
-    fprintf('Derivatives not implemented')
+    fprintf('Derivatives not implemented\n')
     dp=zeros(nS);
  %   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
 end

@@ -148,7 +148,6 @@ classdef unConstrained < handle
                         fprintf(['Wrong size of sample points (' mfilename ')\n']);
                     end
                 else
-                    keyboard
                     fprintf(['Wrong size of sample points (' mfilename ')\n']);
                 end
             end
@@ -219,7 +218,6 @@ classdef unConstrained < handle
             end
             ZZ=obj.eval(X);
             Z=obj.globMinZ;
-            keyboard
             if all(abs(ZZ(:)-Z(:))>limO)
                 fprintf('Issue with the %s function (wrong minimum obtained)\n',funName);
                 fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
@@ -870,7 +868,7 @@ listGlobZmin=struct(...
     'Colville',0,...
     'Corana',0,...
     'CosineMixture',0.1*dim,...
-    'CrossInTray',ones(1,4)*(-2.06261218),...
+    'CrossInTray',ones(4,1)*(-2.06261218),...
     'CrossLegTable',-1,... x1=0 or x2=0
     'CrownedCross',1e-4,... x1=0 or x2=0
     'Csendes',0,...
@@ -1051,12 +1049,11 @@ if size(lGX,2)==1
 else
     GlobX=lGX;
 end
-if size(lGZ,2)==1&&size(lGX,1)>1
+if length(lGZ)==1&&size(lGX,1)>1
     GlobZ=repmat(lGZ,[size(lGX,1),1]);
 else
     GlobZ=lGZ;
 end
-
 end
 
 %% load space definition
