@@ -61,7 +61,6 @@ classdef unConstrained < handle
             % with input arguments: (1) demo mode (if 1D or 2D function),
             % (2) run with XX, (3) run with XX in specified dimension
             if nargin==1
-                obj.demo
                 obj.checkFun(obj.funName);
             elseif nargin==2
                 obj.prepX(XX);
@@ -152,7 +151,6 @@ classdef unConstrained < handle
                 end
             end
             Xeval=obj.Xeval;
-            if size(Xeval,3)<2;keyboard;end
         end
         %% evaluate the test function 
         function [ZZ,GZ,GZreshape]=eval(obj,XX)            
@@ -348,8 +346,8 @@ classdef unConstrained < handle
         end
         %% show 1D function
         function show1D(obj,XX,ZZ,GZ)
-            nbR=2;
-            nbC=1;
+            nbR=1;
+            nbC=2;
             %
             figure
             subplot(nbR,nbC,1)
@@ -357,9 +355,9 @@ classdef unConstrained < handle
             axis('tight','square')
             xlabel('x'), ylabel('F'), title(obj.funName)
             subplot(nbR,nbC,2)
-            surf(XX,YY,GZ(:,:,1));
+            plot(XX,GZ(:,:,1));
             axis('tight','square')
-            xlabel('x'), ylabel('dF/dx'), title(['Grad.' obj.funName])
+            xlabel('x'), ylabel('dF/dx'), title(['Grad. ' obj.funName])
         end
     end
     
@@ -657,10 +655,6 @@ listGlobXmin=struct(...
     'CrossLegTable',NaN,... x1=0 or x2=0
     'CrownedCross',NaN,... x1=0 or x2=0
     'Csendes',0,...
-    'Custom01',1,...
-    'Custom02',1,...
-    'Custom03',1,...
-    'Custom04',1,...
     'Cube',[1,1],...
     'Custom01',[pi,3*pi],...
     'Custom02',2.9844,...
