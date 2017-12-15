@@ -33,16 +33,16 @@ b=0;
 
 %evaluation and derivatives
 %
-p=exp(-x/a).*cos(x)+1/a*x+b;
+p=exp(-xx/a).*cos(xx)+1/a*xx+b;
 
 %
 if nargout==2
     %
-    dp=-exp(-x/a).*(sin(x)+1/a.*cos(x))+1/a;
+    dp=-exp(-xx/a).*(sin(xx)+1/a.*cos(xx))+1/a;
 end
 %
 if nargout==3
     %
-    dp=exp(-x/a).*(-cos(x)+2.*sin(x)./a+1/a^2.*cos(x));
+    ddp=exp(-xx/a).*(-cos(xx)+2.*sin(xx)./a+1/a^2.*cos(xx));
 end
 end

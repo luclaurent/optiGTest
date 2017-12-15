@@ -24,18 +24,18 @@
 %
 
 
-function [p,dp,ddp]=funCustom04(xx)
+function [p,dp]=funCustom04(xx)
 %constants
 a=2;
 
 %evaluation and derivatives
 %
-p=x^a;
+p=xx^a;
 
 %
 if nargout==2
     %
-    dp=-a*x^(a-1);
+    dp=-a*xx^(a-1);
 end
 %
 end

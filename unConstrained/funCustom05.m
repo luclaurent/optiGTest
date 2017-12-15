@@ -40,7 +40,7 @@
 %
 
 
-function [p,dp,ddp]=funCustom05(xx)
+function [p,dp]=funCustom05(xx)
 %constants
 a=10;
 b=0;
@@ -48,12 +48,12 @@ c=5;
 
 %evaluation and derivatives
 %
-p=exp(-x/a).*cos(c*x)+1/a*x+b;
+p=exp(-xx/a).*cos(c*xx)+1/a*xx+b;
 
 %
 if nargout==2
     %
-    dp=-exp(-x/a).*(sin(x)+1/a.*cos(x))+1/a;
+    dp=-exp(-xx/a).*(sin(xx)+1/a.*cos(xx))+1/a;
 end
 %
 end

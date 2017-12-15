@@ -24,18 +24,18 @@
 %
 
 
-function [p,dp,ddp]=funCustom03(xx)
+function [p,dp]=funCustom03(xx)
 %constants
 a=4;
 
 %evaluation and derivatives
 %
-p=cos(a*x);
+p=cos(a*xx);
 
 %
 if nargout==2
     %
-    dp=-a*sin(a*x);
+    dp=-a*sin(a*xx);
 end
 %
 end
