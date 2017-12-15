@@ -53,7 +53,7 @@ p=exp(-xx/a).*cos(c*xx)+1/a*xx+b;
 %
 if nargout==2
     %
-    dp=-exp(-xx/a).*(sin(xx)+1/a.*cos(xx))+1/a;
+    dp=-exp(-xx/a).*(c*sin(c*xx)+1/a.*cos(c*xx))+1/a;
 end
 %
 end

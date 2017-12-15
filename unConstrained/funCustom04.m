@@ -30,12 +30,12 @@ a=2;
 
 %evaluation and derivatives
 %
-p=xx^a;
+p=xx.^a;
 
 %
 if nargout==2
     %
-    dp=-a*xx^(a-1);
+    dp=-a*xx.^(a-1);
 end
 %
 end
