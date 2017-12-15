@@ -13,7 +13,7 @@
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -27,9 +27,9 @@ classdef unConstrained < handle
         dim=0;              % dimension of the problem (number of design variables)
         dimAvailable=0;     % available dimension for the chosen problem
         locMinZ             % list of local minima (responses)
-        locMinX             % list of local minima (associated parameters)    
+        locMinX             % list of local minima (associated parameters)
         globMinZ            % list of global minima (responses)
-        globMinX            % list of global minima (associated parameters)    
+        globMinX            % list of global minima (associated parameters)
         Xeval               % set of parameters used for evaluating the function
         nSCheck=5;          % number of sample points used for checking the function
         forceDisplayGrad=false; % flag to force display of gradients
@@ -42,7 +42,7 @@ classdef unConstrained < handle
     end
     
     methods
-        %% Constructor of unConstrained class 
+        %% Constructor of unConstrained class
         % INPUTS (all are optional):
         % - funName: name of the function (list available using method
         % dispAvailableFun)
@@ -99,13 +99,13 @@ classdef unConstrained < handle
             end
         end
         function set.dim(obj,val)
-           if isinf(val)
-               dimA=obj.getDimAvailable;
-               [~,II]=min(abs(dimA-2));               
-               obj.dim=dimA(II);
-           else
-               obj.dim=val;
-           end
+            if isinf(val)
+                dimA=obj.getDimAvailable;
+                [~,II]=min(abs(dimA-2));
+                obj.dim=dimA(II);
+            else
+                obj.dim=val;
+            end
         end
         %% add functions in matlab's path
         function addTree(obj)
@@ -152,13 +152,13 @@ classdef unConstrained < handle
             end
             Xeval=obj.Xeval;
         end
-        %% evaluate the test function 
-        function [ZZ,GZ,GZreshape]=eval(obj,XX)            
+        %% evaluate the test function
+        function [ZZ,GZ,GZreshape]=eval(obj,XX)
             if nargin==1
                 Xrun=obj.Xeval;
             else
                 Xrun=obj.prepX(XX);
-            end            
+            end
             if nargout>1
                 [ZZ,GZ]=feval(['fun' obj.funName],Xrun);
             else
@@ -175,7 +175,7 @@ classdef unConstrained < handle
                 stepM=100;
                 [Xmin,Xmax]=loadSpace(obj.funName,1);
                 xx=linspace(Xmin(1),Xmax(1),stepM);
-                 %evaluation of the function
+                %evaluation of the function
                 [ZZ,GZ]=obj.eval(xx);
                 %display
                 obj.show1D(xx,ZZ,GZ);
@@ -197,8 +197,9 @@ classdef unConstrained < handle
             end
         end
         %% check function by checking minimum
-        function isOk=checkFun(obj,funName)
-            if nargin==1; funName=obj.funName;end
+        function isOk=checkFun(obj,funName,statusPause)
+            if nargin>0; funName=obj.funName;end
+            if nargin<2; statusPause=false;end
             lim=1e-5;
             limO=1e-4;
             %check minimum
@@ -224,7 +225,7 @@ classdef unConstrained < handle
                 fprintf('\n');
                 isOk=false;
             end
-            %check derivatives           
+            %check derivatives
             [XminSpace,XmaxSpace]=loadSpace(funName,dimCheck);
             %build sampling points
             if exist('lhsdesign','file')
@@ -274,7 +275,7 @@ classdef unConstrained < handle
                     fprintf('\n');
                 end
             end
-            if ~isOk
+            if ~isOk&&statusPause
                 pause
             end
         end
@@ -293,7 +294,7 @@ classdef unConstrained < handle
             for itF=1:numel(listFun)
                 fprintf(' >>> Function %s\n',listFun{itF});
                 %keyboard
-                tmpStatus=obj.checkFun(listFun{itF});
+                tmpStatus=obj.checkFun(listFun{itF},true);
                 isOk=isOk&&tmpStatus;
             end
         end
@@ -427,7 +428,7 @@ for itR=1:nbFunPerCol
         end
         if itC==nbCol
             fprintf('|\n');
-        end        
+        end
         itF=itF+1;
     end
 end
