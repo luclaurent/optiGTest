@@ -1,5 +1,22 @@
 %% Colas's function
 %L. LAURENT -- 04/11/2016 -- luc.laurent@lecnam.net
+
+% optiGTest - set of testing functions    A toolbox to easy manipulate functions.
+% Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
+%
+% This program is free software: you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 %
 %numerous local minima
 %1 global minimum : x=(0.651906,1.30194,0.099242,?0.883791,?0.8796, 
@@ -11,7 +28,7 @@
 
 
 function [p,dp]=funCola(xx)
-fprintf('NEED to FIXED')
+fprintf('NEED to FIXED\n')
 %cf. https://github.com/andyfaff/ampgo/blob/master/%20ampgo%20--username%20andrea.gavana%40gmail.com/go_benchmark.py
 
 %constant
@@ -45,7 +62,7 @@ for itI=1:size(xC,3)
 end
 
 if nargout==2
-    fprintf('Derivatives not implemented')
+    fprintf('Derivatives not implemented\n')
     dp=zeros(nS);
  %   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
 end

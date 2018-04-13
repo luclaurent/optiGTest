@@ -1,10 +1,10 @@
-optiTest 
+optiGTest 
 =======
-optiTest regroups many existing test functions used for studying the performance of approximation techniques and optimisation startegy.
+optiGTest regroups many existing test functions used for studying the performance of approximation techniques and optimization strategy. In particular, gradient of the test functions are provided.
 
 Features
 ------
-optiTest is able to 
+optiGTest is able to 
 
 * Provide derivatives of the test functions
 * Dealing with any dimension chosen by the user
@@ -94,7 +94,7 @@ The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/d
 
 If you use `git`, you can clone the repository using the following command
 
-    git clone git@bitbucket.org:luclaurent/optitest.git optiTest
+    git clone git@bitbucket.org:luclaurent/optiGtest.git optiGTest
 
 
 
@@ -104,7 +104,7 @@ If you use `git`, you can clone the repository using the following command
 
 References
 ----
-This toolbox is inspired by many existing code and paper
+This toolbox is inspired by many existing codes and papers
 
 * [AMPGO](http://infinity77.net/global_optimization/index.html) (and [github repository](https://github.com/andyfaff/ampgo/))
 * E. P. Adorio and U. P. Diliman. [MVF - Multivariate Test Functions Library in C for Unconstrained Global Optimization.](https://www.google.fr/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwi2j_iz8sbTAhWG0hoKHfYLAncQFggnMAA&url=http%3A%2F%2Fwww.geocities.ws%2Feadorio%2Fmvf.pdf&usg=AFQjCNE7AMN9NpxLz2UGDInWKcwMeC120g&sig2=trbG1un24A4RfYCPdifjuA)
@@ -118,7 +118,7 @@ This toolbox is inspired by many existing code and paper
 License ![GNU GPLv3](http://www.gnu.org/graphics/gplv3-88x31.png)
 ----
 
-    optiTest - set of testing functions    A toolbox to easy manipulate functions.
+    optiGTest - set of testing functions    A toolbox to easy manipulate functions.
     Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 
     This program is free software: you can redistribute it and/or modify
