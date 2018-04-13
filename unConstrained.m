@@ -109,6 +109,8 @@ classdef unConstrained < handle
         end
         %% add functions in matlab's path
         function addTree(obj)
+            %addpath gradFD
+            addpath('gradFD');
             %extract folder of the current class
             folder=fileparts(mfilename('fullpath'));
             %add specific folder in matlab's path
@@ -198,14 +200,14 @@ classdef unConstrained < handle
         end
         %% check function by checking minimum
         function isOk=checkFun(obj,funName,statusPause)
-            if nargin>0; funName=obj.funName;end
+            if nargin==0; funName=obj.funName;end
             if nargin<2; statusPause=false;end
             lim=1e-5;
             limO=1e-4;
             %check minimum
             obj.funName=funName;
             %load dimension
-            dimCheck=loadDim(funName);
+            dimCheck=loadDim(funName);              
             if isinf(dimCheck);dimCheck=5;end
             if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
             obj.dim=dimCheck;
@@ -241,7 +243,7 @@ classdef unConstrained < handle
             %compute approximate gradients using finite differences
             obj.funName=funName;
             FDfun=@(X)obj.eval(X);
-            FDclass=diffGrad(obj.FDtype,Xsample,obj.FDstep,FDfun);
+            FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,FDfun);
             GZapprox=FDclass.GZeval;
             %compare results
             diffG=abs((GZactual-GZapprox)./GZactual);
@@ -293,7 +295,6 @@ classdef unConstrained < handle
             %check every function
             for itF=1:numel(listFun)
                 fprintf(' >>> Function %s\n',listFun{itF});
-                %keyboard
                 tmpStatus=obj.checkFun(listFun{itF},true);
                 isOk=isOk&&tmpStatus;
             end
