@@ -207,7 +207,7 @@ classdef unConstrained < handle
             %check minimum
             obj.funName=funName;
             %load dimension
-            dimCheck=loadDim(funName);              
+            dimCheck=loadDim(funName);
             if isinf(dimCheck);dimCheck=5;end
             if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
             obj.dim=dimCheck;
@@ -433,7 +433,6 @@ for itR=1:nbFunPerCol
         itF=itF+1;
     end
 end
-keyboard
 end
 
 
