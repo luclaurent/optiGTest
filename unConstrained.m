@@ -21,17 +21,17 @@
 classdef unConstrained < handle
     
     properties
-        funName='';         % chosen unconstrained problem
-        xMin=[];            % lower bound(s)
-        xMax=[];            % upper bound(s)
-        dim=0;              % dimension of the problem (number of design variables)
-        dimAvailable=0;     % available dimension for the chosen problem
-        locMinZ             % list of local minima (responses)
-        locMinX             % list of local minima (associated parameters)
-        globMinZ            % list of global minima (responses)
-        globMinX            % list of global minima (associated parameters)
-        Xeval               % set of parameters used for evaluating the function
-        nSCheck=5;          % number of sample points used for checking the function
+        funName='';             % chosen unconstrained problem
+        xMin=[];                % lower bound(s)
+        xMax=[];                % upper bound(s)
+        dim=0;                  % dimension of the problem (number of design variables)
+        dimAvailable=0;         % available dimension for the chosen problem
+        locMinZ                 % list of local minima (responses)
+        locMinX                 % list of local minima (associated parameters)
+        globMinZ                % list of global minima (responses)
+        globMinX                % list of global minima (associated parameters)
+        Xeval                   % set of parameters used for evaluating the function
+        nSCheck=5;              % number of sample points used for checking the function
         forceDisplayGrad=false; % flag to force display of gradients
         paranoidCheck=false;    % strict check of function
         FDtype='CD8';

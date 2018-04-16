@@ -35,15 +35,6 @@ d=exp(1);
 Xmin=-35;
 Xmax=35;
 
-% demo mode
-dem=false;
-if nargin==0
-    stepM=50;
-    [x,y]=meshgrid(linspace(Xmin,Xmax,stepM));
-    xx=zeros(stepM,stepM,2);
-    xx(:,:,1)=x;xx(:,:,2)=y;
-    dem=true;
-end
 if ~isempty(xx)
     %number of design variables
     nbvar=size(xx,3);
