@@ -1,4 +1,4 @@
-%% Normalised Peaks function
+%% Peaks function
 %L. LAURENT -- 12/05/2010 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
@@ -18,11 +18,24 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-function [p,dp1,dp2]=funPeaksN(xx,yy)
-xx=xx*4;
-yy=yy*4;
-p =  3*(1-xx).^2.*exp(-(xx.^2) - (yy+1).^2) ...
-    - 10*(xx/5 - xx.^3 - yy.^5).*exp(-xx.^2-yy.^2) ...
-    - 1/3*exp(-(xx+1).^2 - yy.^2);
+function [p,dp]=funPeaks(xx)
+%responses and derivatives
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 
-p=p/7.5;
+p =  3*(1-xxx).^2.*exp(-(xxx.^2) - (yyy+1).^2) ...
+    - 10*(xxx/5 - xxx.^3 - yyy.^5).*exp(-xxx.^2-yyy.^2) ...
+    - 1/3*exp(-(xxx+1).^2 - yyy.^2);
+
+if nargout==2
+    dp(:,:,1)=-6*(1-xxx).*exp(-(xxx.^2) - (yyy+1).^2)...
+        -6*xxx.*(1-xxx).^2.*exp(-xxx.^2-(yyy+1).^2) ...
+        -10*(1/5-3*xxx.^2).*exp(-xxx.^2-yyy.^2)...
+        +20*(xxx/5-xxx.^3-yyy.^5).*xxx.*exp(-xxx.^2-yyy.^2)...
+        +2/3*(xxx+1).*exp(-(xxx+1).^2-yyy.^2);
+    dp(:,:,2)=-6*(1-xxx).^2.*(yyy+1).*exp(-xxx.^2-(yyy+1).^2)...
+        +50*yyy.^4.*exp(-xxx.^2-yyy.^2)...
+        +20*yyy.*(xxx/5-xxx.^3-yyy.^5).*exp(-xxx.^2 -yyy.^2)...
+        +2/3*yyy.*exp(-(xxx+1).^2-yyy.^2);
+end
+end
