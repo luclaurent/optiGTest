@@ -201,7 +201,7 @@ classdef unConstrained < handle
         %% check function by checking minimum
         function isOk=checkFun(obj,funName,statusPause)
             if nargin==0; funName=obj.funName;end
-            if nargin<2; statusPause=false;end
+            if nargin<3; statusPause=false;end
             lim=1e-5;
             limO=1e-4;
             %check minimum

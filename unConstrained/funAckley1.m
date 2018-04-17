@@ -32,7 +32,7 @@ c=2*pi;
 d=exp(1);
 
 %number of variables
-nbvar=size(xx,2);
+nbvar=size(xx,3);
 
 %responses and derivatives
 normP=sqrt(sum(xx.^2,3));
