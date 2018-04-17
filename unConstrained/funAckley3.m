@@ -37,12 +37,12 @@ d=3;
 normP=sqrt(sum(xx.^2,3));
 ex1=exp(-b*normP);
 ex2=exp(cos(d*xx(:,:,1))+sin(d*xx(:,:,2)));
-p=-a*ex1+c*ex2;
+p=-a*ex1-c*ex2;
 
 if nargout==2
     dp=a*b*xx./normP.*ex1;
     %
-    dp(:,:,1)=dp(:,:,1)-c*d*sin(d*xx(:,:,1)).*ex2;
-    dp(:,:,2)=dp(:,:,2)+c*d*cos(d*xx(:,:,2)).*ex2;
+    dp(:,:,1)=dp(:,:,1)+c*d*sin(d*xx(:,:,1)).*ex2;
+    dp(:,:,2)=dp(:,:,2)-c*d*cos(d*xx(:,:,2)).*ex2;
 end
 end
