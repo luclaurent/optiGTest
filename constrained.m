@@ -1,6 +1,8 @@
 %% optiGTest class of test functions/problems (constrained)
 % L. LAURENT --  15/04/2018 -- luc.laurent@lecnam.net
 
+% https://bitbucket.org/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2018  Luc LAURENT <luc.laurent@lecnam.net>
 %
@@ -18,7 +20,7 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-classdef constrained < handle
+classdef Constrained < handle
     
     properties
         funName='';             % chosen constrained problem

@@ -1,6 +1,8 @@
 %% optiGTest class of test functions/problems (unconstrained)
 % L. LAURENT --  06/12/2017 -- luc.laurent@lecnam.net
 
+% https://bitbucket.org/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 %
@@ -38,7 +40,8 @@ classdef unConstrained < handle
         FDstep=1e-7;
     end
     properties (Access=private)
-        nameDir='unConstrained'; % name of the folder containing files of functions
+        nameDir='unConstrained';    % name of the folder containing files of functions
+        figureHandle=[];            % handles for figures
     end
     
     methods
@@ -56,12 +59,16 @@ classdef unConstrained < handle
                 obj.checkAllfun(false);
             else
                 obj.funName=funName;
-                obj.dim=loadDim(funName);
+                if ~isempty(funName)
+                    obj.dim=loadDim(funName);
+                end
             end
             % with input arguments: (1) demo mode (if 1D or 2D function),
             % (2) run with XX, (3) run with XX in specified dimension
             if nargin==1
-                obj.checkFun(obj.funName);
+                if ~isempty(funName)
+                    obj.checkFun(obj.funName);
+                end
             elseif nargin==2
                 obj.prepX(XX);
                 obj.eval()
@@ -107,14 +114,21 @@ classdef unConstrained < handle
                 obj.dim=val;
             end
         end
+        function set.figureHandle(obj,hh)
+            if ishandle(hh)
+                obj.figureHandle=[obj.figureHandle hh];
+            else
+                obj.figureHandle(hh)=[];
+            end
+        end
         %% add functions in matlab's path
-        function addTree(obj)
-            %addpath gradFD
-            addpath('gradFD');
+        function addTree(obj)            
             %extract folder of the current class
             folder=fileparts(mfilename('fullpath'));
             %add specific folder in matlab's path
-            addpath([folder '/' obj.nameDir]);
+            addpath(fullfile(folder,obj.nameDir));
+            %addpath gradFD
+            addpath(fullfile(folder,'gradFD'));
         end
         %% show available test functions
         function dispAvailableFun(obj)
@@ -171,7 +185,8 @@ classdef unConstrained < handle
             end
         end
         %% run demo mode (only for 1D or 2D function)
-        function demo(obj)
+        function hh=demo(obj)
+            hh=0;
             if isinf(obj.dimAvailable);obj.dim=2;end
             if obj.dim==1
                 stepM=100;
@@ -180,7 +195,9 @@ classdef unConstrained < handle
                 %evaluation of the function
                 [ZZ,GZ]=obj.eval(xx);
                 %display
-                obj.show1D(xx,ZZ,GZ);
+                hh=obj.show1D(xx,ZZ,GZ);
+                %store figure handle
+                obj.figureHandle=hh;
             elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
                 obj.dim=2;
                 stepM=51;
@@ -193,9 +210,28 @@ classdef unConstrained < handle
                 %evaluation of the function
                 [ZZ,GZ]=obj.eval(xx);
                 %display
-                obj.show2D(x,y,ZZ,GZ);
+                hh= obj.show2D(x,y,ZZ,GZ);
+                %store figure handle
+                obj.figureHandle=hh;
             else
                 fprintf(['Too large dimension to be plotted (' mfilename ')\n']);
+            end
+        end
+        %% close all openned figures
+        function closeFig(obj)
+            if ~isempty(obj.figureHandle)
+                %use temporary list of figures
+                tmpFigHandle=obj.figureHandle;
+                for itF=1:numel(tmpFigHandle)
+                    %close figure
+                    %try
+                    close(tmpFigHandle(itF));
+                    %catch
+                    %    keyboard
+                    %end
+                    %remove it from the list
+                    obj.figureHandle=itF;
+                end
             end
         end
         %% check function by checking minimum
@@ -314,44 +350,44 @@ classdef unConstrained < handle
             buildTableMD(listFun,listDim,nbCol);
         end
         %% show 2D function
-        function show2D(obj,XX,YY,ZZ,GZ)
+        function h=show2D(obj,XX,YY,ZZ,GZ)
             nbR=2;
             nbC=3;
             nbLevel=10;
             
-            figure
+            h=figure;
             subplot(nbR,nbC,1)
             surf(XX,YY,ZZ);
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(obj.funName)
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex'), title(obj.funName)
             subplot(nbR,nbC,2)
             surf(XX,YY,GZ(:,:,1));
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial x}$','Interpreter','latex'), title(obj.funName)
             subplot(nbR,nbC,3)
             surf(XX,YY,GZ(:,:,2));
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial y}$','Interpreter','latex'), title(['Grad. Y ' obj.funName])
             %
             subplot(nbR,nbC,4)
             contourf(XX,YY,ZZ,nbLevel);
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(obj.funName)
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(obj.funName)
             subplot(nbR,nbC,5)
             contourf(XX,YY,GZ(:,:,1),nbLevel);
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(['Grad. X ' obj.funName])
             subplot(nbR,nbC,6)
             contourf(XX,YY,GZ(:,:,2),nbLevel);
             axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(['Grad. Y ' obj.funName])
         end
         %% show 1D function
-        function show1D(obj,XX,ZZ,GZ)
+        function h=show1D(obj,XX,ZZ,GZ)
             nbR=1;
             nbC=2;
             %
-            figure
+            h=figure;
             subplot(nbR,nbC,1)
             plot(XX,ZZ);
             axis('tight','square')
