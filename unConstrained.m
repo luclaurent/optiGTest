@@ -359,28 +359,28 @@ classdef unConstrained < handle
             subplot(nbR,nbC,1)
             surf(XX,YY,ZZ);
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex'), title(obj.funName)
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex')%, title(obj.funName)
             subplot(nbR,nbC,2)
             surf(XX,YY,GZ(:,:,1));
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial x}$','Interpreter','latex'), title(obj.funName)
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial x}$','Interpreter','latex'), title('Grad. X')%, title(['Grad. X ' obj.funName])
             subplot(nbR,nbC,3)
             surf(XX,YY,GZ(:,:,2));
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial y}$','Interpreter','latex'), title(['Grad. Y ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial y}$','Interpreter','latex'), title('Grad. Y')%, title(['Grad. Y ' obj.funName])
             %
             subplot(nbR,nbC,4)
             contourf(XX,YY,ZZ,nbLevel);
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(obj.funName)
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex')%, title(obj.funName)
             subplot(nbR,nbC,5)
             contourf(XX,YY,GZ(:,:,1),nbLevel);
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(['Grad. X ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex')%, title(['Grad. X ' obj.funName])
             subplot(nbR,nbC,6)
             contourf(XX,YY,GZ(:,:,2),nbLevel);
             axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), title(['Grad. Y ' obj.funName])
+            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex')%, title(['Grad. Y ' obj.funName])
         end
         %% show 1D function
         function h=show1D(obj,XX,ZZ,GZ)
