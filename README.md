@@ -14,7 +14,7 @@ First start
 ------
 * unConstrained problems: `Example_unConstrained.m`
 
-List of functions
+List of functions [(see the 3D plot of the 2-dimensional functions)](https://bitbucket.org/luclaurent/optigtest/wiki/unConstrained)
 ------
 |-|-|-|
 |-----|-----|-----|
