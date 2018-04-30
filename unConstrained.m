@@ -354,18 +354,18 @@ classdef unConstrained < handle
             nbR=2;
             nbC=3;
             nbLevel=10;
-            
+            %
             h=figure;
-            subplot(nbR,nbC,1)
-            surf(XX,YY,ZZ);
-            axis('tight','square')
-            xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex')%, title(obj.funName)
+            subplot(nbR,nbC,1);
+            surfCustom(XX,YY,ZZ)
+            %
             subplot(nbR,nbC,2)
-            surf(XX,YY,GZ(:,:,1));
+            surfCustom(XX,YY,GZ(:,:,1));
             axis('tight','square')
             xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial x}$','Interpreter','latex'), title('Grad. X')%, title(['Grad. X ' obj.funName])
+            %
             subplot(nbR,nbC,3)
-            surf(XX,YY,GZ(:,:,2));
+            surfCustom(XX,YY,GZ(:,:,2));
             axis('tight','square')
             xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$\frac{\partial f}{\partial y}$','Interpreter','latex'), title('Grad. Y')%, title(['Grad. Y ' obj.funName])
             %
@@ -373,10 +373,12 @@ classdef unConstrained < handle
             contourf(XX,YY,ZZ,nbLevel);
             axis('tight','square')
             xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex')%, title(obj.funName)
+            %
             subplot(nbR,nbC,5)
             contourf(XX,YY,GZ(:,:,1),nbLevel);
             axis('tight','square')
             xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex')%, title(['Grad. X ' obj.funName])
+            %
             subplot(nbR,nbC,6)
             contourf(XX,YY,GZ(:,:,2),nbLevel);
             axis('tight','square')
@@ -471,5 +473,41 @@ for itR=1:nbFunPerCol
 end
 end
 
+
+%% custom surface plot
+function surfCustom(XX,YY,ZZ)
+%
+hh=surf(XX,YY,ZZ);
+%
+shading interp
+light
+lighting phong
+%
+axis('tight','square')
+xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex')%, title(obj.funName)
+%
+%% Extract X,Y and Z data from surface plot
+X=hh.XData;
+Y=hh.YData;
+Z=hh.ZData;
+%% Divide the lengths by the number of lines needed
+xlength = size(ZZ,2);
+ylength = size(ZZ,1);
+xnumlines = 10; % 10 lines
+ynumlines = 10; % 10 partitions
+xspacing = round(xlength/xnumlines);
+yspacing = round(ylength/ynumlines);
+%% Plot the mesh lines
+% Plotting lines in the X-Z plane
+hold on
+for i = 1:yspacing:ylength
+    mesh([X(i,:);X(i,:)], [Y(i,:);Y(i,:)], [Z(i,:);Z(i,:)],'EdgeColor',0.7.*[1,1,1]);
+end
+% Plotting lines in the Y-Z plane
+for i = 1:xspacing:xlength
+    mesh([X(:,i),X(:,i)], [Y(:,i),Y(:,i)], [Z(:,i),Z(:,i)],'EdgeColor',0.7.*[1,1,1]);
+end
+hold off
+end
 
 
