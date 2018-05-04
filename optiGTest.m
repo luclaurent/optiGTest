@@ -23,7 +23,12 @@
 classdef optiGTest < handle
     
     properties
-        consPb='';              % chosen constrained problem
+        namePb='';              % chosen problem
+        typePb='';              % kind of problems ('Un'=unconstrained, 'Cons'= constrained, 'Mult'=multiobjective)
+        %
+        multiObj=false;         %flag for multiobjective problem
+        wCons=false;            %flag for constrained problem
+        %
         funObj={};              % objective function
         funCons={};             % list of constraint functions
         typeCons={};            % list of type of constraints (<, >, <=, >=, =)
@@ -56,53 +61,78 @@ classdef optiGTest < handle
         % dispAvailableFun)
         % - XX: sample points
         % - dim: dimension of the considered problem
-        function obj=optiGTest(consPbName,XX,dim)
+        function obj=optiGTest(PbName,XX,dim)
             %add tree of the class in the path
             obj.addTree;
             % no input arguments: create the empty class
             if nargin==0
-                obj.checkAllfun(false);
+                obj.checkAllPb(false);
             else
-                obj.consPb=consPbName;
-                obj.dim=loadDim(consPbName);
+                obj.namePb=PbName;
+                obj.dim=loadDim(PbName);
             end
             % with input arguments: (1) demo mode (if 1D or 2D function),
             % (2) run with XX, (3) run with XX in specified dimension
             if nargin==1
-                obj.checkFun(obj.consPb);
+                obj.checkFun(obj.namePb);
             elseif nargin==2
                 obj.prepX(XX);
-                obj.eval()
+                obj.evalAll()
             elseif nargin==3
                 obj.dim=dim;
                 obj.prepX(XX);
-                obj.eval()
+                obj.evalAll()
             end
         end
         %% getters
         function Xmax=get.xMax(obj)
-            [~,Xmax]=loadSpace(obj.consPb,obj.dim);
+            [~,Xmax]=obj.loadSpace;
         end
         function Xmin=get.xMin(obj)
-            [Xmin,~]=loadSpace(obj.consPb,obj.dim);
+            [Xmin,~]=obj.loadSpace;
         end
         function Z=get.globMinZ(obj)
-            [~,Z]=loadGlobMin(obj.consPb,obj.dim);
+            [~,Z]=obj.loadGlobMin;
             if size(Z,2)>obj.dim
                 Z=Z(:,1:obj.dim);
             end
         end
         function X=get.globMinX(obj)
-            [X,~]=loadGlobMin(obj.consPb,obj.dim);
+            [X,~]=obj.loadGlobMin;
+        end
+        % flag of multi-objective problem
+        function status=get.multiObj(obj)
+            %
+            status=false;
+            %
+           if iscellstr(obj.funObj)
+               if numel(obj.funObj)>1
+                   status=true;
+               end
+           end
+        end
+        % flag of constrained problem
+        function status=get.wCons(obj)
+            %
+            status=false;
+            %
+           if iscellstr(obj.funCons)
+               if numel(obj.funCons)>0
+                   status=true;
+               end
+           else 
+               status=~isempty(obj.funCons);
+           end
         end
         %% setters
-        function set.consPb(obj,txt)
+        function set.namePb(obj,txt)
             %if the function is available we store it
-            if availableFun(txt)
-                obj.consPb=txt;
-                obj.loadDimAvailable;
+            if availablePb(txt)
+                obj.namePb=txt;
                 % load objective function and constraints functions
                 obj.loadPb;
+                % load available dimension
+                obj.loadDimAvailable;                
             else
                 fprintf('Problem %s unavailable \n',txt);
                 dispAvailablePb();
@@ -135,13 +165,39 @@ classdef optiGTest < handle
         function dispAvailablePb(obj)
             dispAvailablePb();
         end
+        %% load data about global minimum
+        function [X,Z]=loadGlobMin(obj)
+            %
+            typetxt=obtainKeyword(obj.typePb);
+            %
+            [X,Z]=feval(['loadGlobMin' typetxt],obj.namePb);
+        end
+        %% load data about the design space
+        function [X,Z]=loadSpace(obj)
+            %
+            typetxt=obtainKeyword(obj.typePb);
+            %
+            [X,Z]=feval(['loadSpace' typetxt],obj.namePb);
+        end
         %% load objective and constraints functions and type of constraints
         function loadPb(obj)
-            [obj.funObj,obj.funCons,obj.typeCons]=loadProbCons(obj.consPb);
+            %
+            typetxt=obtainKeyword(obj.typePb);
+            %
+            if ~isempty(typetxt)
+                [obj.funObj,obj.funCons,obj.typeCons]=feval(['loadProb' typetxt],obj.namePb);
+            else
+                obj.funObj=obj.namePb;
+                obj.funCons={};
+                obj.typeCons={};
+            end
         end
         %% load the available dimension for the considered test function
         function loadDimAvailable(obj)
-            obj.dimAvailable=loadDim(obj.consPb);
+            %
+            typetxt=obtainKeyword(obj.typePb);
+            %
+            obj.dimAvailable=feval(['loadDim' typetxt],obj.namePb);
         end
         %% get the available dimension for the considered test function
         function dimA=getDimAvailable(obj)
@@ -173,6 +229,18 @@ classdef optiGTest < handle
             end
             Xeval=obj.Xeval;
         end
+        %% evaluate all functions
+        function [ZZ,GZ,GG,GGG]=evalAll(obj,XX)
+            if nargin>1
+                obj.prepX(XX);
+            end
+            % evaluate objective function(s)
+            [ZZ,GZ]=obj.evalObj;
+            % evaluate constraint function(s)
+            if nargout>2
+                [GG,GGG]=obj.evalCons;
+            end
+        end
         %% evaluate the objective function
         function [ZZ,GZ,GZreshape]=evalObj(obj,XX)
             if nargin==1
@@ -180,13 +248,45 @@ classdef optiGTest < handle
             else
                 Xrun=obj.prepX(XX);
             end
-            if nargout>1
-                [ZZ,GZ]=feval(['fun' obj.funObj],Xrun);
+            %
+            if ~obj.multiObj
+                cellObj={obj.funObj};
             else
-                [ZZ]=feval(['fun' obj.funObj],Xrun);
+                cellObj=obj.funObj;
+            end
+            %
+            nbF=numel(cellObj);
+            ZZtmp=cell(1,nbF);
+            if nargout>1;GZtmp=cell(1,nbF);end
+            %evaluate (all) objective function(s)
+            for itF=1:numel(cellObj)
+                if nargout>1
+                    [ZZtmp{itF},GZtmp{itF}]=feval(['fun' cellObj{itF}],Xrun);
+                else
+                    [ZZtmp{itF}]=feval(['fun' cellObj{itF}],Xrun);
+                end
+            end
+            %reshape data
+            if ~obj.multiObj
+                ZZ=ZZtmp{1};
+                if nargout>1
+                    GZ=GZtmp{1};
+                end
+            else
+                ZZ=ZZtmp;
+                if nargout>1
+                    GZ=GZtmp;
+                end
             end
             if nargout>2
-                GZreshape=reshape(GZ,[],size(GZ,3));
+                if ~obj.multiObj
+                    GZreshape=reshape(GZ,[],size(GZ,3));
+                else
+                    GZreshape=cell(1,nbF);
+                    for itF=1:numel(cellObj)
+                        GZreshape{itF}=reshape(GZ{itF},[],size(GZ{itF},3));
+                    end
+                end
             end
         end
         %% evaluate the constraint functions
@@ -196,17 +296,49 @@ classdef optiGTest < handle
             else
                 Xrun=obj.prepX(XX);
             end
-            if nargout>1
-                [ZZ,GZ]=feval(['fun' obj.funObj],Xrun);
+            %
+            if ~obj.wCons
+                cellCons={obj.funCons};
             else
-                [ZZ]=feval(['fun' obj.funObj],Xrun);
+                cellCons=obj.funCons;
+            end
+            %
+            nbF=numel(cellCons);
+            ZZtmp=cell(1,nbF);
+            if nargout>1;GZtmp=cell(1,nbF);end
+            %evaluate (all) objective function(s)
+            for itF=1:numel(cellCons)
+                if nargout>1
+                    [ZZtmp{itF},GZtmp{itF}]=feval(['fun' cellCons{itF}],Xrun);
+                else
+                    [ZZtmp{itF}]=feval(['fun' cellCons{itF}],Xrun);
+                end
+            end
+            %reshape data
+            if ~obj.multiObj
+                ZZ=ZZtmp{1};
+                if nargout>1
+                    GZ=GZtmp{itF};
+                end
+            else
+                ZZ=ZZtmp;
+                if nargout>1
+                    GZ=GZtmp;
+                end
             end
             if nargout>2
-                GZreshape=reshape(GZ,[],size(GZ,3));
+                if ~obj.multiObj
+                    GZreshape=reshape(GZtmp,[],size(GZtmp,3));
+                else
+                    GZreshape=cell(1,nbF);
+                    for itF=1:numel(cellCons)
+                        GZreshape{itF}=reshape(GZtmp{itF},[],size(GZtmp{itF},3));
+                    end
+                end
             end
         end
         %% check constraints status
-        function status=checkCons(obj,XX,num)
+        function status=checkCons(obj,num,XX)
             
         end
         %% run demo mode (only for 1D or 2D function)
@@ -406,12 +538,32 @@ end
 
 
 %% function for checking if the function is available
-function funOk=availableFun(txt)
+function [funOk,typePb]=availablePb(txt)
+funOk=false;
 %extract name of functions
-strFun=loadDim();
-listFun=fieldnames(strFun);
-%check if function is available
-funOk=any(ismember(listFun,txt));
+strPbUn=loadDim();
+strPbCons=loadDimCons();
+strpbMulti=loadDimMulti();
+%
+listPbUn=fieldnames(strPbUn);
+listPbCons=fieldnames(strPbCons);
+listPbMulti=fieldnames(strpbMulti);
+%
+%check if function is available and which case of pb it is
+if any(ismember(listPbUn,txt))
+    funOk=true;
+    typePb='Un';
+end
+%
+if any(ismember(listPbCons,txt))
+    funOk=true;
+    typePb='Cons';
+end
+%
+if any(ismember(listPbMulti,txt))
+    funOk=true;
+    typePb='Multi';
+end
 end
 
 %% display available testfunctions
@@ -424,6 +576,17 @@ fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 fprintf('Available test problems\n');
 cellfun(@(X)fprintf('%s\n',X),listFun);
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
+end
+
+%% specific keywords for dedicated functions
+function txtKey=obtainKeyword(typePb)
+txtKey='';
+switch typePb
+    case 'Cons'
+        txtKey='Cons';
+    case 'Multi'
+        txtKey='Multi';
+end
 end
 
 %% function display table with two columns of text
