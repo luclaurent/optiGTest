@@ -26,6 +26,7 @@ listSpace=struct(...
     'Simionescu',1.25*[-1 -1;1 1]);
 
 spaceL=listSpace.(funName);
+%
 if size(spaceL,2)==1
     xMin=ones(1,dim)*spaceL(1);
     xMax=ones(1,dim)*spaceL(2);

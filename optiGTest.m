@@ -1,4 +1,4 @@
-%% optiGTest class of test functions/problems (constrained)
+%% optiGTest class of test functions/problems w/- or w/o constraint(s)
 % L. LAURENT --  15/04/2018 -- luc.laurent@lecnam.net
 
 % https://bitbucket.org/luclaurent/optigtest/
@@ -20,11 +20,11 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-classdef Constrained < handle
+classdef optiGTest < handle
     
     properties
         consPb='';              % chosen constrained problem
-        funObj='';              % objective function
+        funObj={};              % objective function
         funCons={};             % list of constraint functions
         typeCons={};            % list of type of constraints (<, >, <=, >=, =)
         xMin=[];                % lower bound(s)
@@ -46,17 +46,17 @@ classdef Constrained < handle
         FDstep=1e-7;
     end
     properties (Access=private)
-        nameDir={'Constrained','unConstrained'}; % names of the folders containing files of functions
+        nameDir={'Constrained','unConstrained','MultiObj'}; % names of the folders containing files of functions
     end
     
     methods
-        %% Constructor of constrained class
+        %% Constructor of optiGTest class
         % INPUTS (all are optional):
         % - funName: name of the function (list available using method
         % dispAvailableFun)
         % - XX: sample points
         % - dim: dimension of the considered problem
-        function obj=constrained(consPbName,XX,dim)
+        function obj=optiGTest(consPbName,XX,dim)
             %add tree of the class in the path
             obj.addTree;
             % no input arguments: create the empty class
