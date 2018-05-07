@@ -27,7 +27,7 @@
 
 function [p,dp]=funBoxBetts(xx)
 
-fprintf('TO BE FIXED')
+fprintf('TO BE FIXED\n')
 
 %constants
 a=0.1;
