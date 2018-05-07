@@ -66,14 +66,12 @@ classdef optiGTest < handle
             %add tree of the class in the path
             obj.addTree;
             % no input arguments: create the empty class
-            if nargin==0                
+            if nargin==0
                 fprintf('### Run check process of all problems\n');
                 obj.checkAllPb(false);
             else
                 %load problem
                 obj.namePb=PbName;
-                %extract dimension
-                obj.dim=loadDim(PbName);
                 %display details about the considered problem
                 obj.dispDetails;
             end
@@ -113,11 +111,11 @@ classdef optiGTest < handle
             [X,~]=obj.loadGlobMin;
         end
         function T=get.typePb(obj)
-           T='Un';
-           %unconstrained
-           if obj.nbCons>0;T='Cons';end
-           %multiobjective
-           if obj.nbObj>1;T='Multi';end
+            T='Un';
+            %unconstrained
+            if obj.nbCons>0;T='Cons';end
+            %multiobjective
+            if obj.nbObj>1;T='Multi';end
         end
         % flag of multi-objective problem
         function nbF=get.nbObj(obj)
@@ -143,13 +141,15 @@ classdef optiGTest < handle
         end
         %% setters
         function set.namePb(obj,txt)
-            %if the function is available we store it            
+            %if the function is available we store it
             if availablePb(txt)
                 obj.namePb=txt;
                 % load objective function and constraints functions
                 obj.loadPb;
                 % load available dimension
-                obj.loadDimAvailable;                
+                obj.loadDimAvailable;
+                %load default dimension
+                obj.dim=obj.getDimAvailable;
             else
                 fprintf('Problem %s unavailable \n',txt);
                 dispAvailablePb();
@@ -185,28 +185,27 @@ classdef optiGTest < handle
         %% load data about global minimum
         function [X,Z]=loadGlobMin(obj)
             %
-            typetxt=obtainKeyword(obj.typePb);
-            %
-            [X,Z]=feval(['loadGlobMin' typetxt],obj.namePb,obj.dim);
+            [X,Z]=feval(['loadGlobMin' obj.typePb],obj.namePb,obj.dim);
         end
         %% load data about the design space
         function [X,Z]=loadSpace(obj)
             %
-            typetxt=obtainKeyword(obj.typePb);
-            %
-            [X,Z]=feval(['loadSpace' typetxt],obj.namePb,obj.dim);
+            [X,Z]=feval(['loadSpace' obj.typePb],obj.namePb,obj.dim);
         end
         %% load objective and constraints functions and type of constraints
         function loadPb(obj)
             %
-            keyboard
-            switch obj.typePb
-                case {'Cons','Multi'}
-                    [obj.funObj,obj.funCons,obj.typeCons]=feval(['loadProb' obj.typePb],obj.namePb);
-                otherwise
-                    obj.funObj=obj.namePb;
-                    obj.funCons={};
-                    obj.typeCons={};
+            [funOk,typeTxt]=availablePb(obj.namePb);
+            %
+            if funOk
+                switch typeTxt
+                    case {'Cons','Multi'}
+                        [obj.funObj,obj.funCons,obj.typeCons]=feval(['loadProb' typeTxt],obj.namePb);
+                    otherwise
+                        obj.funObj=obj.namePb;
+                        obj.funCons={};
+                        obj.typeCons={};
+                end
             end
             %
         end
@@ -220,7 +219,7 @@ classdef optiGTest < handle
             if obj.nbObj>1
                 bsxfun(funDisp,obj.funObj);
             else
-                fprintf('%s',obj.funObj);
+                fprintf('%s',obj.funObj{1});
             end
             fprintf('\n');
             %
@@ -230,13 +229,13 @@ classdef optiGTest < handle
             elseif obj.nbCons==1
                 fprintf('%s',obj.funCons);
             else
-                bsxfun(funDisp,obj.funCons);
+                cellfun(funDisp,obj.funCons);
             end
             %
             fprintf('# Considered dimension: %i\n',obj.dim);
             fprintf('# Considered design space:\n');
-            fprintf('#  Min: ');fprintf('%d ',obj.xMin);fprintf('\n');
-            fprintf('#  Max: ');fprintf('%d ',obj.xMax);fprintf('\n');
+            fprintf('#  Min: ');fprintf('%-+d ',obj.xMin);fprintf('\n');
+            fprintf('#  Max: ');fprintf('%-+d ',obj.xMax);fprintf('\n');
             fprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
             %
             Xmin=obj.globMinX;
@@ -249,7 +248,6 @@ classdef optiGTest < handle
         %% load the available dimension for the considered test function
         function loadDimAvailable(obj)
             %
-            keyboard
             obj.dimAvailable=feval(['loadDim' obj.typePb],obj.namePb);
         end
         %% get the available dimension for the considered test function
@@ -302,11 +300,7 @@ classdef optiGTest < handle
                 Xrun=obj.prepX(XX);
             end
             %
-            if obj.nbObj==1
-                cellObj={obj.funObj};
-            else
-                cellObj=obj.funObj;
-            end
+            cellObj=obj.funObj;
             %
             nbF=numel(cellObj);
             ZZtmp=cell(1,nbF);
@@ -357,23 +351,20 @@ classdef optiGTest < handle
             if obj.nbCons>1
                 %specific constraint function
                 if nargin>2
-                    cellCons=obj.funCons{num};
+                    cellCons=obj.funCons(num);
                 else
                     cellCons=obj.funCons;
                 end
                 %
                 nbF=numel(cellCons);
-                ZZtmp=cell(1,nbF);
-                if nargout>1;GZtmp=cell(1,nbF);end
                 %evaluate (all) objective function(s)
-                for itF=1:numel(cellCons)
-                    if nargout>1
-                        [ZZtmp{itF},GZtmp{itF}]=feval(['fun' cellCons{itF}],Xrun);
-                    else
-                        [ZZtmp{itF}]=feval(['fun' cellCons{itF}],Xrun);
-                    end
+                funE=@(x,y)feval(['fun' x],y);
+                %%
+                if nargout>1
+                    [ZZtmp,GZtmp]=cellfun(@(x)funE(x,Xrun),cellCons,'UniformOutput',false);
+                else
+                    [ZZtmp]=cellfun(@(x)funE(x,Xrun),cellCons,'UniformOutput',false);
                 end
-                %BSX
                 %reshape data
                 if obj.nbCons==1||numel(num)==1
                     ZZ=ZZtmp{1};
@@ -390,11 +381,8 @@ classdef optiGTest < handle
                     if obj.nbCons==1||numel(num)==1
                         GZreshape=reshape(GZtmp,[],size(GZtmp,3));
                     else
-                        GZreshape=cell(1,nbF);
-                        for itF=1:numel(cellCons)
-                            GZreshape{itF}=reshape(GZtmp{itF},[],size(GZtmp{itF},3));
-                        end
-                        %%BSX
+                        funR=@(x)reshape(x,[],size(x,3));
+                        GZreshape=cellfun(funR,GZtmp,'UniformOutput',false);
                     end
                 end
             else
@@ -447,8 +435,8 @@ classdef optiGTest < handle
         function demo(obj)
             if isinf(obj.dimAvailable);obj.dim=2;end
             Xmin=obj.xMin;
-             Xmax=obj.xMax;
-             % plot 1D or 2D
+            Xmax=obj.xMax;
+            % plot 1D or 2D
             if obj.dim==1
                 stepM=100;
                 %
@@ -456,13 +444,13 @@ classdef optiGTest < handle
                 %evaluation of objective function(s)
                 [ZZobj,GZobj]=obj.evalObj(xx);
                 %display
-                obj.showObj1D(xx,ZZobj,GZobj);
-                %constraint(s) 
+                obj.show1D(xx,ZZobj,GZobj,'Objective',obj.funObj);
+                %constraint(s)
                 if obj.nbCons>1
                     %evaluation of constraint function(s)
                     [ZZcons,GZcons]=obj.evalCons(xx);
                     %display
-                    obj.showCons1D(xx,ZZcons,GZcons);
+                    obj.show1D(xx,ZZcons,GZcons,'Constraint',obj.funCons);
                 end
             elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
                 obj.dim=2;
@@ -476,13 +464,13 @@ classdef optiGTest < handle
                 %evaluation of objective function(s)
                 [ZZobj,GZobj]=obj.evalObj(xx);
                 %display
-                obj.showObj2D(x,y,ZZobj,GZobj);
-                %constraint(s) 
+                obj.show2D(x,y,ZZobj,GZobj,'Objective',obj.funObj);
+                %constraint(s)
                 if obj.nbCons>1
                     %evaluation of constraint function(s)
                     [ZZcons,GZcons]=obj.evalCons(xx);
                     %display
-                    obj.showCons2D(xx,ZZcons,GZcons);
+                    obj.show2D(x,y,ZZcons,GZcons,'Constraint',obj.funCons);
                 end
             else
                 fprintf(['Too large dimension to be plotted (' mfilename ')\n']);
@@ -497,7 +485,8 @@ classdef optiGTest < handle
             %check minimum
             obj.namePb=pbName;
             %load dimension
-            dimCheck=loadDim(pbName);
+            dimCheck=obj.getDimAvailable;
+            %
             if isinf(dimCheck);dimCheck=5;end
             if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
             obj.dim=dimCheck;
@@ -518,7 +507,8 @@ classdef optiGTest < handle
                 isOk=false;
             end
             %check derivatives
-            [XminSpace,XmaxSpace]=loadSpace(pbName,dimCheck);
+            XminSpace=obj.xMin;
+            XmaxSpace=obj.xMin;
             %build sampling points
             if exist('lhsdesign','file')
                 Xsample=lhsdesign(obj.nSCheck,dimCheck);
@@ -603,52 +593,110 @@ classdef optiGTest < handle
             buildTableMD(listFun,listDim,nbCol);
         end
         %% show 2D function
-        function show2D(obj,XX,YY,ZZ,GZ)
-            nbR=2;
-            nbC=3;
+        function show2D(obj,XX,YY,ZZ,GZ,txt,funName)
+            nbC=6;
             nbLevel=10;
-            
-            figure
-            subplot(nbR,nbC,1)
-            surf(XX,YY,ZZ);
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(obj.funName)
-            subplot(nbR,nbC,2)
-            surf(XX,YY,GZ(:,:,1));
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
-            subplot(nbR,nbC,3)
-            surf(XX,YY,GZ(:,:,2));
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
             %
-            subplot(nbR,nbC,4)
-            contourf(XX,YY,ZZ,nbLevel);
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(obj.funName)
-            subplot(nbR,nbC,5)
-            contourf(XX,YY,GZ(:,:,1),nbLevel);
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. X ' obj.funName])
-            subplot(nbR,nbC,6)
-            contourf(XX,YY,GZ(:,:,2),nbLevel);
-            axis('tight','square')
-            xlabel('x'), ylabel('y'), title(['Grad. Y ' obj.funName])
+            if nargin<6;funName{1}='';end
+            if nargin<5;txt=[];end
+            %
+            if iscell(ZZ)
+                nbR=numel(ZZ);
+                if numel(funName)==1&&nbR~=1
+                    funName=repmat({''},1,nbR);
+                end
+            else
+                nbR=2;
+                nbC=3;
+                %
+                ZZ={ZZ};
+                GZ={GZ};
+            end
+            %
+            spaceX=[obj.xMin(1) obj.xMax(1)];
+            spaceY=[obj.xMin(2) obj.xMax(2)];
+            %
+            figure('NumberTitle', 'off', 'Name', [txt ' function']);
+            itS=1;
+            warning off all;
+            for itR=1:numel(ZZ)
+                subplot(nbR,nbC,itS)
+                surfCustom(XX,YY,ZZ{itR});
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(funName{itR})
+                xlim(spaceX)
+                ylim(spaceY)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                subplot(nbR,nbC,itS+1)
+                surfCustom(XX,YY,GZ{itR}(:,:,1));
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(['Grad. X ' funName{itR}])
+                xlim(spaceX)
+                ylim(spaceY)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                subplot(nbR,nbC,itS+2)
+                surfCustom(XX,YY,GZ{itR}(:,:,2));
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(['Grad. Y ' funName{itR}])
+                xlim(spaceX)
+                ylim(spaceY)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                subplot(nbR,nbC,itS+3)
+                contourf(XX,YY,ZZ{itR},nbLevel);
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(funName{itR})
+                xlim(spaceX)
+                ylim(spaceY)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                subplot(nbR,nbC,itS+4)
+                contourf(XX,YY,GZ{itR}(:,:,1),nbLevel);
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(['Grad. X ' funName{itR}])
+                xlim(spaceX)
+                ylim(spaceY)
+                %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                subplot(nbR,nbC,itS+5)
+                contourf(XX,YY,GZ{itR}(:,:,2),nbLevel);
+                axis('tight','square')
+                xlabel('x'), ylabel('y'), title(['Grad. Y ' funName{itR}])
+                xlim(spaceX)
+                ylim(spaceY)
+                %
+                itS=itS+6;
+            end
+            warning on all;
         end
         %% show 1D function
-        function show1D(obj,XX,ZZ,GZ)
+        function show1D(obj,XX,ZZ,GZ,txt,funName)
             nbR=1;
             nbC=2;
+            if nargin<6;funName=[];end
+            if nargin<5;txt=[];end
             %
-            figure
-            subplot(nbR,nbC,1)
-            plot(XX,ZZ);
-            axis('tight','square')
-            xlabel('x'), ylabel('F'), title(obj.funName)
-            subplot(nbR,nbC,2)
-            plot(XX,GZ(:,:,1));
-            axis('tight','square')
-            xlabel('x'), ylabel('dF/dx'), title(['Grad. ' obj.funName])
+            if iscell(ZZ)
+                nbR=numel(ZZ);
+            else
+                ZZ={ZZ};
+                GZ={GZ};
+            end
+            %
+            spaceX=[obj.xMin obj.xMax];
+            %
+            figure('NumberTitle', 'off', 'Name', [txt ' function']);
+            itS=1;
+            for itR=1:nbR
+                subplot(nbR,nbC,itS)
+                plot(XX,ZZ{itR});
+                axis('tight','square')
+                xlabel('x'), ylabel('F'), title(funName{itR})
+                xlim(spaceX)
+                subplot(nbR,nbC,itS+1)
+                plot(XX,GZ{itR}(:,:,1));
+                axis('tight','square')
+                xlabel('x'), ylabel('dF/dx'), title(['Grad. ' funName{itR}])
+                xlim(spaceX)
+                itS=itS+2;
+            end
         end
     end
     
@@ -659,23 +707,33 @@ end
 function [funOk,typePb]=availablePb(txt)
 funOk=false;
 %extract name of functions
-strPbUn=loadDim();
+strPbUn=loadDimUn();
 strPbCons=loadDimCons();
 strpbMulti=loadDimMulti();
 %
 listPbUn=fieldnames(strPbUn);
 listPbCons=fieldnames(strPbCons);
 listPbMulti=fieldnames(strpbMulti);
-listAll=vertcat(listPbUn,listPbCons,listPbMulti);
 %
 %check if function is available and which case of pb it is
-if any(ismember(listAll,txt));funOk=true;end
+if any(ismember(listPbUn,txt))
+    funOk=true;
+    typePb='Un';
+end
+if any(ismember(listPbCons,txt))
+    funOk=true;
+    typePb='Cons';
+end
+if any(ismember(listPbMulti,txt))
+    funOk=true;
+    typePb='Multi';
+end
 end
 
 %% display available testfunctions
 function funOk=dispAvailablePb()
 %extract name of functions
-strPbUn=loadDim();
+strPbUn=loadDimUn();
 strPbCons=loadProbCons();
 strPbMulti=loadProbMulti();
 %
@@ -750,4 +808,40 @@ for itR=1:nbFunPerCol
         itF=itF+1;
     end
 end
+end
+
+%% custom surface plot
+function surfCustom(XX,YY,ZZ)
+%
+hh=surf(XX,YY,ZZ);
+%
+shading interp
+light
+lighting phong
+%
+axis('tight','square')
+xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex')%, title(obj.funName)
+%
+%% Extract X,Y and Z data from surface plot
+X=hh.XData;
+Y=hh.YData;
+Z=hh.ZData;
+%% Divide the lengths by the number of lines needed
+xlength = size(ZZ,2);
+ylength = size(ZZ,1);
+xnumlines = 10; % 10 lines
+ynumlines = 10; % 10 partitions
+xspacing = round(xlength/xnumlines);
+yspacing = round(ylength/ynumlines);
+%% Plot the mesh lines
+% Plotting lines in the X-Z plane
+hold on
+for i = 1:yspacing:ylength
+    mesh([X(i,:);X(i,:)], [Y(i,:);Y(i,:)], [Z(i,:);Z(i,:)],'EdgeColor',0.7.*[1,1,1]);
+end
+% Plotting lines in the Y-Z plane
+for i = 1:xspacing:xlength
+    mesh([X(:,i),X(:,i)], [Y(:,i),Y(:,i)], [Z(:,i),Z(:,i)],'EdgeColor',0.7.*[1,1,1]);
+end
+hold off
 end

@@ -17,7 +17,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [funOpti,funCons,typeCons]=loadProbCons(funName)
+function [funOpti,funCons,typeCons]=loadProbCons(pbName)
 listPb=struct(...
     'RosenbrockCubicLine',{{'Rosenbrock'},{'Cons1','Cons2'},{'<=','<='}},...
     'RosenbrockDisk',{{'Rosenbrock'},{'Disk2'},{'<='}},...
@@ -25,11 +25,10 @@ listPb=struct(...
     'Townsend',{{'Townsend'},{'ConsTownsend'},{'<'}},...
     'Simionescu',{{'Simionescu'},{'ConsSimionescu'},{'<='}});
 if nargin==1
-    funAll=listPb.(funName);
     %
-    funOpti=funAll{1};
-    funCons=funAll{2};
-    typeCons=funAll{3};
+    funOpti=listPb(1).(pbName);
+    funCons=listPb(2).(pbName);
+    typeCons=listPb(3).(pbName);
 else
     funOpti=listPb;
 end

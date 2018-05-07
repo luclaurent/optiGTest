@@ -19,7 +19,7 @@
 
 function [funOpti,funCons,typeCons]=loadProbMulti(funName)
 listPb=struct(...
-    'test',{{'test'},{'test','test'},{'<=','<='}});
+    'BinhKorn',{{'ObjKornBinh1','ObjKornBinh2'},{'ConsKornBinh1','ConsKornBinh2'},{'<=','>='}});
 if nargin==1
     funAll=listPb.(funName);
     %
