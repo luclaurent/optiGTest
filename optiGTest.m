@@ -50,6 +50,7 @@ classdef optiGTest < handle
     end
     properties (Access=private)
         nameDir={'Constrained','unConstrained','MultiObj'}; % names of the folders containing files of functions
+        figureHandle=[];            % handles for figures
     end
     
     methods
@@ -70,16 +71,20 @@ classdef optiGTest < handle
                 fprintf('### Run check process of all problems\n');
                 obj.checkAllPb(false);
             else
-                %load problem
-                obj.namePb=PbName;
-                %display details about the considered problem
-                obj.dispDetails;
+                if ~isempty(PbName)
+                    %load problem
+                    obj.namePb=PbName;
+                    %display details about the considered problem
+                    obj.dispDetails;
+                end
             end
             % with input arguments: (1) demo mode (if 1D or 2D function),
             % (2) run with XX, (3) run with XX in specified dimension
             if nargin==1
                 %check the requested problem
-                obj.checkFun(obj.namePb);
+                if ~isempty(PbName)
+                    obj.checkFun(obj.namePb);
+                end
             elseif nargin==2
                 %prepare sample points
                 obj.prepX(XX);
@@ -164,6 +169,14 @@ classdef optiGTest < handle
                 obj.dim=val;
             end
         end
+        %% add figure handles
+        function set.figureHandle(obj,hh)
+            if all(ishandle(hh))
+                obj.figureHandle=[obj.figureHandle hh(:)'];
+            else
+                obj.figureHandle(hh)=[];
+            end
+        end
         %% add functions in matlab's path
         function addTree(obj)
             %extract folder of the current class
@@ -202,7 +215,7 @@ classdef optiGTest < handle
                     case {'Cons','Multi'}
                         [obj.funObj,obj.funCons,obj.typeCons]=feval(['loadProb' typeTxt],obj.namePb);
                     otherwise
-                        obj.funObj=obj.namePb;
+                        obj.funObj={obj.namePb};
                         obj.funCons={};
                         obj.typeCons={};
                 end
@@ -211,39 +224,41 @@ classdef optiGTest < handle
         end
         %% display details about the defined problem
         function dispDetails(obj)
-            fprintf('\n## Problem: %s\n',obj.namePb);
-            fprintf('# Objective function(s):');
-            %
-            funDisp=@(x)fprintf(' %s,',x);
-            %
-            if obj.nbObj>1
-                bsxfun(funDisp,obj.funObj);
-            else
-                fprintf('%s',obj.funObj{1});
+            if ~isempty(obj.namePb)
+                fprintf('\n## Problem: %s\n',obj.namePb);
+                fprintf('# Objective function(s):');
+                %
+                funDisp=@(x)fprintf(' %s,',x);
+                %
+                if obj.nbObj>1
+                    cellfun(funDisp,obj.funObj);
+                else
+                    fprintf('%s',obj.funObj{1});
+                end
+                fprintf('\n');
+                %
+                fprintf('# Constraint function(s):');
+                if obj.nbCons==0
+                    fprintf('None\n');
+                elseif obj.nbCons==1
+                    fprintf('%s',obj.funCons);
+                else
+                    cellfun(funDisp,obj.funCons);
+                end
+                %
+                fprintf('# Considered dimension: %i\n',obj.dim);
+                fprintf('# Considered design space:\n');
+                fprintf('#  Min: ');fprintf('%-+d ',obj.xMin);fprintf('\n');
+                fprintf('#  Max: ');fprintf('%-+d ',obj.xMax);fprintf('\n');
+                fprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
+                %
+                Xmin=obj.globMinX;
+                Zmin=obj.globMinZ;
+                for itM=1:numel(Zmin)
+                    fprintf('#  %-+d\t%-+d || %d \n',Xmin(itM,:),Zmin(itM));
+                end
+                fprintf('\n');
             end
-            fprintf('\n');
-            %
-            fprintf('# Constraint function(s):');
-            if obj.nbCons==0
-                fprintf('None\n');
-            elseif obj.nbCons==1
-                fprintf('%s',obj.funCons);
-            else
-                cellfun(funDisp,obj.funCons);
-            end
-            %
-            fprintf('# Considered dimension: %i\n',obj.dim);
-            fprintf('# Considered design space:\n');
-            fprintf('#  Min: ');fprintf('%-+d ',obj.xMin);fprintf('\n');
-            fprintf('#  Max: ');fprintf('%-+d ',obj.xMax);fprintf('\n');
-            fprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
-            %
-            Xmin=obj.globMinX;
-            Zmin=obj.globMinZ;
-            for itM=1:numel(Zmin)
-                fprintf('#  %-+d\t%-+d || %d \n',Xmin(itM,:),Zmin(itM));
-            end
-            fprintf('\n');
         end
         %% load the available dimension for the considered test function
         function loadDimAvailable(obj)
@@ -432,7 +447,7 @@ classdef optiGTest < handle
             end
         end
         %% run demo mode (only for 1D or 2D function)
-        function demo(obj)
+        function hh=demo(obj)
             if isinf(obj.dimAvailable);obj.dim=2;end
             Xmin=obj.xMin;
             Xmax=obj.xMax;
@@ -444,14 +459,16 @@ classdef optiGTest < handle
                 %evaluation of objective function(s)
                 [ZZobj,GZobj]=obj.evalObj(xx);
                 %display
-                obj.show1D(xx,ZZobj,GZobj,'Objective',obj.funObj);
+                hh(1)=obj.show1D(xx,ZZobj,GZobj,[obj.namePb ': Objective'],obj.funObj);
                 %constraint(s)
                 if obj.nbCons>1
                     %evaluation of constraint function(s)
                     [ZZcons,GZcons]=obj.evalCons(xx);
                     %display
-                    obj.show1D(xx,ZZcons,GZcons,'Constraint',obj.funCons);
+                    hh(2)=obj.show1D(xx,ZZcons,GZcons,[obj.namePb ': Constraint'],obj.funCons);
                 end
+                %store figure handle
+                obj.figureHandle=hh;
             elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
                 obj.dim=2;
                 stepM=51;
@@ -464,21 +481,23 @@ classdef optiGTest < handle
                 %evaluation of objective function(s)
                 [ZZobj,GZobj]=obj.evalObj(xx);
                 %display
-                obj.show2D(x,y,ZZobj,GZobj,'Objective',obj.funObj);
+                hh(1)=obj.show2D(x,y,ZZobj,GZobj,[obj.namePb ': Objective'],obj.funObj);
                 %constraint(s)
                 if obj.nbCons>1
                     %evaluation of constraint function(s)
                     [ZZcons,GZcons]=obj.evalCons(xx);
                     %display
-                    obj.show2D(x,y,ZZcons,GZcons,'Constraint',obj.funCons);
+                    hh(2)=obj.show2D(x,y,ZZcons,GZcons,[obj.namePb ': Constraint'],obj.funCons);
                 end
+                %store figure handle
+                obj.figureHandle=hh;
             else
                 fprintf(['Too large dimension to be plotted (' mfilename ')\n']);
             end
         end
         %% check function by checking minimum
         function isOk=checkFun(obj,pbName,statusPause)
-            if nargin==0; pbName=obj.funName;end
+            if nargin==0; pbName=obj.namePb;end
             if nargin<3; statusPause=false;end
             lim=1e-5;
             limO=1e-4;
@@ -561,11 +580,22 @@ classdef optiGTest < handle
             end
         end
         %% check all functions
-        function isOk=checkAllPb(obj,flag)
+        function isOk=checkAllPb(obj,varargin)
+            %default values
             isOk=true;
-            %extract name of functions
-            strFun=loadDim();
-            listFun=fieldnames(strFun);
+            flag=false;
+            typeCheckPb='';
+            %deal with input arguments            
+            for itV=1:numel(varargin)
+                if  islogical(varargin{itV})
+                    flag=varargin{itV};
+                elseif ischar(varargin{itV})
+                    typeCheckPb=varargin{itV};
+                end
+            end
+
+            %extract list of problems
+            listFun=listPb(typeCheckPb);
             if flag %check all by continuing at the current position
                 currPos=find(ismember(listFun,obj.consPb));
                 currPos=currPos(1);
@@ -593,7 +623,7 @@ classdef optiGTest < handle
             buildTableMD(listFun,listDim,nbCol);
         end
         %% show 2D function
-        function show2D(obj,XX,YY,ZZ,GZ,txt,funName)
+        function h=show2D(obj,XX,YY,ZZ,GZ,txt,funName)
             nbC=6;
             nbLevel=10;
             %
@@ -616,7 +646,7 @@ classdef optiGTest < handle
             spaceX=[obj.xMin(1) obj.xMax(1)];
             spaceY=[obj.xMin(2) obj.xMax(2)];
             %
-            figure('NumberTitle', 'off', 'Name', [txt ' function']);
+            h=figure('NumberTitle', 'off', 'Name', [txt ' function']);
             itS=1;
             warning off all;
             for itR=1:numel(ZZ)
@@ -667,7 +697,7 @@ classdef optiGTest < handle
             warning on all;
         end
         %% show 1D function
-        function show1D(obj,XX,ZZ,GZ,txt,funName)
+        function h=show1D(obj,XX,ZZ,GZ,txt,funName)
             nbR=1;
             nbC=2;
             if nargin<6;funName=[];end
@@ -682,7 +712,7 @@ classdef optiGTest < handle
             %
             spaceX=[obj.xMin obj.xMax];
             %
-            figure('NumberTitle', 'off', 'Name', [txt ' function']);
+            h=figure('NumberTitle', 'off', 'Name', [txt ' function']);
             itS=1;
             for itR=1:nbR
                 subplot(nbR,nbC,itS)
@@ -696,6 +726,23 @@ classdef optiGTest < handle
                 xlabel('x'), ylabel('dF/dx'), title(['Grad. ' funName{itR}])
                 xlim(spaceX)
                 itS=itS+2;
+            end
+        end
+        %% close all openned figures
+        function closeFig(obj)
+            if ~isempty(obj.figureHandle)
+                %use temporary list of figures
+                tmpFigHandle=obj.figureHandle;
+                for itF=1:numel(tmpFigHandle)
+                    %close figure
+                    %try
+                    close(tmpFigHandle(itF));
+                    %catch
+                    %    keyboard
+                    %end
+                    %remove it from the list
+                    obj.figureHandle=1;
+                end
             end
         end
     end
@@ -730,9 +777,39 @@ if any(ismember(listPbMulti,txt))
 end
 end
 
+%% extract list of problems
+function l=listPb(typePb)
+
+if nargin==0;typePb='';end
+
+switch typePb
+    case {'UnConstrained','Un','un','Unconstrained','unconstrained'}
+        strPb=loadDimUn();
+        l=fieldnames(strPb);
+    case {'Constrained','Cons','cons','constrained'}
+        strPb=loadProbCons();
+        %
+        l=fieldnames(strPb);
+    case {'MultiObj','Multi','multi','Multiobj','multiobj'}
+        strPb=loadProbMulti();
+        %
+        l=fieldnames(strPb);
+    otherwise
+        strPbUn=loadDimUn();
+        strPbCons=loadProbCons();
+        strPbMulti=loadProbMulti();
+        %
+        listPbUn=fieldnames(strPbUn);
+        listPbCons=fieldnames(strPbCons);
+        listPbMulti=fieldnames(strPbMulti);
+        %        
+        l=vertcat(listPbUn,listPbCons,listPbMulti);
+end
+end
+
 %% display available testfunctions
 function funOk=dispAvailablePb()
-%extract name of functions
+%extract name of porblems
 strPbUn=loadDimUn();
 strPbCons=loadProbCons();
 strPbMulti=loadProbMulti();

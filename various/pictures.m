@@ -9,9 +9,9 @@ addpath('..')
 ff=fopen('unConstrainedWiki.txt','w');
 
 %load class
-pb=unConstrained('');
+pb=optiGTest('');
 % load list of functions
-listFun=loadDim();
+listFun=loadDimMulti();
 % names of functions
 nameFun=fieldnames(listFun);
 % along functions
@@ -20,7 +20,7 @@ for itF=1:numel(nameFun)
     %dimension 2 only
     if any(ismember(listFun.(nameFun{itF}),2))||any(isinf(listFun.(nameFun{itF})))
         %load function
-        pb.funName=nameFun{itF};
+        pb.namePb=nameFun{itF};
         %plot demo
         h=pb.demo;
         %obtain pdf and png
@@ -28,8 +28,8 @@ for itF=1:numel(nameFun)
         filePDF=[file,'.pdf'];
         filePNG=[file,'.png'];
         %saveas(h,fileEPS,'-epsc')
-        print(h,filePDF,'-dpdf','-painters')
-        saveas(h,filePNG)
+        %print(h,filePDF,'-dpdf','-painters')
+        %saveas(h,filePNG)
         %close figure
         pb.closeFig;
         %write in the wiki's file
