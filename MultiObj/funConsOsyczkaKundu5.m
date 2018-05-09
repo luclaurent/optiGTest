@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Osyczka and Kundu 5th constraint function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,23 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funConsOsyczkaKundu5(xx)
+
+%constants
+a=4;
+b=3;
 
 %responses and derivatives
-n=size(xx,3);
+zzz=xx(:,:,3);
+uuu=xx(:,:,4);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
-%
-p=1-exp(-st);
+p=a-(zzz-b).^2-uuu;
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    dp=zeros(size(xx));
+    %
+    dp(:,:,3)=-2*(zzz-b);
+    dp(:,:,4)=-ones(size(uuu));
 end
 end

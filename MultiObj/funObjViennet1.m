@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Viennet 1st objective function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,24 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funObjViennet1(xx)
+
+%constant
+a=0.5;
 
 %responses and derivatives
-n=size(xx,3);
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
+td=xxx.^2+yyy.^2;
+st=sin(td);
 %
-p=1-exp(-st);
+p=a*td+st;
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    ct=cos(td);
+    %
+    dp=2*a*xx+2*xx*ct;
 end
 end

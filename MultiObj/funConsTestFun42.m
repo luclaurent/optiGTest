@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Test function 4 2nd constraint function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,21 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funConsTestFun42(xx)
+
+%constant
+a=7.5;
+b=0.5;
 
 %responses and derivatives
-n=size(xx,3);
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
-%
-p=1-exp(-st);
+p=a-xxx*b-yyy;
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    dp(:,:,1)=-ones(size(xxx))*b;
+    dp(:,:,2)=-ones(size(yyy));
 end
 end

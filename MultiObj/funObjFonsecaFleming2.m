@@ -19,9 +19,6 @@
 
 function [p,dp]=funObjFonsecaFleming2(xx)
 
-%constants
-a=1;
-
 %responses and derivatives
 n=size(xx,3);
 %
@@ -32,7 +29,6 @@ p=1-exp(-st);
 %
 if nargout==2
     %
-    dp(:,:,1)=a*ones(size(xxx));
-    dp(:,:,2)=-2*(yyy-b);
+    dp=2*td.*exp(-st);
 end
 end

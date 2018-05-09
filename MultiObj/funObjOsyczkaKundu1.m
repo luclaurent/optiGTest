@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Osyczka and Kundu 1st objective function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,35 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funObjOsyczkaKundu1(xx)
+
+%constants
+a=25;
+b=2;
+c=1;
+d=4;
 
 %responses and derivatives
-n=size(xx,3);
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
+zzz=xx(:,:,3);
+uuu=xx(:,:,4);
+vvv=xx(:,:,5);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
-%
-p=1-exp(-st);
+p=-a*(xxx-b).^2 ...
+    -(yyy-b).^2 ...
+    -(zzz-c).^2 ...
+    -(uuu-d).^2 ...
+    -(vvv-c).^2;
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    dp=zeros(size(xx));
+    %
+    dp(:,:,1)=-2*a*(xxx-b);
+    dp(:,:,2)=-2*(yyy-b);
+    dp(:,:,3)=-2*(zzz-c);
+    dp(:,:,4)=-2*(uuu-d);
+    dp(:,:,5)=-2*(vvv-c);
 end
 end

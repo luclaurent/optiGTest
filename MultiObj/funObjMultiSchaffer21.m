@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Schaffer N2 1st objective function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,30 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funObjMultiSchaffer21(xx)
+
+%constants
+a=1;
+b=2;
+c=3;
+d=4;
 
 %responses and derivatives
-n=size(xx,3);
+IXa=find(xx<=a);
+IXb=find(a<xx&&xx<=c);
+IXc=find(c<xx&&xx<=d);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
+p=xx-d;
 %
-p=1-exp(-st);
+p(IXa)=-xx(IXa);
+p(IXb)=xx(IXb)-b;
+p(IXc)=d-xx(IXc);
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    dp=ones(size(xx));
+    %
+    dp(IXa)=-dp(IXa);
+    dp(IXc)=-dp(IXc);
 end
 end

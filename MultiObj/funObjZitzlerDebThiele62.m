@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Zitzler-Deb-Thiele N6 2nd objective function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,34 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funObjZitzlerDebThiele62(xx)
+
+%constants
+a=9;
+b=0.25;
 
 %responses and derivatives
-n=size(xx,3);
-%
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
-%
-p=1-exp(-st);
-
 if nargout==2
+    [f1,df1]=funObjZitzlerDebThiele61(xx);
+else
+    f1=funObjZitzlerDebThiele61(xx);
+end
+%
+td=sum(xx(:,:,2:end),3);
+g=1+a/a^b*td.^b;
+%
+rfg=f1./g;
+h=1-rfg.^2;
+%
+p=g.*h;
+
+if nargout==2 
     %
-    dp=2*td.*exp(-st);
+    dg=a/a^b*b*td.^(b-1);
+    dg(:,:,1)=0;
+    %
+    dh=-(df1.*g-f1.*g)./g.^2.*2.*rfg;
+    %
+    dp=dg.*h+g.*dh;
 end
 end

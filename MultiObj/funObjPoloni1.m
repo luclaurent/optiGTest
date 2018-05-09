@@ -1,5 +1,5 @@
-%% Fonseca-Fleming 1st objective function
-%L. LAURENT -- 07/05/2018 -- luc.laurent@lecnam.net
+%% Ploloni 1st objective function
+%L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
@@ -17,18 +17,41 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funObjFonsecaFleming1(xx)
+function [p,dp]=funObjPoloni1(xx)
+
+%constants
+a=0.5;
+b=2;
+c=1.5;
+%
+A1=a*sin(1)-b*cos(1)+sin(b)-c*cos(b);
+A2=c*sin(1)-cos(1)+b*sin(b)-a*cos(b);
 
 %responses and derivatives
-n=size(xx,3);
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 %
-td=xx-1/sqrt(n);
-st=sum(td.^2,3);
+sx=sin(xxx);
+sy=sin(yyy);
+cx=cos(xxx);
+cy=cos(yyy);
 %
-p=1-exp(-st);
+B1=a*sx-b*cx+sy-c*cy;
+B2=c*sx-cx+b*sy-a*cy;
+%
+tda=A1-B1;
+tdb=A2-B2;
+%
+p=1+tda.^2+tdb.^2;
 
 if nargout==2
     %
-    dp=2*td.*exp(-st);
+    B1x=a*cx+b*sx;
+    B1y=cy+c*sy;
+    B2x=c*cx+sx;
+    B2y=b*cy+a*sy;    
+    %
+    dp(:,:,1)=-2*B1x.*tda-2*B2x.*tdb;
+    dp(:,:,2)=-2*B1y.*tda-2*B2y.*tdb;
 end
 end
