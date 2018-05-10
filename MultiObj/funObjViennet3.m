@@ -1,4 +1,4 @@
-%% CTP1 1st constraint function
+%% Viennet 3rd objective function
 %L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
@@ -17,26 +17,24 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [p,dp]=funConsCTP11(xx)
+function [p,dp]=funObjViennet3(xx)
 
-%constants
-a=0.858;
-b=0.541;
+%constant
+a=1.1;
 
 %responses and derivatives
-if nargout==2
-    [f1,df1]=funObjCTP11(xx);
-    [f2,df2]=funObjCTP12(xx);
-else
-    f1=funObjCTP11(xx);
-    f2=funObjCTP12(xx);
-end
+xxx=xx(:,:,1);
+yyy=xx(:,:,2);
 %
-td=a*exp(-b*f1);
-p=f2./td;
+tda=a*xxx-b*yyy+c;
+tdb=xxx-yyy+1;
+%
+p=tda.^2./d+tdb.^2./e+f;
 
 if nargout==2
     %
-    dp=(df2+b*f2.*df1)./td;
+    dp(:,:,1)=2*a/d*tda+2/e*tdb;
+    dp(:,:,2)=-2*b/d*tda-2/e*tdb;
+    %
 end
 end

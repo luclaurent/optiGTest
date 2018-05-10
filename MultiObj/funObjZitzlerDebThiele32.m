@@ -42,8 +42,8 @@ if nargout==2
     %
     drfg=(df1.*g-f1.*g)./g.^2;
     %
-    dh=drfg.*0.5/sqrt(rfg)...
-        -rfg.*b.*df1.*cos(b*f1)-dfrg.*sin(b*f1);
+    dh=drfg.*0.5./sqrt(rfg)...
+        -rfg.*b.*df1.*cos(b*f1)-drfg.*sin(b*f1);
     %
     dp=dg.*h+g.*dh;
 end

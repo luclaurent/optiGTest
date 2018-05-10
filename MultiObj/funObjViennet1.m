@@ -35,6 +35,6 @@ if nargout==2
     %
     ct=cos(td);
     %
-    dp=2*a*xx+2*xx*ct;
+    dp=2*a*xx+2*xx.*ct;
 end
 end

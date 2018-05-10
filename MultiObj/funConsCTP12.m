@@ -37,6 +37,6 @@ p=f2./td;
 
 if nargout==2
     %
-    dp=(df2+f2*b*df1)./td;
+    dp=(df2+b*f2.*df1)./td;
 end
 end

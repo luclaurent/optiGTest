@@ -31,6 +31,6 @@ p=sum(td,3);
 
 if nargout==2
     %
-    dp=a*sign(xx)*abs(xx).^(a-1)+c*b*xx.^(c-1)*cos(xx.^c);
+    dp=a*sign(xx).*abs(xx).^(a-1)+c*b*xx.^(c-1).*cos(xx.^c);
 end
 end

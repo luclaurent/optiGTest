@@ -27,8 +27,8 @@ d=4;
 
 %responses and derivatives
 IXa=find(xx<=a);
-IXb=find(a<xx&&xx<=c);
-IXc=find(c<xx&&xx<=d);
+IXb=find(a<xx&xx<=c);
+IXc=find(c<xx&xx<=d);
 %
 p=xx-d;
 %

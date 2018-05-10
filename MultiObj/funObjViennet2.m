@@ -1,4 +1,4 @@
-%% Viennet 1st objective function
+%% Viennet 2nd objective function
 %L. LAURENT -- 09/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.

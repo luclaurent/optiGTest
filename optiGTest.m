@@ -233,7 +233,7 @@ classdef optiGTest < handle
                 if obj.nbObj>1
                     cellfun(funDisp,obj.funObj);
                 else
-                    fprintf('%s',obj.funObj{1});
+                    fprintf(' %s',obj.funObj{1});
                 end
                 fprintf('\n');
                 %
@@ -241,7 +241,7 @@ classdef optiGTest < handle
                 if obj.nbCons==0
                     fprintf('None\n');
                 elseif obj.nbCons==1
-                    fprintf('%s',obj.funCons);
+                    fprintf(' %s',obj.funCons);
                 else
                     cellfun(funDisp,obj.funCons);
                 end
@@ -522,14 +522,14 @@ classdef optiGTest < handle
             % of objective function(s)
             for itF=1:obj.nbObj
                funCheck=@(X)obj.evalObj(X,itF);
-               isOkCurrent=obj.checkGradFun(funCheck,obj.funObj(itF));
+               isOkCurrent=obj.checkGradFun(funCheck,obj.funObj{itF});
                isOk=isOkCurrent&&isOkCurrent;
             end
             % of constraint function(s)
             if obj.nbCons>0
                 for itF=1:obj.nbCons
                    funCheck=@(X)obj.evalCons(X,itF);
-                   isOkCurrent=obj.checkGradFun(funCheck,obj.funCons(itF));
+                   isOkCurrent=obj.checkGradFun(funCheck,obj.funCons{itF});
                    isOk=isOkCurrent&&isOkCurrent;
                 end
             end
@@ -540,6 +540,12 @@ classdef optiGTest < handle
         %% check any function
         function isOk=checkFunObj(obj)
             isOk=true;
+            %load dimension
+            dimCheck=obj.getDimAvailable;
+            %
+            if isinf(dimCheck);dimCheck=5;end
+            if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
+            obj.dim=dimCheck;
             %details of minimum
             X=obj.globMinX;
             Z=obj.globMinZ;
@@ -554,7 +560,7 @@ classdef optiGTest < handle
                 ZZ=obj.evalObj(X);              
                 %
                 if all(abs(ZZ(:)-Z(:))>limO)
-                    fprintf('Issue with the %s function (wrong minimum obtained)\n',pbName);
+                    fprintf('Issue with the %s function (wrong minimum obtained)\n',obj.namePb);
                     fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
                     fprintf('\n');
                     fprintf('Expected: ');fprintf('%d ',Z(:)');
@@ -573,17 +579,11 @@ classdef optiGTest < handle
             %space
             XminSpace=obj.xMin;
             XmaxSpace=obj.xMax;
-            %load dimension
-            dimCheck=obj.getDimAvailable;
-            %
-            if isinf(dimCheck);dimCheck=5;end
-            if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
-            obj.dim=dimCheck;
             %build sampling points
             if exist('lhsdesign','file')
-                Xsample=lhsdesign(obj.nSCheck,dimCheck);
+                Xsample=lhsdesign(obj.nSCheck,obj.dim);
             else
-                Xsample=rand(obj.nSCheck,dimCheck);
+                Xsample=rand(obj.nSCheck,obj.dim);
             end
             %rescale the samples
             Xsample=Xsample.*repmat(XmaxSpace-XminSpace,obj.nSCheck,1)+repmat(XminSpace,obj.nSCheck,1);
@@ -595,9 +595,10 @@ classdef optiGTest < handle
             %compare results
             try
             diffG=abs((GZactual-GZapprox)./GZactual);
-            catch
+            catch 
                 keyboard
             end
+%
             if any(diffG(:)>lim)&&obj.paranoidCheck||sum(diffG(:)>lim)>floor(numel(diffG(:))/3)&&~obj.paranoidCheck
                 fprintf('Issue with the gradients of the %s function\n',funName);
                 isOk=false;
