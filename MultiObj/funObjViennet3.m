@@ -26,15 +26,25 @@ a=1.1;
 xxx=xx(:,:,1);
 yyy=xx(:,:,2);
 %
-tda=a*xxx-b*yyy+c;
-tdb=xxx-yyy+1;
+td=xxx.^2+yyy.^2;
+tda=1./(td+1);
+tdb=exp(-td);
 %
-p=tda.^2./d+tdb.^2./e+f;
+p=tda.*tdb;
 
 if nargout==2
     %
-    dp(:,:,1)=2*a/d*tda+2/e*tdb;
-    dp(:,:,2)=-2*b/d*tda-2/e*tdb;
+    tdx=2*xxx;
+    tdy=2*yyy;
+    %
+    tdax=-tdx.*tda.^2;
+    tday=-tdy.*tda.^2;
+    %
+    tdbx=-tdx.*tdb;
+    tdby=-tdy.*tdb;
+    %
+    dp(:,:,1)=tdax.*tdb+tda.*tdbx;
+    dp(:,:,2)=tday.*tdb+tda.*tdby;
     %
 end
 end

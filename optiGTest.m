@@ -604,7 +604,7 @@ classdef optiGTest < handle
                 isOk=false;
             end
             if any(diffG(:)>lim)||obj.forceDisplayGrad
-                
+                fprintf(' >> %s function\n',funName);
                 fprintf('Exact\n');
                 for it=1:obj.nSCheck
                     fprintf('%+7.3e ',GZactual(it,:));
@@ -620,6 +620,13 @@ classdef optiGTest < handle
                 fprintf('Difference\n');
                 for it=1:obj.nSCheck
                     fprintf('%+7.3e ',diffG(it,:));
+                    fprintf('\n');
+                end
+                fprintf('\n');
+                fprintf('DifferenceB\n');
+                diffGB=abs((GZactual-GZapprox)./(1+abs(GZactual)));
+                for it=1:obj.nSCheck
+                    fprintf('%+7.3e ',diffGB(it,:));
                     fprintf('\n');
                 end
                 fprintf('\n');
