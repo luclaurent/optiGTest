@@ -881,10 +881,12 @@ fprintf('------------------------\n');
 cellfun(@(X)fprintf('Unconstrained: %s\n',X),listPbUn);
 fprintf('------------------------\n');
 fprintf('------------------------\n');
-cellfun(@(X,Y,Z)fprintf('Constrained: %s (nb constraints: %i)\n',X,Y),listPbCons,num2cell(nbConsPb));
+cellfun(@(X,Y,Z)fprintf('Constrained: %s (nb constraints: %i)\n',X,Y),...
+    listPbCons,num2cell(nbConsPb));
 fprintf('------------------------\n');
 fprintf('------------------------\n');
-cellfun(@(X,Y,Z)fprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
+cellfun(@(X,Y,Z)fprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),...
+    listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
 fprintf('------------------------\n');
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 end
@@ -948,7 +950,10 @@ light
 lighting phong
 %
 axis('tight','square')
-xlabel('$x$','Interpreter','latex'), ylabel('$y$','Interpreter','latex'), zlabel('$f$','Interpreter','latex')%, title(obj.funName)
+xlabel('$x$','Interpreter','latex')
+ylabel('$y$','Interpreter','latex')
+zlabel('$f$','Interpreter','latex')
+%title(obj.funName)
 %
 %% Extract X,Y and Z data from surface plot
 X=hh.XData;
@@ -983,9 +988,9 @@ else
     switch txtSymbol
         case {'==','eq'}
             txtFun=@eq;
-        case '~='
+        case {'~=','ne'}
             txtFun=@ne;
-        case {'<=','=<'}
+        case {'<=','=<','le'}
             txtFun=@le;
         case {'>=','=>','ge'}
             txtFun=@ge;
