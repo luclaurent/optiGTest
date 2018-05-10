@@ -83,7 +83,7 @@ classdef optiGTest < handle
             if nargin==1
                 %check the requested problem
                 if ~isempty(PbName)
-                    obj.checkFun(obj.namePb);
+                    obj.checkPb(obj.namePb);
                 end
             elseif nargin==2
                 %prepare sample points
@@ -308,14 +308,24 @@ classdef optiGTest < handle
             end
         end
         %% evaluate the objective function
-        function [ZZ,GZ,GZreshape]=evalObj(obj,XX)
-            if nargin==1
-                Xrun=obj.Xeval;
-            else
-                Xrun=obj.prepX(XX);
+        function [ZZ,GZ,GZreshape]=evalObj(obj,XX,num)
+            %default values
+            Xrun=obj.Xeval;
+            numOk=[];
+            if nargin>2, if ~isempty(num);numOk=num;end, end
+            %
+            if nargin>1
+                if ~isempty(XX)
+                    Xrun=obj.prepX(XX);
+                end
             end
             %
-            cellObj=obj.funObj;
+            %specific objective function(s)
+            if ~isempty(numOk)
+                cellObj=obj.funObj(numOk);
+            else
+                cellObj=obj.funObj;
+            end
             %
             nbF=numel(cellObj);
             ZZtmp=cell(1,nbF);
@@ -329,7 +339,7 @@ classdef optiGTest < handle
                 end
             end
             %reshape data
-            if obj.nbObj==1
+            if nbF==1
                 ZZ=ZZtmp{1};
                 if nargout>1
                     GZ=GZtmp{1};
@@ -341,7 +351,7 @@ classdef optiGTest < handle
                 end
             end
             if nargout>2
-                if obj.nbObj==1
+                if nbF==1
                     GZreshape=reshape(GZ,[],size(GZ,3));
                 else
                     GZreshape=cell(1,nbF);
@@ -355,7 +365,8 @@ classdef optiGTest < handle
         function [ZZ,GZ,GZreshape]=evalCons(obj,XX,num)
             %default values
             Xrun=obj.Xeval;
-            if nargin<3;num=[];end
+            numOk=[];
+            if nargin>2, if ~isempty(num);numOk=num;end, end
             %
             if nargin>1
                 if ~isempty(XX)
@@ -363,10 +374,10 @@ classdef optiGTest < handle
                 end
             end
             %
-            if obj.nbCons>1
+            if obj.nbCons>0
                 %specific constraint function
-                if nargin>2
-                    cellCons=obj.funCons(num);
+                if ~isempty(numOk)
+                    cellCons=obj.funCons(numOk);
                 else
                     cellCons=obj.funCons;
                 end
@@ -381,7 +392,7 @@ classdef optiGTest < handle
                     [ZZtmp]=cellfun(@(x)funE(x,Xrun),cellCons,'UniformOutput',false);
                 end
                 %reshape data
-                if obj.nbCons==1||numel(num)==1
+                if nbF==1
                     ZZ=ZZtmp{1};
                     if nargout>1
                         GZ=GZtmp{1};
@@ -393,11 +404,11 @@ classdef optiGTest < handle
                     end
                 end
                 if nargout>2
-                    if obj.nbCons==1||numel(num)==1
-                        GZreshape=reshape(GZtmp,[],size(GZtmp,3));
+                    if nbF==1
+                        GZreshape=reshape(GZ,[],size(GZ,3));
                     else
                         funR=@(x)reshape(x,[],size(x,3));
-                        GZreshape=cellfun(funR,GZtmp,'UniformOutput',false);
+                        GZreshape=cellfun(funR,GZ,'UniformOutput',false);
                     end
                 end
             else
@@ -412,17 +423,19 @@ classdef optiGTest < handle
             %default values
             numOk=[];
             status=true;
-            if obj.wCons
+            if obj.nbCons>0
                 availResp=false;availPts=false;
                 %deal with input arguments
                 if nargin==4, if ~isempty(ZZ);availResp=true;ZZOk=ZZ;end, end
                 if nargin>1, if ~isempty(XX);availPts=true;end, end
                 if nargin>2, if ~isempty(num);numOk=num;end, end
+                %available sample points
+                if availPts
+                    obj.prepX(XX);
+                    availResp=false; % priority on new sample points
+                end
                 % with no values of constraints
                 if ~availResp
-                    if availPts
-                        obj.prepX(XX);
-                    end
                     %evaluation contraint(s)
                     ZZOk=obj.evalCons([],numOk);
                 end
@@ -430,16 +443,18 @@ classdef optiGTest < handle
                 %% check constraints
                 %specific constraint test
                 if ~isempty(numOk)
-                    cellType=obj.typeCons{numOk};
+                    cellType=obj.typeCons(numOk);
                 else
                     cellType=obj.typeCons;
                 end
+                %obtain right function name
+                testFun=cellfun(@(x)boolFun(x),cellType,'UniformOutput',false);
                 %many constraints
-                funCheck=@(x,y)eval([x y '0']);
+                funCheck=@(x,y)y(x,0);
                 if iscell(ZZOk)
-                    status=bsxfun(funCheck,ZZOk,cellType);
+                    status=cellfun(funCheck,ZZOk,testFun);
                 else
-                    status=feval(funCheck,ZZOk,cellType{1});
+                    status=feval(funCheck,ZZOk,testFun);
                 end
                 
             else
@@ -495,39 +510,75 @@ classdef optiGTest < handle
                 fprintf(['Too large dimension to be plotted (' mfilename ')\n']);
             end
         end
-        %% check function by checking minimum
-        function isOk=checkFun(obj,pbName,statusPause)
+        %% check function by checking minimum and gradients
+        function isOk=checkPb(obj,pbName,statusPause)
             if nargin==0; pbName=obj.namePb;end
             if nargin<3; statusPause=false;end
-            lim=1e-5;
-            limO=1e-4;
             %check minimum
-            obj.namePb=pbName;
+            obj.namePb=pbName;            
+            %check minimum on objective function
+            isOk=obj.checkFunObj;
+            %check gradients 
+            % of objective function(s)
+            for itF=1:obj.nbObj
+               funCheck=@(X)obj.evalObj(X,itF);
+               isOkCurrent=obj.checkGradFun(funCheck,obj.funObj(itF));
+               isOk=isOkCurrent&&isOkCurrent;
+            end
+            % of constraint function(s)
+            if obj.nbCons>0
+                for itF=1:obj.nbCons
+                   funCheck=@(X)obj.evalCons(X,itF);
+                   isOkCurrent=obj.checkGradFun(funCheck,obj.funCons(itF));
+                   isOk=isOkCurrent&&isOkCurrent;
+                end
+            end
+            if ~isOk&&statusPause
+                pause
+            end
+        end
+        %% check any function
+        function isOk=checkFunObj(obj)
+            isOk=true;
+            %details of minimum
+            X=obj.globMinX;
+            Z=obj.globMinZ;
+            %threshold 
+            limO=1e-4;
+            % works only for non multiobjective problems
+            if ~any(isnan(Z))
+                if size(X,2)>obj.dim
+                    X=X(:,1:obj.dim);
+                end
+                %compute objective value
+                ZZ=obj.evalObj(X);              
+                %
+                if all(abs(ZZ(:)-Z(:))>limO)
+                    fprintf('Issue with the %s function (wrong minimum obtained)\n',pbName);
+                    fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
+                    fprintf('\n');
+                    fprintf('Expected: ');fprintf('%d ',Z(:)');
+                    fprintf('\n');
+                    isOk=false;
+                end
+            end
+        end
+        %% check gradients of any function
+        function isOk=checkGradFun(obj,funCheck,funName)
+            %default
+            isOk=true;
+            if nargin<3;funName='';end
+            %threshold
+            lim=1e-5;
+            %space
+            XminSpace=obj.xMin;
+            XmaxSpace=obj.xMax;
             %load dimension
             dimCheck=obj.getDimAvailable;
             %
             if isinf(dimCheck);dimCheck=5;end
             if numel(dimCheck)~=1;[~,II]=min(abs(dimCheck-5));dimCheck=dimCheck(II);end
             obj.dim=dimCheck;
-            %
-            isOk=true;
-            X=obj.globMinX;
-            if size(X,2)>obj.dim
-                X=X(:,1:obj.dim);
-            end
-            ZZ=obj.evalObj(X);
-            Z=obj.globMinZ;
-            if all(abs(ZZ(:)-Z(:))>limO)
-                fprintf('Issue with the %s function (wrong minimum obtained)\n',pbName);
-                fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
-                fprintf('\n');
-                fprintf('Expected: ');fprintf('%d ',Z(:)');
-                fprintf('\n');
-                isOk=false;
-            end
-            %check derivatives
-            XminSpace=obj.xMin;
-            XmaxSpace=obj.xMin;
             %build sampling points
             if exist('lhsdesign','file')
                 Xsample=lhsdesign(obj.nSCheck,dimCheck);
@@ -537,16 +588,18 @@ classdef optiGTest < handle
             %rescale the samples
             Xsample=Xsample.*repmat(XmaxSpace-XminSpace,obj.nSCheck,1)+repmat(XminSpace,obj.nSCheck,1);
             %evaluate function at the sample
-            obj.prepX(Xsample);
-            [~,~,GZactual]=obj.evalObj();
+            [~,~,GZactual]=funCheck(Xsample);
             %compute approximate gradients using finite differences
-            FDfun=@(X)obj.evalObj(X);
-            FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,FDfun);
+            FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,funCheck);            
             GZapprox=FDclass.GZeval;
             %compare results
+            try
             diffG=abs((GZactual-GZapprox)./GZactual);
+            catch
+                keyboard
+            end
             if any(diffG(:)>lim)&&obj.paranoidCheck||sum(diffG(:)>lim)>floor(numel(diffG(:))/3)&&~obj.paranoidCheck
-                fprintf('Issue with the gradients of the %s function\n',pbName);
+                fprintf('Issue with the gradients of the %s function\n',funName);
                 isOk=false;
             end
             if any(diffG(:)>lim)||obj.forceDisplayGrad
@@ -575,10 +628,8 @@ classdef optiGTest < handle
                     fprintf('\n');
                 end
             end
-            if ~isOk&&statusPause
-                pause
-            end
         end
+        
         %% check all functions
         function isOk=checkAllPb(obj,varargin)
             %default values
@@ -604,7 +655,7 @@ classdef optiGTest < handle
             %check every function
             for itF=1:numel(listFun)
                 fprintf(' >>> Function %s\n',listFun{itF});
-                tmpStatus=obj.checkFun(listFun{itF},true);
+                tmpStatus=obj.checkPb(listFun{itF},true);
                 isOk=isOk&&tmpStatus;
             end
         end
@@ -921,4 +972,27 @@ for i = 1:xspacing:xlength
     mesh([X(:,i),X(:,i)], [Y(:,i),Y(:,i)], [Z(:,i),Z(:,i)],'EdgeColor',0.7.*[1,1,1]);
 end
 hold off
+end
+
+%% function for finding relation operator of boolean test
+function txtFun=boolFun(txtSymbol)
+txtFun='';
+if isa(txtSymbol,'function_handle')
+    txtFun=txtSymbol;
+else
+    switch txtSymbol
+        case {'==','eq'}
+            txtFun=@eq;
+        case '~='
+            txtFun=@ne;
+        case {'<=','=<'}
+            txtFun=@le;
+        case {'>=','=>','ge'}
+            txtFun=@ge;
+        case {'<','lt'}
+            txtFun=@lt;
+        case {'>','gt'}
+            txtFun=@gt;
+    end
+end
 end
