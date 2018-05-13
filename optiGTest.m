@@ -239,7 +239,7 @@ classdef optiGTest < handle
                 %
                 fprintf('# Constraint function(s):');
                 if obj.nbCons==0
-                    fprintf('None\n');
+                    fprintf(' None\n');
                 elseif obj.nbCons==1
                     fprintf(' %s',obj.funCons);
                 else
@@ -523,14 +523,14 @@ classdef optiGTest < handle
             for itF=1:obj.nbObj
                funCheck=@(X)obj.evalObj(X,itF);
                isOkCurrent=obj.checkGradFun(funCheck,obj.funObj{itF});
-               isOk=isOkCurrent&&isOkCurrent;
+               isOk=isOk&&isOkCurrent;
             end
             % of constraint function(s)
             if obj.nbCons>0
                 for itF=1:obj.nbCons
                    funCheck=@(X)obj.evalCons(X,itF);
                    isOkCurrent=obj.checkGradFun(funCheck,obj.funCons{itF});
-                   isOk=isOkCurrent&&isOkCurrent;
+                   isOk=isOk&&isOkCurrent;
                 end
             end
             if ~isOk&&statusPause
@@ -593,17 +593,22 @@ classdef optiGTest < handle
             FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,funCheck);            
             GZapprox=FDclass.GZeval;
             %compare results
-            try
             diffG=abs((GZactual-GZapprox)./GZactual);
-            catch 
-                keyboard
-            end
-%
-            if any(diffG(:)>lim)&&obj.paranoidCheck||sum(diffG(:)>lim)>floor(numel(diffG(:))/3)&&~obj.paranoidCheck
+            diffGB=abs((GZactual-GZapprox)./(1+abs(GZactual)));
+            %remove bad terms
+            diffGtest=diffG(~isinf(diffG));
+            %
+            critCheckA=(any(diffGtest(:)>lim)...
+                ||any(diffGB(:)>lim))...
+                &&obj.paranoidCheck;
+            critCheckB=(sum(diffGtest(:)>lim)>floor(numel(diffGtest(:))/3)...
+                ||sum(diffGB(:)>lim)>floor(numel(diffGB(:))/3))...
+                &&~obj.paranoidCheck;
+            if critCheckA||critCheckB
                 fprintf('Issue with the gradients of the %s function\n',funName);
                 isOk=false;
             end
-            if any(diffG(:)>lim)||obj.forceDisplayGrad
+            if any(diffGtest(:)>lim)||any(diffGB(:)>lim)||obj.forceDisplayGrad
                 fprintf(' >> %s function\n',funName);
                 fprintf('Exact\n');
                 for it=1:obj.nSCheck
@@ -624,7 +629,6 @@ classdef optiGTest < handle
                 end
                 fprintf('\n');
                 fprintf('DifferenceB\n');
-                diffGB=abs((GZactual-GZapprox)./(1+abs(GZactual)));
                 for it=1:obj.nSCheck
                     fprintf('%+7.3e ',diffGB(it,:));
                     fprintf('\n');
@@ -662,7 +666,7 @@ classdef optiGTest < handle
             end
             %check every function
             for itF=1:numel(listFun)
-                fprintf(' >>> Function %s\n',listFun{itF});
+                fprintf(' >>> Problem %s\n',listFun{itF});
                 tmpStatus=obj.checkPb(listFun{itF},true);
                 isOk=isOk&&tmpStatus;
             end

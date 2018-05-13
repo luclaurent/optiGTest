@@ -40,10 +40,10 @@ p=g.*h;
 
 if nargout==2 
     %
-    dg=a/a^b*b*td.^(b-1);
+    dg=a/a^b*b*ones(size(xx)).*td.^(b-1);
     dg(:,:,1)=0;
     %
-    dh=-(df1.*g-f1.*g)./g.^2.*2.*rfg;
+    dh=-(df1.*g-f1.*dg)./g.^2.*2.*rfg;
     %
     dp=dg.*h+g.*dh;
 end

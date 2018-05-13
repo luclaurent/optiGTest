@@ -40,9 +40,9 @@ if nargout==2
     dg=a*ones(size(xx));
     dg(:,:,1)=0;
     %
-    drfg=(df1.*g-f1.*g)./g.^2;
+    drfg=(df1.*g-f1.*dg)./g.^2;
     %
-    dh=drfg.*0.5./sqrt(rfg)...
+    dh=-drfg.*0.5./sqrt(rfg)...
         -rfg.*b.*df1.*cos(b*f1)-drfg.*sin(b*f1);
     %
     dp=dg.*h+g.*dh;

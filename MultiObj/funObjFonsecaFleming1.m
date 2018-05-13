@@ -26,7 +26,7 @@ td=xx-1/sqrt(n);
 st=sum(td.^2,3);
 %
 p=1-exp(-st);
-
+%
 if nargout==2
     %
     dp=2*td.*exp(-st);

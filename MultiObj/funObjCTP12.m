@@ -29,6 +29,6 @@ p=(1+yyy).*exp(td);
 if nargout==2
     %
     dp(:,:,1)=-exp(td);
-    dp(:,:,2)=(1+td).*exp(td);
+    dp(:,:,2)=(1-td).*exp(td);
 end
 end
