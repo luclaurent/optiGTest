@@ -13,5 +13,8 @@ if funOk
             obj.typeCons={};
     end
 end
-%
+% load available dimension
+obj.loadDimAvailable;
+%load default dimension
+obj.dim=obj.getDimAvailable;
 end

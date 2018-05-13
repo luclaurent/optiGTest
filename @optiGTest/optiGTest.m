@@ -49,7 +49,7 @@ classdef optiGTest < handle
         FDstep=1e-7;            % finite difference stepsize
     end
     properties (Access=private)
-        nameDir={'Constrained','unConstrained','MultiObj'}; % names of the folders containing files of functions
+        nameDir={'Constrained','unConstrained','MultiObj','various'}; % names of the folders containing files of functions and useful functions
         figureHandle=[];            % handles for figures
     end
     
@@ -157,10 +157,6 @@ classdef optiGTest < handle
                 obj.namePb=txt;
                 % load objective function and constraints functions
                 obj.loadPb;
-                % load available dimension
-                obj.loadDimAvailable;
-                %load default dimension
-                obj.dim=obj.getDimAvailable;
             else
                 fprintf('Problem %s unavailable \n',txt);
                 dispAvailablePb();
@@ -188,8 +184,6 @@ classdef optiGTest < handle
         %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
         %% add functions in matlab's path
         addTree(obj);
-        %% show available test functions
-        dispAvailablePb(~);
         %% load data about global minimum
         [X,Z]=loadGlobMin(obj);
         %% load data about the design space

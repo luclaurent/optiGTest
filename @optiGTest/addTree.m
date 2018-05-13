@@ -4,11 +4,11 @@ function addTree(obj)
 folder=fileparts(mfilename('fullpath'));
 %add specific folder in matlab's path
 if iscell(obj.nameDir)
-    fullDir=cellfun(@(x)fullfile(folder,x),obj.nameDir,'UniformOutput',false);
+    fullDir=cellfun(@(x)fullfile(folder,'..',x),obj.nameDir,'UniformOutput',false);
     cellfun(@addpath,fullDir);
 else
-    addpath(fullfile(folder,obj.nameDir));
+    addpath(fullfile(folder,'..',obj.nameDir));
 end
 %addpath gradFD
-addpath(fullfile(folder,'gradFD'));
+addpath(fullfile(folder,'..','gradFD'));
 end
