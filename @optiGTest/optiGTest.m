@@ -56,12 +56,16 @@ classdef optiGTest < handle
     end
     
     methods
+
+    
         %% Constructor of optiGTest class
         % INPUTS (all are optional):
         % - funName: name of the function (list available using method
         % dispAvailableFun)
         % - XX: sample points
         % - dim: dimension of the considered problem
+
+
         function obj=optiGTest(PbName,XX,dim)
             fprintf('###############################\n');
             fprintf('### Create optiGTest object ###\n');

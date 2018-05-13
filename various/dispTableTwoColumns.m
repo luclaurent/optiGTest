@@ -1,4 +1,4 @@
-%% Method of optiGTest class
+%% optiGTest class of test functions/problems w/- or w/o constraint(s)
 % L. LAURENT --  15/04/2018 -- luc.laurent@lecnam.net
 
 % sources available here:
@@ -21,21 +21,17 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-%% close all opened figures
+%% function display table with two columns of text
 
-function closeFig(obj)
-if ~isempty(obj.figureHandle)
-    %use temporary list of figures
-    tmpFigHandle=obj.figureHandle;
-    for itF=1:numel(tmpFigHandle)
-        %close figure
-        %try
-        close(tmpFigHandle(itF));
-        %catch
-        %    keyboard
-        %end
-        %remove it from the list
-        obj.figureHandle=1;
-    end
+function dispTableTwoColumns(tableA,tableB)
+%size of every components in tableA
+sizeA=cellfun(@numel,tableA);
+maxA=max(sizeA);
+%space after each component
+spaceA=maxA-sizeA+3;
+spaceTxt=' ';
+%display table
+for itT=1:numel(tableA)
+    fprintf('%s%s%s\n',tableA{itT},spaceTxt(ones(1,spaceA(itT))),tableB{itT});
 end
 end
