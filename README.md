@@ -14,8 +14,10 @@ First start
 ------
 * unConstrained problems: `Example_unConstrained.m`
 
-List of functions [(see the 3D plots of the 2-dimensional functions)](https://bitbucket.org/luclaurent/optigtest/wiki/unConstrained)
+List of unconstrained functions
 ------
+[(see the 3D plots of the 2-dimensional unconstrained functions)](https://bitbucket.org/luclaurent/optigtest/wiki/unConstrained)
+
 |-|-|-|
 |-----|-----|-----|
 | Ackley1| DixonPrice| Quintic|
@@ -100,18 +102,34 @@ List of functions [(see the 3D plots of the 2-dimensional functions)](https://bi
 | DeVilliersGlasser1| Quadratic| Zimmerman|
 | DeVilliersGlasser2| Quartic| Zirilli|
 
+List of constrained problems
+------
+[(see the 2D-3D plots of the 1- and 2-dimensional constrained problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
+
+List of multiobjective problems (w/- and w/o constraints)
+------
+[(see the 2D-3D plots of the 1- and 2-dimensional multiobjective problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
+
+
 Download
 ------
 
-The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/downloads).
+The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
 
 If you use `git`, you can clone the repository using the following command
 
-    git clone git@bitbucket.org:luclaurent/optiGtest.git optiGTest
+    git clone --recursive git@bitbucket.org:luclaurent/optiGtest.git optiGTest
 
+or 
 
+    git clone --recursive git@github.com:luclaurent/optiGTest.git optiGTest
 
+Dependency
+------
 
+**optiGTest** uses the **gradFD** class for checking gradients computation. Loading this class is optional but some functionalities will not be available which is not very important if you only want to use the main purpose of this toolbox (computing responses of objective and constraints functions and their gradients).
+
+If you forget to use the `--recursive` option when you clone the repository, please use the command `submodule --init` in order to initialize the missing class **gradFD**. 
 
 
 
@@ -127,6 +145,7 @@ This toolbox is inspired by many existing codes and papers
 * M. Molga, C. Smutnick. Test functions for optimization needs, *Comput. Inform. Sci.*, 1-43, 2005. [Link](http://new.zsd.iiar.pwr.wroc.pl/files/docs/functions.pdf)
 * M. M. Ali, C. Khompatraporn and Z. B. Zabinsky, *Journal of Global Optimisation* (2005) 31:635. doi: [10.1007/s10898-004-9972-2](http://dx.doi.org/10.1007/s10898-004-9972-2) [PDF](http://folk.uib.no/ssu029/Pdf_file/Ali05.pdf)
 * [Virtual Library of Simulation Experiments](https://www.sfu.ca/~ssurjano/other.html)
+* Wikipedia. [Test functions for optimization](http://en.wikipedia.org/w/index.php?title=Test%20functions%20for%20optimization&oldid=837180368), 2018. [Online; accessed 13-May-2018]
 
 License ![GNU GPLv3](http://www.gnu.org/graphics/gplv3-88x31.png)
 ----

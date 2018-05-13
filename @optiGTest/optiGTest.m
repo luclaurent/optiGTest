@@ -1,7 +1,9 @@
 %% optiGTest class of test functions/problems w/- or w/o constraint(s)
 % L. LAURENT --  15/04/2018 -- luc.laurent@lecnam.net
 
+% sources available here:
 % https://bitbucket.org/luclaurent/optigtest/
+% https://github.com/luclaurent/optigtest/
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2018  Luc LAURENT <luc.laurent@lecnam.net>
