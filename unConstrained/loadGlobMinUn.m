@@ -17,7 +17,15 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [GlobX,GlobZ]=loadGlobMin(funName,dim)
+function [GlobX,GlobZ]=loadGlobMinUn(funName,dim)
+
+isDimOk=false;
+if nargin>0
+   isDimOk=numel(dim>0)&&~any(isnan(dim))&&~any(isinf(dim));
+end
+
+if ~isDimOk;dim=1;end
+
 listGlobXmin=struct(...
     'Ackley1',zeros(1,dim),...
     'Ackley2',[0,0],...
@@ -537,7 +545,7 @@ listGlobZmin=struct(...
 lGX=listGlobXmin.(funName);
 lGZ=listGlobZmin.(funName);
 
-if size(lGX,2)==1
+if size(lGX,2)==1&&isDimOk
     GlobX=repmat(lGX,[1,dim]);
 else
     GlobX=lGX;

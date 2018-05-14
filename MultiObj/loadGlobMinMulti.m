@@ -18,6 +18,14 @@
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 function [GlobX,GlobZ]=loadGlobMinMulti(funName,dim)
+
+isDimOk=false;
+if nargin>0
+   isDimOk=numel(dim>0)&&~any(isnan(dim))&&~any(isinf(dim));
+end
+
+if ~isDimOk;dim=1;end
+
 listGlobXmin=struct(...
     'BinhKorn',NaN,...
     'ChakongHaimes',NaN,...
@@ -60,7 +68,7 @@ listGlobZmin=struct(...
 lGX=listGlobXmin.(funName);
 lGZ=listGlobZmin.(funName);
 
-if size(lGX,2)==1&&~isnan(dim)&&~isinf(dim)
+if size(lGX,2)==1&&isDimOk
     GlobX=repmat(lGX,[1,dim]);
 else
     GlobX=lGX;

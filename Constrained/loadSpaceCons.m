@@ -27,7 +27,7 @@ listSpace=struct(...
 
 spaceL=listSpace.(funName);
 %
-if size(spaceL,2)==1
+if size(spaceL,2)==1&&~isinf(dim)&&~isnan(dim)
     xMin=ones(1,dim)*spaceL(1);
     xMax=ones(1,dim)*spaceL(2);
 else

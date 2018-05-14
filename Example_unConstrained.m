@@ -1,7 +1,7 @@
 %% unConstrained example
 
 %% load the function
-Fun=unConstrained('Levy03');
+Fun=optiGTest('Levy03');
 
 %% Demo mode
 Fun.demo
@@ -17,17 +17,17 @@ X=[0 1 2;
     3 4 5;
     6 7 8];
 % Z=responses, GZ=gradients (in cell) GZr=gradients (in array)
-[Z,GZ,GZr]=Fun.eval(X);
+[Z,GZ,GZr]=Fun.evalObj(X);
 Z 
 GZ
 GZr
 
 %% check the function
-Fun.checkFun
+Fun.checkPb
 
 %% Global minimum 
 Fun.globMinX
 Fun.globMinZ
 
 %% list available functions
-Fun.dispAvailableFun
+dispAvailablePb

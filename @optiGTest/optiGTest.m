@@ -47,6 +47,7 @@ classdef optiGTest < handle
         nSCheck=5;              % number of sample points used for checking the function
         forceDisplayGrad=false; % flag to force display of gradients
         paranoidCheck=false;    % strict check of function
+        defaultCheck=false;     % check by default after loading
         FDtype='CD8';           % finite difference scheme
         FDstep=1e-7;            % finite difference stepsize
     end
@@ -88,7 +89,7 @@ classdef optiGTest < handle
             % (2) run with XX, (3) run with XX in specified dimension
             if nargin==1
                 %check the requested problem
-                if ~isempty(PbName)
+                if ~isempty(PbName)&&obj.defaultCheck
                     obj.checkPb(obj.namePb);
                 end
             elseif nargin==2

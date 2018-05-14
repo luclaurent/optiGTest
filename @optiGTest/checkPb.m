@@ -29,7 +29,7 @@
 %  - isOk: status of the checking
 
 function isOk=checkPb(obj,pbName,statusPause)
-if nargin==0; pbName=obj.namePb;end
+if nargin==1; pbName=obj.namePb;end
 if nargin<3; statusPause=false;end
 %check minimum
 obj.namePb=pbName;

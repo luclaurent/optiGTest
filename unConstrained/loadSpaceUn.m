@@ -17,7 +17,7 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function [xMin,xMax]=loadSpace(funName,dim)
+function [xMin,xMax]=loadSpaceUn(funName,dim)
 listSpace=struct(...
     'Ackley1',[-35;35],...
     'Ackley2',[-32;32],...
@@ -268,8 +268,13 @@ listSpace=struct(...
 
 spaceL=listSpace.(funName);
 if size(spaceL,2)==1
-    xMin=ones(1,dim)*spaceL(1);
-    xMax=ones(1,dim)*spaceL(2);
+    if numel(dim)>1||any(isnan(dim))||any(isinf(dim))
+        xMin=spaceL(1);
+        xMax=spaceL(2);
+    else
+        xMin=ones(1,dim)*spaceL(1);
+        xMax=ones(1,dim)*spaceL(2);
+    end
 else
     xMin=spaceL(1,:);
     xMax=spaceL(2,:);

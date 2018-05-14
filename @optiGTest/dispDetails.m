@@ -48,14 +48,16 @@ if ~isempty(obj.namePb)
     %
     fprintf('# Considered dimension: %i\n',obj.dim);
     fprintf('# Considered design space:\n');
-    fprintf('#  Min: ');fprintf('%-+d ',obj.xMin);fprintf('\n');
-    fprintf('#  Max: ');fprintf('%-+d ',obj.xMax);fprintf('\n');
+    fprintf('#  Min: ');fprintf('%-+d\t',obj.xMin);fprintf('\n');
+    fprintf('#  Max: ');fprintf('%-+d\t',obj.xMax);fprintf('\n');
     fprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
     %
     Xmin=obj.globMinX;
     Zmin=obj.globMinZ;
     for itM=1:numel(Zmin)
-        fprintf('#  %-+d\t%-+d || %d \n',Xmin(itM,:),Zmin(itM));
+        fprintf('# ');
+        fprintf('%-+d\t',Xmin(itM,:));
+        fprintf('|| %d \n',Zmin(itM));
     end
     fprintf('\n');
 end
