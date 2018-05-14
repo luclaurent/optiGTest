@@ -1,4 +1,4 @@
-%% function for loading available multi-objective problems
+%% Function for loading available multi-objective problems
 % L. LAURENT --  04/05/2018 -- luc.laurent@lecnam.net
 
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
