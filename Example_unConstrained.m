@@ -6,7 +6,7 @@ Fun=optiGTest('Levy03');
 %% Demo mode
 Fun.demo
 
-%A% available dimensions (Inf= function defined for any dimension)
+%% available dimensions (Inf= function defined for any dimension)
 Fun.dimAvailable
 
 %% Change dimension 
