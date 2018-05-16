@@ -1,6 +1,0 @@
-[submodule "gradFD"]
-	path = gradFD
-	url = git@bitbucket.org:luclaurent/gradfd.git
-[submodule "various/wiki"]
-	path = various/wiki
-	url = https://luclaurent@bitbucket.org/luclaurent/optigtest.git/wiki
