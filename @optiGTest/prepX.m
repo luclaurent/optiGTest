@@ -29,27 +29,34 @@
 %  - Xeval: sample points ready for evaluation
 
 function Xeval=prepX(obj,XX)
+%load sizes
 sX=[size(XX,1) size(XX,2) size(XX,3)];
-nbvar=sX(3);
-if any(isinf(obj.dimAvailable))
-    if nbvar==1
+%different cases
+if sX(3)==1&&sX(2)==1
+    nbVar=1;
+elseif sX(3)==1&&sX(2)>1
+    nbVar=sX(2);
+else
+    nbVar=sX(3);    
+end
+%check dimension
+if ~any(isinf(obj.dimAvailable))
+    if ~any(nbVar==obj.dimAvailable)
+        error(['Wrong size of sample points (' mfilename ')']);
+    end
+end
+%load dimension
+obj.dim=nbVar;
+
+if nbVar==1
+    obj.Xeval=XX(:);
+else
+    if sX(3)==1
         obj.Xeval=reshape(XX,[],1,sX(2));
     else
         obj.Xeval=XX;
-        obj.dim=nbvar;
-    end
-else
-    if nbvar==obj.dim
-        obj.Xeval=XX;
-    elseif nbvar==1
-        if sX(2)==obj.dim
-            obj.Xeval=reshape(XX,[],1,sX(2));
-        else
-            fprintf(['Wrong size of sample points (' mfilename ')\n']);
-        end
-    else
-        fprintf(['Wrong size of sample points (' mfilename ')\n']);
     end
 end
+
 Xeval=obj.Xeval;
 end

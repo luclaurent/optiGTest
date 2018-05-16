@@ -231,5 +231,7 @@ classdef optiGTest < handle
         h=show1D(obj,XX,ZZ,GZ,txt,funName);
         %% close all openned figures
         closeFig(obj);
+        %% show Pareto
+        h=showPareto(obj,XX)
     end
 end

@@ -17,7 +17,27 @@
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-function dispAvailablePb()
+function dispAvailablePb(txt)
+
+if nargin==0
+    txt='';
+end
+flagUn=false;
+flagCons=false;
+flagMulti=false;
+switch txt
+    case {'cons','Cons','constrained','Constrained','constraint','Constraint'}
+        flagCons=true;
+    case {'uncons','unCons','unconstrained','unConstrained'}
+        flagUn=true;
+    case {'multi','Multi','multiObjective','multiobjective'}
+        flagUn=true;
+    otherwise
+        flagUn=true;
+        flagCons=true;
+        flagMulti=true;
+end
+
 %extract name of porblems
 strPbUn=loadDimUn();
 strPbCons=loadProbCons();
@@ -35,16 +55,22 @@ nbMultiObjPb=cellfun(@(x)funCount(strPbMulti,x,1),listPbMulti);
 %Show existing problems
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 fprintf('Available test problems\n');
-fprintf('------------------------\n');
-cellfun(@(X)fprintf('Unconstrained: %s\n',X),listPbUn);
-fprintf('------------------------\n');
-fprintf('------------------------\n');
-cellfun(@(X,Y,Z)fprintf('Constrained: %s (nb constraints: %i)\n',X,Y),...
-    listPbCons,num2cell(nbConsPb));
-fprintf('------------------------\n');
-fprintf('------------------------\n');
-cellfun(@(X,Y,Z)fprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),...
-    listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
-fprintf('------------------------\n');
+if flagUn
+    fprintf('------------------------\n');
+    cellfun(@(X)fprintf('Unconstrained: %s\n',X),listPbUn);
+    fprintf('------------------------\n');
+end
+if flagCons
+    fprintf('------------------------\n');
+    cellfun(@(X,Y,Z)fprintf('Constrained: %s (nb constraints: %i)\n',X,Y),...
+        listPbCons,num2cell(nbConsPb));
+    fprintf('------------------------\n');
+end
+if flagMulti
+    fprintf('------------------------\n');
+    cellfun(@(X,Y,Z)fprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),...
+        listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
+    fprintf('------------------------\n');
+end
 fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 end

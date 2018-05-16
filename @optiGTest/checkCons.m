@@ -62,7 +62,7 @@ if obj.nbCons>0
     %many constraints
     funCheck=@(x,y)y(x,0);
     if iscell(ZZOk)
-        status=cellfun(funCheck,ZZOk,testFun);
+        status=cellfun(funCheck,ZZOk,testFun,'UniformOutput',false);
     else
         status=feval(funCheck,ZZOk,testFun);
     end

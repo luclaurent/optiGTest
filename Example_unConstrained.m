@@ -34,7 +34,7 @@ Fun.dimAvailable
 %% Change dimension 
 Fun.dim=3;
 
-%% evaluation of the function (responses and gradients
+%% evaluation of the objective function (responses and gradients)
 X=[0 1 2;
     3 4 5;
     6 7 8];
@@ -51,5 +51,5 @@ Fun.checkPb
 Fun.globMinX
 Fun.globMinZ
 
-%% list available functions
+%% list available problems
 dispAvailablePb 
