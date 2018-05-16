@@ -39,12 +39,11 @@ if ~isempty(obj.namePb)
     %
     fprintf('# Constraint function(s):');
     if obj.nbCons==0
-        fprintf(' None\n');
-    elseif obj.nbCons==1
-        fprintf(' %s',obj.funCons);
+        fprintf(' None');
     else
         cellfun(funDisp,obj.funCons);
     end
+    fprintf('\n');
     %
     fprintf('# Considered dimension: %i\n',obj.dim);
     fprintf('# Considered design space:\n');

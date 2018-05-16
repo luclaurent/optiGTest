@@ -40,6 +40,6 @@ if nargout>1
     dty=-xxx./(xxx.^2+yyy.^2);
     %
     dg(:,:,1)=2*xxx+2*n*rs*dtx.*sin(n*t).*td;
-    dg(:,:,2)=2*yyy-2*n*rs*dty.*sin(n*t).*td;
+    dg(:,:,2)=2*yyy+2*n*rs*dty.*sin(n*t).*td;
 end
 end
