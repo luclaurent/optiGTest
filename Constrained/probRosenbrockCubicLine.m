@@ -1,6 +1,10 @@
 %% Rosenbrock function constrained with a cubic and a line
 %L. LAURENT -- 16/04/2018 -- luc.laurent@lecnam.net
 
+% sources available here:
+% https://bitbucket.org/luclaurent/optigtest/
+% https://github.com/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 %
