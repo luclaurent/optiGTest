@@ -64,8 +64,10 @@ elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     if obj.nbCons>1
         %evaluation of constraint function(s)
         [ZZcons,GZcons]=obj.evalCons(xx);
+        statusCons=obj.checkCons;
         %display
         hh(2)=obj.show2D(x,y,ZZcons,GZcons,[obj.namePb ': Constraint'],obj.funCons);
+        hh(3)=obj.show2DCons(x,y,ZZobj,statusCons,[obj.namePb ': Objective function with Constraint'],obj.funObj);
     end
     %store figure handle
     obj.figureHandle=hh;

@@ -27,16 +27,37 @@
 % OUTPUTS:
 %  - isOk: status flag of the function
 
-function isOk=funMD(obj,nbCol)
+function isOk=funMD(obj,nbCol,type)
 if nargin==1;nbCol=3;end
 isOk=true;
+if nargin<3;type='';end
+
 %extract name of functions
-strFun=loadDim();
+switch type
+    case {'cons','Cons'}
+        strFun=loadDimCons();
+        strPb=loadProbCons();
+    case {'multi','Multi'}
+        strFun=loadDimMulti();
+        strPb=loadProbMulti();
+    otherwise
+        strFun=loadDimUn();
+end
 listFun=fieldnames(strFun);
 listDim=cell(1,numel(listFun));
+nbCons=zeros(1,numel(listFun));
+nbObj=zeros(1,numel(listFun));
 for itF=1:numel(listFun)
     listDim{itF}=strFun.(listFun{itF});
 end
+switch type
+    case {'cons','Cons','multi','Multi'}
+        for itF=1:numel(listFun)
+            nbObj(itF)=numel(strPb(1).(listFun{itF}));
+            nbCons(itF)=numel(strPb(2).(listFun{itF}));
+        end
+end
+
 %generate Markdown table
-buildTableMD(listFun,listDim,nbCol);
+buildTableMD(listFun,listDim,nbCol,nbObj,nbCons);
 end
