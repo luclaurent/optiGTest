@@ -6,12 +6,12 @@ close all
 addpath('..')
 
 %file for wiki
-ff=fopen('unConstrainedWiki.txt','w');
+ff=fopen('ConstrainedWiki.txt','w');
 
 %load class
 pb=optiGTest('');
 % load list of functions
-listFun=loadDimMulti();
+listFun=loadDimCons();
 % names of functions
 nameFun=fieldnames(listFun);
 % along functions
@@ -24,12 +24,13 @@ for itF=1:numel(nameFun)
         %plot demo
         h=pb.demo;
         %obtain pdf and png
-        file=fullfile('unConstrained',nameFun{itF});
+        file=fullfile('various','Figures','Constrained',nameFun{itF});
+        fileEPS=[file,'.eps'];
         filePDF=[file,'.pdf'];
         filePNG=[file,'.png'];
-        %saveas(h,fileEPS,'-epsc')
-        %print(h,filePDF,'-dpdf','-painters')
-        %saveas(h,filePNG)
+        saveas(h(end),fileEPS,'epsc')
+        print(h(end),filePDF,'-dpdf','-painters')
+        saveas(h(end),filePNG)
         %close figure
         pb.closeFig;
         %write in the wiki's file

@@ -61,7 +61,7 @@ elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     %display
     hh(1)=obj.show2D(x,y,ZZobj,GZobj,[obj.namePb ': Objective'],obj.funObj);
     %constraint(s)
-    if obj.nbCons>1
+    if obj.nbCons>0
         %evaluation of constraint function(s)
         [ZZcons,GZcons]=obj.evalCons(xx);
         statusCons=obj.checkCons;

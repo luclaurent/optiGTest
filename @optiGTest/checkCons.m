@@ -64,9 +64,8 @@ if obj.nbCons>0
     if iscell(ZZOk)
         status=cellfun(funCheck,ZZOk,testFun,'UniformOutput',false);
     else
-        status=feval(funCheck,ZZOk,testFun);
+        status=feval(funCheck,ZZOk,testFun{1});
     end
-    
 else
     fprintf('No constraint function(s)\n');
 end

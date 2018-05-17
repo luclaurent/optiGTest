@@ -50,6 +50,9 @@ else
     %
     ZZ={ZZ};
 end
+if ~iscell(statusZ)
+    statusZ={statusZ};
+end
 %manage status of the constraint(s)
 statusDouble=cellfun(@double,statusZ,'UniformOutput',false);
 matStatus=cat(3,statusDouble{:});
