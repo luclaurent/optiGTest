@@ -11,7 +11,7 @@ ff=fopen('ConstrainedWiki.txt','w');
 %load class
 pb=optiGTest('');
 % load list of functions
-listFun=loadDimCons();
+listFun=loadDimMulti();
 % names of functions
 nameFun=fieldnames(listFun);
 % along functions

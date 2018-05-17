@@ -33,7 +33,7 @@
 %  - h: handle of the figure
 
 function h=show2DCons(obj,XX,YY,ZZ,statusZ,txt,funName)
-nbC=1;
+nbC=2;
 nbLevel=10;
 %
 if nargin<6;funName{1}='';end

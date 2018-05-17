@@ -49,7 +49,7 @@ if obj.dim==1
     obj.figureHandle=hh;
 elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     obj.dim=2;
-    stepM=51;
+    stepM=100;
     %
     xL=linspace(Xmin(1),Xmax(1),stepM);
     yL=linspace(Xmin(2),Xmax(2),stepM);
