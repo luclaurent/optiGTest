@@ -6,7 +6,7 @@ close all
 addpath('..')
 
 %file for wiki
-ff=fopen('ConstrainedWiki.txt','w');
+ff=fopen('Wiki.txt','w');
 
 %load class
 pb=optiGTest('');
@@ -24,7 +24,7 @@ for itF=1:numel(nameFun)
         %plot demo
         h=pb.demo;
         %obtain pdf and png
-        file=fullfile('various','Figures','Constrained',nameFun{itF});
+        file=fullfile('various','Figures','MultiObj',nameFun{itF});
         fileEPS=[file,'.eps'];
         filePDF=[file,'.pdf'];
         filePNG=[file,'.png'];
