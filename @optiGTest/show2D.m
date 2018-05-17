@@ -32,14 +32,14 @@
 %  - h: handle of the figure
 
 function h=show2D(obj,XX,YY,ZZ,GZ,txt,funName)
-nbC=6;
+nbC=3;
 nbLevel=10;
 %
 if nargin<6;funName{1}='';end
 if nargin<5;txt=[];end
 %
 if iscell(ZZ)
-    nbR=numel(ZZ);
+    nbR=numel(ZZ)*2;
     if numel(funName)==1&&nbR~=1
         funName=repmat({''},1,nbR);
     end

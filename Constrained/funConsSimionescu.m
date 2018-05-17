@@ -1,6 +1,10 @@
 %% Constraint function used in problems: Simionescu
 %L. LAURENT -- 02/05/2018 -- luc.laurent@lecnam.net
 
+% sources available here:
+% https://bitbucket.org/luclaurent/optigtest/
+% https://github.com/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 %
@@ -40,6 +44,6 @@ if nargout>1
     dty=-xxx./(xxx.^2+yyy.^2);
     %
     dg(:,:,1)=2*xxx+2*n*rs*dtx.*sin(n*t).*td;
-    dg(:,:,2)=2*yyy-2*n*rs*dty.*sin(n*t).*td;
+    dg(:,:,2)=2*yyy+2*n*rs*dty.*sin(n*t).*td;
 end
 end

@@ -62,11 +62,10 @@ if obj.nbCons>0
     %many constraints
     funCheck=@(x,y)y(x,0);
     if iscell(ZZOk)
-        status=cellfun(funCheck,ZZOk,testFun);
+        status=cellfun(funCheck,ZZOk,testFun,'UniformOutput',false);
     else
-        status=feval(funCheck,ZZOk,testFun);
+        status=feval(funCheck,ZZOk,testFun{1});
     end
-    
 else
     fprintf('No constraint function(s)\n');
 end

@@ -57,16 +57,16 @@ classdef optiGTest < handle
     end
     
     methods
-
-    
+        
+        
         %% Constructor of optiGTest class
         % INPUTS (all are optional):
         % - funName: name of the function (list available using method
         % dispAvailableFun)
         % - XX: sample points
         % - dim: dimension of the considered problem
-
-
+        
+        
         function obj=optiGTest(PbName,XX,dim)
             fprintf('###############################\n');
             fprintf('### Create optiGTest object ###\n');
@@ -224,12 +224,16 @@ classdef optiGTest < handle
         %% check all functions
         isOk=checkAllPb(obj,varargin);
         %% build table of all problems in Markdown
-        isOk=funMD(obj,nbCol);
+        isOk=funMD(obj,nbCol,type);
         %% show 2D function
         h=show2D(obj,XX,YY,ZZ,GZ,txt,funName);
+        %% show 2D function wiyth constraints
+        h=show2DCons(obj,XX,YY,ZZ,statusZ,txt,funName)
         %% show 1D function
         h=show1D(obj,XX,ZZ,GZ,txt,funName);
         %% close all openned figures
         closeFig(obj);
+        %% show Pareto
+        h=showPareto(obj,XX)
     end
 end

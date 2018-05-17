@@ -49,7 +49,7 @@ if obj.dim==1
     obj.figureHandle=hh;
 elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     obj.dim=2;
-    stepM=51;
+    stepM=100;
     %
     xL=linspace(Xmin(1),Xmax(1),stepM);
     yL=linspace(Xmin(2),Xmax(2),stepM);
@@ -61,11 +61,13 @@ elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     %display
     hh(1)=obj.show2D(x,y,ZZobj,GZobj,[obj.namePb ': Objective'],obj.funObj);
     %constraint(s)
-    if obj.nbCons>1
+    if obj.nbCons>0
         %evaluation of constraint function(s)
         [ZZcons,GZcons]=obj.evalCons(xx);
+        statusCons=obj.checkCons;
         %display
         hh(2)=obj.show2D(x,y,ZZcons,GZcons,[obj.namePb ': Constraint'],obj.funCons);
+        hh(3)=obj.show2DCons(x,y,ZZobj,statusCons,[obj.namePb ': Objective function with Constraint'],obj.funObj);
     end
     %store figure handle
     obj.figureHandle=hh;

@@ -1,6 +1,10 @@
 %% Step 2 function
 % L. LAURENT -- 28/04/2017 -- luc.laurent@lecnam.net
 
+% sources available here:
+% https://bitbucket.org/luclaurent/optigtest/
+% https://github.com/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 %

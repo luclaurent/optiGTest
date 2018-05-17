@@ -3,6 +3,10 @@
 
 % A. S\'obester, S. J. Leary, and A. J. Keane. On the design of optimization strategies based on global response surface approximation models. Journal of Global Optimization, 33(1):31?59, 2005.
 
+% sources available here:
+% https://bitbucket.org/luclaurent/optigtest/
+% https://github.com/luclaurent/optigtest/
+
 % optiGTest - set of testing functions    A toolbox to easy manipulate functions.
 % Copyright (C) 2017  Luc LAURENT <luc.laurent@lecnam.net>
 %

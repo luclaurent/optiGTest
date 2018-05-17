@@ -6,7 +6,7 @@ close all
 addpath('..')
 
 %file for wiki
-ff=fopen('unConstrainedWiki.txt','w');
+ff=fopen('Wiki.txt','w');
 
 %load class
 pb=optiGTest('');
@@ -24,12 +24,13 @@ for itF=1:numel(nameFun)
         %plot demo
         h=pb.demo;
         %obtain pdf and png
-        file=fullfile('unConstrained',nameFun{itF});
+        file=fullfile('various','Figures','MultiObj',nameFun{itF});
+        fileEPS=[file,'.eps'];
         filePDF=[file,'.pdf'];
         filePNG=[file,'.png'];
-        %saveas(h,fileEPS,'-epsc')
-        %print(h,filePDF,'-dpdf','-painters')
-        %saveas(h,filePNG)
+        saveas(h(end),fileEPS,'epsc')
+        print(h(end),filePDF,'-dpdf','-painters')
+        saveas(h(end),filePNG)
         %close figure
         pb.closeFig;
         %write in the wiki's file
