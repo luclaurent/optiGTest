@@ -117,11 +117,11 @@ List of multiobjective problems (w/- and w/o constraints)
 Download
 ------
 
-The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
+The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optigtest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
 
 If you use `git`, you can clone the repository using the following command
 
-    git clone --recursive git@bitbucket.org:luclaurent/optiGtest.git optiGTest
+    git clone --recursive git@bitbucket.org:luclaurent/optigtest.git optiGTest
 
 or 
 
