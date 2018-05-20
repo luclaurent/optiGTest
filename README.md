@@ -1,7 +1,7 @@
 optiGTest 
 =======
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1248984.svg)](https://doi.org/10.5281/zenodo.1248984)
+[![DOI](https://zenodo.org/badge/132956523.svg)](https://zenodo.org/badge/latestdoi/132956523)
 
 optiGTest is a MATLAB's toolbox which regroups many test functions used for studying the performance of approximation techniques and optimization strategy. In particular, gradient sof the test functions are provided.
 
