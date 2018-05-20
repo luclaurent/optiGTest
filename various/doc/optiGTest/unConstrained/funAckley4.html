@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funAckley4</title>
+  <meta name="keywords" content="funAckley4">
+  <meta name="description" content="% Ackley's function 4 (Modified Ackley Function)">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funAckley4
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Ackley's function 4 (Modified Ackley Function)</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funAckley4(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Ackley's function 4 (Modified Ackley Function)
+L. LAURENT -- 31/10/2016 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Ackley's function 4 (Modified Ackley Function)</span>
+0002 <span class="comment">%L. LAURENT -- 31/10/2016 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%numerous local minima</span>
+0026 <span class="comment">%xx global minimum : UNDEFINED</span>
+0027 <span class="comment">% in dimension 2: x{-1.479252, -0.739807), (1.479252, -0.739807)} &gt;&gt; f(x)=-3.917275</span>
+0028 <span class="comment">%</span>
+0029 <span class="comment">%design space -35&lt;xi&lt;35 (small range -2&lt;xi&lt;2)</span>
+0030 
+0031 
+0032 
+0033 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funAckley4(xx)</a>
+0034 
+0035 <span class="comment">%constants</span>
+0036 a=0.2;
+0037 b=3;
+0038 c=2;
+0039 
+0040 <span class="comment">%number of variables</span>
+0041 nbvar=size(xx,3);
+0042 
+0043 <span class="comment">%responses and derivatives</span>
+0044 ex1=exp(-a);
+0045 normP=zeros(size(xx,1),size(xx,2),nbvar-1);
+0046 <span class="keyword">for</span> itV=1:nbvar-1
+0047     normP(:,:,itV)=sqrt(xx(:,:,itV).^2+xx(:,:,itV+1).^2);
+0048 <span class="keyword">end</span>
+0049 cx=cos(c*xx(:,:,1:end-1));
+0050 sx=sin(c*xx(:,:,2:end));
+0051 p=sum(ex1.*normP+b*(cx+sx),3);
+0052 
+0053 
+0054 <span class="keyword">if</span> nargout==2
+0055     dp=zeros(size(xx));
+0056     <span class="keyword">for</span> ii=1:nbvar
+0057         <span class="keyword">if</span> ii==1
+0058             dp(:,:,ii)=ex1*xx(:,:,1)./normP(:,:,1)-c*b*sin(c*xx(:,:,1));
+0059         <span class="keyword">elseif</span> ii==nbvar
+0060             dp(:,:,ii)=ex1*xx(:,:,nbvar)./normP(:,:,end)+c*b*cos(c*xx(:,:,nbvar));
+0061         <span class="keyword">else</span>
+0062             dp(:,:,ii)=ex1*xx(:,:,ii)./normP(:,:,ii)-c*b*sin(c*xx(:,:,ii))<span class="keyword">...</span>
+0063                 +ex1*xx(:,:,ii+1)./normP(:,:,ii+1)+c*b*cos(c*xx(:,:,ii+1));
+0064         <span class="keyword">end</span>
+0065     <span class="keyword">end</span>
+0066 <span class="keyword">end</span>
+0067 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

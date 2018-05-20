@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funXor</title>
+  <meta name="keywords" content="funXor">
+  <meta name="description" content="% Xor function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funXor
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Xor function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp] = funXor(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Xor function
+ L. LAURENT -- 28/02/2017 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Xor function</span>
+0002 <span class="comment">% L. LAURENT -- 28/02/2017 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%1 minimum global: f(1,-1,1,-1,-1,1,1,-1,0.421134)=0.9597588</span>
+0025 <span class="comment">%</span>
+0026 <span class="comment">%Design space -9&lt;xi&lt;9</span>
+0027 
+0028 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp] = funXor(xx)</a>
+0029 
+0030 <span class="comment">%evaluation and derivatives</span>
+0031 x1=xx(:,:,1);
+0032 x2=xx(:,:,2);
+0033 x3=xx(:,:,3);
+0034 x4=xx(:,:,4);
+0035 x5=xx(:,:,5);
+0036 x6=xx(:,:,6);
+0037 x7=xx(:,:,7);
+0038 x8=xx(:,:,8);
+0039 x9=xx(:,:,9);
+0040 <span class="comment">%</span>
+0041 p125=exp(-x1-x2-x5);
+0042 p346=exp(-x3-x4-x6);
+0043 p5=exp(-x5);
+0044 p6=exp(-x6);
+0045 p15=exp(-x1-x5);
+0046 p36=exp(-x3-x6);
+0047 p25=exp(-x2-x5);
+0048 p46=exp(-x4-x6);
+0049 <span class="comment">%</span>
+0050 pae=exp(-x7./(1+p125)-x8./(1+p346)-x9);
+0051 pa=1+pae;
+0052 pbe=exp(-x7./(1+p5)-x8./(1+p6)-x9);
+0053 pb=1+pbe;
+0054 pce=exp(-x7./(1+p15)-x8./(1+p36)-x9);
+0055 pc=1+pce;
+0056 pcc=1-pc.^(-1);
+0057 pde=exp(-x7./(1+p25)-x8./(1+p46)-x9);
+0058 pd=1+pde;
+0059 pdd=1-pd.^(-1);
+0060 <span class="comment">%</span>
+0061 p=1./pa.^2;<span class="comment">%+1./pb.^2+pcc.^2+pdd.^2;</span>
+0062 p=pa.^2;
+0063 <span class="keyword">if</span> nargout==2
+0064     dp=zeros(size(xx));
+0065     <span class="comment">%</span>
+0066     p125d1=-p125;
+0067     p125d2=-p125;
+0068     p125d5=-p125;
+0069     <span class="comment">%</span>
+0070     p346d3=-p346;
+0071     p346d4=-p346;
+0072     p346d6=-p346;
+0073     <span class="comment">%</span>
+0074     p5d=-p5;
+0075     <span class="comment">%</span>
+0076     p6d=-p6;
+0077     <span class="comment">%</span>
+0078     p15d1=-p15;
+0079     p15d5=-p15;
+0080     <span class="comment">%</span>
+0081     p36d3=-p36;
+0082     p36d6=-p36;
+0083     <span class="comment">%</span>
+0084     p25d2=-p25;
+0085     p25d5=-p25;
+0086     <span class="comment">%</span>
+0087     p46d4=-p46;
+0088     p46d6=-p46;
+0089     <span class="comment">%</span>
+0090     pad1=x7.*p125d1./(1+p125).^2.*pae.*pa;
+0091     pad2=x7.*p125d2./(1+p125).^2.*pae;
+0092     pad3=x8.*p346d3./(1+p346).^2.*pae;
+0093     pad4=x8.*p346d4./(1+p346).^2.*pae;
+0094     pad5=x7.*p125d5./(1+p125).^2.*pae;
+0095     pad6=x8.*p346d6./(1+p346).^2.*pae;
+0096     pad7=-pae./(1+p125);
+0097     pad8=-pae./(1+p346);
+0098     pad9=-pae;
+0099     <span class="comment">%</span>
+0100     pbd5=-x7.*p5d./(1+p5).^2.*pbe;
+0101     pbd6=-x8.*p5d./(1+p6).^2.*pbe;
+0102     pbd7=-pbe./(1+p5);
+0103     pbd8=-pbe./(1+p6);
+0104     pbd9=-pbe;
+0105     <span class="comment">%</span>
+0106     pcd1=-x7.*p15d1./(1+p15).^2.*pce;
+0107     pcd3=-x8.*p36d3./(1+p36).^2.*pce;
+0108     pcd5=-x7.*p15d5./(1+p15).^2.*pce;
+0109     pcd6=-x8.*p36d6./(1+p36).^2.*pce;
+0110     pcd7=-pce./(1+p15);
+0111     pcd8=-pce./(1+p36);
+0112     pcd9=-pce;
+0113     <span class="comment">%</span>
+0114     pccd1=pcd1./pcc.^2;
+0115     pccd3=pcd3./pcc.^2;
+0116     pccd5=pcd5./pcc.^2;
+0117     pccd6=pcd6./pcc.^2;
+0118     pccd7=pcd7./pcc.^2;
+0119     pccd8=pcd8./pcc.^2;
+0120     pccd9=pcd9./pcc.^2;
+0121     <span class="comment">%</span>
+0122     pdd2=-x7.*p25d2./(1+p25).^2.*pde;
+0123     pdd4=-x8.*p46d4./(1+p46).^2.*pde;
+0124     pdd5=-x7.*p25d5./(1+p25).^2.*pde;
+0125     pdd6=-x8.*p46d6./(1+p46).^2.*pde;
+0126     pdd7=-pce./(1+p25);
+0127     pdd8=-pce./(1+p46);
+0128     pdd9=-pce;
+0129     <span class="comment">%</span>
+0130     pddd2=pdd2./pcc.^2;
+0131     pddd4=pdd4./pcc.^2;
+0132     pddd5=pdd5./pcc.^2;
+0133     pddd6=pdd6./pcc.^2;
+0134     pddd7=pdd7./pcc.^2;
+0135     pddd8=pdd8./pcc.^2;
+0136     pddd9=pdd9./pcc.^2;
+0137     <span class="comment">%</span>
+0138         dp(:,:,1)=pad1;
+0139     dp(:,:,2)=pad2;
+0140     dp(:,:,3)=pad3;
+0141     dp(:,:,4)=pad4;
+0142     dp(:,:,5)=pad5;
+0143     dp(:,:,6)=pad6;
+0144     dp(:,:,7)=pad7;
+0145     dp(:,:,8)=pad8;
+0146     dp(:,:,9)=pad9;
+0147 
+0148 
+0149 <span class="comment">%     dp(:,:,1)=2.*pad1./pa.^3;%+2*pccd1.*pcc;</span>
+0150 <span class="comment">%     dp(:,:,2)=2.*pad2./pa.^3;%+2*pddd2.*pdd;</span>
+0151 <span class="comment">%     dp(:,:,3)=2.*pad3./pa.^3;%+2*pccd3.*pcc;</span>
+0152 <span class="comment">%     dp(:,:,4)=2.*pad4./pa.^3;%+2*pddd4.*pdd;</span>
+0153 <span class="comment">%     dp(:,:,5)=2.*pad5./pa.^3;%-2*pbd5./pb.^3+2*pccd5.*pcc+2*pddd5.*pdd;</span>
+0154 <span class="comment">%     dp(:,:,6)=2.*pad6./pa.^3;%-2*pbd6./pb.^3+2*pccd6.*pcc+2*pddd6.*pdd;</span>
+0155 <span class="comment">%     dp(:,:,7)=2.*pad7./pa.^3;%-2*pbd7./pb.^3+2*pccd7.*pcc+2*pddd7.*pdd;</span>
+0156 <span class="comment">%     dp(:,:,8)=2.*pad8./pa.^3;%-2*pbd8./pb.^3+2*pccd8.*pcc+2*pddd8.*pdd;</span>
+0157 <span class="comment">%     dp(:,:,9)=2.*pad9./pa.^3;%-2*pbd9./pb.^3+2*pccd9.*pcc+2*pddd9.*pdd;</span>
+0158 <span class="keyword">end</span>
+0159 <span class="keyword">end</span>
+0160</pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

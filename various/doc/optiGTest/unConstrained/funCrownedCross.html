@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funCrownedCross</title>
+  <meta name="keywords" content="funCrownedCross">
+  <meta name="description" content="% CrownedCross function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funCrownedCross
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% CrownedCross function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funCrownedCross(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% CrownedCross function 
+L. LAURENT -- 14/03/2017 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% CrownedCross function</span>
+0002 <span class="comment">%L. LAURENT -- 14/03/2017 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%global minimum : f(x)=1e-4 for x1=0 (forall x2) or x2=0 (forall x1)</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">%Design space: -10&lt;xi&lt;10</span>
+0028 
+0029 
+0030 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funCrownedCross(xx)</a>
+0031 <span class="comment">%constants</span>
+0032 a=0.1;
+0033 b=100;
+0034 c=pi;
+0035 d=1;
+0036 e=1e-4;
+0037 
+0038 <span class="comment">%evaluation and derivatives</span>
+0039 x=xx(:,:,1);
+0040 y=xx(:,:,2);
+0041 <span class="comment">%</span>
+0042 xy=sqrt(x.^2+y.^2);
+0043 fxy=b-xy./c;
+0044 <span class="comment">%</span>
+0045 pa=exp(abs(fxy));
+0046 sx=sin(x);
+0047 sy=sin(y);
+0048 <span class="comment">%</span>
+0049 h=pa.*sx.*sy;
+0050 g=abs(h)+d;
+0051 <span class="comment">%</span>
+0052 p=e*g.^a;
+0053 <span class="comment">%</span>
+0054 <span class="keyword">if</span> nargout==2
+0055     <span class="comment">%</span>
+0056     dh=cos(xx).*sin(xx(:,:,[2 1])).*pa-1/c*xx./xy.*sign(fxy).*h;
+0057     <span class="comment">%</span>
+0058     dg=sign(h).*dh;
+0059     <span class="comment">%</span>
+0060     dp=e*a*dg.*g.^(a-1);
+0061 <span class="keyword">end</span>
+0062 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

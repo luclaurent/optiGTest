@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funDeceptive</title>
+  <meta name="keywords" content="funDeceptive">
+  <meta name="description" content="% Deceptive function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funDeceptive
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Deceptive function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funDeceptive(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Deceptive function 
+L. LAURENT -- 14/03/2017 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Deceptive function</span>
+0002 <span class="comment">%L. LAURENT -- 14/03/2017 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%global minimum : f(x)=-1 for xi=alphai=i/(dim+1)</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">%Design space: 0&lt;xi&lt;10</span>
+0028 
+0029 
+0030 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funDeceptive(xx)</a>
+0031 <span class="comment">%constants</span>
+0032 a=4/5;
+0033 b=5;
+0034 c=4;
+0035 d=1;
+0036 beta=2;
+0037 
+0038 <span class="comment">%evaluation and derivatives</span>
+0039 sX=[size(xx,1) size(xx,2) size(xx,3)]; 
+0040 <span class="comment">%</span>
+0041 alpha=(1:sX(3))./(sX(3)+1);
+0042 alphaR=repmat(reshape(alpha,1,1,sX(3)),sX(1),sX(2),1);
+0043 <span class="comment">%</span>
+0044 la=zeros(sX);
+0045 ua=a*alphaR;
+0046 IXa=find(xx&gt;=la&amp;xx&lt;ua);
+0047 <span class="comment">%</span>
+0048 lb=ua;
+0049 ub=alphaR;
+0050 IXb=find(xx&gt;=lb&amp;xx&lt;ub);
+0051 <span class="comment">%</span>
+0052 lc=ub;
+0053 uc=1/b+a*alphaR;
+0054 IXc=find(xx&gt;=lc&amp;xx&lt;uc);
+0055 <span class="comment">%</span>
+0056 ld=uc;
+0057 ud=d*ones(sX);
+0058 IXd=find(xx&gt;=ld&amp;xx&lt;=ud);
+0059 <span class="comment">%</span>
+0060 g=zeros(sX);
+0061 g(IXa)=a-xx(IXa)./alphaR(IXa);
+0062 g(IXb)=b*xx(IXb)./alphaR(IXb)-c;
+0063 g(IXc)=b*(xx(IXc)-alphaR(IXc))./(alphaR(IXc)-d)+d;
+0064 g(IXd)=(xx(IXd)-d)./(d-alphaR(IXd))+a;
+0065 <span class="comment">%</span>
+0066 pa=sum(g,3);
+0067 <span class="comment">%</span>
+0068 p=-(1/sX(3)*pa).^beta;
+0069 <span class="comment">%</span>
+0070         
+0071 <span class="comment">%keyboard</span>
+0072 <span class="comment">%</span>
+0073 <span class="keyword">if</span> nargout==2
+0074     <span class="comment">%</span>
+0075     dg=zeros(sX);
+0076     <span class="comment">%</span>
+0077     dg(IXa)=-1./alphaR(IXa);
+0078     dg(IXb)=-b./alphaR(IXb);
+0079     dg(IXc)=b./(alphaR(IXc)-d);
+0080     dg(IXd)=1./(d-alphaR(IXd));
+0081     <span class="comment">%</span>
+0082     dp=-beta./sX(3).*dg.*1/sX(3).*pa(:,:,ones(1,sX(3)));   
+0083 <span class="keyword">end</span>
+0084 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

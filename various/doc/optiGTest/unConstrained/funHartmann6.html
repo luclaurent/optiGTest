@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funHartmann6</title>
+  <meta name="keywords" content="funHartmann6">
+  <meta name="description" content="% Hartmann 6 function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funHartmann6
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Hartmann 6 function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funHartmann6(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Hartmann 6 function
+L. LAURENT -- 16/11/2016 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Hartmann 6 function</span>
+0002 <span class="comment">%L. LAURENT -- 16/11/2016 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%global minimum : f(x1,x2)=-3.32236801141551 for (x1,x2)=(0.20168952, 0.15001069, 0.47687398, 0.27533243, 0.31165162, 0.65730054)</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">%Design space: 0&lt;xi&lt;1</span>
+0028 
+0029 
+0030 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funHartmann6(xx)</a>
+0031 <span class="comment">%constants</span>
+0032 ma=[10.00,  0.05,  3.00, 17.00;
+0033     3.00, 10.00,  3.50,  8.00;
+0034     17.00, 17.00,  1.70,  0.05;
+0035     3.50,  0.10, 10.00, 10.00;
+0036     1.70,  8.00, 17.00,  0.10;
+0037     8.00, 14.00,  8.00, 14.00];
+0038 mp=[0.1312, 0.2329, 0.2348, 0.4047;
+0039     0.1696, 0.4135, 0.1451, 0.8828;
+0040     0.5569, 0.8307, 0.3522, 0.8732;
+0041     0.0124, 0.3736, 0.2883, 0.5743;
+0042     0.8283, 0.1004, 0.3047, 0.1091;
+0043     0.5886, 0.9991, 0.6650, 0.0381];
+0044 c=[1.0, 1.2, 3.0, 3.2];
+0045 b=4;
+0046 dim=6;
+0047 
+0048 
+0049 <span class="comment">%evaluation and derivatives</span>
+0050 sX=size(xx);
+0051 p=zeros(sX(1),sX(2));
+0052 <span class="keyword">for</span> it=1:b
+0053     pa=bsxfun(@minus,xx,reshape(mp(:,it),1,1,dim));    
+0054     pb=bsxfun(@times,reshape(ma(:,it),1,1,dim),pa.^2);
+0055     p=p-c(it)*exp(-sum(pb,3));
+0056 <span class="keyword">end</span>
+0057 
+0058 <span class="keyword">if</span> nargout==2
+0059     dp=zeros(sX);
+0060     <span class="comment">%</span>
+0061     <span class="keyword">for</span> it=1:b
+0062         pa=bsxfun(@minus,xx,reshape(mp(:,it),1,1,dim));
+0063         pb=bsxfun(@times,reshape(ma(:,it),1,1,dim),pa.^2);
+0064         pc=exp(-sum(pb,3));
+0065         pe=bsxfun(@times,reshape(ma(:,it),1,1,dim),pa);
+0066         <span class="comment">%</span>
+0067         <span class="keyword">for</span> itD=1:dim
+0068             dp(:,:,itD)=dp(:,:,itD)+2*c(it)*pe(:,:,itD).*pc;
+0069         <span class="keyword">end</span>
+0070     <span class="keyword">end</span>
+0071 <span class="keyword">end</span>
+0072 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

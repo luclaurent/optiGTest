@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funDamavandi</title>
+  <meta name="keywords" content="funDamavandi">
+  <meta name="description" content="% Damavandi's function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funDamavandi
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Damavandi's function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funDamavandi(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Damavandi's function
+L. LAURENT -- 05/11/2016 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Damavandi's function</span>
+0002 <span class="comment">%L. LAURENT -- 05/11/2016 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%1 global minimum : f(2,2)=0</span>
+0026 <span class="comment">%</span>
+0027 <span class="comment">%Design space: 0&lt;xi&lt;14</span>
+0028 
+0029 
+0030 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funDamavandi(xx)</a>
+0031 
+0032 <span class="comment">%constants</span>
+0033 a=1;
+0034 b=pi;
+0035 c=2;
+0036 d=7;
+0037 
+0038 <span class="comment">%variables</span>
+0039 xxx=xx(:,:,1);
+0040 yyy=xx(:,:,2);
+0041 
+0042 <span class="comment">%evaluation and derivatives</span>
+0043 pax=xxx-c;
+0044 pay=yyy-c;
+0045 sx=sin(b*pax);
+0046 sy=sin(b*pay);
+0047 kxy=sx.*sy./(b^2*pax.*pay);
+0048 <span class="comment">%</span>
+0049 pbx=xxx-d;
+0050 pby=yyy-d;
+0051 hxy=c+pbx.^2+c*pby.^2;
+0052 <span class="comment">%</span>
+0053 p=(a-abs(kxy).^5).*hxy;
+0054 <span class="comment">%</span>
+0055 <span class="keyword">if</span> nargout==2
+0056     cx=cos(b*pax);
+0057     cy=cos(b*pay);
+0058     <span class="comment">%</span>
+0059     dkx=b*cx.*sy./(b^2*pax.*pay)+b^2*pax.*kxy./(b^2*pax.*pay);
+0060     dky=b*cy.*sx./(b^2*pax.*pay)+b^2*pbx.*kxy./(b^2*pax.*pay);
+0061     <span class="comment">%</span>
+0062     dhx=2*pbx;
+0063     dhy=2*c*pby;
+0064     <span class="comment">%</span>
+0065     dp(:,:,1)=dhx.*(a-abs(kxy).^5)-5*dkx.*sign(kxy).*kxy.^4.*hxy;
+0066     dp(:,:,2)=dhy.*(a-abs(kxy).^5)-5*dky.*sign(kxy).*kxy.^4.*hxy;
+0067 <span class="keyword">end</span>
+0068 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

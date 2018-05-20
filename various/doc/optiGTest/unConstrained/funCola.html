@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funCola</title>
+  <meta name="keywords" content="funCola">
+  <meta name="description" content="% Colas's function">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funCola
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Colas's function</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funCola(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Colas's function
+L. LAURENT -- 04/11/2016 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Colas's function</span>
+0002 <span class="comment">%L. LAURENT -- 04/11/2016 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%numerous local minima</span>
+0026 <span class="comment">%1 global minimum : x=(0.651906,1.30194,0.099242,?0.883791,?0.8796,</span>
+0027 <span class="comment">%               0.204651,-3.28414,0.851188,-3.46245,2.53245,-0.895246,</span>
+0028 <span class="comment">%               0.204651,-3.28414,0.851188,-3.46245,2.53245,-0.895246,</span>
+0029 <span class="comment">%               1.40992,-3.07367,1.96257,-2.97872,?0.807849,-1.68978) &gt;&gt; f(x)=11.7464</span>
+0030 <span class="comment">%</span>
+0031 <span class="comment">%design space -1&lt;xi&lt;4</span>
+0032 
+0033 
+0034 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funCola(xx)</a>
+0035 fprintf(<span class="string">'NEED to FIXED\n'</span>)
+0036 <span class="comment">%cf. https://github.com/andyfaff/ampgo/blob/master/%20ampgo%20--username%20andrea.gavana%40gmail.com/go_benchmark.py</span>
+0037 
+0038 <span class="comment">%constant</span>
+0039 dd=[0    0    0    0    0    0    0    0    0
+0040     1.27 0    0    0    0    0    0    0    0
+0041     1.69 1.43 0    0    0    0    0    0    0
+0042     2.04 2.35 2.45 0    0    0    0    0    0
+0043     3.09 3.18 3.26 2.85 0    0    0    0    0
+0044     3.20 3.22 3.27 2.88 1.55 0    0    0    0
+0045     2.86 2.56 2.58 2.59 3.12 3.06 0    0    0
+0046     3.17 3.18 3.18 3.12 1.31 1.64 3.00 0    0
+0047     3.21 3.18 3.18 3.17 1.70 1.36 2.95 1.32 0
+0048     2.38 2.31 2.42 1.94 2.85 2.81 2.56 2.91 2.97];
+0049 <span class="comment">%handle function</span>
+0050 funR=@(xi,xj,yi,yj)sqrt((xi-xj).^2+(yi-yj).^2);
+0051 
+0052 <span class="comment">%evaluation and derivatives</span>
+0053 nS=[size(xx,1) size(xx,2) size(xx,3)];
+0054 <span class="comment">%</span>
+0055 zz=zeros(nS(1),nS(2));
+0056 xC=cat(3,zz,xx(:,:,1:2:end));
+0057 yC=cat(3,zz,zz,xx(:,:,2:2:end));
+0058 <span class="comment">%</span>
+0059 p=zeros(nS(1:2));
+0060 <span class="keyword">for</span> itI=1:size(xC,3)
+0061     <span class="keyword">for</span> itJ=1:itI-1
+0062        <span class="comment">% dd(itI,itJ)</span>
+0063         p=p+(funR(xC(:,:,itI),xC(:,:,itJ),yC(:,:,itI),yC(:,:,itJ))-dd(itI,itJ)).^2;
+0064        <span class="comment">% p</span>
+0065     <span class="keyword">end</span>
+0066 <span class="keyword">end</span>
+0067 
+0068 <span class="keyword">if</span> nargout==2
+0069     fprintf(<span class="string">'Derivatives not implemented\n'</span>)
+0070     dp=zeros(nS);
+0071  <span class="comment">%   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);</span>
+0072 <span class="keyword">end</span>
+0073 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

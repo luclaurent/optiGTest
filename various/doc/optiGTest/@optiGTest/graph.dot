@@ -1,0 +1,52 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  optiGTest -> addTree;
+  optiGTest -> checkAllPb;
+  optiGTest -> checkCons;
+  optiGTest -> checkFunObj;
+  optiGTest -> checkGradFun;
+  optiGTest -> checkPb;
+  optiGTest -> closeFig;
+  optiGTest -> demo;
+  optiGTest -> dispDetails;
+  optiGTest -> evalAll;
+  optiGTest -> evalCons;
+  optiGTest -> evalObj;
+  optiGTest -> funMD;
+  optiGTest -> getDimAvailable;
+  optiGTest -> loadDimAvailable;
+  optiGTest -> loadGlobMin;
+  optiGTest -> loadPb;
+  optiGTest -> loadSpace;
+  optiGTest -> optiGTest;
+  optiGTest -> prepX;
+  optiGTest -> show1D;
+  optiGTest -> show2D;
+  optiGTest -> show2DCons;
+  optiGTest -> showPareto;
+
+  addTree [URL="addTree.html"];
+  checkAllPb [URL="checkAllPb.html"];
+  checkCons [URL="checkCons.html"];
+  checkFunObj [URL="checkFunObj.html"];
+  checkGradFun [URL="checkGradFun.html"];
+  checkPb [URL="checkPb.html"];
+  closeFig [URL="closeFig.html"];
+  demo [URL="demo.html"];
+  dispDetails [URL="dispDetails.html"];
+  evalAll [URL="evalAll.html"];
+  evalCons [URL="evalCons.html"];
+  evalObj [URL="evalObj.html"];
+  funMD [URL="funMD.html"];
+  getDimAvailable [URL="getDimAvailable.html"];
+  loadDimAvailable [URL="loadDimAvailable.html"];
+  loadGlobMin [URL="loadGlobMin.html"];
+  loadPb [URL="loadPb.html"];
+  loadSpace [URL="loadSpace.html"];
+  optiGTest [URL="optiGTest.html"];
+  prepX [URL="prepX.html"];
+  show1D [URL="show1D.html"];
+  show2D [URL="show2D.html"];
+  show2DCons [URL="show2DCons.html"];
+  showPareto [URL="showPareto.html"];
+}
