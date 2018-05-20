@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of surfCustom</title>
+  <meta name="keywords" content="surfCustom">
+  <meta name="description" content="% custom surface plot">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html various -->
+<h1>surfCustom
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% custom surface plot</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function surfCustom(XX,YY,ZZ) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% custom surface plot</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../optiGTest/@optiGTest/show2D.html" class="code" title="function h=show2D(obj,XX,YY,ZZ,GZ,txt,funName)">show2D</a>	% Method of optiGTest class</li><li><a href="../../optiGTest/@optiGTest/show2DCons.html" class="code" title="function h=show2DCons(obj,XX,YY,ZZ,statusZ,txt,funName)">show2DCons</a>	% Method of optiGTest class</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% custom surface plot</span>
+0002 <a name="_sub0" href="#_subfunctions" class="code">function surfCustom(XX,YY,ZZ)</a>
+0003 <span class="comment">%</span>
+0004 hh=surf(XX,YY,ZZ);
+0005 <span class="comment">%</span>
+0006 shading interp
+0007 light
+0008 lighting phong
+0009 <span class="comment">%</span>
+0010 axis(<span class="string">'tight'</span>,<span class="string">'square'</span>)
+0011 xlabel(<span class="string">'$x$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)
+0012 ylabel(<span class="string">'$y$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)
+0013 zlabel(<span class="string">'$f$'</span>,<span class="string">'Interpreter'</span>,<span class="string">'latex'</span>)
+0014 <span class="comment">%title(obj.funName)</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">%% Extract X,Y and Z data from surface plot</span>
+0017 X=hh.XData;
+0018 Y=hh.YData;
+0019 Z=hh.ZData;
+0020 <span class="comment">%% Divide the lengths by the number of lines needed</span>
+0021 xlength = size(ZZ,2);
+0022 ylength = size(ZZ,1);
+0023 xnumlines = 10; <span class="comment">% 10 lines</span>
+0024 ynumlines = 10; <span class="comment">% 10 partitions</span>
+0025 xspacing = round(xlength/xnumlines);
+0026 yspacing = round(ylength/ynumlines);
+0027 <span class="comment">%% Plot the mesh lines</span>
+0028 <span class="comment">% Plotting lines in the X-Z plane</span>
+0029 hold on
+0030 <span class="keyword">for</span> i = 1:yspacing:ylength
+0031     mesh([X(i,:);X(i,:)], [Y(i,:);Y(i,:)], [Z(i,:);Z(i,:)],<span class="string">'EdgeColor'</span>,0.7.*[1,1,1]);
+0032 <span class="keyword">end</span>
+0033 <span class="comment">% Plotting lines in the Y-Z plane</span>
+0034 <span class="keyword">for</span> i = 1:xspacing:xlength
+0035     mesh([X(:,i),X(:,i)], [Y(:,i),Y(:,i)], [Z(:,i),Z(:,i)],<span class="string">'EdgeColor'</span>,0.7.*[1,1,1]);
+0036 <span class="keyword">end</span>
+0037 hold off
+0038 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

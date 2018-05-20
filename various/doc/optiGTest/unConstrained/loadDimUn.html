@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of loadDimUn</title>
+  <meta name="keywords" content="loadDimUn">
+  <meta name="description" content="% function for loading dimension of available functions">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>loadDimUn
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% function for loading dimension of available functions</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function dim=loadDim(funName) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% function for loading dimension of available functions
+ L. LAURENT --  15/12/2017 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../optiGTest/@optiGTest/funMD.html" class="code" title="function isOk=funMD(obj,nbCol,type)">funMD</a>	% Method of optiGTest class</li><li><a href="../../optiGTest/various/availablePb.html" class="code" title="function [funOk,typePb]=availablePb(txt)">availablePb</a>	% Function for checking if the function is available</li><li><a href="../../optiGTest/various/dispAvailablePb.html" class="code" title="function dispAvailablePb(txt)">dispAvailablePb</a>	% Function for displaying available multi-objective problems</li><li><a href="../../optiGTest/various/listPb.html" class="code" title="function l=listPb(typePb)">listPb</a>	% extract list of problems</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% function for loading dimension of available functions</span>
+0002 <span class="comment">% L. LAURENT --  15/12/2017 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <a name="_sub0" href="#_subfunctions" class="code">function dim=loadDim(funName)</a>
+0025 listDim=struct(<span class="keyword">...</span>
+0026     <span class="string">'Ackley1'</span>,Inf,<span class="keyword">...</span>
+0027     <span class="string">'Ackley2'</span>,2,<span class="keyword">...</span>
+0028     <span class="string">'Ackley3'</span>,2,<span class="keyword">...</span>
+0029     <span class="string">'Ackley4'</span>,2,<span class="keyword">...</span><span class="comment"> %could be Inf</span>
+0030     <span class="string">'Adjiman'</span>,2,<span class="keyword">...</span>
+0031     <span class="string">'Alpine1'</span>,Inf,<span class="keyword">...</span>
+0032     <span class="string">'Alpine2'</span>,Inf,<span class="keyword">...</span>
+0033     <span class="string">'AHE'</span>,Inf,<span class="keyword">...</span>
+0034     <span class="string">'AMGM'</span>,Inf,<span class="keyword">...</span>
+0035     <span class="string">'BartelsConn'</span>,2,<span class="keyword">...</span>
+0036     <span class="string">'Beale'</span>,2,<span class="keyword">...</span>
+0037     <span class="string">'BiggsExp2'</span>,2,<span class="keyword">...</span>
+0038     <span class="string">'BiggsExp3'</span>,3,<span class="keyword">...</span>
+0039     <span class="string">'BiggsExp4'</span>,4,<span class="keyword">...</span>
+0040     <span class="string">'BiggsExp5'</span>,5,<span class="keyword">...</span>
+0041     <span class="string">'BiggsExp6'</span>,6,<span class="keyword">...</span>
+0042     <span class="string">'Bird'</span>,2,<span class="keyword">...</span>
+0043     <span class="string">'Bohachevsky1'</span>,2,<span class="keyword">...</span>
+0044     <span class="string">'Bohachevsky2'</span>,2,<span class="keyword">...</span>
+0045     <span class="string">'Bohachevsky3'</span>,2,<span class="keyword">...</span>
+0046     <span class="string">'Booth'</span>,2,<span class="keyword">...</span>
+0047     <span class="string">'BoxBetts'</span>,3,<span class="keyword">...</span>
+0048     <span class="string">'Brad'</span>,3,<span class="keyword">...</span>
+0049     <span class="string">'Branin1'</span>,2,<span class="keyword">...</span>
+0050     <span class="string">'Branin2'</span>,2,<span class="keyword">...</span>
+0051     <span class="string">'Brent'</span>,2,<span class="keyword">...</span>
+0052     <span class="string">'Brown'</span>,Inf,<span class="keyword">...</span>
+0053     <span class="string">'Bukin01'</span>,2,<span class="keyword">...</span>
+0054     <span class="string">'Bukin02'</span>,2,<span class="keyword">...</span>
+0055     <span class="string">'Bukin03'</span>,2,<span class="keyword">...</span>
+0056     <span class="string">'Bukin04'</span>,2,<span class="keyword">...</span>
+0057     <span class="string">'Bukin05'</span>,2,<span class="keyword">...</span>
+0058     <span class="string">'Bukin06'</span>,2,<span class="keyword">...</span>
+0059     <span class="string">'Bukin07'</span>,2,<span class="keyword">...</span>
+0060     <span class="string">'Bukin08'</span>,2,<span class="keyword">...</span>
+0061     <span class="string">'Bukin09'</span>,2,<span class="keyword">...</span>
+0062     <span class="string">'Bukin10'</span>,2,<span class="keyword">...</span>
+0063     <span class="string">'Bukin11'</span>,2,<span class="keyword">...</span>
+0064     <span class="string">'Bukin12'</span>,2,<span class="keyword">...</span>
+0065     <span class="string">'Bukin13'</span>,2,<span class="keyword">...</span>
+0066     <span class="string">'Bukin14'</span>,2,<span class="keyword">...</span>
+0067     <span class="string">'Bukin15'</span>,2,<span class="keyword">...</span>
+0068     <span class="string">'Bukin16'</span>,2,<span class="keyword">...</span>
+0069     <span class="string">'Bukin17'</span>,2,<span class="keyword">...</span>
+0070     <span class="string">'Bukin18'</span>,2,<span class="keyword">...</span>
+0071     <span class="string">'Bukin19'</span>,2,<span class="keyword">...</span>
+0072     <span class="string">'Bukin20'</span>,2,<span class="keyword">...</span>
+0073     <span class="string">'CamelbackThreeHump'</span>,2,<span class="keyword">...</span>
+0074     <span class="string">'CamelbackSixHump'</span>,2,<span class="keyword">...</span>
+0075     <span class="string">'CarromTable'</span>,2,<span class="keyword">...</span>
+0076     <span class="string">'ChenV'</span>,2,<span class="keyword">...</span>
+0077     <span class="string">'ChenBird'</span>,2,<span class="keyword">...</span>
+0078     <span class="string">'Chichinadze'</span>,2,<span class="keyword">...</span>
+0079     <span class="string">'ChungReynolds'</span>,Inf,<span class="keyword">...</span>
+0080     <span class="string">'Cigar'</span>,Inf,<span class="keyword">...</span>
+0081     <span class="string">'Cola'</span>,17,<span class="keyword">...</span>
+0082     <span class="string">'Colville'</span>,4,<span class="keyword">...</span>
+0083     <span class="string">'Corana'</span>,4,<span class="keyword">...</span>
+0084     <span class="string">'CosineMixture'</span>,Inf,<span class="keyword">...</span>
+0085     <span class="string">'CrossInTray'</span>,2,<span class="keyword">...</span>
+0086     <span class="string">'CrossLegTable'</span>,2,<span class="keyword">...</span>
+0087     <span class="string">'CrownedCross'</span>,2,<span class="keyword">...</span>
+0088     <span class="string">'Csendes'</span>,Inf,<span class="keyword">...</span>
+0089     <span class="string">'Cst'</span>,Inf,<span class="keyword">...</span>
+0090     <span class="string">'Cube'</span>,2,<span class="keyword">...</span>
+0091     <span class="string">'Custom01'</span>,1,<span class="keyword">...</span>
+0092     <span class="string">'Custom02'</span>,1,<span class="keyword">...</span>
+0093     <span class="string">'Custom03'</span>,1,<span class="keyword">...</span>
+0094     <span class="string">'Custom04'</span>,1,<span class="keyword">...</span>
+0095     <span class="string">'Custom05'</span>,1,<span class="keyword">...</span>
+0096     <span class="string">'Damavandi'</span>,2,<span class="keyword">...</span>
+0097     <span class="string">'Deb1'</span>,Inf,<span class="keyword">...</span>
+0098     <span class="string">'Deb2'</span>,Inf,<span class="keyword">...</span>
+0099     <span class="string">'Deb3'</span>,Inf,<span class="keyword">...</span>
+0100     <span class="string">'Deb4'</span>,Inf,<span class="keyword">...</span>
+0101     <span class="string">'Decanomial'</span>,2,<span class="keyword">...</span>
+0102     <span class="string">'Deceptive'</span>,Inf,<span class="keyword">...</span>
+0103     <span class="string">'DeckkersAarts'</span>,2,<span class="keyword">...</span>
+0104     <span class="string">'DeflectedCorrugatedSpring'</span>,Inf,<span class="keyword">...</span>
+0105     <span class="string">'DeVilliersGlasser1'</span>,4,<span class="keyword">...</span>
+0106     <span class="string">'DeVilliersGlasser2'</span>,5,<span class="keyword">...</span>
+0107     <span class="string">'DixonPrice'</span>,Inf,<span class="keyword">...</span>
+0108     <span class="string">'Dolan'</span>,5,<span class="keyword">...</span>
+0109     <span class="string">'DropWave'</span>,Inf,<span class="keyword">...</span>
+0110     <span class="string">'Easom'</span>,2,<span class="keyword">...</span>
+0111     <span class="string">'ElAttarVidyasogarDutta'</span>,2,<span class="keyword">...</span>
+0112     <span class="string">'EggCrate'</span>,2,<span class="keyword">...</span>
+0113     <span class="string">'EggHolder'</span>,Inf,<span class="keyword">...</span>
+0114     <span class="string">'Exponential'</span>,Inf,<span class="keyword">...</span>
+0115     <span class="string">'EX1'</span>,2,<span class="keyword">...</span>
+0116     <span class="string">'Exp2'</span>,2,<span class="keyword">...</span>
+0117     <span class="string">'Exp3'</span>,3,<span class="keyword">...</span>
+0118     <span class="string">'Exp4'</span>,4,<span class="keyword">...</span>
+0119     <span class="string">'Exp5'</span>,5,<span class="keyword">...</span>
+0120     <span class="string">'Exp6'</span>,6,<span class="keyword">...</span>
+0121     <span class="string">'FreudensteinRoth'</span>,2,<span class="keyword">...</span>
+0122     <span class="string">'Gear'</span>,4,<span class="keyword">...</span>
+0123     <span class="string">'Giunta'</span>,Inf,<span class="keyword">...</span>
+0124     <span class="string">'GoldsteinPrice'</span>,2,<span class="keyword">...</span>
+0125     <span class="string">'Griewank'</span>,Inf,<span class="keyword">...</span>
+0126     <span class="string">'GulfResearch'</span>,3,<span class="keyword">...</span>
+0127     <span class="string">'Hansen'</span>,2,<span class="keyword">...</span>
+0128     <span class="string">'Hartmann3'</span>,3,<span class="keyword">...</span>
+0129     <span class="string">'Hartmann6'</span>,6,<span class="keyword">...</span>
+0130     <span class="string">'HelicalValley'</span>,3,<span class="keyword">...</span>
+0131     <span class="string">'Himmelblau'</span>,2,<span class="keyword">...</span>
+0132     <span class="string">'Holzman'</span>,3,<span class="keyword">...</span>
+0133     <span class="string">'Hosaki'</span>,2,<span class="keyword">...</span>
+0134     <span class="string">'Infiniti'</span>,Inf,<span class="keyword">...</span>
+0135     <span class="string">'JennrichSampson'</span>,2,<span class="keyword">...</span>
+0136     <span class="string">'Judge'</span>,2,<span class="keyword">...</span>
+0137     <span class="string">'Katsuura'</span>,Inf,<span class="keyword">...</span>
+0138     <span class="string">'Keane'</span>,2,<span class="keyword">...</span>
+0139     <span class="string">'Kowalik'</span>,4,<span class="keyword">...</span>
+0140     <span class="string">'Langermann52'</span>,2,<span class="keyword">...</span>
+0141     <span class="string">'Langermann5'</span>,Inf,<span class="keyword">...</span><span class="comment"> %'LennardJones',Inf,...</span>
+0142     <span class="string">'Leon'</span>,2,<span class="keyword">...</span>
+0143     <span class="string">'Levy03'</span>,Inf,<span class="keyword">...</span>
+0144     <span class="string">'Levy05'</span>,2,<span class="keyword">...</span>
+0145     <span class="string">'Levy13'</span>,2,<span class="keyword">...</span>
+0146     <span class="string">'Matyas'</span>,2,<span class="keyword">...</span>
+0147     <span class="string">'McCormick'</span>,2,<span class="keyword">...</span>
+0148     <span class="string">'Michalewicz'</span>,Inf,<span class="keyword">...</span>
+0149     <span class="string">'MieleCantrell'</span>,4,<span class="keyword">...</span>
+0150     <span class="string">'Mishra01'</span>,Inf,<span class="keyword">...</span>
+0151     <span class="string">'Mishra02'</span>,Inf,<span class="keyword">...</span>
+0152     <span class="string">'Mishra03'</span>,2,<span class="keyword">...</span>
+0153     <span class="string">'Mishra04'</span>,2,<span class="keyword">...</span>
+0154     <span class="string">'Mishra05'</span>,2,<span class="keyword">...</span>
+0155     <span class="string">'Mishra06'</span>,2,<span class="keyword">...</span>
+0156     <span class="string">'Mishra07'</span>,Inf,<span class="keyword">...</span>
+0157     <span class="string">'Mishra08'</span>,2,<span class="keyword">...</span>
+0158     <span class="string">'Mishra09'</span>,3,<span class="keyword">...</span>
+0159     <span class="string">'Mishra10'</span>,2,<span class="keyword">...</span>
+0160     <span class="string">'Mishra11'</span>,Inf,<span class="keyword">...</span>
+0161     <span class="string">'Mystery'</span>,2,<span class="keyword">...</span>
+0162     <span class="string">'NeedleEye'</span>,Inf,<span class="keyword">...</span>
+0163     <span class="string">'NewFunction1'</span>,2,<span class="keyword">...</span>
+0164     <span class="string">'NewFunction2'</span>,2,<span class="keyword">...</span>
+0165     <span class="string">'NewFunction3'</span>,2,<span class="keyword">...</span>
+0166     <span class="string">'Null'</span>,Inf,<span class="keyword">...</span>
+0167     <span class="string">'OddSquare'</span>,1:20,<span class="keyword">...</span>
+0168     <span class="string">'Parsopoulos'</span>,2,<span class="keyword">...</span>
+0169     <span class="string">'Pathological'</span>,Inf,<span class="keyword">...</span>
+0170     <span class="string">'Paviani'</span>,10,<span class="keyword">...</span>
+0171     <span class="string">'Peaks'</span>,2,<span class="keyword">...</span>
+0172     <span class="string">'PeaksN'</span>,2,<span class="keyword">...</span>
+0173     <span class="string">'Penalty1'</span>,Inf,<span class="keyword">...</span>
+0174     <span class="string">'Penalty2'</span>,Inf,<span class="keyword">...</span>
+0175     <span class="string">'PenHolder'</span>,2,<span class="keyword">...</span>
+0176     <span class="string">'Periodic'</span>,2,<span class="keyword">...</span>
+0177     <span class="string">'Pinter'</span>,Inf,<span class="keyword">...</span>
+0178     <span class="string">'Plateau'</span>,Inf,<span class="keyword">...</span>
+0179     <span class="string">'Powell'</span>,4,<span class="keyword">...</span>
+0180     <span class="string">'PowerSum'</span>,4,<span class="keyword">...</span>
+0181     <span class="string">'Price1'</span>,2,<span class="keyword">...</span>
+0182     <span class="string">'Price2'</span>,2,<span class="keyword">...</span>
+0183     <span class="string">'Price3'</span>,2,<span class="keyword">...</span>
+0184     <span class="string">'Price4'</span>,2,<span class="keyword">...</span>
+0185     <span class="string">'Qing'</span>,Inf,<span class="keyword">...</span>
+0186     <span class="string">'Quadratic'</span>,2,<span class="keyword">...</span>
+0187     <span class="string">'Quartic'</span>,Inf,<span class="keyword">...</span>
+0188     <span class="string">'Quintic'</span>,Inf,<span class="keyword">...</span><span class="comment"> %'Rana',Inf,...</span>
+0189     <span class="string">'Rastrigin'</span>,Inf,<span class="keyword">...</span>
+0190     <span class="string">'RHE'</span>,Inf,<span class="keyword">...</span>
+0191     <span class="string">'Ripple01'</span>,2,<span class="keyword">...</span>
+0192     <span class="string">'Ripple25'</span>,2,<span class="keyword">...</span>
+0193     <span class="string">'Rosenbrock'</span>,Inf,<span class="keyword">...</span>
+0194     <span class="string">'RosenbrockM'</span>,2,<span class="keyword">...</span>
+0195     <span class="string">'RosenbrockMS'</span>,Inf,<span class="keyword">...</span>
+0196     <span class="string">'RotatedEllipse1'</span>,2,<span class="keyword">...</span>
+0197     <span class="string">'RotatedEllipse2'</span>,2,<span class="keyword">...</span>
+0198     <span class="string">'Rump'</span>,2,<span class="keyword">...</span>
+0199     <span class="string">'Salomon'</span>,Inf,<span class="keyword">...</span>
+0200     <span class="string">'Sargan'</span>,Inf,<span class="keyword">...</span>
+0201     <span class="string">'Schaffer1'</span>,2,<span class="keyword">...</span>
+0202     <span class="string">'Schaffer2'</span>,2,<span class="keyword">...</span>
+0203     <span class="string">'Schaffer3'</span>,2,<span class="keyword">...</span>
+0204     <span class="string">'Schaffer4'</span>,2,<span class="keyword">...</span>
+0205     <span class="string">'Schaffer6'</span>,Inf,<span class="keyword">...</span>
+0206     <span class="string">'SchmidtVetters'</span>,3,<span class="keyword">...</span>
+0207     <span class="string">'Schwefel01'</span>,Inf,<span class="keyword">...</span>
+0208     <span class="string">'Schwefel02'</span>,Inf,<span class="keyword">...</span>
+0209     <span class="string">'Schwefel04'</span>,Inf,<span class="keyword">...</span>
+0210     <span class="string">'Schwefel06'</span>,2,<span class="keyword">...</span>
+0211     <span class="string">'Schwefel20'</span>,Inf,<span class="keyword">...</span>
+0212     <span class="string">'Schwefel21'</span>,Inf,<span class="keyword">...</span>
+0213     <span class="string">'Schwefel22'</span>,Inf,<span class="keyword">...</span>
+0214     <span class="string">'Schwefel23'</span>,Inf,<span class="keyword">...</span>
+0215     <span class="string">'Schwefel25'</span>,Inf,<span class="keyword">...</span>
+0216     <span class="string">'Schwefel26'</span>,Inf,<span class="keyword">...</span>
+0217     <span class="string">'Schwefel36'</span>,2,<span class="keyword">...</span>
+0218     <span class="string">'Shekel05'</span>,4,<span class="keyword">...</span>
+0219     <span class="string">'Shekel07'</span>,4,<span class="keyword">...</span>
+0220     <span class="string">'Shekel10'</span>,4,<span class="keyword">...</span>
+0221     <span class="string">'Shubert1'</span>,2,<span class="keyword">...</span>
+0222     <span class="string">'Shubert3'</span>,Inf,<span class="keyword">...</span>
+0223     <span class="string">'Shubert4'</span>,Inf,<span class="keyword">...</span>
+0224     <span class="string">'SineEnveloppe'</span>,Inf,<span class="keyword">...</span>
+0225     <span class="string">'Sodp'</span>,Inf,<span class="keyword">...</span>
+0226     <span class="string">'Slope'</span>,Inf,<span class="keyword">...</span>
+0227     <span class="string">'Sphere'</span>,Inf,<span class="keyword">...</span>
+0228     <span class="string">'Step'</span>,Inf,<span class="keyword">...</span>
+0229     <span class="string">'Step1'</span>,Inf,<span class="keyword">...</span>
+0230     <span class="string">'Step2'</span>,Inf,<span class="keyword">...</span>
+0231     <span class="string">'Step3'</span>,Inf,<span class="keyword">...</span>
+0232     <span class="string">'StepInt'</span>,Inf,<span class="keyword">...</span>
+0233     <span class="string">'Stochastic'</span>,Inf,<span class="keyword">...</span>
+0234     <span class="string">'StretchedV'</span>,Inf,<span class="keyword">...</span>
+0235     <span class="string">'StyblinskiTang'</span>,Inf,<span class="keyword">...</span>
+0236     <span class="string">'SumSquare'</span>,4,<span class="keyword">...</span>
+0237     <span class="string">'Treccani'</span>,2,<span class="keyword">...</span>
+0238     <span class="string">'Trefethen'</span>,2,<span class="keyword">...</span>
+0239     <span class="string">'Trid'</span>,6,<span class="keyword">...</span>
+0240     <span class="string">'Trigonometric1'</span>,Inf,<span class="keyword">...</span>
+0241     <span class="string">'Trigonometric2'</span>,Inf,<span class="keyword">...</span>
+0242     <span class="string">'Tripod'</span>,2,<span class="keyword">...</span>
+0243     <span class="string">'TubeHolder'</span>,2,<span class="keyword">...</span>
+0244     <span class="string">'Ursem1'</span>,2,<span class="keyword">...</span>
+0245     <span class="string">'Ursem3'</span>,2,<span class="keyword">...</span>
+0246     <span class="string">'Ursem4'</span>,2,<span class="keyword">...</span>
+0247     <span class="string">'UrsemWaves'</span>,2,<span class="keyword">...</span>
+0248     <span class="string">'VenterSobiezcczanskiSobieski'</span>,2,<span class="keyword">...</span>
+0249     <span class="string">'Vincent'</span>,Inf,<span class="keyword">...</span>
+0250     <span class="string">'Watson'</span>,6,<span class="keyword">...</span>
+0251     <span class="string">'Wavy'</span>,Inf,<span class="keyword">...</span>
+0252     <span class="string">'WayburnSeader1'</span>,2,<span class="keyword">...</span>
+0253     <span class="string">'WayburnSeader2'</span>,2,<span class="keyword">...</span>
+0254     <span class="string">'Weibull'</span>,3,<span class="keyword">...</span>
+0255     <span class="string">'Weierstrass'</span>,Inf,<span class="keyword">...</span>
+0256     <span class="string">'Whitley'</span>,Inf,<span class="keyword">...</span>
+0257     <span class="string">'Wolfe'</span>,3,<span class="keyword">...</span>
+0258     <span class="string">'XinSheYang1'</span>,Inf,<span class="keyword">...</span>
+0259     <span class="string">'XinSheYang2'</span>,Inf,<span class="keyword">...</span>
+0260     <span class="string">'XinSheYang3'</span>,Inf,<span class="keyword">...</span>
+0261     <span class="string">'XinSheYang4'</span>,Inf,<span class="keyword">...</span>
+0262     <span class="string">'Xor'</span>,9,<span class="keyword">...</span>
+0263     <span class="string">'YaoLiu4'</span>,Inf,<span class="keyword">...</span>
+0264     <span class="string">'YaoLiu9'</span>,Inf,<span class="keyword">...</span>
+0265     <span class="string">'Zacharov'</span>,Inf,<span class="keyword">...</span><span class="comment">%'ZeroSum',Inf,...</span>
+0266     <span class="string">'Zettl'</span>,2,<span class="keyword">...</span>
+0267     <span class="string">'Zimmerman'</span>,2,<span class="keyword">...</span>
+0268     <span class="string">'Zirilli'</span>,2);
+0269 <span class="keyword">if</span> nargin==1
+0270     dim=listDim.(funName);
+0271 <span class="keyword">else</span>
+0272     dim=listDim;
+0273 <span class="keyword">end</span>
+0274 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

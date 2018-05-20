@@ -1,6 +1,9 @@
 optiGTest 
 =======
-optiGTest is a MATLAB's toolbox which regroups many existing test functions used for studying the performance of approximation techniques and optimization strategy. In particular, gradient of the test functions are provided.
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1248985.svg)](https://doi.org/10.5281/zenodo.1248985)
+
+optiGTest is a MATLAB's toolbox which regroups many test functions used for studying the performance of approximation techniques and optimization strategy. In particular, gradient sof the test functions are provided.
 
 Features
 ------
@@ -114,11 +117,11 @@ List of multiobjective problems (w/- and w/o constraints)
 Download
 ------
 
-The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
+The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optigtest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
 
 If you use `git`, you can clone the repository using the following command
 
-    git clone --recursive git@bitbucket.org:luclaurent/optiGtest.git optiGTest
+    git clone --recursive git@bitbucket.org:luclaurent/optigtest.git optiGTest
 
 or 
 
@@ -131,6 +134,11 @@ Dependency
 
 If you forget to use the `--recursive` option when you clone the repository, please use the command `submodule --init` in order to initialize the missing class **gradFD**. 
 
+[Documentation](https://goo.gl/xRMLYb)
+------
+The automatic building of the documentation is based on the [m2html](http://www.artefact.tk/software/matlab/m2html/) software.
+
+The obtained documentation is available [here](https://goo.gl/xRMLYb).
 
 
 References

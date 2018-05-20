@@ -1,0 +1,11 @@
+/* Created by mdot for Matlab */
+digraph m2html {
+  LICENSE -> LICENSE;
+
+  Example_Constrained [URL="Example_Constrained.html"];
+  Example_multiobjective [URL="Example_multiobjective.html"];
+  Example_multiobjective_details [URL="Example_multiobjective_details.html"];
+  Example_unConstrained [URL="Example_unConstrained.html"];
+  LICENSE [URL="LICENSE.html"];
+  README [URL="README.html"];
+}

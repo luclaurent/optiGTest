@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of dispAvailablePb</title>
+  <meta name="keywords" content="dispAvailablePb">
+  <meta name="description" content="% Function for displaying available multi-objective problems">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html various -->
+<h1>dispAvailablePb
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Function for displaying available multi-objective problems</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function dispAvailablePb(txt) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Function for displaying available multi-objective problems
+ L. LAURENT --  04/05/2018 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../optiGTest/Constrained/loadProbCons.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbCons(pbName)">loadProbCons</a>	% function for loading constrained problems</li><li><a href="../../optiGTest/MultiObj/loadProbMulti.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbMulti(funName)">loadProbMulti</a>	% Function for loading available multi-objective problems</li><li><a href="../../optiGTest/unConstrained/loadDimUn.html" class="code" title="function dim=loadDim(funName)">loadDimUn</a>	% function for loading dimension of available functions</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li><li><a href="../../optiGTest/Example_Constrained.html" class="code" title="">Example_Constrained</a>	% Constrained example (optiGTest class)</li><li><a href="../../optiGTest/Example_multiobjective.html" class="code" title="">Example_multiobjective</a>	% Multi-objective example (optiGTest class)</li><li><a href="../../optiGTest/Example_unConstrained.html" class="code" title="">Example_unConstrained</a>	% unConstrained example (optiGTest class)</li></ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Function for displaying available multi-objective problems</span>
+0002 <span class="comment">% L. LAURENT --  04/05/2018 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0005 <span class="comment">% Copyright (C) 2018  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0006 <span class="comment">%</span>
+0007 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0008 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0009 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0010 <span class="comment">% (at your option) any later version.</span>
+0011 <span class="comment">%</span>
+0012 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0013 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0014 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0015 <span class="comment">% GNU General Public License for more details.</span>
+0016 <span class="comment">%</span>
+0017 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0018 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0019 
+0020 <a name="_sub0" href="#_subfunctions" class="code">function dispAvailablePb(txt)</a>
+0021 
+0022 <span class="keyword">if</span> nargin==0
+0023     txt=<span class="string">''</span>;
+0024 <span class="keyword">end</span>
+0025 flagUn=false;
+0026 flagCons=false;
+0027 flagMulti=false;
+0028 <span class="keyword">switch</span> txt
+0029     <span class="keyword">case</span> {<span class="string">'cons'</span>,<span class="string">'Cons'</span>,<span class="string">'constrained'</span>,<span class="string">'Constrained'</span>,<span class="string">'constraint'</span>,<span class="string">'Constraint'</span>}
+0030         flagCons=true;
+0031     <span class="keyword">case</span> {<span class="string">'uncons'</span>,<span class="string">'unCons'</span>,<span class="string">'unconstrained'</span>,<span class="string">'unConstrained'</span>}
+0032         flagUn=true;
+0033     <span class="keyword">case</span> {<span class="string">'multi'</span>,<span class="string">'Multi'</span>,<span class="string">'multiObjective'</span>,<span class="string">'multiobjective'</span>}
+0034         flagUn=true;
+0035     <span class="keyword">otherwise</span>
+0036         flagUn=true;
+0037         flagCons=true;
+0038         flagMulti=true;
+0039 <span class="keyword">end</span>
+0040 
+0041 <span class="comment">%extract name of porblems</span>
+0042 strPbUn=<a href="../../optiGTest/unConstrained/loadDimUn.html" class="code" title="function dim=loadDim(funName)">loadDimUn</a>();
+0043 strPbCons=<a href="../../optiGTest/Constrained/loadProbCons.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbCons(pbName)">loadProbCons</a>();
+0044 strPbMulti=<a href="../../optiGTest/MultiObj/loadProbMulti.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbMulti(funName)">loadProbMulti</a>();
+0045 <span class="comment">%</span>
+0046 listPbUn=fieldnames(strPbUn);
+0047 listPbCons=fieldnames(strPbCons);
+0048 listPbMulti=fieldnames(strPbMulti);
+0049 <span class="comment">%count information</span>
+0050 funCount=@(x,y,n)numel(x(n).(y));
+0051 nbConsPb=cellfun(@(x)funCount(strPbCons,x,3),listPbCons);
+0052 nbMultiConsPb=cellfun(@(x)funCount(strPbMulti,x,3),listPbMulti);
+0053 nbMultiObjPb=cellfun(@(x)funCount(strPbMulti,x,1),listPbMulti);
+0054 <span class="comment">%</span>
+0055 <span class="comment">%Show existing problems</span>
+0056 fprintf(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
+0057 fprintf(<span class="string">'Available test problems\n'</span>);
+0058 <span class="keyword">if</span> flagUn
+0059     fprintf(<span class="string">'------------------------\n'</span>);
+0060     cellfun(@(X)fprintf(<span class="string">'Unconstrained: %s\n'</span>,X),listPbUn);
+0061     fprintf(<span class="string">'------------------------\n'</span>);
+0062 <span class="keyword">end</span>
+0063 <span class="keyword">if</span> flagCons
+0064     fprintf(<span class="string">'------------------------\n'</span>);
+0065     cellfun(@(X,Y,Z)fprintf(<span class="string">'Constrained: %s (nb constraints: %i)\n'</span>,X,Y),<span class="keyword">...</span>
+0066         listPbCons,num2cell(nbConsPb));
+0067     fprintf(<span class="string">'------------------------\n'</span>);
+0068 <span class="keyword">end</span>
+0069 <span class="keyword">if</span> flagMulti
+0070     fprintf(<span class="string">'------------------------\n'</span>);
+0071     cellfun(@(X,Y,Z)fprintf(<span class="string">'Multiobjective: %s (nb objective/constraints: %i/%i)\n'</span>,X,Y,Z),<span class="keyword">...</span>
+0072         listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
+0073     fprintf(<span class="string">'------------------------\n'</span>);
+0074 <span class="keyword">end</span>
+0075 fprintf(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
+0076 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

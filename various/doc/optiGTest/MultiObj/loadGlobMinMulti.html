@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of loadGlobMinMulti</title>
+  <meta name="keywords" content="loadGlobMinMulti">
+  <meta name="description" content="% function for loading global minimum(s) of available multi-objective problems">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html MultiObj -->
+<h1>loadGlobMinMulti
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% function for loading global minimum(s) of available multi-objective problems</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [GlobX,GlobZ]=loadGlobMinMulti(funName,dim) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% function for loading global minimum(s) of available multi-objective problems
+ L. LAURENT --  04/05/2018 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% function for loading global minimum(s) of available multi-objective problems</span>
+0002 <span class="comment">% L. LAURENT --  04/05/2018 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <a name="_sub0" href="#_subfunctions" class="code">function [GlobX,GlobZ]=loadGlobMinMulti(funName,dim)</a>
+0025 
+0026 isDimOk=false;
+0027 <span class="keyword">if</span> nargin&gt;0
+0028    isDimOk=numel(dim&gt;0)&amp;&amp;~any(isnan(dim))&amp;&amp;~any(isinf(dim));
+0029 <span class="keyword">end</span>
+0030 
+0031 <span class="keyword">if</span> ~isDimOk;dim=1;<span class="keyword">end</span>
+0032 
+0033 listGlobXmin=struct(<span class="keyword">...</span>
+0034     <span class="string">'BinhKorn'</span>,NaN,<span class="keyword">...</span>
+0035     <span class="string">'ChakongHaimes'</span>,NaN,<span class="keyword">...</span>
+0036     <span class="string">'FonsecaFleming'</span>,NaN,<span class="keyword">...</span>
+0037     <span class="string">'TestFun4'</span>,NaN,<span class="keyword">...</span>
+0038     <span class="string">'Kursawe'</span>,NaN,<span class="keyword">...</span>
+0039     <span class="string">'MultiSchaffer1'</span>,NaN,<span class="keyword">...</span><span class="comment"> </span>
+0040     <span class="string">'MultiSchaffer2'</span>,NaN,<span class="keyword">...</span>
+0041     <span class="string">'Poloni'</span>,NaN,<span class="keyword">...</span>
+0042     <span class="string">'ZitzlerDebThiele1'</span>,NaN,<span class="keyword">...</span>
+0043     <span class="string">'ZitzlerDebThiele2'</span>,NaN,<span class="keyword">...</span>
+0044     <span class="string">'ZitzlerDebThiele3'</span>,NaN,<span class="keyword">...</span>
+0045     <span class="string">'ZitzlerDebThiele4'</span>,NaN,<span class="keyword">...</span>
+0046     <span class="string">'ZitzlerDebThiele6'</span>,NaN,<span class="keyword">...</span>
+0047     <span class="string">'OsyczkaKundu'</span>,NaN,<span class="keyword">...</span>
+0048     <span class="string">'CTP1'</span>,NaN,<span class="keyword">...</span>
+0049     <span class="string">'ConstrEx'</span>,NaN,<span class="keyword">...</span>
+0050     <span class="string">'Viennet'</span>,NaN);
+0051 
+0052 <span class="comment">%%%%%%%</span>
+0053 listGlobZmin=struct(<span class="keyword">...</span>
+0054     <span class="string">'BinhKorn'</span>,NaN,<span class="keyword">...</span>
+0055     <span class="string">'ChakongHaimes'</span>,NaN,<span class="keyword">...</span>
+0056     <span class="string">'FonsecaFleming'</span>,NaN,<span class="keyword">...</span>
+0057     <span class="string">'TestFun4'</span>,NaN,<span class="keyword">...</span>
+0058     <span class="string">'Kursawe'</span>,NaN,<span class="keyword">...</span>
+0059     <span class="string">'MultiSchaffer1'</span>,NaN,<span class="keyword">...</span><span class="comment"> </span>
+0060     <span class="string">'MultiSchaffer2'</span>,NaN,<span class="keyword">...</span>
+0061     <span class="string">'Poloni'</span>,NaN,<span class="keyword">...</span>
+0062     <span class="string">'ZitzlerDebThiele1'</span>,NaN,<span class="keyword">...</span>
+0063     <span class="string">'ZitzlerDebThiele2'</span>,NaN,<span class="keyword">...</span>
+0064     <span class="string">'ZitzlerDebThiele3'</span>,NaN,<span class="keyword">...</span>
+0065     <span class="string">'ZitzlerDebThiele4'</span>,NaN,<span class="keyword">...</span>
+0066     <span class="string">'ZitzlerDebThiele6'</span>,NaN,<span class="keyword">...</span>
+0067     <span class="string">'OsyczkaKundu'</span>,NaN,<span class="keyword">...</span>
+0068     <span class="string">'CTP1'</span>,NaN,<span class="keyword">...</span>
+0069     <span class="string">'ConstrEx'</span>,NaN,<span class="keyword">...</span>
+0070     <span class="string">'Viennet'</span>,NaN);
+0071 
+0072 lGX=listGlobXmin.(funName);
+0073 lGZ=listGlobZmin.(funName);
+0074 
+0075 <span class="keyword">if</span> size(lGX,2)==1&amp;&amp;isDimOk
+0076     GlobX=repmat(lGX,[1,dim]);
+0077 <span class="keyword">else</span>
+0078     GlobX=lGX;
+0079 <span class="keyword">end</span>
+0080 <span class="keyword">if</span> length(lGZ)==1&amp;&amp;size(lGX,1)&gt;1
+0081     GlobZ=repmat(lGZ,[size(lGX,1),1]);
+0082 <span class="keyword">else</span>
+0083     GlobZ=lGZ;
+0084 <span class="keyword">end</span>
+0085 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>

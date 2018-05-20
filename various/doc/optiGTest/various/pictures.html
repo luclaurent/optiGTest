@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of pictures</title>
+  <meta name="keywords" content="pictures">
+  <meta name="description" content="%%% Create pitcures for all cases">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html various -->
+<h1>pictures
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>%%% Create pitcures for all cases</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>This is a script file. </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">%%% Create pitcures for all cases</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+<li><a href="../../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li><li><a href="../../optiGTest/MultiObj/loadDimMulti.html" class="code" title="function dim=loadDimMulti(funName)">loadDimMulti</a>	% function for loading dimension of available multi-objective problems</li></ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%%%% Create pitcures for all cases</span>
+0002 clear all
+0003 close all
+0004 
+0005 <span class="comment">%% unconstrained</span>
+0006 addpath(<span class="string">'..'</span>)
+0007 
+0008 <span class="comment">%file for wiki</span>
+0009 ff=fopen(<span class="string">'Wiki.txt'</span>,<span class="string">'w'</span>);
+0010 
+0011 <span class="comment">%load class</span>
+0012 pb=<a href="../../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>(<span class="string">''</span>);
+0013 <span class="comment">% load list of functions</span>
+0014 listFun=<a href="../../optiGTest/MultiObj/loadDimMulti.html" class="code" title="function dim=loadDimMulti(funName)">loadDimMulti</a>();
+0015 <span class="comment">% names of functions</span>
+0016 nameFun=fieldnames(listFun);
+0017 <span class="comment">% along functions</span>
+0018 <span class="keyword">for</span> itF=1:numel(nameFun)
+0019     disp(itF)
+0020     <span class="comment">%dimension 2 only</span>
+0021     <span class="keyword">if</span> any(ismember(listFun.(nameFun{itF}),2))||any(isinf(listFun.(nameFun{itF})))
+0022         <span class="comment">%load function</span>
+0023         pb.namePb=nameFun{itF};
+0024         <span class="comment">%plot demo</span>
+0025         h=pb.demo;
+0026         <span class="comment">%obtain pdf and png</span>
+0027         file=fullfile(<span class="string">'various'</span>,<span class="string">'Figures'</span>,<span class="string">'MultiObj'</span>,nameFun{itF});
+0028         fileEPS=[file,<span class="string">'.eps'</span>];
+0029         filePDF=[file,<span class="string">'.pdf'</span>];
+0030         filePNG=[file,<span class="string">'.png'</span>];
+0031         saveas(h(end),fileEPS,<span class="string">'epsc'</span>)
+0032         print(h(end),filePDF,<span class="string">'-dpdf'</span>,<span class="string">'-painters'</span>)
+0033         saveas(h(end),filePNG)
+0034         <span class="comment">%close figure</span>
+0035         pb.closeFig;
+0036         <span class="comment">%write in the wiki's file</span>
+0037         fprintf(ff,<span class="string">'#%s\n'</span>,nameFun{itF});
+0038         fprintf(ff,<span class="string">'![%s](%s)\n'</span>,nameFun{itF},<span class="keyword">...</span>
+0039             [<span class="string">'https://bitbucket.org/luclaurent/optigtest/raw/master/various/'</span>,filePNG]);
+0040     <span class="keyword">end</span>
+0041 <span class="keyword">end</span>
+0042 fclose(ff);</pre></div>
+<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>
