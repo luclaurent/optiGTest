@@ -134,6 +134,11 @@ Dependency
 
 If you forget to use the `--recursive` option when you clone the repository, please use the command `submodule --init` in order to initialize the missing class **gradFD**. 
 
+[Documentation](https://goo.gl/xRMLYb)
+------
+The automatic building of the documentation is based on the [m2html](http://www.artefact.tk/software/matlab/m2html/) software.
+
+The obtained documentation is available [here](https://goo.gl/xRMLYb).
 
 
 References
