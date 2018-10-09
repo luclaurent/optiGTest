@@ -23,7 +23,7 @@
 <div class="box"><strong>% optiGTest class of test functions/problems w/- or w/o constraint(s)</strong></div>
 
 <h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="box"><strong>function dispTableTwoColumns(tableA,tableB) </strong></div>
+<div class="box"><strong>function txt=dispTableTwoColumns(tableA,tableB,separator) </strong></div>
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 <div class="fragment"><pre class="comment">% optiGTest class of test functions/problems w/- or w/o constraint(s)
@@ -33,7 +33,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-</ul>
+<li><a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 </ul>
@@ -67,18 +67,36 @@ This function is called by:
 0023 
 0024 <span class="comment">%% function display table with two columns of text</span>
 0025 
-0026 <a name="_sub0" href="#_subfunctions" class="code">function dispTableTwoColumns(tableA,tableB)</a>
+0026 <a name="_sub0" href="#_subfunctions" class="code">function txt=dispTableTwoColumns(tableA,tableB,separator)</a>
 0027 <span class="comment">%size of every components in tableA</span>
 0028 sizeA=cellfun(@numel,tableA);
 0029 maxA=max(sizeA);
 0030 <span class="comment">%space after each component</span>
-0031 spaceA=maxA-sizeA+3;
-0032 spaceTxt=<span class="string">' '</span>;
-0033 <span class="comment">%display table</span>
-0034 <span class="keyword">for</span> itT=1:numel(tableA)
-0035     fprintf(<span class="string">'%s%s%s\n'</span>,tableA{itT},spaceTxt(ones(1,spaceA(itT))),tableB{itT});
+0031 spaceA=maxA-sizeA+2;
+0032 <span class="keyword">if</span> nargin&gt;2
+0033     spaceTxt=separator;
+0034 <span class="keyword">else</span>
+0035     spaceTxt=<span class="string">' '</span>;
 0036 <span class="keyword">end</span>
-0037 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0037 txtOk=[];
+0038 <span class="comment">%display table</span>
+0039 <span class="keyword">for</span> itT=1:numel(tableA)
+0040     <span class="keyword">if</span> ischar(tableB{itT})
+0041         mask=<span class="string">'%s%s%s\n'</span>;
+0042     <span class="keyword">elseif</span> isinteger(tableB{itT})
+0043         mask=<span class="string">'%s%s%i\n'</span>;
+0044     <span class="keyword">else</span>
+0045         mask=<span class="string">'%s%s%+5.4e\n'</span>;
+0046     <span class="keyword">end</span>
+0047     <span class="comment">%</span>
+0048     txtOk=[txtOk sprintf(mask,tableA{itT},[<span class="string">' '</span> spaceTxt(ones(1,spaceA(itT))) <span class="string">' '</span>],tableB{itT})];
+0049 <span class="keyword">end</span>
+0050 <span class="keyword">if</span> nargout==1
+0051     txt=txtOk;
+0052 <span class="keyword">else</span>
+0053     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(txtOk);
+0054 <span class="keyword">end</span>
+0055 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

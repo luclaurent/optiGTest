@@ -33,7 +33,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-</ul>
+<li><a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li></ul>
@@ -92,57 +92,61 @@ This function is called by:
 0048 <span class="comment">%evaluate function at the sample</span>
 0049 [~,~,GZactual]=funCheck(Xsample);
 0050 <span class="comment">%compute approximate gradients using finite differences</span>
-0051 FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,funCheck);
-0052 GZapprox=FDclass.GZeval;
-0053 <span class="comment">%compare results</span>
-0054 diffG=abs((GZactual-GZapprox)./GZactual);
-0055 diffGB=abs((GZactual-GZapprox)./(1+abs(GZactual)));
-0056 <span class="comment">%remove bad terms</span>
-0057 diffGtest=diffG(~isinf(diffG));
-0058 <span class="comment">%</span>
-0059 critCheckA=(any(diffGtest(:)&gt;lim)<span class="keyword">...</span>
-0060     ||any(diffGB(:)&gt;lim))<span class="keyword">...</span>
-0061     &amp;&amp;obj.paranoidCheck;
-0062 critCheckB=(sum(diffGtest(:)&gt;lim)&gt;floor(numel(diffGtest(:))/3)<span class="keyword">...</span>
-0063     ||sum(diffGB(:)&gt;lim)&gt;floor(numel(diffGB(:))/3))<span class="keyword">...</span>
-0064     &amp;&amp;~obj.paranoidCheck;
-0065 <span class="keyword">if</span> critCheckA||critCheckB
-0066     fprintf(<span class="string">'Issue with the gradients of the %s function\n'</span>,funName);
-0067     isOk=false;
-0068 <span class="keyword">end</span>
-0069 <span class="keyword">if</span> any(diffGtest(:)&gt;lim)||any(diffGB(:)&gt;lim)||obj.forceDisplayGrad
-0070     fprintf(<span class="string">' &gt;&gt; %s function\n'</span>,funName);
-0071     fprintf(<span class="string">'Exact\n'</span>);
-0072     <span class="keyword">for</span> it=1:obj.nSCheck
-0073         fprintf(<span class="string">'%+7.3e '</span>,GZactual(it,:));
-0074         fprintf(<span class="string">'\n'</span>);
-0075     <span class="keyword">end</span>
-0076     fprintf(<span class="string">'\n'</span>);
-0077     fprintf(<span class="string">'Finite Difference (%s, %7.3e)\n'</span>,obj.FDtype,obj.FDstep);
-0078     <span class="keyword">for</span> it=1:obj.nSCheck
-0079         fprintf(<span class="string">'%+7.3e '</span>,GZapprox(it,:));
-0080         fprintf(<span class="string">'\n'</span>);
-0081     <span class="keyword">end</span>
-0082     fprintf(<span class="string">'\n'</span>);
-0083     fprintf(<span class="string">'Difference\n'</span>);
-0084     <span class="keyword">for</span> it=1:obj.nSCheck
-0085         fprintf(<span class="string">'%+7.3e '</span>,diffG(it,:));
-0086         fprintf(<span class="string">'\n'</span>);
-0087     <span class="keyword">end</span>
-0088     fprintf(<span class="string">'\n'</span>);
-0089     fprintf(<span class="string">'DifferenceB\n'</span>);
-0090     <span class="keyword">for</span> it=1:obj.nSCheck
-0091         fprintf(<span class="string">'%+7.3e '</span>,diffGB(it,:));
-0092         fprintf(<span class="string">'\n'</span>);
-0093     <span class="keyword">end</span>
-0094     fprintf(<span class="string">'\n'</span>);
-0095     fprintf(<span class="string">'Checking points\n'</span>);
-0096     <span class="keyword">for</span> it=1:obj.nSCheck
-0097         fprintf(<span class="string">'%+7.3e '</span>,Xsample(it,:));
-0098         fprintf(<span class="string">'\n'</span>);
-0099     <span class="keyword">end</span>
-0100 <span class="keyword">end</span>
-0101 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0051 <span class="keyword">if</span> exist(<span class="string">'gradFD'</span>,<span class="string">'class'</span>)
+0052     FDclass=gradFD(obj.FDtype,Xsample,obj.FDstep,funCheck);
+0053     GZapprox=FDclass.GZeval;
+0054     <span class="comment">%compare results</span>
+0055     diffG=abs((GZactual-GZapprox)./GZactual);
+0056     diffGB=abs((GZactual-GZapprox)./(1+abs(GZactual)));
+0057     <span class="comment">%remove bad terms</span>
+0058     diffGtest=diffG(~isinf(diffG));
+0059     <span class="comment">%</span>
+0060     critCheckA=(any(diffGtest(:)&gt;lim)<span class="keyword">...</span>
+0061         ||any(diffGB(:)&gt;lim))<span class="keyword">...</span>
+0062         &amp;&amp;obj.paranoidCheck;
+0063     critCheckB=(sum(diffGtest(:)&gt;lim)&gt;floor(numel(diffGtest(:))/3)<span class="keyword">...</span>
+0064         ||sum(diffGB(:)&gt;lim)&gt;floor(numel(diffGB(:))/3))<span class="keyword">...</span>
+0065         &amp;&amp;~obj.paranoidCheck;
+0066     <span class="keyword">if</span> critCheckA||critCheckB
+0067         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Issue with the gradients of the %s function\n'</span>,funName);
+0068         isOk=false;
+0069     <span class="keyword">end</span>
+0070     <span class="keyword">if</span> any(diffGtest(:)&gt;lim)||any(diffGB(:)&gt;lim)||obj.forceDisplayGrad
+0071         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">' &gt;&gt; %s function\n'</span>,funName);
+0072         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Exact\n'</span>);
+0073         <span class="keyword">for</span> it=1:obj.nSCheck
+0074             <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'%+7.3e '</span>,GZactual(it,:));
+0075             fprintf(<span class="string">'\n'</span>);
+0076         <span class="keyword">end</span>
+0077         fprintf(<span class="string">'\n'</span>);
+0078         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Finite Difference (%s, %7.3e)\n'</span>,obj.FDtype,obj.FDstep);
+0079         <span class="keyword">for</span> it=1:obj.nSCheck
+0080             <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'%+7.3e '</span>,GZapprox(it,:));
+0081             fprintf(<span class="string">'\n'</span>);
+0082         <span class="keyword">end</span>
+0083         fprintf(<span class="string">'\n'</span>);
+0084         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Difference\n'</span>);
+0085         <span class="keyword">for</span> it=1:obj.nSCheck
+0086             <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'%+7.3e '</span>,diffG(it,:));
+0087             fprintf(<span class="string">'\n'</span>);
+0088         <span class="keyword">end</span>
+0089         fprintf(<span class="string">'\n'</span>);
+0090         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'DifferenceB\n'</span>);
+0091         <span class="keyword">for</span> it=1:obj.nSCheck
+0092             <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'%+7.3e '</span>,diffGB(it,:));
+0093             fprintf(<span class="string">'\n'</span>);
+0094         <span class="keyword">end</span>
+0095         fprintf(<span class="string">'\n'</span>);
+0096         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Checking points\n'</span>);
+0097         <span class="keyword">for</span> it=1:obj.nSCheck
+0098             <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'%+7.3e '</span>,Xsample(it,:));
+0099             fprintf(<span class="string">'\n'</span>);
+0100         <span class="keyword">end</span>
+0101     <span class="keyword">end</span>
+0102 <span class="keyword">else</span>
+0103     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">' Unbale to check the gradients because the class gradFD is not available\n'</span>);
+0104 <span class="keyword">end</span>
+0105 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

@@ -32,7 +32,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../matlabicon.gif)">
-<li><a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li></ul>
+<li><a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li><li><a href="../optiGTest/unConstrained/matlab.html" class="code" title="">matlab</a>	</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../matlabicon.gif)">
 </ul>
@@ -41,176 +41,187 @@ This function is called by:
 
 
 <h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../up.png"></a></h2>
-<div class="fragment"><pre>0001 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> 
-0002 =======
+<div class="fragment"><pre>0001 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>
+0002 ===
 0003 
-0004 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1248985.svg)](https://doi.org/10.5281/zenodo.1248985)
-0005 
-0006 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> is a MATLAB's toolbox which regroups many test functions used <span class="keyword">for</span> studying the performance of approximation techniques and optimization strategy. In particular, gradient sof the test functions are provided.
-0007 
-0008 Features
-0009 ------
-0010 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> is able to 
+0004 [![GitHub license](https://img.shields.io/github/license/luclaurent/optiGTest.svg)](https://github.com/luclaurent/<a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>/blob/master/LICENSE.md)
+0005  [![Github Releases](https://img.shields.io/github/release/luclaurent/optiGTest.svg)]() [![DOI](https://zenodo.org/badge/132956523.svg)](https://zenodo.org/badge/latestdoi/132956523)
+0006 
+0007 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> is a MATLAB's toolbox which regroups many test functions used <span class="keyword">for</span> studying the performance of approximation techniques and optimization strategy. In particular, gradient sof the test functions are provided.
+0008 
+0009 Features
+0010 ---
 0011 
-0012 * Provide derivatives of the test functions
-0013 * Dealing with any dimension chosen by the user
-0014 * Provide <span class="keyword">global</span> minimum (value and associated set of parameters)
-0015 
-0016 First start
-0017 ------
-0018 * unConstrained problems: `Example_unConstrained.m`
-0019 
-0020 List of unconstrained functions
-0021 ------
-0022 [(see the 3D plots of the 2-dimensional unconstrained functions)](https://bitbucket.org/luclaurent/optigtest/wiki/unConstrained)
-0023 
-0024 |-|-|-|
-0025 |-----|-----|-----|
-0026 | Ackley1| DixonPrice| Quintic|
-0027 | Ackley2| Dolan| Rastrigin|
-0028 | Ackley3| DropWave| RHE|
-0029 | Ackley4| Easom| Ripple01|
-0030 | Adjiman| ElAttarVidyasogarDutta| Ripple25|
-0031 | Alpine1| EggCrate| Rosenbrock|
-0032 | Alpine2| EggHolder| RosenbrockM|
-0033 | AHE| Exponential| RosenbrockMS|
-0034 | AMGM| EX1| RotatedEllipse1|
-0035 | BartelsConn| Exp2| RotatedEllipse2|
-0036 | Beale| Exp3| Rump|
-0037 | BiggsExp2| Exp4| Salomon|
-0038 | BiggsExp3| Exp5| Sargan|
-0039 | BiggsExp4| Exp6| Schaffer1|
-0040 | BiggsExp5| FreudensteinRoth| Schaffer2|
-0041 | BiggsExp6| Gear| Schaffer3|
-0042 | Bird| Giunta| Schaffer4|
-0043 | Bohachevsky1| GoldsteinPrice| Schaffer6|
-0044 | Bohachevsky2| Griewank| SchmidtVetters|
-0045 | Bohachevsky3| GulfResearch| Schwefel01|
-0046 | Booth| Hansen| Schwefel02|
-0047 | BoxBetts| Hartmann3| Schwefel04|
-0048 | Brad| Hartmann6| Schwefel06|
-0049 | Branin1| HelicalValley| Schwefel20|
-0050 | Branin2| Himmelblau| Schwefel21|
-0051 | Brent| Holzman| Schwefel22|
-0052 | Brown| Hosaki| Schwefel23|
-0053 | Bukin01| Infiniti| Schwefel25|
-0054 | Bukin02| JennrichSampson| Schwefel26|
-0055 | Bukin03| Judge| Schwefel36|
-0056 | Bukin04| Katsuura| Shekel05|
-0057 | Bukin05| Keane| Shekel07|
-0058 | Bukin06| Kowalik| Shekel10|
-0059 | Bukin07| Langermann52| Shubert1|
-0060 | Bukin08| Langermann5| Shubert3|
-0061 | Bukin09| Leon| Shubert4|
-0062 | Bukin10| Levy03| SineEnveloppe|
-0063 | Bukin11| Levy05| Sodp|
-0064 | Bukin12| Levy13| Slope|
-0065 | Bukin13| Matyas| Sphere|
-0066 | Bukin14| McCormick| Step|
-0067 | Bukin15| Michalewicz| Step1|
-0068 | Bukin16| MieleCantrell| Step2|
-0069 | Bukin17| Mishra01| Step3|
-0070 | Bukin18| Mishra02| StepInt|
-0071 | Bukin19| Mishra03| Stochastic|
-0072 | Bukin20| Mishra04| StretchedV|
-0073 | CamelbackThreeHump| Mishra05| StyblinskiTang|
-0074 | CamelbackSixHump| Mishra06| SumSquare|
-0075 | CarromTable| Mishra07| Treccani|
-0076 | ChenV| Mishra08| Trefethen|
-0077 | ChenBird| Mishra09| Trid|
-0078 | Chichinadze| Mishra10| Trigonometric1|
-0079 | ChungReynolds| Mishra11| Trigonometric2|
-0080 | Cigar| Mystery| Tripod|
-0081 | Cola| NeedleEye| TubeHolder|
-0082 | Colville| NewFunction1| Ursem1|
-0083 | Corana| NewFunction2| Ursem3|
-0084 | CosineMixture| NewFunction3| Ursem4|
-0085 | CrossInTray| Null| UrsemWaves|
-0086 | CrossLegTable| OddSquare| VenterSobiezcczanskiSobieski|
-0087 | CrownedCross| Parsopoulos| Vincent|
-0088 | Csendes| Pathological| Watson|
-0089 | Cst| Paviani| Wavy|
-0090 | Cube| Peaks| WayburnSeader1|
-0091 | Custom01| PeaksN| WayburnSeader2|
-0092 | Custom02| Penalty1| Weibull|
-0093 | Custom03| Penalty2| Weierstrass|
-0094 | Custom04| PenHolder| Whitley|
-0095 | Custom05| Periodic| Wolfe|
-0096 | Damavandi| Pinter| XinSheYang1|
-0097 | Deb1| Plateau| XinSheYang2|
-0098 | Deb2| Powell| XinSheYang3|
-0099 | Deb3| PowerSum| XinSheYang4|
-0100 | Deb4| Price1| Xor|
-0101 | Decanomial| Price2| YaoLiu4|
-0102 | Deceptive| Price3| YaoLiu9|
-0103 | DeckkersAarts| Price4| Zacharov|
-0104 | DeflectedCorrugatedSpring| Qing| Zettl|
-0105 | DeVilliersGlasser1| Quadratic| Zimmerman|
-0106 | DeVilliersGlasser2| Quartic| Zirilli|
-0107 
-0108 List of constrained problems
-0109 ------
-0110 [(see the 2D-3D plots of the 1- and 2-dimensional constrained problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
+0012 <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> is able to 
+0013 
+0014 * Provide derivatives of the test functions
+0015 * Dealing with any dimension chosen by the user
+0016 * Provide <span class="keyword">global</span> minimum (value and associated set of parameters)
+0017 
+0018 First start
+0019 ---
+0020 
+0021 * unConstrained problems: `Example_unConstrained.m`
+0022 
+0023 List of unconstrained functions
+0024 ---
+0025 
+0026 [(see the 3D plots of the 2-dimensional unconstrained functions)](https://bitbucket.org/luclaurent/optigtest/wiki/unConstrained)
+0027 
+0028 | -                         | -                      | -                            |
+0029 | ------------------------- | ---------------------- | ---------------------------- |
+0030 | Ackley1                   | DixonPrice             | Quintic                      |
+0031 | Ackley2                   | Dolan                  | Rastrigin                    |
+0032 | Ackley3                   | DropWave               | RHE                          |
+0033 | Ackley4                   | Easom                  | Ripple01                     |
+0034 | Adjiman                   | ElAttarVidyasogarDutta | Ripple25                     |
+0035 | Alpine1                   | EggCrate               | Rosenbrock                   |
+0036 | Alpine2                   | EggHolder              | RosenbrockM                  |
+0037 | AHE                       | Exponential            | RosenbrockMS                 |
+0038 | AMGM                      | EX1                    | RotatedEllipse1              |
+0039 | BartelsConn               | Exp2                   | RotatedEllipse2              |
+0040 | Beale                     | Exp3                   | Rump                         |
+0041 | BiggsExp2                 | Exp4                   | Salomon                      |
+0042 | BiggsExp3                 | Exp5                   | Sargan                       |
+0043 | BiggsExp4                 | Exp6                   | Schaffer1                    |
+0044 | BiggsExp5                 | FreudensteinRoth       | Schaffer2                    |
+0045 | BiggsExp6                 | Gear                   | Schaffer3                    |
+0046 | Bird                      | Giunta                 | Schaffer4                    |
+0047 | Bohachevsky1              | GoldsteinPrice         | Schaffer6                    |
+0048 | Bohachevsky2              | Griewank               | SchmidtVetters               |
+0049 | Bohachevsky3              | GulfResearch           | Schwefel01                   |
+0050 | Booth                     | Hansen                 | Schwefel02                   |
+0051 | BoxBetts                  | Hartmann3              | Schwefel04                   |
+0052 | Brad                      | Hartmann6              | Schwefel06                   |
+0053 | Branin1                   | HelicalValley          | Schwefel20                   |
+0054 | Branin2                   | Himmelblau             | Schwefel21                   |
+0055 | Brent                     | Holzman                | Schwefel22                   |
+0056 | Brown                     | Hosaki                 | Schwefel23                   |
+0057 | Bukin01                   | Infiniti               | Schwefel25                   |
+0058 | Bukin02                   | JennrichSampson        | Schwefel26                   |
+0059 | Bukin03                   | Judge                  | Schwefel36                   |
+0060 | Bukin04                   | Katsuura               | Shekel05                     |
+0061 | Bukin05                   | Keane                  | Shekel07                     |
+0062 | Bukin06                   | Kowalik                | Shekel10                     |
+0063 | Bukin07                   | Langermann52           | Shubert1                     |
+0064 | Bukin08                   | Langermann5            | Shubert3                     |
+0065 | Bukin09                   | Leon                   | Shubert4                     |
+0066 | Bukin10                   | Levy03                 | SineEnveloppe                |
+0067 | Bukin11                   | Levy05                 | Sodp                         |
+0068 | Bukin12                   | Levy13                 | Slope                        |
+0069 | Bukin13                   | Matyas                 | Sphere                       |
+0070 | Bukin14                   | McCormick              | Step                         |
+0071 | Bukin15                   | Michalewicz            | Step1                        |
+0072 | Bukin16                   | MieleCantrell          | Step2                        |
+0073 | Bukin17                   | Mishra01               | Step3                        |
+0074 | Bukin18                   | Mishra02               | StepInt                      |
+0075 | Bukin19                   | Mishra03               | Stochastic                   |
+0076 | Bukin20                   | Mishra04               | StretchedV                   |
+0077 | CamelbackThreeHump        | Mishra05               | StyblinskiTang               |
+0078 | CamelbackSixHump          | Mishra06               | SumSquare                    |
+0079 | CarromTable               | Mishra07               | Treccani                     |
+0080 | ChenV                     | Mishra08               | Trefethen                    |
+0081 | ChenBird                  | Mishra09               | Trid                         |
+0082 | Chichinadze               | Mishra10               | Trigonometric1               |
+0083 | ChungReynolds             | Mishra11               | Trigonometric2               |
+0084 | Cigar                     | Mystery                | Tripod                       |
+0085 | Cola                      | NeedleEye              | TubeHolder                   |
+0086 | Colville                  | NewFunction1           | Ursem1                       |
+0087 | Corana                    | NewFunction2           | Ursem3                       |
+0088 | CosineMixture             | NewFunction3           | Ursem4                       |
+0089 | CrossInTray               | Null                   | UrsemWaves                   |
+0090 | CrossLegTable             | OddSquare              | VenterSobiezcczanskiSobieski |
+0091 | CrownedCross              | Parsopoulos            | Vincent                      |
+0092 | Csendes                   | Pathological           | Watson                       |
+0093 | Cst                       | Paviani                | Wavy                         |
+0094 | Cube                      | Peaks                  | WayburnSeader1               |
+0095 | Custom01                  | PeaksN                 | WayburnSeader2               |
+0096 | Custom02                  | Penalty1               | Weibull                      |
+0097 | Custom03                  | Penalty2               | Weierstrass                  |
+0098 | Custom04                  | PenHolder              | Whitley                      |
+0099 | Custom05                  | Periodic               | Wolfe                        |
+0100 | Damavandi                 | Pinter                 | XinSheYang1                  |
+0101 | Deb1                      | Plateau                | XinSheYang2                  |
+0102 | Deb2                      | Powell                 | XinSheYang3                  |
+0103 | Deb3                      | PowerSum               | XinSheYang4                  |
+0104 | Deb4                      | Price1                 | Xor                          |
+0105 | Decanomial                | Price2                 | YaoLiu4                      |
+0106 | Deceptive                 | Price3                 | YaoLiu9                      |
+0107 | DeckkersAarts             | Price4                 | Zacharov                     |
+0108 | DeflectedCorrugatedSpring | Qing                   | Zettl                        |
+0109 | DeVilliersGlasser1        | Quadratic              | Zimmerman                    |
+0110 | DeVilliersGlasser2        | Quartic                | Zirilli                      |
 0111 
-0112 List of multiobjective problems (w/- and w/o constraints)
-0113 ------
-0114 [(see the 2D-3D plots of the 1- and 2-dimensional multiobjective problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
-0115 
+0112 List of constrained problems
+0113 ---
+0114 
+0115 [(see the 2D-3D plots of the 1- and 2-dimensional constrained problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
 0116 
-0117 Download
-0118 ------
+0117 List of multiobjective problems (w/- and w/o constraints)
+0118 ---
 0119 
-0120 The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optitest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
+0120 [(see the 2D-3D plots of the 1- and 2-dimensional multiobjective problems)](https://bitbucket.org/luclaurent/optigtest/wiki/Constrained)
 0121 
-0122 If you use `git`, you can clone the repository using the following command
-0123 
-0124     git clone --recursive git@bitbucket.org:luclaurent/optiGtest.git <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>
-0125 
-0126 or 
-0127 
-0128     git clone --recursive git@github.com:luclaurent/optiGTest.git <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>
-0129 
-0130 Dependency
-0131 ------
+0122 Download
+0123 ---
+0124 
+0125 The toolbox can be downloaded [here](https://bitbucket.org/luclaurent/optigtest/downloads) or [here](https://github.com/luclaurent/optigtest/releases).
+0126 
+0127 If you use `git`, you can clone the repository using the following command
+0128 
+0129     git clone --recursive git@bitbucket.org:luclaurent/optigtest.git <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>
+0130 
+0131 or 
 0132 
-0133 **<a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>** uses the **gradFD** class <span class="keyword">for</span> checking gradients computation. Loading this class is optional but some functionalities will not be available which is not very important <span class="keyword">if</span> you only want to use the main purpose of this toolbox (computing responses of objective and constraints functions and their gradients).
+0133     git clone --recursive git@github.com:luclaurent/optiGTest.git <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>
 0134 
-0135 If you forget to use the `--recursive` option when you clone the repository, please use the command `submodule --init` in order to initialize the missing class **gradFD**. 
-0136 
+0135 Dependency
+0136 ---
 0137 
-0138 
-0139 References
-0140 ----
-0141 This toolbox is inspired by many existing codes and papers
-0142 
-0143 * [AMPGO](http://infinity77.net/global_optimization/index.html) (and [github repository](https://github.com/andyfaff/ampgo/))
-0144 * E. P. Adorio and U. P. Diliman. [MVF - Multivariate Test Functions Library in C <span class="keyword">for</span> Unconstrained Global Optimization.](https://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwi2j_iz8sbTAhWG0hoKHfYLAncQFggnMAA&amp;url=http<span class="comment">%3A%2F%2Fwww.geocities.ws%2Feadorio%2Fmvf.pdf&amp;usg=AFQjCNE7AMN9NpxLz2UGDInWKcwMeC120g&amp;sig2=trbG1un24A4RfYCPdifjuA)</span>
-0145 * P. N. Suganthan, N. Hansen, J. J. Liang, K. Deb, Y. P. Chen, A. Auger and S. Tiwari. Problem definitions and evaluation criteria <span class="keyword">for</span> the CEC 2005 special session on real-parameter optimization. KanGAL report, 2005.[Link](https://www.lri.fr/~hansen/Tech-Report-May-30-05.pdf)
-0146 * V. Bicik, Continuous optimization algorithms, Master thesis, Czech Technical University in Prague, 2010 [Link](https://dip.felk.cvut.cz/browse/pdfcache/bicikvla_2010dipl.pdf)
-0147 * M. Jamil and Xin-She Yang, A literature survey of benchmark functions <span class="keyword">for</span> <span class="keyword">global</span> optimization problems, *Int. Journal of Mathematical Modelling and Numerical Optimisation*, Vol. 4, No. 2, pp. 150--194 (2013) doi: [10.1504/IJMMNO.2013.055204](https://doi.org/10.1504/IJMMNO.2013.055204) arXiv: [1308.4008](https://arxiv.org/abs/1308.4008) [PDF](https://arxiv.org/pdf/1308.4008.pdf)
-0148 * M. Molga, C. Smutnick. Test functions <span class="keyword">for</span> optimization needs, *Comput. Inform. Sci.*, 1-43, 2005. [Link](http://new.zsd.iiar.pwr.wroc.pl/files/docs/functions.pdf)
-0149 * M. M. Ali, C. Khompatraporn and Z. B. Zabinsky, *Journal of Global Optimisation* (2005) 31:635. doi: [10.1007/s10898-004-9972-2](https://doi.org/10.1007/s10898-004-9972-2) [PDF](http://folk.uib.no/ssu029/Pdf_file/Ali05.pdf)
-0150 * [Virtual Library of Simulation Experiments](https://www.sfu.ca/~ssurjano/other.html)
-0151 * Wikipedia. [Test functions <span class="keyword">for</span> optimization](http://en.wikipedia.org/w/index.php?title=Test<span class="comment">%20functions%20for%20optimization&amp;oldid=837180368), 2018. [Online; accessed 13-May-2018]</span>
-0152 
-0153 License ![GNU GPLv3](http://www.gnu.org/graphics/gplv3-88x31.png)
-0154 ----
-0155 
-0156     <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> - set of testing functions    A toolbox to easy manipulate functions.
-0157     Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;
-0158 
-0159     This program is free software: you can redistribute it and/or modify
-0160     it under the terms of the GNU General Public License as published by
-0161     the Free Software Foundation, either version 3 of the License, or
-0162     (at your option) any later version.
+0138 **<a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>** uses the **gradFD** class <span class="keyword">for</span> checking gradients computation. Loading this class is optional but some functionalities will not be available which is not very important <span class="keyword">if</span> you only want to use the main purpose of this toolbox (computing responses of objective and constraints functions and their gradients).
+0139 
+0140 If you forget to use the `--recursive` option when you clone the repository, please use the command `submodule --init` in order to initialize the missing class **gradFD**. 
+0141 
+0142 [Documentation](https://goo.gl/xRMLYb)
+0143 ---
+0144 
+0145 The automatic building of the documentation is based on the [m2html](http://www.artefact.tk/software/<a href="../optiGTest/unConstrained/matlab.html" class="code" title="">matlab</a>/m2html/) software.
+0146 
+0147 The obtained documentation is available [here](https://goo.gl/xRMLYb).
+0148 
+0149 References
+0150 ---
+0151 
+0152 This toolbox is inspired by many existing codes and papers
+0153 
+0154 * [AMPGO](http://infinity77.net/global_optimization/index.html) (and [github repository](https://github.com/andyfaff/ampgo/))
+0155 * E. P. Adorio and U. P. Diliman. [MVF - Multivariate Test Functions Library in C <span class="keyword">for</span> Unconstrained Global Optimization.](https://www.google.fr/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;cad=rja&amp;uact=8&amp;ved=0ahUKEwi2j_iz8sbTAhWG0hoKHfYLAncQFggnMAA&amp;url=http<span class="comment">%3A%2F%2Fwww.geocities.ws%2Feadorio%2Fmvf.pdf&amp;usg=AFQjCNE7AMN9NpxLz2UGDInWKcwMeC120g&amp;sig2=trbG1un24A4RfYCPdifjuA)</span>
+0156 * P. N. Suganthan, N. Hansen, J. J. Liang, K. Deb, Y. P. Chen, A. Auger and S. Tiwari. Problem definitions and evaluation criteria <span class="keyword">for</span> the CEC 2005 special session on real-parameter optimization. KanGAL report, 2005.[Link](https://www.lri.fr/~hansen/Tech-Report-May-30-05.pdf)
+0157 * V. Bicik, Continuous optimization algorithms, Master thesis, Czech Technical University in Prague, 2010 [Link](https://dip.felk.cvut.cz/browse/pdfcache/bicikvla_2010dipl.pdf)
+0158 * M. Jamil and Xin-She Yang, A literature survey of benchmark functions <span class="keyword">for</span> <span class="keyword">global</span> optimization problems, *Int. Journal of Mathematical Modelling and Numerical Optimisation*, Vol. 4, No. 2, pp. 150--194 (2013) doi: [10.1504/IJMMNO.2013.055204](https://doi.org/10.1504/IJMMNO.2013.055204) arXiv: [1308.4008](https://arxiv.org/abs/1308.4008) [PDF](https://arxiv.org/pdf/1308.4008.pdf)
+0159 * M. Molga, C. Smutnick. Test functions <span class="keyword">for</span> optimization needs, *Comput. Inform. Sci.*, 1-43, 2005. [Link](http://new.zsd.iiar.pwr.wroc.pl/files/docs/functions.pdf)
+0160 * M. M. Ali, C. Khompatraporn and Z. B. Zabinsky, *Journal of Global Optimisation* (2005) 31:635. doi: [10.1007/s10898-004-9972-2](https://doi.org/10.1007/s10898-004-9972-2) [PDF](http://folk.uib.no/ssu029/Pdf_file/Ali05.pdf)
+0161 * [Virtual Library of Simulation Experiments](https://www.sfu.ca/~ssurjano/other.html)
+0162 * Wikipedia. [Test functions <span class="keyword">for</span> optimization](http://en.wikipedia.org/w/index.php?title=Test<span class="comment">%20functions%20for%20optimization&amp;oldid=837180368), 2018. [Online; accessed 13-May-2018]</span>
 0163 
-0164     This program is distributed in the hope that it will be useful,
-0165     but WITHOUT ANY WARRANTY; without even the implied warranty of
-0166     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-0167     GNU General Public License <span class="keyword">for</span> more details.
-0168 
-0169     You should have received a copy of the GNU General Public License
-0170     along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0164 License ![GNU GPLv3](http://www.gnu.org/graphics/gplv3-88x31.png)
+0165 ---
+0166 
+0167     <a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a> - set of testing functions    A toolbox to easy manipulate functions.
+0168     Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;
+0169     
+0170     This program is free software: you can redistribute it and/or modify
+0171     it under the terms of the GNU General Public License as published by
+0172     the Free Software Foundation, either version 3 of the License, or
+0173     (at your option) any later version.
+0174     
+0175     This program is distributed in the hope that it will be useful,
+0176     but WITHOUT ANY WARRANTY; without even the implied warranty of
+0177     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+0178     GNU General Public License <span class="keyword">for</span> more details.
+0179     
+0180     You should have received a copy of the GNU General Public License
+0181     along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</pre></div>
+<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

@@ -33,7 +33,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-</ul>
+<li><a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li></ul>
@@ -91,15 +91,15 @@ This function is called by:
 0047     ZZ=obj.evalObj(X);
 0048     <span class="comment">%</span>
 0049     <span class="keyword">if</span> all(abs(ZZ(:)-Z(:))&gt;limO)
-0050         fprintf(<span class="string">'Issue with the %s function (wrong minimum obtained)\n'</span>,obj.namePb);
-0051         fprintf(<span class="string">'Obtained: '</span>);fprintf(<span class="string">'%d '</span>,ZZ(:)');
+0050         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Issue with the %s function (wrong minimum obtained)\n'</span>,obj.namePb);
+0051         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Obtained: '</span>);fprintf(<span class="string">'%d '</span>,ZZ(:)');
 0052         fprintf(<span class="string">'\n'</span>);
-0053         fprintf(<span class="string">'Expected: '</span>);fprintf(<span class="string">'%d '</span>,Z(:)');
+0053         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Expected: '</span>);fprintf(<span class="string">'%d '</span>,Z(:)');
 0054         fprintf(<span class="string">'\n'</span>);
 0055         isOk=false;
 0056     <span class="keyword">end</span>
 0057 <span class="keyword">end</span>
 0058 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

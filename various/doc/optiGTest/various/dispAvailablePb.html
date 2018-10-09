@@ -33,7 +33,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-<li><a href="../../optiGTest/Constrained/loadProbCons.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbCons(pbName)">loadProbCons</a>	% function for loading constrained problems</li><li><a href="../../optiGTest/MultiObj/loadProbMulti.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbMulti(funName)">loadProbMulti</a>	% Function for loading available multi-objective problems</li><li><a href="../../optiGTest/unConstrained/loadDimUn.html" class="code" title="function dim=loadDim(funName)">loadDimUn</a>	% function for loading dimension of available functions</li></ul>
+<li><a href="../../optiGTest/Constrained/loadProbCons.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbCons(pbName)">loadProbCons</a>	% function for loading constrained problems</li><li><a href="../../optiGTest/MultiObj/loadProbMulti.html" class="code" title="function [funOpti,funCons,typeCons]=loadProbMulti(funName)">loadProbMulti</a>	% Function for loading available multi-objective problems</li><li><a href="../../optiGTest/unConstrained/loadDimUn.html" class="code" title="function dim=loadDim(funName)">loadDimUn</a>	% function for loading dimension of available functions</li><li><a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="../../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li><li><a href="../../optiGTest/Example_Constrained.html" class="code" title="">Example_Constrained</a>	% Constrained example (optiGTest class)</li><li><a href="../../optiGTest/Example_multiobjective.html" class="code" title="">Example_multiobjective</a>	% Multi-objective example (optiGTest class)</li><li><a href="../../optiGTest/Example_unConstrained.html" class="code" title="">Example_unConstrained</a>	% unConstrained example (optiGTest class)</li></ul>
@@ -97,27 +97,27 @@ This function is called by:
 0053 nbMultiObjPb=cellfun(@(x)funCount(strPbMulti,x,1),listPbMulti);
 0054 <span class="comment">%</span>
 0055 <span class="comment">%Show existing problems</span>
-0056 fprintf(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
-0057 fprintf(<span class="string">'Available test problems\n'</span>);
+0056 <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
+0057 <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Available test problems\n'</span>);
 0058 <span class="keyword">if</span> flagUn
-0059     fprintf(<span class="string">'------------------------\n'</span>);
-0060     cellfun(@(X)fprintf(<span class="string">'Unconstrained: %s\n'</span>,X),listPbUn);
-0061     fprintf(<span class="string">'------------------------\n'</span>);
+0059     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
+0060     cellfun(@(X)<a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Unconstrained: %s\n'</span>,X),listPbUn);
+0061     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
 0062 <span class="keyword">end</span>
 0063 <span class="keyword">if</span> flagCons
-0064     fprintf(<span class="string">'------------------------\n'</span>);
-0065     cellfun(@(X,Y,Z)fprintf(<span class="string">'Constrained: %s (nb constraints: %i)\n'</span>,X,Y),<span class="keyword">...</span>
+0064     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
+0065     cellfun(@(X,Y,Z)<a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Constrained: %s (nb constraints: %i)\n'</span>,X,Y),<span class="keyword">...</span>
 0066         listPbCons,num2cell(nbConsPb));
-0067     fprintf(<span class="string">'------------------------\n'</span>);
+0067     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
 0068 <span class="keyword">end</span>
 0069 <span class="keyword">if</span> flagMulti
-0070     fprintf(<span class="string">'------------------------\n'</span>);
-0071     cellfun(@(X,Y,Z)fprintf(<span class="string">'Multiobjective: %s (nb objective/constraints: %i/%i)\n'</span>,X,Y,Z),<span class="keyword">...</span>
+0070     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
+0071     cellfun(@(X,Y,Z)<a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'Multiobjective: %s (nb objective/constraints: %i/%i)\n'</span>,X,Y,Z),<span class="keyword">...</span>
 0072         listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
-0073     fprintf(<span class="string">'------------------------\n'</span>);
+0073     <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'------------------------\n'</span>);
 0074 <span class="keyword">end</span>
-0075 fprintf(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
+0075 <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n'</span>);
 0076 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

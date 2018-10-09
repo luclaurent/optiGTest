@@ -1,7 +1,13 @@
 /* Created by mdot for Matlab */
 digraph m2html {
+  checkAllPb -> Ofprintf;
   checkAllPb -> listPb;
+  checkCons -> Ofprintf;
   checkCons -> boolFun;
+  checkFunObj -> Ofprintf;
+  checkGradFun -> Ofprintf;
+  demo -> Ofprintf;
+  dispDetails -> Ofprintf;
   funMD -> loadDimCons;
   funMD -> loadProbCons;
   funMD -> loadDimMulti;
@@ -33,10 +39,12 @@ digraph m2html {
   optiGTest -> show2D;
   optiGTest -> show2DCons;
   optiGTest -> showPareto;
+  optiGTest -> Ofprintf;
   optiGTest -> availablePb;
   optiGTest -> dispAvailablePb;
   show2D -> surfCustom;
   show2DCons -> surfCustom;
+  showPareto -> Ofprintf;
   loadProbCons -> listPb;
   probRosenbrockCubicLine -> funRosenbrock;
   Example_Constrained -> optiGTest;
@@ -54,13 +62,17 @@ digraph m2html {
   funObjZitzlerDebThiele62 -> funObjZitzlerDebThiele61;
   loadProbMulti -> listPb;
   README -> optiGTest;
+  README -> matlab;
   availablePb -> loadDimCons;
   availablePb -> loadDimMulti;
   availablePb -> loadDimUn;
   buildDocOptiGTest -> listFilesoptiGTest;
+  buildTableMD -> Ofprintf;
   dispAvailablePb -> loadProbCons;
   dispAvailablePb -> loadProbMulti;
   dispAvailablePb -> loadDimUn;
+  dispAvailablePb -> Ofprintf;
+  dispTableTwoColumns -> Ofprintf;
   listPb -> loadProbCons;
   listPb -> loadProbMulti;
   listPb -> loadDimUn;
@@ -419,6 +431,7 @@ digraph m2html {
   loadSpaceUn [URL="optiGTest/unConstrained/loadSpaceUn.html"];
   matlab [URL="optiGTest/unConstrained/matlab.html"];
   testFUN [URL="optiGTest/unConstrained/testFUN.html"];
+  Ofprintf [URL="optiGTest/various/Ofprintf.html"];
   availablePb [URL="optiGTest/various/availablePb.html"];
   boolFun [URL="optiGTest/various/boolFun.html"];
   buildDocOptiGTest [URL="optiGTest/various/buildDocOptiGTest.html"];
