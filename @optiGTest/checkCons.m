@@ -67,6 +67,6 @@ if obj.nbCons>0
         status=feval(funCheck,ZZOk,testFun{1});
     end
 else
-    fprintf('No constraint function(s)\n');
+    Ofprintf('No constraint function(s)\n');
 end
 end

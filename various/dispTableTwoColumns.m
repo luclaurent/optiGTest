@@ -50,6 +50,6 @@ end
 if nargout==1
     txt=txtOk;
 else
-    Gfprintf(txtOk);
+    Ofprintf(txtOk);
 end
 end

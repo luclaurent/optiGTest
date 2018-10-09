@@ -68,14 +68,16 @@ classdef optiGTest < handle
         
         
         function obj=optiGTest(PbName,XX,dim)
-            fprintf('###############################\n');
-            fprintf('### Create optiGTest object ###\n');
-            fprintf('###############################\n');
             %add tree of the class in the path
             obj.addTree;
+            %
+            Ofprintf('###############################\n');
+            Ofprintf('### Create optiGTest object ###\n');
+            Ofprintf('###############################\n');
+            %
             % no input arguments: create the empty class
             if nargin==0
-                fprintf('### Run check process of all problems\n');
+                Ofprintf('### Run check process of all problems\n');
                 obj.checkAllPb(false);
             else
                 if ~isempty(PbName)
@@ -165,7 +167,7 @@ classdef optiGTest < handle
                 % load objective function and constraints functions
                 obj.loadPb;
             else
-                fprintf('Problem %s unavailable \n',txt);
+                Ofprintf('Problem %s unavailable \n',txt);
                 dispAvailablePb();
             end
         end

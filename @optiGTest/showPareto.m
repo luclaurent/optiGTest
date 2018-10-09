@@ -47,6 +47,6 @@ elseif obj.nbObj==3
     ylabel('f2');
     zlabel('f2');
 else
-    fprintf('Unable to show the Paretos front\n');
+    Ofprintf('Unable to show the Paretos front\n');
 end
 end

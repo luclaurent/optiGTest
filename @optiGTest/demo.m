@@ -72,6 +72,6 @@ elseif any(ismember(obj.dimAvailable,2))||isinf(obj.dimAvailable)
     %store figure handle
     obj.figureHandle=hh;
 else
-    fprintf(['Too large dimension to be plotted (' mfilename ')\n']);
+    Ofprintf(['Too large dimension to be plotted (' mfilename ')\n']);
 end
 end

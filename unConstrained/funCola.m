@@ -17,13 +17,13 @@
 % but WITHOUT ANY WARRANTY; without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 % GNU General Public License for more details.
-% 
+%
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 %
 %numerous local minima
-%1 global minimum : x=(0.651906,1.30194,0.099242,?0.883791,?0.8796, 
+%1 global minimum : x=(0.651906,1.30194,0.099242,?0.883791,?0.8796,
 %               0.204651,-3.28414,0.851188,-3.46245,2.53245,-0.895246,
 %               0.204651,-3.28414,0.851188,-3.46245,2.53245,-0.895246,
 %               1.40992,-3.07367,1.96257,-2.97872,?0.807849,-1.68978) >> f(x)=11.7464
@@ -59,15 +59,15 @@ yC=cat(3,zz,zz,xx(:,:,2:2:end));
 p=zeros(nS(1:2));
 for itI=1:size(xC,3)
     for itJ=1:itI-1
-       % dd(itI,itJ)
+        % dd(itI,itJ)
         p=p+(funR(xC(:,:,itI),xC(:,:,itJ),yC(:,:,itI),yC(:,:,itJ))-dd(itI,itJ)).^2;
-       % p
+        % p
     end
 end
 
 if nargout==2
     fprintf('Derivatives not implemented\n')
     dp=zeros(nS);
- %   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
+    %   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);
 end
 end

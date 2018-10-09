@@ -25,8 +25,8 @@
 
 function dispDetails(obj)
 if ~isempty(obj.namePb)
-    fprintf('\n## Problem: %s\n',obj.namePb);
-    fprintf('# Objective function(s):');
+    Ofprintf('\n## Problem: %s\n',obj.namePb);
+    Ofprintf('# Objective function(s):');
     %
     funDisp=@(x)fprintf(' %s,',x);
     %
@@ -37,7 +37,7 @@ if ~isempty(obj.namePb)
     end
     fprintf('\n');
     %
-    fprintf('# Constraint function(s):');
+    Ofprintf('# Constraint function(s):');
     if obj.nbCons==0
         fprintf(' None');
     else
@@ -45,16 +45,16 @@ if ~isempty(obj.namePb)
     end
     fprintf('\n');
     %
-    fprintf('# Considered dimension: %i\n',obj.dim);
-    fprintf('# Considered design space:\n');
-    fprintf('#  Min: ');fprintf('%-+d\t',obj.xMin);fprintf('\n');
-    fprintf('#  Max: ');fprintf('%-+d\t',obj.xMax);fprintf('\n');
-    fprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
+    Ofprintf('# Considered dimension: %i\n',obj.dim);
+    Ofprintf('# Considered design space:\n');
+    Ofprintf('#  Min: ');fprintf('%-+d\t',obj.xMin);fprintf('\n');
+    Ofprintf('#  Max: ');fprintf('%-+d\t',obj.xMax);fprintf('\n');
+    Ofprintf('# Considered global minimum(s) (sample points and response value(s)):\n');
     %
     Xmin=obj.globMinX;
     Zmin=obj.globMinZ;
     for itM=1:numel(Zmin)
-        fprintf('# ');
+        Ofprintf('# ');
         fprintf('%-+d\t',Xmin(itM,:));
         fprintf('|| %d \n',Zmin(itM));
     end
