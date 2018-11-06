@@ -100,6 +100,6 @@ if exist('gradFD','class')
         end
     end
 else
-    Ofprintf(' Unbale to check the gradients because the class gradFD is not available\n');
+    Ofprintf(' Unable to check the gradients because the class gradFD is not available\n');
 end
 end
