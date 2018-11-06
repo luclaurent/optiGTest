@@ -34,6 +34,9 @@ dirPath={'@optiGTest','Constrained','MultiObj','unConstrained','various'};
 
 %add configuration to bash (for finding 'dot' script of graphviz)
 setenv('BASH_ENV','~/.bash_profile');
+setenv('DYLD_LIBRARY_PATH','/usr/local/bin/');
+setenv('PATH','/usr/local/bin/');
+
 
 %directory to be analysed
 analyseDir='optiGTest';

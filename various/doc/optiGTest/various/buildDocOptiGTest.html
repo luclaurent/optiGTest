@@ -78,33 +78,36 @@ This function is called by:
 0034 
 0035 <span class="comment">%add configuration to bash (for finding 'dot' script of graphviz)</span>
 0036 setenv(<span class="string">'BASH_ENV'</span>,<span class="string">'~/.bash_profile'</span>);
-0037 
-0038 <span class="comment">%directory to be analysed</span>
-0039 analyseDir=<span class="string">'optiGTest'</span>;
-0040 <span class="comment">%ignoring directory</span>
-0041 <span class="comment">%ignDir={'};</span>
-0042 
-0043 <span class="comment">%list of files</span>
-0044 listFiles=<a href="listFilesoptiGTest.html" class="code" title="function listF=listFilesoptiGTest(dirT)">listFilesoptiGTest</a>(dirPath);
-0045 <span class="comment">%add path to all files</span>
-0046 listFiles=cellfun(@(x) sprintf(<span class="string">'%s/%s'</span>,analyseDir,x),listFiles,<span class="string">'UniformOutput'</span>,false);
-0047 
-0048 cd ..
-0049 warning(<span class="string">'off'</span>)
-0050 <span class="comment">%execute generation of the doc (Graphviz is optional)</span>
-0051 m2html(<span class="string">'mfiles'</span>,listFiles,<span class="keyword">...</span>
-0052     <span class="string">'htmldir'</span>,[analyseDir <span class="string">'/various/doc'</span>],<span class="keyword">...</span>
-0053     <span class="string">'recursive'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
-0054     <span class="string">'global'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
-0055     <span class="string">'globalHypertextLinks'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
-0056     <span class="string">'index'</span>,<span class="string">'menu'</span>,<span class="keyword">...</span>
-0057     <span class="string">'template'</span>,<span class="string">'frame'</span>,<span class="keyword">...</span>
-0058     <span class="string">'index'</span>,<span class="string">'menu'</span>,<span class="keyword">...</span>
-0059     <span class="string">'download'</span>,<span class="string">'off'</span>,<span class="keyword">...</span>
-0060     <span class="string">'graph'</span>,<span class="string">'on'</span>)
-0061 warning(<span class="string">'on'</span>)
-0062 cd(analyseDir)
-0063 <span class="comment">%%%%%%</span></pre></div>
-<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0037 setenv(<span class="string">'DYLD_LIBRARY_PATH'</span>,<span class="string">'/usr/local/bin/'</span>);
+0038 setenv(<span class="string">'PATH'</span>,<span class="string">'/usr/local/bin/'</span>);
+0039 
+0040 
+0041 <span class="comment">%directory to be analysed</span>
+0042 analyseDir=<span class="string">'optiGTest'</span>;
+0043 <span class="comment">%ignoring directory</span>
+0044 <span class="comment">%ignDir={'};</span>
+0045 
+0046 <span class="comment">%list of files</span>
+0047 listFiles=<a href="listFilesoptiGTest.html" class="code" title="function listF=listFilesoptiGTest(dirT)">listFilesoptiGTest</a>(dirPath);
+0048 <span class="comment">%add path to all files</span>
+0049 listFiles=cellfun(@(x) sprintf(<span class="string">'%s/%s'</span>,analyseDir,x),listFiles,<span class="string">'UniformOutput'</span>,false);
+0050 
+0051 cd ..
+0052 warning(<span class="string">'off'</span>)
+0053 <span class="comment">%execute generation of the doc (Graphviz is optional)</span>
+0054 m2html(<span class="string">'mfiles'</span>,listFiles,<span class="keyword">...</span>
+0055     <span class="string">'htmldir'</span>,[analyseDir <span class="string">'/various/doc'</span>],<span class="keyword">...</span>
+0056     <span class="string">'recursive'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
+0057     <span class="string">'global'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
+0058     <span class="string">'globalHypertextLinks'</span>,<span class="string">'on'</span>,<span class="keyword">...</span>
+0059     <span class="string">'index'</span>,<span class="string">'menu'</span>,<span class="keyword">...</span>
+0060     <span class="string">'template'</span>,<span class="string">'frame'</span>,<span class="keyword">...</span>
+0061     <span class="string">'index'</span>,<span class="string">'menu'</span>,<span class="keyword">...</span>
+0062     <span class="string">'download'</span>,<span class="string">'off'</span>,<span class="keyword">...</span>
+0063     <span class="string">'graph'</span>,<span class="string">'on'</span>)
+0064 warning(<span class="string">'on'</span>)
+0065 cd(analyseDir)
+0066 <span class="comment">%%%%%%</span></pre></div>
+<hr><address>Generated on Tue 06-Nov-2018 18:32:08 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

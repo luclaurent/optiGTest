@@ -155,455 +155,457 @@ This function is called by:
 0111     <span class="string">'Custom03'</span>,(1:2:17)'*pi/4,<span class="keyword">...</span>
 0112     <span class="string">'Custom04'</span>,0,<span class="keyword">...</span>
 0113     <span class="string">'Custom05'</span>,-0.636071,<span class="keyword">...</span>
-0114     <span class="string">'Damavandi'</span>,[2,2],<span class="keyword">...</span>
-0115     <span class="string">'Deb1'</span>,NaN,<span class="keyword">...</span>
-0116     <span class="string">'Deb2'</span>,NaN,<span class="keyword">...</span>
-0117     <span class="string">'Deb3'</span>,NaN,<span class="keyword">...</span>
-0118     <span class="string">'Deb4'</span>,NaN,<span class="keyword">...</span>
-0119     <span class="string">'Decanomial'</span>,[2,-3],<span class="keyword">...</span>
-0120     <span class="string">'Deceptive'</span>,(1:dim)./(dim+1),<span class="keyword">...</span>
-0121     <span class="string">'DeckkersAarts'</span>,[0,-15;0,15],<span class="keyword">...</span>
-0122     <span class="string">'DeflectedCorrugatedSpring'</span>,5*ones(1,dim),<span class="keyword">...</span>
-0123     <span class="string">'DeVilliersGlasser1'</span>,NaN,<span class="keyword">...</span>
-0124     <span class="string">'DeVilliersGlasser2'</span>,NaN,<span class="keyword">...</span>
-0125     <span class="string">'DixonPrice'</span>,2.^(-(2.^(1:dim)-2)./2.^(1:dim)),<span class="keyword">...</span>
-0126     <span class="string">'Dolan'</span>, [8.39045925, 4.81424707, 7.34574133, 68.88246895, 3.85470806],<span class="keyword">...</span>
-0127     <span class="string">'DropWave'</span>,zeros(1,dim),<span class="keyword">...</span>
-0128     <span class="string">'Easom'</span>,[pi pi],<span class="keyword">...</span>
-0129     <span class="string">'ElAttarVidyasogarDutta'</span>,[3.40918683, -2.17143304],<span class="keyword">...</span>
-0130     <span class="string">'EggCrate'</span>,[0,0],<span class="keyword">...</span>
-0131     <span class="string">'EggHolder'</span>,[512.0, 404.2319],<span class="keyword">...</span>
-0132     <span class="string">'Exponential'</span>,0,<span class="keyword">...</span>
-0133     <span class="string">'EX1'</span>,[1.764,11.15],<span class="keyword">...</span>
-0134     <span class="string">'Exp2'</span>,[1,10],<span class="keyword">...</span>
-0135     <span class="string">'Exp3'</span>,[1,10,5],<span class="keyword">...</span>
-0136     <span class="string">'Exp4'</span>,[1,10,1,5],<span class="keyword">...</span>
-0137     <span class="string">'Exp5'</span>,[1,10,1,5,4],<span class="keyword">...</span>
-0138     <span class="string">'Exp6'</span>,[1,10,1,5,4,3],<span class="keyword">...</span>
-0139     <span class="string">'FreudensteinRoth'</span>,[5,4],<span class="keyword">...</span>
-0140     <span class="string">'Gear'</span>,[16,19,43,49],<span class="keyword">...</span>
-0141     <span class="string">'Giunta'</span>,[0.4673200277395354, 0.4673200169591304],<span class="keyword">...</span>
-0142     <span class="string">'GoldsteinPrice'</span>,[0,-1],<span class="keyword">...</span>
-0143     <span class="string">'Griewank'</span>,0,<span class="keyword">...</span>
-0144     <span class="string">'GulfResearch'</span>,[50,25,1.5],<span class="keyword">...</span>
-0145     <span class="string">'Hansen'</span>,[-7.589893,-7.708314;<span class="keyword">...</span>
-0146     -7.589893, -1.425128;<span class="keyword">...</span>
-0147     -7.589893, 4.858057;<span class="keyword">...</span>
-0148     -1.306708, -7.708314;<span class="keyword">...</span>
-0149     -1.306708, 4.858057;<span class="keyword">...</span>
-0150     4.976478, 4.858057;<span class="keyword">...</span>
-0151     4.976478, -1.425128;<span class="keyword">...</span>
-0152     4.976478, -7.708314],<span class="keyword">...</span>
-0153     <span class="string">'Hartmann3'</span>,[0.114614,0.555649,0.852547],<span class="keyword">...</span>
-0154     <span class="string">'Hartmann6'</span>,[0.20168952, 0.15001069, 0.47687398, 0.27533243, 0.31165162, 0.65730054],<span class="keyword">...</span>
-0155     <span class="string">'HelicalValley'</span>,[1,0,0],<span class="keyword">...</span>
-0156     <span class="string">'Himmelblau'</span>,[3,2],<span class="keyword">...</span>
-0157     <span class="string">'Holzman'</span>,[50 25 1.5],<span class="keyword">...</span>
-0158     <span class="string">'Hosaki'</span>,[4,2],<span class="keyword">...</span>
-0159     <span class="string">'Infiniti'</span>,zeros(1,dim),<span class="keyword">...</span>
-0160     <span class="string">'JennrichSampson'</span>,[0.257825,0.257825],<span class="keyword">...</span>
-0161     <span class="string">'Judge'</span>,[0.86479,1.2357],<span class="keyword">...</span>
-0162     <span class="string">'Katsuura'</span>,zeros(1,dim),<span class="keyword">...</span>
-0163     <span class="string">'Kowalik'</span>,[0.192833,0.190836,0.123117,0.135766],<span class="keyword">...</span>
-0164     <span class="string">'Langermann52'</span>,NaN,<span class="keyword">...</span>
-0165     <span class="string">'Langermann5'</span>,NaN,<span class="keyword">...</span>
-0166     <span class="string">'Keane'</span>,[0,1.39325;1.39325,0],<span class="keyword">...</span>
-0167     <span class="string">'Leon'</span>,[1,1],<span class="keyword">...</span>
-0168     <span class="string">'Levy03'</span>,ones(1,dim),<span class="keyword">...</span>
-0169     <span class="string">'Levy05'</span>,[-1.3068,-1.4248],<span class="keyword">...</span>
-0170     <span class="string">'Levy13'</span>,ones(1,dim),<span class="keyword">...</span>
-0171     <span class="string">'Matyas'</span>,[0,0],<span class="keyword">...</span>
-0172     <span class="string">'McCormick'</span>,[-0.547,-1.547],<span class="keyword">...</span>
-0173     <span class="string">'Michalewicz'</span>,NaN,<span class="keyword">...</span>
-0174     <span class="string">'MieleCantrell'</span>,[0,1,1,1],<span class="keyword">...</span>
-0175     <span class="string">'Mishra01'</span>,NaN,<span class="keyword">...</span>
-0176     <span class="string">'Mishra02'</span>,NaN,<span class="keyword">...</span>
-0177     <span class="string">'Mishra03'</span>,[-8.4667,-10],<span class="keyword">...</span><span class="comment"> %[-8.466,-10],...</span>
-0178     <span class="string">'Mishra04'</span>,[-9.94112, -9.99952],<span class="keyword">...</span><span class="comment"> %[-9.84112,-10],...</span>
-0179     <span class="string">'Mishra05'</span>,[-1.98682,-10],<span class="keyword">...</span>
-0180     <span class="string">'Mishra06'</span>,[2.94777, 1.82174],<span class="keyword">...</span><span class="comment"> %[2.88631, 1.82326],...</span>
-0181     <span class="string">'Mishra07'</span>,factorial(dim).*ones(1,dim),<span class="keyword">...</span>
-0182     <span class="string">'Mishra08'</span>,[2,-3],<span class="keyword">...</span>
-0183     <span class="string">'Mishra09'</span>,[1,2,3],<span class="keyword">...</span>
-0184     <span class="string">'Mishra10'</span>,[2,2],<span class="keyword">...</span>
-0185     <span class="string">'Mishra11'</span>,0,<span class="keyword">...</span>
-0186     <span class="string">'Mystery'</span>,[2.5044,2.5778],<span class="keyword">...</span>
-0187     <span class="string">'NeedleEye'</span>,zeros(1,dim),<span class="keyword">...</span>
-0188     <span class="string">'NewFunction1'</span>,[-8.4666,-9.9988],<span class="keyword">...</span>
-0189     <span class="string">'NewFunction2'</span>,[-9.94112,-9.99952],<span class="keyword">...</span>
-0190     <span class="string">'NewFunction3'</span>,[-1.9862,-10],<span class="keyword">...</span>
-0191     <span class="string">'Null'</span>,NaN,<span class="keyword">...</span>
-0192     <span class="string">'OddSquare'</span>,[1, 1.3, 0.8, -0.4, -1.3, 1.6, -0.2, -0.6, 0.5, 1.4<span class="keyword">...</span>
-0193     1, 1.3, 0.8, -0.4, -1.3, 1.6, -0.2, -0.6, 0.5, 1.4],<span class="keyword">...</span>
-0194     <span class="string">'Parsopoulos'</span>,[pi/2,pi],<span class="keyword">...</span>
-0195     <span class="string">'Pathological'</span>,zeros(1,dim),<span class="keyword">...</span>
-0196     <span class="string">'PenHolder'</span>,[9.646167708023526, 9.646167671043401;
-0197     -9.646167708023526, 9.646167671043401;
-0198     9.646167708023526, -9.646167671043401;
-0199     -9.646167708023526, -9.646167671043401],<span class="keyword">...</span>
-0200     <span class="string">'Paviani'</span>,9.351,<span class="keyword">...</span>
-0201     <span class="string">'Peaks'</span>,[0.2283,-1.6255],<span class="keyword">...</span>
-0202     <span class="string">'PeaksN'</span>,[0.0570,-0.4064],<span class="keyword">...</span>
-0203     <span class="string">'Penalty1'</span>,-ones(1,dim),<span class="keyword">...</span>
-0204     <span class="string">'Penalty2'</span>,ones(1,dim),<span class="keyword">...</span>
-0205     <span class="string">'Periodic'</span>,[0,0],<span class="keyword">...</span>
-0206     <span class="string">'Pinter'</span>,zeros(1,dim),<span class="keyword">...</span>
-0207     <span class="string">'Plateau'</span>,zeros(1,dim),<span class="keyword">...</span>
-0208     <span class="string">'Powell'</span>,zeros(1,dim),<span class="keyword">...</span>
-0209     <span class="string">'PowerSum'</span>,[1,2,2,3],<span class="keyword">...</span>
-0210     <span class="string">'Price1'</span>,[-5,-5;-5,5;5,-5;5,5],<span class="keyword">...</span>
-0211     <span class="string">'Price2'</span>,[0;0],<span class="keyword">...</span>
-0212     <span class="string">'Price3'</span>,[1,1],<span class="keyword">...</span>
-0213     <span class="string">'Price4'</span>,[0,0;2,4;1.464,-2.506],<span class="keyword">...</span>
-0214     <span class="string">'Qing'</span>,sqrt(1:dim),<span class="keyword">...</span>
-0215     <span class="string">'Quadratic'</span>,[0.19388,0.48513],<span class="keyword">...</span>
-0216     <span class="string">'Quartic'</span>,0,<span class="keyword">...</span>
-0217     <span class="string">'Quintic'</span>,-1,<span class="keyword">...</span>
-0218     <span class="string">'Rana'</span>,-500*ones(1,dim),<span class="keyword">...</span>
-0219     <span class="string">'Rastrigin'</span>,zeros(1,dim),<span class="keyword">...</span>
-0220     <span class="string">'RHE'</span>,zeros(1,dim),<span class="keyword">...</span>
-0221     <span class="string">'Ripple01'</span>,[0.1,0.1],<span class="keyword">...</span>
-0222     <span class="string">'Ripple25'</span>,[0.1,0.1],<span class="keyword">...</span>
-0223     <span class="string">'Rosenbrock'</span>,ones(1,dim),<span class="keyword">...</span>
-0224     <span class="string">'RosenbrockM'</span>,-[0.9,0.95],<span class="keyword">...</span>
-0225     <span class="string">'RosenbrockMS'</span>,NaN*ones(1,dim),<span class="keyword">...</span>
-0226     <span class="string">'RotatedEllipse1'</span>,zeros(1,dim),<span class="keyword">...</span>
-0227     <span class="string">'RotatedEllipse2'</span>,zeros(1,dim),<span class="keyword">...</span>
-0228     <span class="string">'Rump'</span>,zeros(1,dim),<span class="keyword">...</span>
-0229     <span class="string">'Salomon'</span>,zeros(1,dim),<span class="keyword">...</span>
-0230     <span class="string">'Sargan'</span>,zeros(1,dim),<span class="keyword">...</span>
-0231     <span class="string">'Schaffer1'</span>,zeros(1,dim),<span class="keyword">...</span>
-0232     <span class="string">'Schaffer2'</span>,zeros(1,dim),<span class="keyword">...</span>
-0233     <span class="string">'Schaffer3'</span>,[0,1.253115],<span class="keyword">...</span>
-0234     <span class="string">'Schaffer4'</span>,[0,1.253115],<span class="keyword">...</span>
-0235     <span class="string">'Schaffer6'</span>,zeros(1,dim),<span class="keyword">...</span>
-0236     <span class="string">'SchmidtVetters'</span>,[0.78547,0.78547,0.78547],<span class="keyword">...</span>
-0237     <span class="string">'Schwefel01'</span>,zeros(1,dim),<span class="keyword">...</span>
-0238     <span class="string">'Schwefel02'</span>,zeros(1,dim),<span class="keyword">...</span>
-0239     <span class="string">'Schwefel04'</span>,ones(1,dim),<span class="keyword">...</span>
-0240     <span class="string">'Schwefel06'</span>,[1,3],<span class="keyword">...</span>
-0241     <span class="string">'Schwefel20'</span>,zeros(1,dim),<span class="keyword">...</span>
-0242     <span class="string">'Schwefel21'</span>,zeros(1,dim),<span class="keyword">...</span>
-0243     <span class="string">'Schwefel22'</span>,zeros(1,dim),<span class="keyword">...</span>
-0244     <span class="string">'Schwefel23'</span>,zeros(1,dim),<span class="keyword">...</span>
-0245     <span class="string">'Schwefel25'</span>,ones(1,dim),<span class="keyword">...</span>
-0246     <span class="string">'Schwefel26'</span>,420.968746*ones(1,dim),<span class="keyword">...</span>
-0247     <span class="string">'Schwefel36'</span>,[12,12],<span class="keyword">...</span>
-0248     <span class="string">'Shekel05'</span>,[4,4,4,4],<span class="keyword">...</span>
-0249     <span class="string">'Shekel07'</span>,[4,4,4,4],<span class="keyword">...</span>
-0250     <span class="string">'Shekel10'</span>,[4,4,4,4],<span class="keyword">...</span>
-0251     <span class="string">'Shubert1'</span>,[-7.0835,4.8580],<span class="keyword">...</span>
-0252     <span class="string">'Shubert3'</span>,5.791794*[1,1],<span class="keyword">...</span>
-0253     <span class="string">'Shubert4'</span>,[-0.80032121,-7.08350592],<span class="keyword">...</span>
-0254     <span class="string">'SineEnveloppe'</span>,zeros(1,dim),<span class="keyword">...</span>
-0255     <span class="string">'Slope'</span>,NaN,<span class="keyword">...</span>
-0256     <span class="string">'Sodp'</span>,zeros(1,dim),<span class="keyword">...</span>
-0257     <span class="string">'Sphere'</span>,zeros(1,dim),<span class="keyword">...</span>
-0258     <span class="string">'Step'</span>,0.5*ones(1,dim),<span class="keyword">...</span>
-0259     <span class="string">'Step1'</span>,zeros(1,dim),<span class="keyword">...</span>
-0260     <span class="string">'Step2'</span>,-0.5*ones(1,dim),<span class="keyword">...</span>
-0261     <span class="string">'Step3'</span>,zeros(1,dim),<span class="keyword">...</span>
-0262     <span class="string">'StepInt'</span>,zeros(1,dim),<span class="keyword">...</span>
-0263     <span class="string">'Stochastic'</span>,1./(1:dim),<span class="keyword">...</span>
-0264     <span class="string">'StretchedV'</span>,zeros(1,dim),<span class="keyword">...</span>
-0265     <span class="string">'StyblinskiTang'</span>,-2.903534018185960*ones(1,dim),<span class="keyword">...</span>
-0266     <span class="string">'SumSquare'</span>,zeros(1,dim),<span class="keyword">...</span>
-0267     <span class="string">'Treccani'</span>,[-2 0],<span class="keyword">...</span>
-0268     <span class="string">'Trefethen'</span>,[-.02440307923 0.2106124261],<span class="keyword">...</span>
-0269     <span class="string">'Trid'</span>,[6 10 12 12 10 6],<span class="keyword">...</span>
-0270     <span class="string">'Trigonometric1'</span>,zeros(1,dim),<span class="keyword">...</span>
-0271     <span class="string">'Trigonometric2'</span>,0.9*ones(1,dim),<span class="keyword">...</span>
-0272     <span class="string">'Tripod'</span>,[0,-50],<span class="keyword">...</span>
-0273     <span class="string">'TubeHolder'</span>,[pi/2,0],<span class="keyword">...</span>
-0274     <span class="string">'Ursem1'</span>,[1.69714,0],<span class="keyword">...</span>
-0275     <span class="string">'Ursem3'</span>,[0 0],<span class="keyword">...</span>
-0276     <span class="string">'Ursem4'</span>,[0 0],<span class="keyword">...</span>
-0277     <span class="string">'UrsemWaves'</span>,[1.2,1.2],<span class="keyword">...</span>
-0278     <span class="string">'VenterSobiezcczanskiSobieski'</span>,zeros(1,dim),<span class="keyword">...</span>
-0279     <span class="string">'Vincent'</span>,7.70628098*ones(1,dim),<span class="keyword">...</span>
-0280     <span class="string">'Watson'</span>,[-0.0158 1.012 -.2329 1.26 -1.513 0.9928],<span class="keyword">...</span>
-0281     <span class="string">'Wavy'</span>,zeros(1,dim),<span class="keyword">...</span>
-0282     <span class="string">'WayburnSeader1'</span>,[1 2],<span class="keyword">...</span>
-0283     <span class="string">'WayburnSeader2'</span>,[0.2 1],<span class="keyword">...</span>
-0284     <span class="string">'Weibull'</span>,[41.8923,1.32038,23.0365],<span class="keyword">...</span>
-0285     <span class="string">'Weierstrass'</span>,zeros(1,dim),<span class="keyword">...</span>
-0286     <span class="string">'Whitley'</span>,ones(1,dim),<span class="keyword">...</span>
-0287     <span class="string">'Wolfe'</span>,zeros(1,dim),<span class="keyword">...</span>
-0288     <span class="string">'XinSheYang1'</span>,zeros(1,dim),<span class="keyword">...</span>
-0289     <span class="string">'XinSheYang2'</span>,zeros(1,dim),<span class="keyword">...</span>
-0290     <span class="string">'XinSheYang3'</span>,zeros(1,dim),<span class="keyword">...</span>
-0291     <span class="string">'XinSheYang4'</span>,zeros(1,dim),<span class="keyword">...</span>
-0292     <span class="string">'Xor'</span>,[1 -1 1 -1 -1 1 1 -1 0.421134],<span class="keyword">...</span>
-0293     <span class="string">'YaoLiu4'</span>,zeros(1,dim),<span class="keyword">...</span>
-0294     <span class="string">'YaoLiu9'</span>,zeros(1,dim),<span class="keyword">...</span>
-0295     <span class="string">'Zacharov'</span>,zeros(1,dim),<span class="keyword">...</span>
-0296     <span class="string">'ZeroSum'</span>,@(x)sum(x)==0,<span class="keyword">...</span>
-0297     <span class="string">'Zettl'</span>,[-0.02896 0],<span class="keyword">...</span>
-0298     <span class="string">'Zimmerman'</span>,[7 2],<span class="keyword">...</span>
-0299     <span class="string">'Zirilli'</span>,[-1.0465 0]);
-0300 
-0301 <span class="comment">%%%%%%%</span>
-0302 listGlobZmin=struct(<span class="keyword">...</span>
-0303     <span class="string">'Ackley1'</span>,0,<span class="keyword">...</span>
-0304     <span class="string">'Ackley2'</span>,-200,<span class="keyword">...</span>
-0305     <span class="string">'Ackley3'</span>,-234.8854,<span class="keyword">...</span>
-0306     <span class="string">'Ackley4'</span>,-3.917275,<span class="keyword">...</span>
-0307     <span class="string">'Adjiman'</span>,-2.02181,<span class="keyword">...</span>
-0308     <span class="string">'Alpine1'</span>,0,<span class="keyword">...</span>
-0309     <span class="string">'Alpine2'</span>,2.808^dim,<span class="keyword">...</span>
-0310     <span class="string">'AHE'</span>,0,<span class="keyword">...</span>
-0311     <span class="string">'AMGM'</span>,0,<span class="keyword">...</span><span class="comment"> %%</span>
-0312     <span class="string">'BartelsConn'</span>,1,<span class="keyword">...</span>
-0313     <span class="string">'Beale'</span>,0,<span class="keyword">...</span>
-0314     <span class="string">'BiggsExp2'</span>,0,<span class="keyword">...</span>
-0315     <span class="string">'BiggsExp3'</span>,0,<span class="keyword">...</span>
-0316     <span class="string">'BiggsExp4'</span>,0,<span class="keyword">...</span>
-0317     <span class="string">'BiggsExp5'</span>,0,<span class="keyword">...</span>
-0318     <span class="string">'BiggsExp6'</span>,0,<span class="keyword">...</span>
-0319     <span class="string">'Bird'</span>,-106.76453,<span class="keyword">...</span>
-0320     <span class="string">'Bohachevsky1'</span>,0,<span class="keyword">...</span>
-0321     <span class="string">'Bohachevsky2'</span>,0,<span class="keyword">...</span>
-0322     <span class="string">'Bohachevsky3'</span>,0,<span class="keyword">...</span>
-0323     <span class="string">'Booth'</span>,0,<span class="keyword">...</span>
-0324     <span class="string">'BoxBetts'</span>,0,<span class="keyword">...</span>
-0325     <span class="string">'Brad'</span>, 0.00821487,<span class="keyword">...</span>
-0326     <span class="string">'Branin1'</span>, 0.3978873,<span class="keyword">...</span>
-0327     <span class="string">'Branin2'</span>,5.559037,<span class="keyword">...</span>
-0328     <span class="string">'Brent'</span>,0,<span class="keyword">...</span>
-0329     <span class="string">'Brown'</span>,0,<span class="keyword">...</span>
-0330     <span class="string">'Bukin01'</span>,[0;0],<span class="keyword">...</span>
-0331     <span class="string">'Bukin02'</span>,0,<span class="keyword">...</span>
-0332     <span class="string">'Bukin03'</span>,0,<span class="keyword">...</span>
-0333     <span class="string">'Bukin04'</span>,0,<span class="keyword">...</span>
-0334     <span class="string">'Bukin05'</span>,0,<span class="keyword">...</span>
-0335     <span class="string">'Bukin06'</span>,0,<span class="keyword">...</span>
-0336     <span class="string">'Bukin07'</span>,[0;0],<span class="keyword">...</span>
-0337     <span class="string">'Bukin08'</span>,0,<span class="keyword">...</span>
-0338     <span class="string">'Bukin09'</span>,0,<span class="keyword">...</span>
-0339     <span class="string">'Bukin10'</span>,[0;0],<span class="keyword">...</span>
-0340     <span class="string">'Bukin11'</span>,0,<span class="keyword">...</span>
-0341     <span class="string">'Bukin12'</span>,0,<span class="keyword">...</span>
-0342     <span class="string">'Bukin13'</span>,0,<span class="keyword">...</span>
-0343     <span class="string">'Bukin14'</span>,0,<span class="keyword">...</span>
-0344     <span class="string">'Bukin15'</span>,[0;0],<span class="keyword">...</span>
-0345     <span class="string">'Bukin16'</span>,0,<span class="keyword">...</span>
-0346     <span class="string">'Bukin17'</span>,[0;0],<span class="keyword">...</span>
-0347     <span class="string">'Bukin18'</span>,[0;0],<span class="keyword">...</span>
-0348     <span class="string">'Bukin19'</span>,[0;0],<span class="keyword">...</span>
-0349     <span class="string">'Bukin20'</span>,0,<span class="keyword">...</span>
-0350     <span class="string">'CamelbackThreeHump'</span>,0,<span class="keyword">...</span>
-0351     <span class="string">'CamelbackSixHump'</span>,[-1.0316;-1.0316],<span class="keyword">...</span>
-0352     <span class="string">'CarromTable'</span>,-24.15681551650653,<span class="keyword">...</span>
-0353     <span class="string">'ChenV'</span>,-2000,<span class="keyword">...</span>
-0354     <span class="string">'ChenBird'</span>,-2000.003999984,<span class="keyword">...</span>
-0355     <span class="string">'Chichinadze'</span>,-42.04996,<span class="keyword">...</span>
-0356     <span class="string">'ChungReynolds'</span>,0,<span class="keyword">...</span>
-0357     <span class="string">'Cigar'</span>,0,<span class="keyword">...</span>
-0358     <span class="string">'Cola'</span>,11.7464,<span class="keyword">...</span>
-0359     <span class="string">'Colville'</span>,0,<span class="keyword">...</span>
-0360     <span class="string">'Corana'</span>,0,<span class="keyword">...</span>
-0361     <span class="string">'CosineMixture'</span>,0.1*dim,<span class="keyword">...</span>
-0362     <span class="string">'CrossInTray'</span>,ones(4,1)*(-2.06261218),<span class="keyword">...</span>
-0363     <span class="string">'CrossLegTable'</span>,-1,<span class="keyword">...</span><span class="comment"> x1=0 or x2=0</span>
-0364     <span class="string">'CrownedCross'</span>,1e-4,<span class="keyword">...</span><span class="comment"> x1=0 or x2=0</span>
-0365     <span class="string">'Csendes'</span>,0,<span class="keyword">...</span>
-0366     <span class="string">'Cst'</span>,NaN,<span class="keyword">...</span>
-0367     <span class="string">'Cube'</span>,0,<span class="keyword">...</span>
-0368     <span class="string">'Custom01'</span>,ones(2,1)*5,<span class="keyword">...</span>
-0369     <span class="string">'Custom02'</span>,-0.436559,<span class="keyword">...</span>
-0370     <span class="string">'Custom03'</span>,-ones(9,1),<span class="keyword">...</span>
-0371     <span class="string">'Custom04'</span>,-1,<span class="keyword">...</span>
-0372     <span class="string">'Custom05'</span>,-1.12848,<span class="keyword">...</span>
-0373     <span class="string">'Damavandi'</span>,-1.12848,<span class="keyword">...</span>
-0374     <span class="string">'Deb1'</span>,NaN,<span class="keyword">...</span>
-0375     <span class="string">'Deb2'</span>,NaN,<span class="keyword">...</span>
-0376     <span class="string">'Deb3'</span>,NaN,<span class="keyword">...</span>
-0377     <span class="string">'Deb4'</span>,NaN,<span class="keyword">...</span>
-0378     <span class="string">'Decanomial'</span>,0,<span class="keyword">...</span>
-0379     <span class="string">'Deceptive'</span>,-1,<span class="keyword">...</span>
-0380     <span class="string">'DeckkersAarts'</span>,-2.477109375e+04,<span class="keyword">...</span>
-0381     <span class="string">'DeflectedCorrugatedSpring'</span>,-1,<span class="keyword">...</span>
-0382     <span class="string">'DeVilliersGlasser1'</span>,0,<span class="keyword">...</span>
-0383     <span class="string">'DeVilliersGlasser2'</span>,0,<span class="keyword">...</span>
-0384     <span class="string">'DixonPrice'</span>,0,<span class="keyword">...</span>
-0385     <span class="string">'Dolan'</span>,10^-5,<span class="keyword">...</span>
-0386     <span class="string">'DropWave'</span>,-1,<span class="keyword">...</span>
-0387     <span class="string">'Easom'</span>,-1,<span class="keyword">...</span>
-0388     <span class="string">'ElAttarVidyasogarDutta'</span>,1.712780354,<span class="keyword">...</span>
-0389     <span class="string">'EggCrate'</span>,0,<span class="keyword">...</span>
-0390     <span class="string">'EggHolder'</span>,-959.640662711,<span class="keyword">...</span>
-0391     <span class="string">'Exponential'</span>,-1,<span class="keyword">...</span>
-0392     <span class="string">'EX1'</span>,-1.28186,<span class="keyword">...</span>
-0393     <span class="string">'Exp2'</span>,0,<span class="keyword">...</span>
-0394     <span class="string">'Exp3'</span>,0,<span class="keyword">...</span>
-0395     <span class="string">'Exp4'</span>,0,<span class="keyword">...</span>
-0396     <span class="string">'Exp5'</span>,0,<span class="keyword">...</span>
-0397     <span class="string">'Exp6'</span>,0,<span class="keyword">...</span>
-0398     <span class="string">'FreudensteinRoth'</span>,0,<span class="keyword">...</span>
-0399     <span class="string">'Gear'</span>,2.7e-12,<span class="keyword">...</span>
-0400     <span class="string">'Giunta'</span>,0.06447042053690566,<span class="keyword">...</span>
-0401     <span class="string">'GoldsteinPrice'</span>,3,<span class="keyword">...</span>
-0402     <span class="string">'Griewank'</span>,0,<span class="keyword">...</span>
-0403     <span class="string">'GulfResearch'</span>,0,<span class="keyword">...</span>
-0404     <span class="string">'Hansen'</span>,-176.5418,<span class="keyword">...</span>
-0405     <span class="string">'Hartmann3'</span>,-3.86278214782076,<span class="keyword">...</span>
-0406     <span class="string">'Hartmann6'</span>,-3.32236801141551,<span class="keyword">...</span>
-0407     <span class="string">'HelicalValley'</span>,0,<span class="keyword">...</span>
-0408     <span class="string">'Himmelblau'</span>,0,<span class="keyword">...</span>
-0409     <span class="string">'Holzman'</span>,0,<span class="keyword">...</span>
-0410     <span class="string">'Hosaki'</span>,-2.3458,<span class="keyword">...</span>
-0411     <span class="string">'Infiniti'</span>,0,<span class="keyword">...</span>
-0412     <span class="string">'JennrichSampson'</span>,124.3622,<span class="keyword">...</span>
-0413     <span class="string">'Judge'</span>,16.0817307,<span class="keyword">...</span>
-0414     <span class="string">'Katsuura'</span>,1,<span class="keyword">...</span>
-0415     <span class="string">'Keane'</span>,0.673668,<span class="keyword">...</span>
-0416     <span class="string">'Kowalik'</span>,0.00030748610,<span class="keyword">...</span>
-0417     <span class="string">'Langermann52'</span>,-1.4,<span class="keyword">...</span>
-0418     <span class="string">'Langermann5'</span>,NaN,<span class="keyword">...</span>
-0419     <span class="string">'Leon'</span>,0,<span class="keyword">...</span>
-0420     <span class="string">'Levy03'</span>,0,<span class="keyword">...</span>
-0421     <span class="string">'Levy05'</span>,-176.1375,<span class="keyword">...</span>
-0422     <span class="string">'Levy13'</span>,0,<span class="keyword">...</span>
-0423     <span class="string">'Matyas'</span>,0,<span class="keyword">...</span>
-0424     <span class="string">'McCormick'</span>,-1.9133,<span class="keyword">...</span>
-0425     <span class="string">'Michalewicz'</span>,NaN,<span class="keyword">...</span>
-0426     <span class="string">'MieleCantrell'</span>,0,<span class="keyword">...</span>
-0427     <span class="string">'Mishra01'</span>,0,<span class="keyword">...</span>
-0428     <span class="string">'Mishra02'</span>,0,<span class="keyword">...</span>
-0429     <span class="string">'Mishra03'</span>,-0.183578,<span class="keyword">...</span><span class="comment"> %-0.18467,...</span>
-0430     <span class="string">'Mishra04'</span>,-0.1971881,<span class="keyword">...</span><span class="comment"> %-0.199409,...</span>
-0431     <span class="string">'Mishra05'</span>,-0.119829,<span class="keyword">...</span>
-0432     <span class="string">'Mishra06'</span>,-2.675075970,<span class="keyword">...</span><span class="comment"> %-2.28395,...</span>
-0433     <span class="string">'Mishra07'</span>,0,<span class="keyword">...</span>
-0434     <span class="string">'Mishra08'</span>,0,<span class="keyword">...</span>
-0435     <span class="string">'Mishra09'</span>,0,<span class="keyword">...</span>
-0436     <span class="string">'Mishra10'</span>,0,<span class="keyword">...</span>
-0437     <span class="string">'Mishra11'</span>,0,<span class="keyword">...</span>
-0438     <span class="string">'Mystery'</span>,-1.4565,<span class="keyword">...</span>
-0439     <span class="string">'NeedleEye'</span>,1,<span class="keyword">...</span>
-0440     <span class="string">'NewFunction1'</span>,-0.17894509347721144,<span class="keyword">...</span>
-0441     <span class="string">'NewFunction2'</span>,-0.1971881058905,<span class="keyword">...</span>
-0442     <span class="string">'NewFunction3'</span>,-1.019829,<span class="keyword">...</span>
-0443     <span class="string">'Null'</span>,NaN,<span class="keyword">...</span>
-0444     <span class="string">'OddSquare'</span>,-1,<span class="keyword">...</span><span class="comment"> %-1.0084</span>
-0445     <span class="string">'Parsopoulos'</span>,0,<span class="keyword">...</span>
-0446     <span class="string">'Pathological'</span>,-(dim-1),<span class="keyword">...</span>
-0447     <span class="string">'PenHolder'</span>,-1.037845,<span class="keyword">...</span>
-0448     <span class="string">'Paviani'</span>,-45.77845,<span class="keyword">...</span>
-0449     <span class="string">'Peaks'</span>,-6.5511,<span class="keyword">...</span>
-0450     <span class="string">'PeaksN'</span>,-0.8735,<span class="keyword">...</span>
-0451     <span class="string">'Penalty1'</span>,0,<span class="keyword">...</span>
-0452     <span class="string">'Penalty2'</span>,0,<span class="keyword">...</span>
-0453     <span class="string">'Periodic'</span>,0.9,<span class="keyword">...</span>
-0454     <span class="string">'Pinter'</span>,0,<span class="keyword">...</span>
-0455     <span class="string">'Plateau'</span>,30,<span class="keyword">...</span>
-0456     <span class="string">'Powell'</span>,0,<span class="keyword">...</span>
-0457     <span class="string">'PowerSum'</span>,0,<span class="keyword">...</span>
-0458     <span class="string">'Price1'</span>,0,<span class="keyword">...</span>
-0459     <span class="string">'Price2'</span>,0.9,<span class="keyword">...</span>
-0460     <span class="string">'Price3'</span>,0,<span class="keyword">...</span>
-0461     <span class="string">'Price4'</span>,0,<span class="keyword">...</span>
-0462     <span class="string">'Qing'</span>,0,<span class="keyword">...</span>
-0463     <span class="string">'Quadratic'</span>,-3873.724182183033,<span class="keyword">...</span>
-0464     <span class="string">'Quartic'</span>,NaN,<span class="keyword">...</span>
-0465     <span class="string">'Quintic'</span>,0,<span class="keyword">...</span>
-0466     <span class="string">'Rana'</span>,-928.5478,<span class="keyword">...</span>
-0467     <span class="string">'Rastrigin'</span>,0,<span class="keyword">...</span>
-0468     <span class="string">'RHE'</span>,0,<span class="keyword">...</span>
-0469     <span class="string">'Ripple01'</span>,-2.2,<span class="keyword">...</span>
-0470     <span class="string">'Ripple25'</span>,-2,<span class="keyword">...</span>
-0471     <span class="string">'Rosenbrock'</span>,0,<span class="keyword">...</span>
-0472     <span class="string">'RosenbrockM'</span>,34.37124,<span class="keyword">...</span>
-0473     <span class="string">'RosenbrockMS'</span>,NaN,<span class="keyword">...</span>
-0474     <span class="string">'RotatedEllipse1'</span>,0,<span class="keyword">...</span>
-0475     <span class="string">'RotatedEllipse2'</span>,0,<span class="keyword">...</span>
-0476     <span class="string">'Rump'</span>,0,<span class="keyword">...</span>
-0477     <span class="string">'Salomon'</span>,0,<span class="keyword">...</span>
-0478     <span class="string">'Sargan'</span>,0,<span class="keyword">...</span>
-0479     <span class="string">'Schaffer1'</span>,0,<span class="keyword">...</span>
-0480     <span class="string">'Schaffer2'</span>,0,<span class="keyword">...</span>
-0481     <span class="string">'Schaffer3'</span>,0.00123005,<span class="keyword">...</span>
-0482     <span class="string">'Schaffer4'</span>,0.2924385,<span class="keyword">...</span>
-0483     <span class="string">'Schaffer6'</span>,0,<span class="keyword">...</span>
-0484     <span class="string">'SchmidtVetters'</span>,2.99845,<span class="keyword">...</span>
-0485     <span class="string">'Schwefel01'</span>,0,<span class="keyword">...</span>
-0486     <span class="string">'Schwefel02'</span>,0,<span class="keyword">...</span>
-0487     <span class="string">'Schwefel04'</span>,0,<span class="keyword">...</span>
-0488     <span class="string">'Schwefel06'</span>,0,<span class="keyword">...</span>
-0489     <span class="string">'Schwefel20'</span>,0,<span class="keyword">...</span>
-0490     <span class="string">'Schwefel21'</span>,0,<span class="keyword">...</span>
-0491     <span class="string">'Schwefel22'</span>,0,<span class="keyword">...</span>
-0492     <span class="string">'Schwefel23'</span>,0,<span class="keyword">...</span>
-0493     <span class="string">'Schwefel25'</span>,0,<span class="keyword">...</span>
-0494     <span class="string">'Schwefel26'</span>,0,<span class="keyword">...</span>
-0495     <span class="string">'Schwefel36'</span>,-3456,<span class="keyword">...</span>
-0496     <span class="string">'Shekel05'</span>,-10.1527,<span class="keyword">...</span>
-0497     <span class="string">'Shekel07'</span>,-10.40282,<span class="keyword">...</span>
-0498     <span class="string">'Shekel10'</span>,-10.53628,<span class="keyword">...</span>
-0499     <span class="string">'Shubert1'</span>,-186.7309,<span class="keyword">...</span>
-0500     <span class="string">'Shubert3'</span>,-24.062499,<span class="keyword">...</span>
-0501     <span class="string">'Shubert4'</span>,-29.016015,<span class="keyword">...</span>
-0502     <span class="string">'SineEnveloppe'</span>,0,<span class="keyword">...</span>
-0503     <span class="string">'Slope'</span>,NaN,<span class="keyword">...</span>
-0504     <span class="string">'Sodp'</span>,0,<span class="keyword">...</span>
-0505     <span class="string">'Sphere'</span>,0,<span class="keyword">...</span>
-0506     <span class="string">'Step'</span>,dim*0.25,<span class="keyword">...</span>
-0507     <span class="string">'Step1'</span>,0,<span class="keyword">...</span>
-0508     <span class="string">'Step2'</span>,0,<span class="keyword">...</span>
-0509     <span class="string">'Step3'</span>,0,<span class="keyword">...</span>
-0510     <span class="string">'StepInt'</span>,25,<span class="keyword">...</span>
-0511     <span class="string">'Stochastic'</span>,0,<span class="keyword">...</span>
-0512     <span class="string">'StretchedV'</span>,0,<span class="keyword">...</span>
-0513     <span class="string">'StyblinskiTang'</span>,-39.16616570377142*dim,<span class="keyword">...</span>
-0514     <span class="string">'SumSquare'</span>,0,<span class="keyword">...</span>
-0515     <span class="string">'Treccani'</span>,0,<span class="keyword">...</span>
-0516     <span class="string">'Trefethen'</span>,-3.3068686474,<span class="keyword">...</span>
-0517     <span class="string">'Trid'</span>,-50,<span class="keyword">...</span>
-0518     <span class="string">'Trigonometric1'</span>,0,<span class="keyword">...</span>
-0519     <span class="string">'Trigonometric2'</span>,1,<span class="keyword">...</span>
-0520     <span class="string">'Tripod'</span>,0,<span class="keyword">...</span>
-0521     <span class="string">'TubeHolder'</span>,-10.872299901558,<span class="keyword">...</span>
-0522     <span class="string">'Ursem1'</span>,-4.8168,<span class="keyword">...</span>
-0523     <span class="string">'Ursem3'</span>,-3,<span class="keyword">...</span>
-0524     <span class="string">'Ursem4'</span>,-1.5,<span class="keyword">...</span>
-0525     <span class="string">'UrsemWaves'</span>,-8.5536,<span class="keyword">...</span>
-0526     <span class="string">'VenterSobiezcczanskiSobieski'</span>,-400,<span class="keyword">...</span>
-0527     <span class="string">'Vincent'</span>,-dim,<span class="keyword">...</span>
-0528     <span class="string">'Watson'</span>,0.002288,<span class="keyword">...</span>
-0529     <span class="string">'Wavy'</span>,0,<span class="keyword">...</span>
-0530     <span class="string">'WayburnSeader1'</span>,0,<span class="keyword">...</span>
-0531     <span class="string">'WayburnSeader2'</span>,0,<span class="keyword">...</span>
-0532     <span class="string">'Weibull'</span>,0.1692167,<span class="keyword">...</span>
-0533     <span class="string">'Weierstrass'</span>,0,<span class="keyword">...</span>
-0534     <span class="string">'Whitley'</span>,0,<span class="keyword">...</span>
-0535     <span class="string">'Wolfe'</span>,0,<span class="keyword">...</span>
-0536     <span class="string">'XinSheYang1'</span>,0,<span class="keyword">...</span>
-0537     <span class="string">'XinSheYang2'</span>,0,<span class="keyword">...</span>
-0538     <span class="string">'XinSheYang3'</span>,-1,<span class="keyword">...</span>
-0539     <span class="string">'XinSheYang4'</span>,-1,<span class="keyword">...</span>
-0540     <span class="string">'Xor'</span>,0.9597588,<span class="keyword">...</span>
-0541     <span class="string">'YaoLiu4'</span>,0,<span class="keyword">...</span>
-0542     <span class="string">'YaoLiu9'</span>,0,<span class="keyword">...</span>
-0543     <span class="string">'Zacharov'</span>,0,<span class="keyword">...</span>
-0544     <span class="string">'ZeroSum'</span>,0,<span class="keyword">...</span>
-0545     <span class="string">'Zettl'</span>,-0.0037912,<span class="keyword">...</span>
-0546     <span class="string">'Zimmerman'</span>,0,<span class="keyword">...</span>
-0547     <span class="string">'Zirilli'</span>,-0.3523);
-0548 
-0549 lGX=listGlobXmin.(funName);
-0550 lGZ=listGlobZmin.(funName);
-0551 
-0552 <span class="keyword">if</span> size(lGX,2)==1&amp;&amp;isDimOk
-0553     GlobX=repmat(lGX,[1,dim]);
-0554 <span class="keyword">else</span>
-0555     GlobX=lGX;
-0556 <span class="keyword">end</span>
-0557 <span class="keyword">if</span> length(lGZ)==1&amp;&amp;size(lGX,1)&gt;1
-0558     GlobZ=repmat(lGZ,[size(lGX,1),1]);
-0559 <span class="keyword">else</span>
-0560     GlobZ=lGZ;
-0561 <span class="keyword">end</span>
-0562 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Tue 09-Oct-2018 18:18:57 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+0114     <span class="string">'Custom06'</span>,2.9084,<span class="keyword">...</span>
+0115     <span class="string">'Damavandi'</span>,[2,2],<span class="keyword">...</span>
+0116     <span class="string">'Deb1'</span>,NaN,<span class="keyword">...</span>
+0117     <span class="string">'Deb2'</span>,NaN,<span class="keyword">...</span>
+0118     <span class="string">'Deb3'</span>,NaN,<span class="keyword">...</span>
+0119     <span class="string">'Deb4'</span>,NaN,<span class="keyword">...</span>
+0120     <span class="string">'Decanomial'</span>,[2,-3],<span class="keyword">...</span>
+0121     <span class="string">'Deceptive'</span>,(1:dim)./(dim+1),<span class="keyword">...</span>
+0122     <span class="string">'DeckkersAarts'</span>,[0,-15;0,15],<span class="keyword">...</span>
+0123     <span class="string">'DeflectedCorrugatedSpring'</span>,5*ones(1,dim),<span class="keyword">...</span>
+0124     <span class="string">'DeVilliersGlasser1'</span>,NaN,<span class="keyword">...</span>
+0125     <span class="string">'DeVilliersGlasser2'</span>,NaN,<span class="keyword">...</span>
+0126     <span class="string">'DixonPrice'</span>,2.^(-(2.^(1:dim)-2)./2.^(1:dim)),<span class="keyword">...</span>
+0127     <span class="string">'Dolan'</span>, [8.39045925, 4.81424707, 7.34574133, 68.88246895, 3.85470806],<span class="keyword">...</span>
+0128     <span class="string">'DropWave'</span>,zeros(1,dim),<span class="keyword">...</span>
+0129     <span class="string">'Easom'</span>,[pi pi],<span class="keyword">...</span>
+0130     <span class="string">'ElAttarVidyasogarDutta'</span>,[3.40918683, -2.17143304],<span class="keyword">...</span>
+0131     <span class="string">'EggCrate'</span>,[0,0],<span class="keyword">...</span>
+0132     <span class="string">'EggHolder'</span>,[512.0, 404.2319],<span class="keyword">...</span>
+0133     <span class="string">'Exponential'</span>,0,<span class="keyword">...</span>
+0134     <span class="string">'EX1'</span>,[1.764,11.15],<span class="keyword">...</span>
+0135     <span class="string">'Exp2'</span>,[1,10],<span class="keyword">...</span>
+0136     <span class="string">'Exp3'</span>,[1,10,5],<span class="keyword">...</span>
+0137     <span class="string">'Exp4'</span>,[1,10,1,5],<span class="keyword">...</span>
+0138     <span class="string">'Exp5'</span>,[1,10,1,5,4],<span class="keyword">...</span>
+0139     <span class="string">'Exp6'</span>,[1,10,1,5,4,3],<span class="keyword">...</span>
+0140     <span class="string">'FreudensteinRoth'</span>,[5,4],<span class="keyword">...</span>
+0141     <span class="string">'Gear'</span>,[16,19,43,49],<span class="keyword">...</span>
+0142     <span class="string">'Giunta'</span>,[0.4673200277395354, 0.4673200169591304],<span class="keyword">...</span>
+0143     <span class="string">'GoldsteinPrice'</span>,[0,-1],<span class="keyword">...</span>
+0144     <span class="string">'Griewank'</span>,0,<span class="keyword">...</span>
+0145     <span class="string">'GulfResearch'</span>,[50,25,1.5],<span class="keyword">...</span>
+0146     <span class="string">'Hansen'</span>,[-7.589893,-7.708314;<span class="keyword">...</span>
+0147     -7.589893, -1.425128;<span class="keyword">...</span>
+0148     -7.589893, 4.858057;<span class="keyword">...</span>
+0149     -1.306708, -7.708314;<span class="keyword">...</span>
+0150     -1.306708, 4.858057;<span class="keyword">...</span>
+0151     4.976478, 4.858057;<span class="keyword">...</span>
+0152     4.976478, -1.425128;<span class="keyword">...</span>
+0153     4.976478, -7.708314],<span class="keyword">...</span>
+0154     <span class="string">'Hartmann3'</span>,[0.114614,0.555649,0.852547],<span class="keyword">...</span>
+0155     <span class="string">'Hartmann6'</span>,[0.20168952, 0.15001069, 0.47687398, 0.27533243, 0.31165162, 0.65730054],<span class="keyword">...</span>
+0156     <span class="string">'HelicalValley'</span>,[1,0,0],<span class="keyword">...</span>
+0157     <span class="string">'Himmelblau'</span>,[3,2],<span class="keyword">...</span>
+0158     <span class="string">'Holzman'</span>,[50 25 1.5],<span class="keyword">...</span>
+0159     <span class="string">'Hosaki'</span>,[4,2],<span class="keyword">...</span>
+0160     <span class="string">'Infiniti'</span>,zeros(1,dim),<span class="keyword">...</span>
+0161     <span class="string">'JennrichSampson'</span>,[0.257825,0.257825],<span class="keyword">...</span>
+0162     <span class="string">'Judge'</span>,[0.86479,1.2357],<span class="keyword">...</span>
+0163     <span class="string">'Katsuura'</span>,zeros(1,dim),<span class="keyword">...</span>
+0164     <span class="string">'Kowalik'</span>,[0.192833,0.190836,0.123117,0.135766],<span class="keyword">...</span>
+0165     <span class="string">'Langermann52'</span>,NaN,<span class="keyword">...</span>
+0166     <span class="string">'Langermann5'</span>,NaN,<span class="keyword">...</span>
+0167     <span class="string">'Keane'</span>,[0,1.39325;1.39325,0],<span class="keyword">...</span>
+0168     <span class="string">'Leon'</span>,[1,1],<span class="keyword">...</span>
+0169     <span class="string">'Levy03'</span>,ones(1,dim),<span class="keyword">...</span>
+0170     <span class="string">'Levy05'</span>,[-1.3068,-1.4248],<span class="keyword">...</span>
+0171     <span class="string">'Levy13'</span>,ones(1,dim),<span class="keyword">...</span>
+0172     <span class="string">'Matyas'</span>,[0,0],<span class="keyword">...</span>
+0173     <span class="string">'McCormick'</span>,[-0.547,-1.547],<span class="keyword">...</span>
+0174     <span class="string">'Michalewicz'</span>,NaN,<span class="keyword">...</span>
+0175     <span class="string">'MieleCantrell'</span>,[0,1,1,1],<span class="keyword">...</span>
+0176     <span class="string">'Mishra01'</span>,NaN,<span class="keyword">...</span>
+0177     <span class="string">'Mishra02'</span>,NaN,<span class="keyword">...</span>
+0178     <span class="string">'Mishra03'</span>,[-8.4667,-10],<span class="keyword">...</span><span class="comment"> %[-8.466,-10],...</span>
+0179     <span class="string">'Mishra04'</span>,[-9.94112, -9.99952],<span class="keyword">...</span><span class="comment"> %[-9.84112,-10],...</span>
+0180     <span class="string">'Mishra05'</span>,[-1.98682,-10],<span class="keyword">...</span>
+0181     <span class="string">'Mishra06'</span>,[2.94777, 1.82174],<span class="keyword">...</span><span class="comment"> %[2.88631, 1.82326],...</span>
+0182     <span class="string">'Mishra07'</span>,factorial(dim).*ones(1,dim),<span class="keyword">...</span>
+0183     <span class="string">'Mishra08'</span>,[2,-3],<span class="keyword">...</span>
+0184     <span class="string">'Mishra09'</span>,[1,2,3],<span class="keyword">...</span>
+0185     <span class="string">'Mishra10'</span>,[2,2],<span class="keyword">...</span>
+0186     <span class="string">'Mishra11'</span>,0,<span class="keyword">...</span>
+0187     <span class="string">'Mystery'</span>,[2.5044,2.5778],<span class="keyword">...</span>
+0188     <span class="string">'NeedleEye'</span>,zeros(1,dim),<span class="keyword">...</span>
+0189     <span class="string">'NewFunction1'</span>,[-8.4666,-9.9988],<span class="keyword">...</span>
+0190     <span class="string">'NewFunction2'</span>,[-9.94112,-9.99952],<span class="keyword">...</span>
+0191     <span class="string">'NewFunction3'</span>,[-1.9862,-10],<span class="keyword">...</span>
+0192     <span class="string">'Null'</span>,NaN,<span class="keyword">...</span>
+0193     <span class="string">'OddSquare'</span>,[1, 1.3, 0.8, -0.4, -1.3, 1.6, -0.2, -0.6, 0.5, 1.4<span class="keyword">...</span>
+0194     1, 1.3, 0.8, -0.4, -1.3, 1.6, -0.2, -0.6, 0.5, 1.4],<span class="keyword">...</span>
+0195     <span class="string">'Parsopoulos'</span>,[pi/2,pi],<span class="keyword">...</span>
+0196     <span class="string">'Pathological'</span>,zeros(1,dim),<span class="keyword">...</span>
+0197     <span class="string">'PenHolder'</span>,[9.646167708023526, 9.646167671043401;
+0198     -9.646167708023526, 9.646167671043401;
+0199     9.646167708023526, -9.646167671043401;
+0200     -9.646167708023526, -9.646167671043401],<span class="keyword">...</span>
+0201     <span class="string">'Paviani'</span>,9.351,<span class="keyword">...</span>
+0202     <span class="string">'Peaks'</span>,[0.2283,-1.6255],<span class="keyword">...</span>
+0203     <span class="string">'PeaksN'</span>,[0.0570,-0.4064],<span class="keyword">...</span>
+0204     <span class="string">'Penalty1'</span>,-ones(1,dim),<span class="keyword">...</span>
+0205     <span class="string">'Penalty2'</span>,ones(1,dim),<span class="keyword">...</span>
+0206     <span class="string">'Periodic'</span>,[0,0],<span class="keyword">...</span>
+0207     <span class="string">'Pinter'</span>,zeros(1,dim),<span class="keyword">...</span>
+0208     <span class="string">'Plateau'</span>,zeros(1,dim),<span class="keyword">...</span>
+0209     <span class="string">'Powell'</span>,zeros(1,dim),<span class="keyword">...</span>
+0210     <span class="string">'PowerSum'</span>,[1,2,2,3],<span class="keyword">...</span>
+0211     <span class="string">'Price1'</span>,[-5,-5;-5,5;5,-5;5,5],<span class="keyword">...</span>
+0212     <span class="string">'Price2'</span>,[0;0],<span class="keyword">...</span>
+0213     <span class="string">'Price3'</span>,[1,1],<span class="keyword">...</span>
+0214     <span class="string">'Price4'</span>,[0,0;2,4;1.464,-2.506],<span class="keyword">...</span>
+0215     <span class="string">'Qing'</span>,sqrt(1:dim),<span class="keyword">...</span>
+0216     <span class="string">'Quadratic'</span>,[0.19388,0.48513],<span class="keyword">...</span>
+0217     <span class="string">'Quartic'</span>,0,<span class="keyword">...</span>
+0218     <span class="string">'Quintic'</span>,-1,<span class="keyword">...</span>
+0219     <span class="string">'Rana'</span>,-500*ones(1,dim),<span class="keyword">...</span>
+0220     <span class="string">'Rastrigin'</span>,zeros(1,dim),<span class="keyword">...</span>
+0221     <span class="string">'RHE'</span>,zeros(1,dim),<span class="keyword">...</span>
+0222     <span class="string">'Ripple01'</span>,[0.1,0.1],<span class="keyword">...</span>
+0223     <span class="string">'Ripple25'</span>,[0.1,0.1],<span class="keyword">...</span>
+0224     <span class="string">'Rosenbrock'</span>,ones(1,dim),<span class="keyword">...</span>
+0225     <span class="string">'RosenbrockM'</span>,-[0.9,0.95],<span class="keyword">...</span>
+0226     <span class="string">'RosenbrockMS'</span>,NaN*ones(1,dim),<span class="keyword">...</span>
+0227     <span class="string">'RotatedEllipse1'</span>,zeros(1,dim),<span class="keyword">...</span>
+0228     <span class="string">'RotatedEllipse2'</span>,zeros(1,dim),<span class="keyword">...</span>
+0229     <span class="string">'Rump'</span>,zeros(1,dim),<span class="keyword">...</span>
+0230     <span class="string">'Salomon'</span>,zeros(1,dim),<span class="keyword">...</span>
+0231     <span class="string">'Sargan'</span>,zeros(1,dim),<span class="keyword">...</span>
+0232     <span class="string">'Schaffer1'</span>,zeros(1,dim),<span class="keyword">...</span>
+0233     <span class="string">'Schaffer2'</span>,zeros(1,dim),<span class="keyword">...</span>
+0234     <span class="string">'Schaffer3'</span>,[0,1.253115],<span class="keyword">...</span>
+0235     <span class="string">'Schaffer4'</span>,[0,1.253115],<span class="keyword">...</span>
+0236     <span class="string">'Schaffer6'</span>,zeros(1,dim),<span class="keyword">...</span>
+0237     <span class="string">'SchmidtVetters'</span>,[0.78547,0.78547,0.78547],<span class="keyword">...</span>
+0238     <span class="string">'Schwefel01'</span>,zeros(1,dim),<span class="keyword">...</span>
+0239     <span class="string">'Schwefel02'</span>,zeros(1,dim),<span class="keyword">...</span>
+0240     <span class="string">'Schwefel04'</span>,ones(1,dim),<span class="keyword">...</span>
+0241     <span class="string">'Schwefel06'</span>,[1,3],<span class="keyword">...</span>
+0242     <span class="string">'Schwefel20'</span>,zeros(1,dim),<span class="keyword">...</span>
+0243     <span class="string">'Schwefel21'</span>,zeros(1,dim),<span class="keyword">...</span>
+0244     <span class="string">'Schwefel22'</span>,zeros(1,dim),<span class="keyword">...</span>
+0245     <span class="string">'Schwefel23'</span>,zeros(1,dim),<span class="keyword">...</span>
+0246     <span class="string">'Schwefel25'</span>,ones(1,dim),<span class="keyword">...</span>
+0247     <span class="string">'Schwefel26'</span>,420.968746*ones(1,dim),<span class="keyword">...</span>
+0248     <span class="string">'Schwefel36'</span>,[12,12],<span class="keyword">...</span>
+0249     <span class="string">'Shekel05'</span>,[4,4,4,4],<span class="keyword">...</span>
+0250     <span class="string">'Shekel07'</span>,[4,4,4,4],<span class="keyword">...</span>
+0251     <span class="string">'Shekel10'</span>,[4,4,4,4],<span class="keyword">...</span>
+0252     <span class="string">'Shubert1'</span>,[-7.0835,4.8580],<span class="keyword">...</span>
+0253     <span class="string">'Shubert3'</span>,5.791794*[1,1],<span class="keyword">...</span>
+0254     <span class="string">'Shubert4'</span>,[-0.80032121,-7.08350592],<span class="keyword">...</span>
+0255     <span class="string">'SineEnveloppe'</span>,zeros(1,dim),<span class="keyword">...</span>
+0256     <span class="string">'Slope'</span>,NaN,<span class="keyword">...</span>
+0257     <span class="string">'Sodp'</span>,zeros(1,dim),<span class="keyword">...</span>
+0258     <span class="string">'Sphere'</span>,zeros(1,dim),<span class="keyword">...</span>
+0259     <span class="string">'Step'</span>,0.5*ones(1,dim),<span class="keyword">...</span>
+0260     <span class="string">'Step1'</span>,zeros(1,dim),<span class="keyword">...</span>
+0261     <span class="string">'Step2'</span>,-0.5*ones(1,dim),<span class="keyword">...</span>
+0262     <span class="string">'Step3'</span>,zeros(1,dim),<span class="keyword">...</span>
+0263     <span class="string">'StepInt'</span>,zeros(1,dim),<span class="keyword">...</span>
+0264     <span class="string">'Stochastic'</span>,1./(1:dim),<span class="keyword">...</span>
+0265     <span class="string">'StretchedV'</span>,zeros(1,dim),<span class="keyword">...</span>
+0266     <span class="string">'StyblinskiTang'</span>,-2.903534018185960*ones(1,dim),<span class="keyword">...</span>
+0267     <span class="string">'SumSquare'</span>,zeros(1,dim),<span class="keyword">...</span>
+0268     <span class="string">'Treccani'</span>,[-2 0],<span class="keyword">...</span>
+0269     <span class="string">'Trefethen'</span>,[-.02440307923 0.2106124261],<span class="keyword">...</span>
+0270     <span class="string">'Trid'</span>,[6 10 12 12 10 6],<span class="keyword">...</span>
+0271     <span class="string">'Trigonometric1'</span>,zeros(1,dim),<span class="keyword">...</span>
+0272     <span class="string">'Trigonometric2'</span>,0.9*ones(1,dim),<span class="keyword">...</span>
+0273     <span class="string">'Tripod'</span>,[0,-50],<span class="keyword">...</span>
+0274     <span class="string">'TubeHolder'</span>,[pi/2,0],<span class="keyword">...</span>
+0275     <span class="string">'Ursem1'</span>,[1.69714,0],<span class="keyword">...</span>
+0276     <span class="string">'Ursem3'</span>,[0 0],<span class="keyword">...</span>
+0277     <span class="string">'Ursem4'</span>,[0 0],<span class="keyword">...</span>
+0278     <span class="string">'UrsemWaves'</span>,[1.2,1.2],<span class="keyword">...</span>
+0279     <span class="string">'VenterSobiezcczanskiSobieski'</span>,zeros(1,dim),<span class="keyword">...</span>
+0280     <span class="string">'Vincent'</span>,7.70628098*ones(1,dim),<span class="keyword">...</span>
+0281     <span class="string">'Watson'</span>,[-0.0158 1.012 -.2329 1.26 -1.513 0.9928],<span class="keyword">...</span>
+0282     <span class="string">'Wavy'</span>,zeros(1,dim),<span class="keyword">...</span>
+0283     <span class="string">'WayburnSeader1'</span>,[1 2],<span class="keyword">...</span>
+0284     <span class="string">'WayburnSeader2'</span>,[0.2 1],<span class="keyword">...</span>
+0285     <span class="string">'Weibull'</span>,[41.8923,1.32038,23.0365],<span class="keyword">...</span>
+0286     <span class="string">'Weierstrass'</span>,zeros(1,dim),<span class="keyword">...</span>
+0287     <span class="string">'Whitley'</span>,ones(1,dim),<span class="keyword">...</span>
+0288     <span class="string">'Wolfe'</span>,zeros(1,dim),<span class="keyword">...</span>
+0289     <span class="string">'XinSheYang1'</span>,zeros(1,dim),<span class="keyword">...</span>
+0290     <span class="string">'XinSheYang2'</span>,zeros(1,dim),<span class="keyword">...</span>
+0291     <span class="string">'XinSheYang3'</span>,zeros(1,dim),<span class="keyword">...</span>
+0292     <span class="string">'XinSheYang4'</span>,zeros(1,dim),<span class="keyword">...</span>
+0293     <span class="string">'Xor'</span>,[1 -1 1 -1 -1 1 1 -1 0.421134],<span class="keyword">...</span>
+0294     <span class="string">'YaoLiu4'</span>,zeros(1,dim),<span class="keyword">...</span>
+0295     <span class="string">'YaoLiu9'</span>,zeros(1,dim),<span class="keyword">...</span>
+0296     <span class="string">'Zacharov'</span>,zeros(1,dim),<span class="keyword">...</span>
+0297     <span class="string">'ZeroSum'</span>,@(x)sum(x)==0,<span class="keyword">...</span>
+0298     <span class="string">'Zettl'</span>,[-0.02896 0],<span class="keyword">...</span>
+0299     <span class="string">'Zimmerman'</span>,[7 2],<span class="keyword">...</span>
+0300     <span class="string">'Zirilli'</span>,[-1.0465 0]);
+0301 
+0302 <span class="comment">%%%%%%%</span>
+0303 listGlobZmin=struct(<span class="keyword">...</span>
+0304     <span class="string">'Ackley1'</span>,0,<span class="keyword">...</span>
+0305     <span class="string">'Ackley2'</span>,-200,<span class="keyword">...</span>
+0306     <span class="string">'Ackley3'</span>,-234.8854,<span class="keyword">...</span>
+0307     <span class="string">'Ackley4'</span>,-3.917275,<span class="keyword">...</span>
+0308     <span class="string">'Adjiman'</span>,-2.02181,<span class="keyword">...</span>
+0309     <span class="string">'Alpine1'</span>,0,<span class="keyword">...</span>
+0310     <span class="string">'Alpine2'</span>,2.808^dim,<span class="keyword">...</span>
+0311     <span class="string">'AHE'</span>,0,<span class="keyword">...</span>
+0312     <span class="string">'AMGM'</span>,0,<span class="keyword">...</span><span class="comment"> %%</span>
+0313     <span class="string">'BartelsConn'</span>,1,<span class="keyword">...</span>
+0314     <span class="string">'Beale'</span>,0,<span class="keyword">...</span>
+0315     <span class="string">'BiggsExp2'</span>,0,<span class="keyword">...</span>
+0316     <span class="string">'BiggsExp3'</span>,0,<span class="keyword">...</span>
+0317     <span class="string">'BiggsExp4'</span>,0,<span class="keyword">...</span>
+0318     <span class="string">'BiggsExp5'</span>,0,<span class="keyword">...</span>
+0319     <span class="string">'BiggsExp6'</span>,0,<span class="keyword">...</span>
+0320     <span class="string">'Bird'</span>,-106.76453,<span class="keyword">...</span>
+0321     <span class="string">'Bohachevsky1'</span>,0,<span class="keyword">...</span>
+0322     <span class="string">'Bohachevsky2'</span>,0,<span class="keyword">...</span>
+0323     <span class="string">'Bohachevsky3'</span>,0,<span class="keyword">...</span>
+0324     <span class="string">'Booth'</span>,0,<span class="keyword">...</span>
+0325     <span class="string">'BoxBetts'</span>,0,<span class="keyword">...</span>
+0326     <span class="string">'Brad'</span>, 0.00821487,<span class="keyword">...</span>
+0327     <span class="string">'Branin1'</span>, 0.3978873,<span class="keyword">...</span>
+0328     <span class="string">'Branin2'</span>,5.559037,<span class="keyword">...</span>
+0329     <span class="string">'Brent'</span>,0,<span class="keyword">...</span>
+0330     <span class="string">'Brown'</span>,0,<span class="keyword">...</span>
+0331     <span class="string">'Bukin01'</span>,[0;0],<span class="keyword">...</span>
+0332     <span class="string">'Bukin02'</span>,0,<span class="keyword">...</span>
+0333     <span class="string">'Bukin03'</span>,0,<span class="keyword">...</span>
+0334     <span class="string">'Bukin04'</span>,0,<span class="keyword">...</span>
+0335     <span class="string">'Bukin05'</span>,0,<span class="keyword">...</span>
+0336     <span class="string">'Bukin06'</span>,0,<span class="keyword">...</span>
+0337     <span class="string">'Bukin07'</span>,[0;0],<span class="keyword">...</span>
+0338     <span class="string">'Bukin08'</span>,0,<span class="keyword">...</span>
+0339     <span class="string">'Bukin09'</span>,0,<span class="keyword">...</span>
+0340     <span class="string">'Bukin10'</span>,[0;0],<span class="keyword">...</span>
+0341     <span class="string">'Bukin11'</span>,0,<span class="keyword">...</span>
+0342     <span class="string">'Bukin12'</span>,0,<span class="keyword">...</span>
+0343     <span class="string">'Bukin13'</span>,0,<span class="keyword">...</span>
+0344     <span class="string">'Bukin14'</span>,0,<span class="keyword">...</span>
+0345     <span class="string">'Bukin15'</span>,[0;0],<span class="keyword">...</span>
+0346     <span class="string">'Bukin16'</span>,0,<span class="keyword">...</span>
+0347     <span class="string">'Bukin17'</span>,[0;0],<span class="keyword">...</span>
+0348     <span class="string">'Bukin18'</span>,[0;0],<span class="keyword">...</span>
+0349     <span class="string">'Bukin19'</span>,[0;0],<span class="keyword">...</span>
+0350     <span class="string">'Bukin20'</span>,0,<span class="keyword">...</span>
+0351     <span class="string">'CamelbackThreeHump'</span>,0,<span class="keyword">...</span>
+0352     <span class="string">'CamelbackSixHump'</span>,[-1.0316;-1.0316],<span class="keyword">...</span>
+0353     <span class="string">'CarromTable'</span>,-24.15681551650653,<span class="keyword">...</span>
+0354     <span class="string">'ChenV'</span>,-2000,<span class="keyword">...</span>
+0355     <span class="string">'ChenBird'</span>,-2000.003999984,<span class="keyword">...</span>
+0356     <span class="string">'Chichinadze'</span>,-42.04996,<span class="keyword">...</span>
+0357     <span class="string">'ChungReynolds'</span>,0,<span class="keyword">...</span>
+0358     <span class="string">'Cigar'</span>,0,<span class="keyword">...</span>
+0359     <span class="string">'Cola'</span>,11.7464,<span class="keyword">...</span>
+0360     <span class="string">'Colville'</span>,0,<span class="keyword">...</span>
+0361     <span class="string">'Corana'</span>,0,<span class="keyword">...</span>
+0362     <span class="string">'CosineMixture'</span>,0.1*dim,<span class="keyword">...</span>
+0363     <span class="string">'CrossInTray'</span>,ones(4,1)*(-2.06261218),<span class="keyword">...</span>
+0364     <span class="string">'CrossLegTable'</span>,-1,<span class="keyword">...</span><span class="comment"> x1=0 or x2=0</span>
+0365     <span class="string">'CrownedCross'</span>,1e-4,<span class="keyword">...</span><span class="comment"> x1=0 or x2=0</span>
+0366     <span class="string">'Csendes'</span>,0,<span class="keyword">...</span>
+0367     <span class="string">'Cst'</span>,NaN,<span class="keyword">...</span>
+0368     <span class="string">'Cube'</span>,0,<span class="keyword">...</span>
+0369     <span class="string">'Custom01'</span>,ones(2,1)*5,<span class="keyword">...</span>
+0370     <span class="string">'Custom02'</span>,-0.436559,<span class="keyword">...</span>
+0371     <span class="string">'Custom03'</span>,-ones(9,1),<span class="keyword">...</span>
+0372     <span class="string">'Custom04'</span>,-1,<span class="keyword">...</span>
+0373     <span class="string">'Custom05'</span>,-1.12848,<span class="keyword">...</span>
+0374     <span class="string">'Custom06'</span>,-0.4366,<span class="keyword">...</span>
+0375     <span class="string">'Damavandi'</span>,-1.12848,<span class="keyword">...</span>
+0376     <span class="string">'Deb1'</span>,NaN,<span class="keyword">...</span>
+0377     <span class="string">'Deb2'</span>,NaN,<span class="keyword">...</span>
+0378     <span class="string">'Deb3'</span>,NaN,<span class="keyword">...</span>
+0379     <span class="string">'Deb4'</span>,NaN,<span class="keyword">...</span>
+0380     <span class="string">'Decanomial'</span>,0,<span class="keyword">...</span>
+0381     <span class="string">'Deceptive'</span>,-1,<span class="keyword">...</span>
+0382     <span class="string">'DeckkersAarts'</span>,-2.477109375e+04,<span class="keyword">...</span>
+0383     <span class="string">'DeflectedCorrugatedSpring'</span>,-1,<span class="keyword">...</span>
+0384     <span class="string">'DeVilliersGlasser1'</span>,0,<span class="keyword">...</span>
+0385     <span class="string">'DeVilliersGlasser2'</span>,0,<span class="keyword">...</span>
+0386     <span class="string">'DixonPrice'</span>,0,<span class="keyword">...</span>
+0387     <span class="string">'Dolan'</span>,10^-5,<span class="keyword">...</span>
+0388     <span class="string">'DropWave'</span>,-1,<span class="keyword">...</span>
+0389     <span class="string">'Easom'</span>,-1,<span class="keyword">...</span>
+0390     <span class="string">'ElAttarVidyasogarDutta'</span>,1.712780354,<span class="keyword">...</span>
+0391     <span class="string">'EggCrate'</span>,0,<span class="keyword">...</span>
+0392     <span class="string">'EggHolder'</span>,-959.640662711,<span class="keyword">...</span>
+0393     <span class="string">'Exponential'</span>,-1,<span class="keyword">...</span>
+0394     <span class="string">'EX1'</span>,-1.28186,<span class="keyword">...</span>
+0395     <span class="string">'Exp2'</span>,0,<span class="keyword">...</span>
+0396     <span class="string">'Exp3'</span>,0,<span class="keyword">...</span>
+0397     <span class="string">'Exp4'</span>,0,<span class="keyword">...</span>
+0398     <span class="string">'Exp5'</span>,0,<span class="keyword">...</span>
+0399     <span class="string">'Exp6'</span>,0,<span class="keyword">...</span>
+0400     <span class="string">'FreudensteinRoth'</span>,0,<span class="keyword">...</span>
+0401     <span class="string">'Gear'</span>,2.7e-12,<span class="keyword">...</span>
+0402     <span class="string">'Giunta'</span>,0.06447042053690566,<span class="keyword">...</span>
+0403     <span class="string">'GoldsteinPrice'</span>,3,<span class="keyword">...</span>
+0404     <span class="string">'Griewank'</span>,0,<span class="keyword">...</span>
+0405     <span class="string">'GulfResearch'</span>,0,<span class="keyword">...</span>
+0406     <span class="string">'Hansen'</span>,-176.5418,<span class="keyword">...</span>
+0407     <span class="string">'Hartmann3'</span>,-3.86278214782076,<span class="keyword">...</span>
+0408     <span class="string">'Hartmann6'</span>,-3.32236801141551,<span class="keyword">...</span>
+0409     <span class="string">'HelicalValley'</span>,0,<span class="keyword">...</span>
+0410     <span class="string">'Himmelblau'</span>,0,<span class="keyword">...</span>
+0411     <span class="string">'Holzman'</span>,0,<span class="keyword">...</span>
+0412     <span class="string">'Hosaki'</span>,-2.3458,<span class="keyword">...</span>
+0413     <span class="string">'Infiniti'</span>,0,<span class="keyword">...</span>
+0414     <span class="string">'JennrichSampson'</span>,124.3622,<span class="keyword">...</span>
+0415     <span class="string">'Judge'</span>,16.0817307,<span class="keyword">...</span>
+0416     <span class="string">'Katsuura'</span>,1,<span class="keyword">...</span>
+0417     <span class="string">'Keane'</span>,0.673668,<span class="keyword">...</span>
+0418     <span class="string">'Kowalik'</span>,0.00030748610,<span class="keyword">...</span>
+0419     <span class="string">'Langermann52'</span>,-1.4,<span class="keyword">...</span>
+0420     <span class="string">'Langermann5'</span>,NaN,<span class="keyword">...</span>
+0421     <span class="string">'Leon'</span>,0,<span class="keyword">...</span>
+0422     <span class="string">'Levy03'</span>,0,<span class="keyword">...</span>
+0423     <span class="string">'Levy05'</span>,-176.1375,<span class="keyword">...</span>
+0424     <span class="string">'Levy13'</span>,0,<span class="keyword">...</span>
+0425     <span class="string">'Matyas'</span>,0,<span class="keyword">...</span>
+0426     <span class="string">'McCormick'</span>,-1.9133,<span class="keyword">...</span>
+0427     <span class="string">'Michalewicz'</span>,NaN,<span class="keyword">...</span>
+0428     <span class="string">'MieleCantrell'</span>,0,<span class="keyword">...</span>
+0429     <span class="string">'Mishra01'</span>,0,<span class="keyword">...</span>
+0430     <span class="string">'Mishra02'</span>,0,<span class="keyword">...</span>
+0431     <span class="string">'Mishra03'</span>,-0.183578,<span class="keyword">...</span><span class="comment"> %-0.18467,...</span>
+0432     <span class="string">'Mishra04'</span>,-0.1971881,<span class="keyword">...</span><span class="comment"> %-0.199409,...</span>
+0433     <span class="string">'Mishra05'</span>,-0.119829,<span class="keyword">...</span>
+0434     <span class="string">'Mishra06'</span>,-2.675075970,<span class="keyword">...</span><span class="comment"> %-2.28395,...</span>
+0435     <span class="string">'Mishra07'</span>,0,<span class="keyword">...</span>
+0436     <span class="string">'Mishra08'</span>,0,<span class="keyword">...</span>
+0437     <span class="string">'Mishra09'</span>,0,<span class="keyword">...</span>
+0438     <span class="string">'Mishra10'</span>,0,<span class="keyword">...</span>
+0439     <span class="string">'Mishra11'</span>,0,<span class="keyword">...</span>
+0440     <span class="string">'Mystery'</span>,-1.4565,<span class="keyword">...</span>
+0441     <span class="string">'NeedleEye'</span>,1,<span class="keyword">...</span>
+0442     <span class="string">'NewFunction1'</span>,-0.17894509347721144,<span class="keyword">...</span>
+0443     <span class="string">'NewFunction2'</span>,-0.1971881058905,<span class="keyword">...</span>
+0444     <span class="string">'NewFunction3'</span>,-1.019829,<span class="keyword">...</span>
+0445     <span class="string">'Null'</span>,NaN,<span class="keyword">...</span>
+0446     <span class="string">'OddSquare'</span>,-1,<span class="keyword">...</span><span class="comment"> %-1.0084</span>
+0447     <span class="string">'Parsopoulos'</span>,0,<span class="keyword">...</span>
+0448     <span class="string">'Pathological'</span>,-(dim-1),<span class="keyword">...</span>
+0449     <span class="string">'PenHolder'</span>,-1.037845,<span class="keyword">...</span>
+0450     <span class="string">'Paviani'</span>,-45.77845,<span class="keyword">...</span>
+0451     <span class="string">'Peaks'</span>,-6.5511,<span class="keyword">...</span>
+0452     <span class="string">'PeaksN'</span>,-0.8735,<span class="keyword">...</span>
+0453     <span class="string">'Penalty1'</span>,0,<span class="keyword">...</span>
+0454     <span class="string">'Penalty2'</span>,0,<span class="keyword">...</span>
+0455     <span class="string">'Periodic'</span>,0.9,<span class="keyword">...</span>
+0456     <span class="string">'Pinter'</span>,0,<span class="keyword">...</span>
+0457     <span class="string">'Plateau'</span>,30,<span class="keyword">...</span>
+0458     <span class="string">'Powell'</span>,0,<span class="keyword">...</span>
+0459     <span class="string">'PowerSum'</span>,0,<span class="keyword">...</span>
+0460     <span class="string">'Price1'</span>,0,<span class="keyword">...</span>
+0461     <span class="string">'Price2'</span>,0.9,<span class="keyword">...</span>
+0462     <span class="string">'Price3'</span>,0,<span class="keyword">...</span>
+0463     <span class="string">'Price4'</span>,0,<span class="keyword">...</span>
+0464     <span class="string">'Qing'</span>,0,<span class="keyword">...</span>
+0465     <span class="string">'Quadratic'</span>,-3873.724182183033,<span class="keyword">...</span>
+0466     <span class="string">'Quartic'</span>,NaN,<span class="keyword">...</span>
+0467     <span class="string">'Quintic'</span>,0,<span class="keyword">...</span>
+0468     <span class="string">'Rana'</span>,-928.5478,<span class="keyword">...</span>
+0469     <span class="string">'Rastrigin'</span>,0,<span class="keyword">...</span>
+0470     <span class="string">'RHE'</span>,0,<span class="keyword">...</span>
+0471     <span class="string">'Ripple01'</span>,-2.2,<span class="keyword">...</span>
+0472     <span class="string">'Ripple25'</span>,-2,<span class="keyword">...</span>
+0473     <span class="string">'Rosenbrock'</span>,0,<span class="keyword">...</span>
+0474     <span class="string">'RosenbrockM'</span>,34.37124,<span class="keyword">...</span>
+0475     <span class="string">'RosenbrockMS'</span>,NaN,<span class="keyword">...</span>
+0476     <span class="string">'RotatedEllipse1'</span>,0,<span class="keyword">...</span>
+0477     <span class="string">'RotatedEllipse2'</span>,0,<span class="keyword">...</span>
+0478     <span class="string">'Rump'</span>,0,<span class="keyword">...</span>
+0479     <span class="string">'Salomon'</span>,0,<span class="keyword">...</span>
+0480     <span class="string">'Sargan'</span>,0,<span class="keyword">...</span>
+0481     <span class="string">'Schaffer1'</span>,0,<span class="keyword">...</span>
+0482     <span class="string">'Schaffer2'</span>,0,<span class="keyword">...</span>
+0483     <span class="string">'Schaffer3'</span>,0.00123005,<span class="keyword">...</span>
+0484     <span class="string">'Schaffer4'</span>,0.2924385,<span class="keyword">...</span>
+0485     <span class="string">'Schaffer6'</span>,0,<span class="keyword">...</span>
+0486     <span class="string">'SchmidtVetters'</span>,2.99845,<span class="keyword">...</span>
+0487     <span class="string">'Schwefel01'</span>,0,<span class="keyword">...</span>
+0488     <span class="string">'Schwefel02'</span>,0,<span class="keyword">...</span>
+0489     <span class="string">'Schwefel04'</span>,0,<span class="keyword">...</span>
+0490     <span class="string">'Schwefel06'</span>,0,<span class="keyword">...</span>
+0491     <span class="string">'Schwefel20'</span>,0,<span class="keyword">...</span>
+0492     <span class="string">'Schwefel21'</span>,0,<span class="keyword">...</span>
+0493     <span class="string">'Schwefel22'</span>,0,<span class="keyword">...</span>
+0494     <span class="string">'Schwefel23'</span>,0,<span class="keyword">...</span>
+0495     <span class="string">'Schwefel25'</span>,0,<span class="keyword">...</span>
+0496     <span class="string">'Schwefel26'</span>,0,<span class="keyword">...</span>
+0497     <span class="string">'Schwefel36'</span>,-3456,<span class="keyword">...</span>
+0498     <span class="string">'Shekel05'</span>,-10.1527,<span class="keyword">...</span>
+0499     <span class="string">'Shekel07'</span>,-10.40282,<span class="keyword">...</span>
+0500     <span class="string">'Shekel10'</span>,-10.53628,<span class="keyword">...</span>
+0501     <span class="string">'Shubert1'</span>,-186.7309,<span class="keyword">...</span>
+0502     <span class="string">'Shubert3'</span>,-24.062499,<span class="keyword">...</span>
+0503     <span class="string">'Shubert4'</span>,-29.016015,<span class="keyword">...</span>
+0504     <span class="string">'SineEnveloppe'</span>,0,<span class="keyword">...</span>
+0505     <span class="string">'Slope'</span>,NaN,<span class="keyword">...</span>
+0506     <span class="string">'Sodp'</span>,0,<span class="keyword">...</span>
+0507     <span class="string">'Sphere'</span>,0,<span class="keyword">...</span>
+0508     <span class="string">'Step'</span>,dim*0.25,<span class="keyword">...</span>
+0509     <span class="string">'Step1'</span>,0,<span class="keyword">...</span>
+0510     <span class="string">'Step2'</span>,0,<span class="keyword">...</span>
+0511     <span class="string">'Step3'</span>,0,<span class="keyword">...</span>
+0512     <span class="string">'StepInt'</span>,25,<span class="keyword">...</span>
+0513     <span class="string">'Stochastic'</span>,0,<span class="keyword">...</span>
+0514     <span class="string">'StretchedV'</span>,0,<span class="keyword">...</span>
+0515     <span class="string">'StyblinskiTang'</span>,-39.16616570377142*dim,<span class="keyword">...</span>
+0516     <span class="string">'SumSquare'</span>,0,<span class="keyword">...</span>
+0517     <span class="string">'Treccani'</span>,0,<span class="keyword">...</span>
+0518     <span class="string">'Trefethen'</span>,-3.3068686474,<span class="keyword">...</span>
+0519     <span class="string">'Trid'</span>,-50,<span class="keyword">...</span>
+0520     <span class="string">'Trigonometric1'</span>,0,<span class="keyword">...</span>
+0521     <span class="string">'Trigonometric2'</span>,1,<span class="keyword">...</span>
+0522     <span class="string">'Tripod'</span>,0,<span class="keyword">...</span>
+0523     <span class="string">'TubeHolder'</span>,-10.872299901558,<span class="keyword">...</span>
+0524     <span class="string">'Ursem1'</span>,-4.8168,<span class="keyword">...</span>
+0525     <span class="string">'Ursem3'</span>,-3,<span class="keyword">...</span>
+0526     <span class="string">'Ursem4'</span>,-1.5,<span class="keyword">...</span>
+0527     <span class="string">'UrsemWaves'</span>,-8.5536,<span class="keyword">...</span>
+0528     <span class="string">'VenterSobiezcczanskiSobieski'</span>,-400,<span class="keyword">...</span>
+0529     <span class="string">'Vincent'</span>,-dim,<span class="keyword">...</span>
+0530     <span class="string">'Watson'</span>,0.002288,<span class="keyword">...</span>
+0531     <span class="string">'Wavy'</span>,0,<span class="keyword">...</span>
+0532     <span class="string">'WayburnSeader1'</span>,0,<span class="keyword">...</span>
+0533     <span class="string">'WayburnSeader2'</span>,0,<span class="keyword">...</span>
+0534     <span class="string">'Weibull'</span>,0.1692167,<span class="keyword">...</span>
+0535     <span class="string">'Weierstrass'</span>,0,<span class="keyword">...</span>
+0536     <span class="string">'Whitley'</span>,0,<span class="keyword">...</span>
+0537     <span class="string">'Wolfe'</span>,0,<span class="keyword">...</span>
+0538     <span class="string">'XinSheYang1'</span>,0,<span class="keyword">...</span>
+0539     <span class="string">'XinSheYang2'</span>,0,<span class="keyword">...</span>
+0540     <span class="string">'XinSheYang3'</span>,-1,<span class="keyword">...</span>
+0541     <span class="string">'XinSheYang4'</span>,-1,<span class="keyword">...</span>
+0542     <span class="string">'Xor'</span>,0.9597588,<span class="keyword">...</span>
+0543     <span class="string">'YaoLiu4'</span>,0,<span class="keyword">...</span>
+0544     <span class="string">'YaoLiu9'</span>,0,<span class="keyword">...</span>
+0545     <span class="string">'Zacharov'</span>,0,<span class="keyword">...</span>
+0546     <span class="string">'ZeroSum'</span>,0,<span class="keyword">...</span>
+0547     <span class="string">'Zettl'</span>,-0.0037912,<span class="keyword">...</span>
+0548     <span class="string">'Zimmerman'</span>,0,<span class="keyword">...</span>
+0549     <span class="string">'Zirilli'</span>,-0.3523);
+0550 
+0551 lGX=listGlobXmin.(funName);
+0552 lGZ=listGlobZmin.(funName);
+0553 
+0554 <span class="keyword">if</span> size(lGX,2)==1&amp;&amp;isDimOk
+0555     GlobX=repmat(lGX,[1,dim]);
+0556 <span class="keyword">else</span>
+0557     GlobX=lGX;
+0558 <span class="keyword">end</span>
+0559 <span class="keyword">if</span> length(lGZ)==1&amp;&amp;size(lGX,1)&gt;1
+0560     GlobZ=repmat(lGZ,[size(lGX,1),1]);
+0561 <span class="keyword">else</span>
+0562     GlobZ=lGZ;
+0563 <span class="keyword">end</span>
+0564 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 06-Nov-2018 18:32:08 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>
