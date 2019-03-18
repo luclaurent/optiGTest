@@ -43,7 +43,7 @@ classdef optiGTest < handle
         globMinZ                % list of global minima (responses)
         globMinX                % list of global minima (associated parameters)
         Xeval                   % set of parameters used for evaluating the function
-        
+        %
         nSCheck=5;              % number of sample points used for checking the function
         forceDisplayGrad=false; % flag to force display of gradients
         paranoidCheck=false;    % strict check of function
