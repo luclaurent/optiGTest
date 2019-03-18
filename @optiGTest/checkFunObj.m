@@ -47,10 +47,10 @@ if ~any(isnan(Z))
     ZZ=obj.evalObj(X);
     %
     if all(abs(ZZ(:)-Z(:))>limO)
-        fprintf('Issue with the %s function (wrong minimum obtained)\n',obj.namePb);
-        fprintf('Obtained: ');fprintf('%d ',ZZ(:)');
+        Ofprintf('Issue with the %s function (wrong minimum obtained)\n',obj.namePb);
+        Ofprintf('Obtained: ');fprintf('%d ',ZZ(:)');
         fprintf('\n');
-        fprintf('Expected: ');fprintf('%d ',Z(:)');
+        Ofprintf('Expected: ');fprintf('%d ',Z(:)');
         fprintf('\n');
         isOk=false;
     end

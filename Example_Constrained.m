@@ -25,10 +25,10 @@
 Fun=optiGTest('RosenbrockCubicLine');
 
 %% Demo mode
-Fun.demo
+Fun.demo;
 
 %% available dimensions (Inf= function defined for any dimension)
-Fun.dimAvailable
+Fun.dimAvailable;
 
 %% Change dimension 
 Fun.dim=3;

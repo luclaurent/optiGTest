@@ -1,7 +1,11 @@
 /* Created by mdot for Matlab */
 digraph m2html {
   buildDocOptiGTest -> listFilesoptiGTest;
+  buildTableMD -> Ofprintf;
+  dispAvailablePb -> Ofprintf;
+  dispTableTwoColumns -> Ofprintf;
 
+  Ofprintf [URL="Ofprintf.html"];
   availablePb [URL="availablePb.html"];
   boolFun [URL="boolFun.html"];
   buildDocOptiGTest [URL="buildDocOptiGTest.html"];

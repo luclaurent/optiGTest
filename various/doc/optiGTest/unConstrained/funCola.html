@@ -103,18 +103,18 @@ This function is called by:
 0059 p=zeros(nS(1:2));
 0060 <span class="keyword">for</span> itI=1:size(xC,3)
 0061     <span class="keyword">for</span> itJ=1:itI-1
-0062        <span class="comment">% dd(itI,itJ)</span>
+0062         <span class="comment">% dd(itI,itJ)</span>
 0063         p=p+(funR(xC(:,:,itI),xC(:,:,itJ),yC(:,:,itI),yC(:,:,itJ))-dd(itI,itJ)).^2;
-0064        <span class="comment">% p</span>
+0064         <span class="comment">% p</span>
 0065     <span class="keyword">end</span>
 0066 <span class="keyword">end</span>
 0067 
 0068 <span class="keyword">if</span> nargout==2
 0069     fprintf(<span class="string">'Derivatives not implemented\n'</span>)
 0070     dp=zeros(nS);
-0071  <span class="comment">%   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);</span>
+0071     <span class="comment">%   dp=4*xx.*repmat(pSum,[1 1 size(xx,3)]);</span>
 0072 <span class="keyword">end</span>
 0073 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Thu 08-Nov-2018 16:06:20 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

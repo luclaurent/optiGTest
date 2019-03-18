@@ -52,7 +52,7 @@ if flag %check all by continuing at the current position
 end
 %check every function
 for itF=1:numel(listFun)
-    fprintf(' >>> Problem %s\n',listFun{itF});
+    Ofprintf(' >>> Problem %s\n',listFun{itF});
     tmpStatus=obj.checkPb(listFun{itF},true);
     isOk=isOk&&tmpStatus;
 end

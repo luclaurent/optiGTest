@@ -32,7 +32,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-</ul>
+<li><a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="../../optiGTest/@optiGTest/funMD.html" class="code" title="function isOk=funMD(obj,nbCol,type)">funMD</a>	% Method of optiGTest class</li></ul>
@@ -69,14 +69,14 @@ This function is called by:
 0026 itF=1;
 0027 <span class="keyword">for</span> itR=1:nbFunPerCol
 0028     <span class="keyword">if</span> itR==1
-0029         fprintf(repmat(<span class="string">'|-'</span>,1,nbCol));
+0029         <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(repmat(<span class="string">'|-'</span>,1,nbCol));
 0030         fprintf(<span class="string">'|\n'</span>);
-0031         fprintf(repmat(<span class="string">'|-----'</span>,1,nbCol));
+0031         <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(repmat(<span class="string">'|-----'</span>,1,nbCol));
 0032         fprintf(<span class="string">'|\n'</span>);
 0033     <span class="keyword">end</span>
 0034     <span class="keyword">for</span> itC=1:nbCol
 0035         <span class="keyword">if</span> ~isempty(funTable{itF})
-0036             fprintf(<span class="string">'| %s ('</span>,funTable{itF});
+0036             <a href="Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'| %s ('</span>,funTable{itF});
 0037             fprintf(<span class="string">'%i'</span>,dimTable{itF});
 0038             <span class="keyword">if</span> flagCons
 0039                 fprintf(<span class="string">', %i/%i)'</span>,nbObj(itF),nbCons(itF));
@@ -91,6 +91,6 @@ This function is called by:
 0048     <span class="keyword">end</span>
 0049 <span class="keyword">end</span>
 0050 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Thu 08-Nov-2018 16:06:20 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

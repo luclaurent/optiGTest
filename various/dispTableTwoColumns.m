@@ -23,15 +23,33 @@
 
 %% function display table with two columns of text
 
-function dispTableTwoColumns(tableA,tableB)
+function txt=dispTableTwoColumns(tableA,tableB,separator)
 %size of every components in tableA
 sizeA=cellfun(@numel,tableA);
 maxA=max(sizeA);
 %space after each component
-spaceA=maxA-sizeA+3;
-spaceTxt=' ';
+spaceA=maxA-sizeA+2;
+if nargin>2
+    spaceTxt=separator;
+else
+    spaceTxt=' ';
+end
+txtOk=[];
 %display table
 for itT=1:numel(tableA)
-    fprintf('%s%s%s\n',tableA{itT},spaceTxt(ones(1,spaceA(itT))),tableB{itT});
+    if ischar(tableB{itT})
+        mask='%s%s%s\n';
+    elseif isinteger(tableB{itT})
+        mask='%s%s%i\n';
+    else
+        mask='%s%s%+5.4e\n';
+    end
+    %
+    txtOk=[txtOk sprintf(mask,tableA{itT},[' ' spaceTxt(ones(1,spaceA(itT))) ' '],tableB{itT})];
+end
+if nargout==1
+    txt=txtOk;
+else
+    Ofprintf(txtOk);
 end
 end

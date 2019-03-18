@@ -53,24 +53,24 @@ nbMultiConsPb=cellfun(@(x)funCount(strPbMulti,x,3),listPbMulti);
 nbMultiObjPb=cellfun(@(x)funCount(strPbMulti,x,1),listPbMulti);
 %
 %Show existing problems
-fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
-fprintf('Available test problems\n');
+Ofprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
+Ofprintf('Available test problems\n');
 if flagUn
-    fprintf('------------------------\n');
-    cellfun(@(X)fprintf('Unconstrained: %s\n',X),listPbUn);
-    fprintf('------------------------\n');
+    Ofprintf('------------------------\n');
+    cellfun(@(X)Ofprintf('Unconstrained: %s\n',X),listPbUn);
+    Ofprintf('------------------------\n');
 end
 if flagCons
-    fprintf('------------------------\n');
-    cellfun(@(X,Y,Z)fprintf('Constrained: %s (nb constraints: %i)\n',X,Y),...
+    Ofprintf('------------------------\n');
+    cellfun(@(X,Y,Z)Ofprintf('Constrained: %s (nb constraints: %i)\n',X,Y),...
         listPbCons,num2cell(nbConsPb));
-    fprintf('------------------------\n');
+    Ofprintf('------------------------\n');
 end
 if flagMulti
-    fprintf('------------------------\n');
-    cellfun(@(X,Y,Z)fprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),...
+    Ofprintf('------------------------\n');
+    cellfun(@(X,Y,Z)Ofprintf('Multiobjective: %s (nb objective/constraints: %i/%i)\n',X,Y,Z),...
         listPbMulti,num2cell(nbMultiObjPb),num2cell(nbMultiConsPb));
-    fprintf('------------------------\n');
+    Ofprintf('------------------------\n');
 end
-fprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
+Ofprintf('=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=#=\n');
 end

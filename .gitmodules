@@ -1,3 +1,9 @@
 [submodule "various/wiki"]
 	path = various/wiki
 	url = https://luclaurent@bitbucket.org/luclaurent/optigtest.git/wiki
+[submodule "various/m2html"]
+	path = various/m2html
+	url = git@github.com:luclaurent/m2html.git
+[submodule "gradFD"]
+	path = gradFD
+	url = git@bitbucket.org:luclaurent/gradfd.git

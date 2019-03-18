@@ -33,7 +33,7 @@
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
 This function calls:
 <ul style="list-style-image:url(../../matlabicon.gif)">
-</ul>
+<li><a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>	% function for printing information on the command window (based on fprintf)</li></ul>
 This function is called by:
 <ul style="list-style-image:url(../../matlabicon.gif)">
 <li><a href="optiGTest.html" class="code" title="">optiGTest</a>	% optiGTest class of test functions/problems w/- or w/o constraint(s)</li></ul>
@@ -69,8 +69,8 @@ This function is called by:
 0025 
 0026 <a name="_sub0" href="#_subfunctions" class="code">function dispDetails(obj)</a>
 0027 <span class="keyword">if</span> ~isempty(obj.namePb)
-0028     fprintf(<span class="string">'\n## Problem: %s\n'</span>,obj.namePb);
-0029     fprintf(<span class="string">'# Objective function(s):'</span>);
+0028     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'\n## Problem: %s\n'</span>,obj.namePb);
+0029     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# Objective function(s):'</span>);
 0030     <span class="comment">%</span>
 0031     funDisp=@(x)fprintf(<span class="string">' %s,'</span>,x);
 0032     <span class="comment">%</span>
@@ -81,7 +81,7 @@ This function is called by:
 0037     <span class="keyword">end</span>
 0038     fprintf(<span class="string">'\n'</span>);
 0039     <span class="comment">%</span>
-0040     fprintf(<span class="string">'# Constraint function(s):'</span>);
+0040     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# Constraint function(s):'</span>);
 0041     <span class="keyword">if</span> obj.nbCons==0
 0042         fprintf(<span class="string">' None'</span>);
 0043     <span class="keyword">else</span>
@@ -89,22 +89,22 @@ This function is called by:
 0045     <span class="keyword">end</span>
 0046     fprintf(<span class="string">'\n'</span>);
 0047     <span class="comment">%</span>
-0048     fprintf(<span class="string">'# Considered dimension: %i\n'</span>,obj.dim);
-0049     fprintf(<span class="string">'# Considered design space:\n'</span>);
-0050     fprintf(<span class="string">'#  Min: '</span>);fprintf(<span class="string">'%-+d\t'</span>,obj.xMin);fprintf(<span class="string">'\n'</span>);
-0051     fprintf(<span class="string">'#  Max: '</span>);fprintf(<span class="string">'%-+d\t'</span>,obj.xMax);fprintf(<span class="string">'\n'</span>);
-0052     fprintf(<span class="string">'# Considered global minimum(s) (sample points and response value(s)):\n'</span>);
+0048     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# Considered dimension: %i\n'</span>,obj.dim);
+0049     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# Considered design space:\n'</span>);
+0050     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'#  Min: '</span>);fprintf(<span class="string">'%-+d\t'</span>,obj.xMin);fprintf(<span class="string">'\n'</span>);
+0051     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'#  Max: '</span>);fprintf(<span class="string">'%-+d\t'</span>,obj.xMax);fprintf(<span class="string">'\n'</span>);
+0052     <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# Considered global minimum(s) (sample points and response value(s)):\n'</span>);
 0053     <span class="comment">%</span>
 0054     Xmin=obj.globMinX;
 0055     Zmin=obj.globMinZ;
 0056     <span class="keyword">for</span> itM=1:numel(Zmin)
-0057         fprintf(<span class="string">'# '</span>);
+0057         <a href="../../optiGTest/various/Ofprintf.html" class="code" title="function nbT = Ofprintf(varargin)">Ofprintf</a>(<span class="string">'# '</span>);
 0058         fprintf(<span class="string">'%-+d\t'</span>,Xmin(itM,:));
 0059         fprintf(<span class="string">'|| %d \n'</span>,Zmin(itM));
 0060     <span class="keyword">end</span>
 0061     fprintf(<span class="string">'\n'</span>);
 0062 <span class="keyword">end</span>
 0063 <span class="keyword">end</span></pre></div>
-<hr><address>Generated on Sun 20-May-2018 21:26:27 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Thu 08-Nov-2018 16:06:20 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>

@@ -26,14 +26,14 @@ dimTable=dimTable';
 itF=1;
 for itR=1:nbFunPerCol
     if itR==1
-        fprintf(repmat('|-',1,nbCol));
+        Ofprintf(repmat('|-',1,nbCol));
         fprintf('|\n');
-        fprintf(repmat('|-----',1,nbCol));
+        Ofprintf(repmat('|-----',1,nbCol));
         fprintf('|\n');
     end
     for itC=1:nbCol
         if ~isempty(funTable{itF})
-            fprintf('| %s (',funTable{itF});
+            Ofprintf('| %s (',funTable{itF});
             fprintf('%i',dimTable{itF});
             if flagCons
                 fprintf(', %i/%i)',nbObj(itF),nbCons(itF));
