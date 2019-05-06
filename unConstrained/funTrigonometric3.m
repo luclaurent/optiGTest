@@ -40,6 +40,6 @@ if nargout==2
     dp=zeros(size(xx));
     %
     dp(:,:,1)=cos(x);
-    dp(:,:,2)=-sin(x);
+    dp(:,:,2)=-sin(y);
 end
 end
