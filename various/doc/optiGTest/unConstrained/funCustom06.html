@@ -2,9 +2,9 @@
                 "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html>
 <head>
-  <title>Description of funZimmerman</title>
-  <meta name="keywords" content="funZimmerman">
-  <meta name="description" content="% Zimmerman function">
+  <title>Description of funCustom06</title>
+  <meta name="keywords" content="funCustom06">
+  <meta name="description" content="% Custom function 6">
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
   <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
   <meta name="robots" content="index, follow">
@@ -16,18 +16,18 @@
 <body>
 <a name="_top"></a>
 <!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
-<h1>funZimmerman
+<h1>funCustom06
 </h1>
 
 <h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="box"><strong>% Zimmerman function</strong></div>
+<div class="box"><strong>% Custom function 6</strong></div>
 
 <h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="box"><strong>function [p,dp] = funZimmerman(xx) </strong></div>
+<div class="box"><strong>function [p,dp]=funCustom06(xx) </strong></div>
 
 <h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="fragment"><pre class="comment">% Zimmerman function
- L. LAURENT -- 28/02/2017 -- luc.laurent@lecnam.net</pre></div>
+<div class="fragment"><pre class="comment">% Custom function 6
+L. LAURENT -- 06/11/2018 -- luc.laurent@lecnam.net</pre></div>
 
 <!-- crossreference -->
 <h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
@@ -42,8 +42,8 @@ This function is called by:
 
 
 <h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
-<div class="fragment"><pre>0001 <span class="comment">%% Zimmerman function</span>
-0002 <span class="comment">% L. LAURENT -- 28/02/2017 -- luc.laurent@lecnam.net</span>
+<div class="fragment"><pre>0001 <span class="comment">%% Custom function 6</span>
+0002 <span class="comment">%L. LAURENT -- 06/11/2018 -- luc.laurent@lecnam.net</span>
 0003 
 0004 <span class="comment">% sources available here:</span>
 0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
@@ -65,51 +65,38 @@ This function is called by:
 0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
 0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
 0023 
-0024 <span class="comment">%1 minimum global: f(7,2)=0</span>
-0025 <span class="comment">%</span>
-0026 <span class="comment">%Design space 0&lt;xi&lt;100</span>
-0027 
-0028 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp] = funZimmerman(xx)</a>
-0029 
-0030 <span class="comment">%constants</span>
-0031 a=9;
-0032 b=3;
-0033 c=2;
-0034 d=14;
-0035 e=100;
-0036 
-0037 <span class="comment">%evaluation and derivatives</span>
-0038 x=xx(:,:,1);
-0039 y=xx(:,:,2);
-0040 <span class="comment">%</span>
-0041 Zh1=a-x-y;
-0042 Zh2=(x-b).^2+(y-c).^2;
-0043 Zh3=x.*y-d;
-0044 Zp=@(t)e*(a+t);
-0045 <span class="comment">%</span>
-0046 pA(:,:,1)=Zh1;
-0047 pA(:,:,2)=Zp(Zh2).*sign(Zh2);
-0048 pA(:,:,3)=Zp(Zh3).*sign(Zh3);
-0049 pA(:,:,4)=Zp(-x).*sign(x);
-0050 pA(:,:,5)=Zp(-y).*sign(y);
-0051 <span class="comment">%</span>
-0052 <span class="keyword">if</span> nargout==1
-0053     p=max(pA,[],3);
-0054 <span class="keyword">else</span>
-0055     [p,Ip]=max(abs(xx),[],3);
-0056 <span class="keyword">end</span>
-0057 
-0058 <span class="keyword">if</span> nargout==2   
-0059     Zh1dX=-ones(size(p));
-0060     Zh1dY=-ones(size(p));
-0061     Zh2dX=2*(x-b),
-0062     Zh2dY=2*(y-c);
-0063     Zh3dX=y;
-0064     Zh3dX=x;
-0065     dp=zeros(size(xx));
-0066 <span class="keyword">end</span>
-0067 <span class="keyword">end</span>
-0068</pre></div>
+0024 <span class="comment">%</span>
+0025 <span class="comment">%global minimum : f(x)=-0.4366 for x= 2.9084</span>
+0026 <span class="comment">%local minima</span>
+0027 <span class="comment">% f          | x</span>
+0028 <span class="comment">% 0.4971     | -1</span>
+0029 <span class="comment">% -0.4366    | 2.9084</span>
+0030 <span class="comment">% 0.5284     | 9.0759</span>
+0031 <span class="comment">% 1.3305     | 15</span>
+0032 <span class="comment">%</span>
+0033 <span class="comment">%</span>
+0034 <span class="comment">%</span>
+0035 <span class="comment">%Design space: -1&lt;xi&lt;15</span>
+0036 <span class="comment">%</span>
+0037 
+0038 
+0039 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funCustom06(xx)</a>
+0040 <span class="comment">%constants</span>
+0041 a=10;
+0042 b=0;
+0043 c=1;
+0044 
+0045 <span class="comment">%evaluation and derivatives</span>
+0046 <span class="comment">%</span>
+0047 p=exp(-xx/a).*cos(c*xx)+1/a*xx+b;
+0048 
+0049 <span class="comment">%</span>
+0050 <span class="keyword">if</span> nargout==2
+0051     <span class="comment">%</span>
+0052     dp=-exp(-xx/a).*(c*sin(c*xx)+1/a.*cos(c*xx))+1/a;
+0053 <span class="keyword">end</span>
+0054 <span class="comment">%</span>
+0055 <span class="keyword">end</span></pre></div>
 <hr><address>Generated on Thu 08-Nov-2018 16:06:20 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>
