@@ -33,7 +33,7 @@ Xmax=obj.xMax;
 if obj.dim==1
     stepM=100;
     %
-    xx=linspace(Xmin(1),Xmax(1),stepM);
+    xx=linspace(Xmin(1),Xmax(1),stepM)';
     %evaluation of objective function(s)
     [ZZobj,GZobj]=obj.evalObj(xx);
     %display

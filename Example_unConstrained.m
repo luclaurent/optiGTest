@@ -23,7 +23,7 @@
 
 
 %% load the function
-Fun=optiGTest('Levy03');
+Fun=optiGTest('Branin1');
 
 %% Demo mode
 Fun.demo
@@ -35,9 +35,9 @@ Fun.dimAvailable
 Fun.dim=3;
 
 %% evaluation of the objective function (responses and gradients)
-X=[0 1 2;
-    3 4 5;
-    6 7 8];
+X=[0 1;
+    3 4;
+    6 7];
 % Z=responses, GZ=gradients (in cell) GZr=gradients (in array)
 [Z,GZ,GZr]=Fun.evalObj(X);
 Z 

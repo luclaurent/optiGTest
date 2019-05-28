@@ -250,6 +250,7 @@ digraph m2html {
   funCustom04 [URL="optiGTest/unConstrained/funCustom04.html"];
   funCustom05 [URL="optiGTest/unConstrained/funCustom05.html"];
   funCustom06 [URL="optiGTest/unConstrained/funCustom06.html"];
+  funCustom07 [URL="optiGTest/unConstrained/funCustom07.html"];
   funDamavandi [URL="optiGTest/unConstrained/funDamavandi.html"];
   funDeVilliersGlasser1 [URL="optiGTest/unConstrained/funDeVilliersGlasser1.html"];
   funDeVilliersGlasser2 [URL="optiGTest/unConstrained/funDeVilliersGlasser2.html"];
