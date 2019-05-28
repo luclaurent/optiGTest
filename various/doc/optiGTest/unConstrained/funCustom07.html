@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+                "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head>
+  <title>Description of funCustom07</title>
+  <meta name="keywords" content="funCustom07">
+  <meta name="description" content="% Custom function 6">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <meta name="generator" content="m2html &copy; 2005 Guillaume Flandin">
+  <meta name="robots" content="index, follow">
+  <link type="text/css" rel="stylesheet" href="../../m2html.css">
+  <script type="text/javascript">
+    if (top.frames.length == 0) { top.location = "../../index.html"; };
+  </script>
+</head>
+<body>
+<a name="_top"></a>
+<!-- ../menu.html optiGTest --><!-- menu.html unConstrained -->
+<h1>funCustom07
+</h1>
+
+<h2><a name="_name"></a>PURPOSE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>% Custom function 6</strong></div>
+
+<h2><a name="_synopsis"></a>SYNOPSIS <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="box"><strong>function [p,dp]=funCustom07(xx) </strong></div>
+
+<h2><a name="_description"></a>DESCRIPTION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre class="comment">% Custom function 6
+ L. LAURENT -- 27/05/2019 -- luc.laurent@lecnam.net</pre></div>
+
+<!-- crossreference -->
+<h2><a name="_cross"></a>CROSS-REFERENCE INFORMATION <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+This function calls:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+This function is called by:
+<ul style="list-style-image:url(../../matlabicon.gif)">
+</ul>
+<!-- crossreference -->
+
+
+
+<h2><a name="_source"></a>SOURCE CODE <a href="#_top"><img alt="^" border="0" src="../../up.png"></a></h2>
+<div class="fragment"><pre>0001 <span class="comment">%% Custom function 6</span>
+0002 <span class="comment">% L. LAURENT -- 27/05/2019 -- luc.laurent@lecnam.net</span>
+0003 
+0004 <span class="comment">% sources available here:</span>
+0005 <span class="comment">% https://bitbucket.org/luclaurent/optigtest/</span>
+0006 <span class="comment">% https://github.com/luclaurent/optigtest/</span>
+0007 
+0008 <span class="comment">% optiGTest - set of testing functions    A toolbox to easy manipulate functions.</span>
+0009 <span class="comment">% Copyright (C) 2017  Luc LAURENT &lt;luc.laurent@lecnam.net&gt;</span>
+0010 <span class="comment">%</span>
+0011 <span class="comment">% This program is free software: you can redistribute it and/or modify</span>
+0012 <span class="comment">% it under the terms of the GNU General Public License as published by</span>
+0013 <span class="comment">% the Free Software Foundation, either version 3 of the License, or</span>
+0014 <span class="comment">% (at your option) any later version.</span>
+0015 <span class="comment">%</span>
+0016 <span class="comment">% This program is distributed in the hope that it will be useful,</span>
+0017 <span class="comment">% but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+0018 <span class="comment">% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+0019 <span class="comment">% GNU General Public License for more details.</span>
+0020 <span class="comment">%</span>
+0021 <span class="comment">% You should have received a copy of the GNU General Public License</span>
+0022 <span class="comment">% along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+0023 
+0024 <span class="comment">%</span>
+0025 <span class="comment">%global minimum : f(x)=20.6508 for x= 9.6952</span>
+0026 <span class="comment">%local minima</span>
+0027 <span class="comment">% f          | x</span>
+0028 <span class="comment">% 0.6204     | 73.3129</span>
+0029 <span class="comment">% 2.8362     | 92.2315</span>
+0030 <span class="comment">% 7.4016     | 321.3776</span>
+0031 <span class="comment">%</span>
+0032 <span class="comment">%</span>
+0033 <span class="comment">%</span>
+0034 <span class="comment">%Design space: -1&lt;xi&lt;15</span>
+0035 <span class="comment">%</span>
+0036 
+0037 
+0038 <a name="_sub0" href="#_subfunctions" class="code">function [p,dp]=funCustom07(xx)</a>
+0039 <span class="comment">%constants</span>
+0040 a10=0.002201370;
+0041 a9=-0.1052876;
+0042 a8=2.151650;
+0043 a7=-24.60697;
+0044 a6=173.4160;
+0045 a5=-782.1379;
+0046 a4=2267.874;
+0047 a3=-4114.980;
+0048 a2=4357.030;
+0049 a1=-2327.900;
+0050 b=550;
+0051 
+0052 <span class="comment">%evaluation and derivatives</span>
+0053 <span class="comment">%</span>
+0054 p = a10*xx.^10 + a9*xx.^9 + a8*xx.^8 <span class="keyword">...</span>
+0055     + a7*xx.^7 + a6*xx.^6 + a5*xx.^5 <span class="keyword">...</span>
+0056     + a4*xx.^4 + a3*xx.^3 + a2*xx.^2 <span class="keyword">...</span>
+0057     + a1*xx + b ;
+0058 
+0059 <span class="comment">%</span>
+0060 <span class="keyword">if</span> nargout==2
+0061     <span class="comment">%</span>
+0062     dp=10*a10*xx.^9 + 9*a9*xx.^8 + 8*a8*xx.^7 <span class="keyword">...</span>
+0063         + 7*a7*xx.^6 + 6*a6*xx.^5 + 5*a5*xx.^4 <span class="keyword">...</span>
+0064         + 4*a4*xx.^3 + 3*a3*xx.^2 + 2*a2*xx <span class="keyword">...</span>
+0065         + a1 ;
+0066 <span class="keyword">end</span>
+0067 <span class="comment">%</span>
+0068 <span class="keyword">end</span></pre></div>
+<hr><address>Generated on Tue 28-May-2019 16:00:34 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+</body>
+</html>
