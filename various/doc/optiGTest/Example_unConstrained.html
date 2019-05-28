@@ -67,7 +67,7 @@ This function is called by:
 0023 
 0024 
 0025 <span class="comment">%% load the function</span>
-0026 Fun=<a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>(<span class="string">'Levy03'</span>);
+0026 Fun=<a href="../optiGTest/@optiGTest/optiGTest.html" class="code" title="">optiGTest</a>(<span class="string">'Branin1'</span>);
 0027 
 0028 <span class="comment">%% Demo mode</span>
 0029 Fun.demo
@@ -79,9 +79,9 @@ This function is called by:
 0035 Fun.dim=3;
 0036 
 0037 <span class="comment">%% evaluation of the objective function (responses and gradients)</span>
-0038 X=[0 1 2;
-0039     3 4 5;
-0040     6 7 8];
+0038 X=[0 1;
+0039     3 4;
+0040     6 7];
 0041 <span class="comment">% Z=responses, GZ=gradients (in cell) GZr=gradients (in array)</span>
 0042 [Z,GZ,GZr]=Fun.evalObj(X);
 0043 Z 
@@ -97,6 +97,6 @@ This function is called by:
 0053 
 0054 <span class="comment">%% list available problems</span>
 0055 <a href="../optiGTest/various/dispAvailablePb.html" class="code" title="function dispAvailablePb(txt)">dispAvailablePb</a></pre></div>
-<hr><address>Generated on Thu 08-Nov-2018 16:06:20 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
+<hr><address>Generated on Tue 28-May-2019 16:00:34 by <strong><a href="http://www.artefact.tk/software/matlab/m2html/" target="_parent">m2html</a></strong> &copy; 2005</address>
 </body>
 </html>
