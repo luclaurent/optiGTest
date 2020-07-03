@@ -46,7 +46,7 @@ for itC = 1:numel(listCase)
             %write in the wiki's file
             fprintf(ff,'#%s\n',nameFun{itF});
             fprintf(ff,'![%s](%s)\n',nameFun{itF},...
-                ['Figures/',listCase{itC},'/',filePNG]);
+                filePNG);
         end
     end
     fclose(ff);

@@ -25,10 +25,22 @@ function [GlobX,GlobZ]=loadGlobMinUn(funName,dim)
 
 isDimOk=false;
 if nargin>0
-   isDimOk=numel(dim>0)&&~any(isnan(dim))&&~any(isinf(dim));
+   isDimOk=numel(dim>0)==1&&~any(isnan(dim))&&~any(isinf(dim));
 end
 
-if ~isDimOk;dim=1;end
+if ~isDimOk
+    if any(isinf(dim))
+        dim=1;
+        isDimOk=true;
+    end
+end
+if ~isDimOk
+    if numel(dim>0)>1
+        dimTmp=dim(1);
+        dim=dimTmp;
+    end        
+    isDimOk=true;
+end
 
 listGlobXmin=struct(...
     'Ackley1',zeros(1,dim),...

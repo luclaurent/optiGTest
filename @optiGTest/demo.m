@@ -26,7 +26,9 @@
 %  - hh: handles of figures stored in cells
 
 function hh=demo(obj)
-if isinf(obj.dimAvailable);obj.dim=2;end
+%
+obj.dim=obj.loadDimDemo;
+%
 Xmin=obj.xMin;
 Xmax=obj.xMax;
 % plot 1D or 2D

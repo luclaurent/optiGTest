@@ -203,6 +203,8 @@ classdef optiGTest < handle
         dispDetails(obj);
         %% load the available dimension for the considered test function
         loadDimAvailable(obj);
+        %% load the right dimension for demo mode
+        dim=loadDimDemo(obj);
         %% get the available dimension for the considered test function
         dimA=getDimAvailable(obj);
         %% prepare the sample point for evaluation

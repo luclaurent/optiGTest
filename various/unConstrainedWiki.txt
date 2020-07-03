@@ -1,2 +1,0 @@
-#BinhKorn
-![BinhKorn](https://bitbucket.org/luclaurent/optigtest/raw/master/various/unConstrained/BinhKorn.png)
