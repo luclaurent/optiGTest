@@ -1,6 +1,9 @@
 import logging
 import sys
 from datetime import datetime
+
+import numpy as np
+
 import dbProblems as dbP
 
 class optigtest:
@@ -44,7 +47,7 @@ class optigtest:
         self.typePb = ''              # kind of problems ('Un'=unconstrained, 'Cons'= constrained, 'Mult'=multiobjective)
         #
         self.dim = 0                  # dimension of the problem (number of design variables)
-        self.Xeval                   # set of parameters used for evaluating the function
+        self.Xeval = []               # set of parameters used for evaluating the function
         #
         # nSCheck=5;                 # number of sample points used for checking the function
         # forceDisplayGrad=false;    # flag to force display of gradients
@@ -109,23 +112,89 @@ class optigtest:
                 self.typePb = dictPb['type']
             if 'typecons' in dictPb.keys():
                 self.typeCons = dictPb['typecons']
+            if 'space' in dictPb.keys():
+                self.designSpace = dictPb['space']
+            if 'minFglob' in dictPb.keys():
+                self.globMinZ = dictPb['minFglob']
+            if 'minXglob' in dictPb.keys():
+                self.globMinX = dictPb['minXglob']
+            if 'minFloc' in dictPb.keys():
+                self.locMinZ = dictPb['minFloc']
+            if 'minXloc' in dictPb.keys():
+                self.locMinX = dictPb['minXloc']
+
+
     def prepX(self,X=None):
-        pass
+        """ Pack sample points before evaluations """ 
+        if not X:
+            #convert to numpy's array
+            X = np.array(X)
+            #depending on the cases
+            if len(X.shape) == 1:
+                nbVar = X.shape[0]
+            elif len(X.shape) == 2:
+                nbVar = X.shape[1]
+            else:
+                nbVar = X.shape[2]
+            #check if the dimension is allowed
+            if not np.any(np.isinf(self.dimAvailable)):
+                if not nbVar in self.dimAvailable:
+                    logging.error('Wrong dimension of provided sample points')
+            #set the dimension
+            self.setDim(nbVar)
+            #in the case of a 2D array convert it to 3D
+            if len(X.shape) == 2:
+                self.Xeval = X.reshape(3,2,1)
+            else:
+                self.Xeval = X
+        #
+        return self.Xeval
 
     def getXmax(self):
-        pass
+        """ Get the upper bounds of the design space """
+        if not self.designSpace:
+            Xmax = [row[1] for row in self.designSpace]
+        else:
+            Xmax = None
+        #
+        return Xmax
+
     def getXmin(self):
-        pass
+        """ Get the lower bounds of the design space """
+        if not self.designSpace:
+            Xmin = [row[0] for row in self.designSpace]
+        else:
+            Xmin = None
+        #
+        return Xmin
+
     def getGlobZmin(self):
-        pass
+        """ Get the global minimum(s) of the objective function(s) with constraints """
+        if not self.globMinZ:
+            minZ = self.globMinZ
+        else:
+            minZ = None
+        return minZ
+
     def getGlobXmin(self):
-        pass
+        """ Get the point(s) of the global minimum(s) with constraints """
+        if not self.globMinX:
+            minX = self.globMinX
+        else:
+            minX = None
+        return minX
+
+
     def getTypePb(self):
-        pass
+        """ Get the type of the current problem """
+        return self.typePb
+
     def getNbObj(self):
-        pass
+        """ Get the number of objective function(s)"""
+        return len(self.funObj)
     def getNbCons(self):
-        pass
+        """ Get the number of constraint function(s)"""
+        return len(self.funCons)
     
     def setPbName(self,pbName=None):
         """ declare the problem and load data """
